@@ -1,12 +1,9 @@
 import mysql.connector
-from flask import *
-
-app = Flask(__name__)
 
 mydb = mysql.connector.connect(
-    host="10.3.1.193",
-    user="sa",
-    passwd="kamikaze",
+    host="FJOMP",
+    user="admin",
+    password="kamikaze",
     database="FJOMP"
     )
 
