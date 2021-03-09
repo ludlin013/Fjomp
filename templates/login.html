@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bake</title>
     <link rel="stylesheet" href="static/general.css">
     <link rel="stylesheet" href="static/dark.css">
@@ -10,10 +11,10 @@
     <div class="wrapper">
       <div class="mainlogin">
         <img class="logo" src="./static/pictures/bakedatabashantering.png">
-        <form class="loginform" action="" method="post">
-          <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username">
-          <input class="field" type="password" name="password" value="{{request.form.password }}" placeholder="Password">
-          <input class="field" type="submit" name="submit" value="Log in">
+        <form class="loginform" action="" method="post" autocomplete="off">
+          <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
+          <input class="field" type="password" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
+          <input class="field" type="submit" id="submit" name="submit" value="Log in">
         </form>
       </div>
     </div>
@@ -21,6 +22,7 @@
       var usrname = "{{username}}";
       if (usrname != "None"){
         document.getElementById('usernameinput').value = usrname;
+        document.getElementById('pwin').focus();
       }
     </script>
   </body>
