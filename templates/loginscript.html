@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Logging in...</title>
+    <script>
+      document.cookie = "username={{username}}"
+      sessionStorage.setItem("username", "{{username}}");
+      window.location.replace("/");
+      console.log(sessionStorage.getItem("username"));
+    </script>
+  </head>
+</html>

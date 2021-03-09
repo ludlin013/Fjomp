@@ -8,10 +8,16 @@
   <body>
     <div class="mainlogin">
       <form class="" action="" method="post">
-        <input type="text" name="username" value="{{request.form.username}}" placeholder="Username">
+        <input type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username">
         <input type="password" name="password" value="{{request.form.password }}" placeholder="Password">
         <input type="submit" name="submit" value="log in">
       </form>
     </div>
+    <script>
+      var usrname = "{{username}}";
+      if (usrname != "None"){
+        document.getElementById('usernameinput').value = usrname;
+      }
+    </script>
   </body>
 </html>
