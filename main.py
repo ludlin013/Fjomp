@@ -3,14 +3,13 @@ from flask import Flask,render_template,request,redirect,url_for
 app = Flask(__name__)
 
 def checklogin(username,password):
-    print(username)
-    print(password)
     with open("usr.csv","r") as f:
         usrs = f.read().split("\n")
     for usr in usrs:
-        u = usr.split(",")
-        if u[0] == username and u[1] == password:
-            return True
+        if usr != "":
+            u = usr.split(",")
+            if u[0] == username and u[1] == password:
+                return True
     return False
 
 
