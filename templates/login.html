@@ -4,14 +4,18 @@
     <meta charset="utf-8">
     <title>Bake</title>
     <link rel="stylesheet" href="static/general.css">
+    <link rel="stylesheet" href="static/dark.css">
   </head>
   <body>
-    <div class="mainlogin">
-      <form class="" action="" method="post">
-        <input type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username">
-        <input type="password" name="password" value="{{request.form.password }}" placeholder="Password">
-        <input type="submit" name="submit" value="log in">
-      </form>
+    <div class="wrapper">
+      <div class="mainlogin">
+        <img class="logo" src="./static/pictures/bakedatabashantering.png">
+        <form class="loginform" action="" method="post">
+          <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username">
+          <input class="field" type="password" name="password" value="{{request.form.password }}" placeholder="Password">
+          <input class="field" type="submit" name="submit" value="Log in">
+        </form>
+      </div>
     </div>
     <script>
       var usrname = "{{username}}";

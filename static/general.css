@@ -2,3 +2,32 @@
   padding:0;
   margin:0;
 }
+
+.wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.mainlogin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -100px;
+}
+
+.logo{
+  width: 300px;
+}
+
+.loginform{
+  width:350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.field{
+  padding: 10px;
+  margin:5px;
+}
