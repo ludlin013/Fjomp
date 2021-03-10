@@ -13,11 +13,10 @@ def checklogin(username,password):
                 return True
     return False
 
-
 @app.route("/")
 def main():
     print(request.cookies.get('username'))
-    if "username" in request.cookies:
+    if "loggedin" in request.cookies:
         usr = request.cookies.get('username')
     else:
         return redirect(url_for("login"))
@@ -27,10 +26,13 @@ def main():
 def login():
     error = None
     if request.method == 'POST':
+        check = request.form.get("check")
+        if check == "":
+            print(check)
         if checklogin(request.form['username'],request.form['password']):
-            return render_template("loginscript.html",username=request.form['username'])
+            return render_template("loginscript.html",checkbox=check,username=request.form['username'])
         else:
-            error = "Invalid"
+            error = "Invalid username or password"
     usr = request.cookies.get('username')
     theme = request.cookies.get('theme')
     if theme != "dark" and theme != "light":
@@ -44,6 +46,6 @@ def login():
         print(theme)
         notheme = "light"
 
-    return render_template("login.html",username=usr,theme=theme,notheme=notheme)
+    return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)
 
 app.run(host="0.0.0.0")

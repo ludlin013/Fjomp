@@ -4,7 +4,16 @@
     <meta charset="utf-8">
     <title>Logging in...</title>
     <script>
-      document.cookie = "username={{username}}"
+      check = "{{checkbox}}"
+      console.log(check)
+      if (check == ""){
+        document.cookie = "username={{username}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+        document.cookie = "loggedin=True;path=/";
+      }else {
+        document.cookie = "username={{username}}";
+        document.cookie = "loggedin=True;path=/";
+      }
+
       window.location.replace("/");
     </script>
   </head>

@@ -17,12 +17,14 @@
 
 .logo{
   width: 300px;
+  max-width: 80vw
 }
 
 .loginform{
   width:350px;
   display: flex;
   flex-direction: column;
+  max-width: 90vw
 }
 
 .field{
@@ -44,8 +46,6 @@
   cursor:pointer;
   transition-duration: .2s
 }
-
-
 
 #checkbox{
   margin-right: 5px;

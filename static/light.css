@@ -5,3 +5,7 @@ body{
 #submit:hover{
   background: #fff
 }
+
+.field{
+  border: solid rgb(60,60,60);
+}
