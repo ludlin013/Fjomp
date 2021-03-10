@@ -78,3 +78,13 @@ body{
 
 .list-parts{
   background-color: rgb(80,80,80);
+}
+
+
+.settingslogout{
+  background:#a00;
+}
+
+.settingslogout:hover{
+  background:#c00;
+}

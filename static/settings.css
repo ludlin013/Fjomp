@@ -54,9 +54,14 @@
   height:auto;
   max-height:0;
   overflow:hidden;
-  transition-duration: .1s
+  transition-duration: .1s;
+  z-index: 100000
 }
 
-.navin:hover .mainwrapsettings{
-  margin-left: 201px
+.settingslogout{
+  padding:10px 21px;
+  background:white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition-duration: .2s
 }
