@@ -50,18 +50,6 @@ body{
   background:rgb(60,60,60)!important
 }
 
-<<<<<<< HEAD
-.forminput-parts{
-  background-color: rgb(80,80,80);
-}
-
-.headerbox-parts{
-  border-color: rgb(40,40,40);
-}
-
-.list-parts{
-  background-color: rgb(80,80,80);
-=======
 .settingrow{
   border-bottom:1px solid rgb(60,60,60);
 }
@@ -78,5 +66,15 @@ body{
 
 .settingdropmenuitem:hover{
   background: #555
->>>>>>> e48a08dcf691ebce9a6a4f68e464cdb7e65b2bda
 }
+
+.forminput-parts{
+  background-color: rgb(80,80,80);
+}
+
+.headerbox-parts{
+  border-color: rgb(40,40,40);
+}
+
+.list-parts{
+  background-color: rgb(80,80,80);
