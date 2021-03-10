@@ -50,10 +50,28 @@ body{
   background:#f6f6f6!important
 }
 
+<<<<<<< HEAD
 .headerbox-parts{
   border-color: rgb(215,215,215)
 }
 
 .list-parts{
   background-color: rgb(255,255,255);
+=======
+.settingrow{
+  border-bottom:1px solid rgb(230,230,230);
+}
+
+.settingrow:nth-child(2){
+  border-top:1px solid rgb(230,230,230)
+}
+
+.droplangselectsetting,
+.dropmenusetting{
+  background: #fff;
+}
+
+.settingdropmenuitem:hover{
+  background: #eee
+>>>>>>> e48a08dcf691ebce9a6a4f68e464cdb7e65b2bda
 }

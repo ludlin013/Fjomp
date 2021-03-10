@@ -1,0 +1,62 @@
+.mainwrapsettings{
+  margin-left: 61px;
+  padding:50px 0 0 50px;
+}
+
+.mainwrapsettings h1{
+  margin-bottom: 20px;
+}
+
+.settingrow{
+  padding:10px 10px;
+  width:calc(100vw - 172px);
+  max-width: 600px;
+  display:flex;
+  max-height: 39px;
+  justify-content: space-between;
+}
+
+.settingsbranchp{
+  align-self: center;
+}
+
+.droplangselectsetting{
+  padding:0 ;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 5px;
+  transition-duration: .1s
+}
+
+#langsel{
+  text-transform: capitalize;
+  padding:10px 41px
+}
+
+.droplangselectsetting:hover {
+  border-radius: 5px 5px 0 0
+}
+
+.droplangselectsetting:hover .dropmenusetting{
+  border-radius: 0 0 5px 5px;
+  max-height:none
+}
+
+
+.settingdropmenuitem{
+  padding:10px 40px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  transition-duration: .1s
+}
+
+.dropmenusetting{
+  height:auto;
+  max-height:0;
+  overflow:hidden;
+  transition-duration: .1s
+}
+
+.navin:hover .mainwrapsettings{
+  margin-left: 201px
+}
