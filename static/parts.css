@@ -1,0 +1,53 @@
+.toppage-parts{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.mainwrapparts{
+  margin-left: 61px;
+  padding:50px;
+}
+
+.form-parts{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;
+  padding-right: 20px;
+}
+
+.searchlabel-parts{
+  margin-bottom: 10px;
+}
+
+.formitem-parts{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.forminput-parts{
+  padding: 5px;
+  width:200px;
+  border:none;
+}
+
+.list-parts{
+  margin-top: 34px;
+  height: 250px;
+  max-height: 250px;
+  width:685px;
+}
+
+.header-parts{
+  display: flex;
+  flex-direction: row;
+}
+
+.headerbox-parts{
+  padding: 5px;
+  border: 1px solid;
+}
