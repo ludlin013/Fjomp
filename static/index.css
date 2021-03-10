@@ -13,12 +13,30 @@ body{
   top: 0;
   left:0;
   width:100vw;
-  max-width:50px;
+  max-width:60px;
   height:100vh;
-  background:black;
-  transition-duration: .25s
+  background: #fdfdfd;
+  border-right: 1px solid #eee;
+  transition-duration: .25s;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nav:hover{
   max-width: 200px
+}
+
+.navitem{
+  height:60px;
+  width:200px;
+  display: flex;
+  align-items: center;
+}
+
+.navitem img{
+  height:40px;
+  width:40px;
+  padding:10px 15px 10px 10px
 }

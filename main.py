@@ -20,7 +20,7 @@ def main():
         usr = request.cookies.get('username')
     else:
         return redirect(url_for("login"))
-    return render_template("index.html",cookie=usr)
+    return render_template("landing.html",cookie=usr)
 
 @app.route("/login",methods=["GET","POST"])
 def login():
