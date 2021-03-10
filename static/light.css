@@ -82,3 +82,34 @@ body{
 .settingslogout:hover{
   background:#f00;
 }
+
+.settingthemeswitchwrap{
+  background: white;
+  border:1px solid rgb(230,230,230)
+}
+
+.settingthemeswitchwrap img{
+
+}
+
+#settingsthemeselect{
+  position: absolute;
+  background: rgba(0,0,0,0);
+  max-width:39px;
+  width: 100vw;
+  height:39px;
+  border-radius: 100px;
+  margin-left: -10px;
+  display: flex;
+  justify-content: flex-end;
+  transition-duration: .2s
+}
+
+#settingsthemeselectbutton{
+  background: rgb(20,20,20);
+
+}
+
+.settingthemeswitchwrap:hover #settingsthemeselect{
+  max-width: 80px
+}

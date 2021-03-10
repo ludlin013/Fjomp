@@ -19,10 +19,6 @@
       <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
       <a class="navitemin active" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     </div>
-    <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
-      <img src="static/pictures/{{theme}}.png">
-      <img src="static/pictures/{{notheme}}.png">
-    </div>
     <div class="mainwrapsettings">
       <h1 class="noselect">Settings</h1>
       <div class="settingrow">
@@ -33,6 +29,18 @@
             <p onclick="document.cookie = 'branch=sv;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="sv">sv</p>
             <p onclick="document.cookie = 'branch=no;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="no">no</p>
             <p onclick="document.cookie = 'branch=fi;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="fi">fi</p>
+          </div>
+        </div>
+      </div>
+      <div class="settingrow">
+        <p class="settingsthemep noselect">Theme</p>
+        <div class="settingthemeswitchwrap" onclick="document.cookie = 'theme={{notheme}};expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
+          <img src="static/pictures/dark.png">
+          <img src="static/pictures/light.png">
+          <div id="settingsthemeselect">
+            <div id="settingsthemeselectbutton">
+
+            </div>
           </div>
         </div>
       </div>
@@ -57,6 +65,12 @@
             document.getElementById(branch.trim()).style.display = "none";
         }
         }
+      }
+
+      var theme = "{{theme}}";
+      if(theme=="dark"){
+        console.log(theme);
+      }else if(theme=="light"){
       }
     </script>
   </body>
