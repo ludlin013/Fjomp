@@ -13,6 +13,20 @@ def checklogin(username,password):
                 return True
     return False
 
+def setTheme():
+    theme = request.cookies.get('theme')
+    if theme != "dark" and theme != "light":
+        print("new")
+        theme = "light"
+
+    if theme == "light":
+        print(theme)
+        notheme = "dark"
+    elif theme == "dark":
+        print(theme)
+        notheme = "light"
+    return theme,notheme
+
 @app.route("/")
 def main():
     print(request.cookies.get('username'))
@@ -34,17 +48,7 @@ def login():
         else:
             error = "Invalid username or password"
     usr = request.cookies.get('username')
-    theme = request.cookies.get('theme')
-    if theme != "dark" and theme != "light":
-        print("new")
-        theme = "light"
-
-    if theme == "light":
-        print(theme)
-        notheme = "dark"
-    elif theme == "dark":
-        print(theme)
-        notheme = "light"
+    theme,notheme = setTheme()
 
     return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)
 
@@ -52,7 +56,7 @@ def login():
 def landing():
     print(request.cookies.get('username'))
     if "loggedin" in request.cookies:
-        usr = request.cookies.get('username')
+        pass
     else:
         return redirect(url_for("login"))
     return render_template("landing.html")
