@@ -49,3 +49,20 @@ body{
 .active{
   background:#f6f6f6!important
 }
+
+.settingrow{
+  border-bottom:1px solid rgb(230,230,230);
+}
+
+.settingrow:nth-child(2){
+  border-top:1px solid rgb(230,230,230)
+}
+
+.droplangselectsetting,
+.dropmenusetting{
+  background: #fff;
+}
+
+.settingdropmenuitem:hover{
+  background: #eee
+}

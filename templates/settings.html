@@ -24,7 +24,31 @@
       <img src="static/pictures/{{notheme}}.png">
     </div>
     <div class="mainwrapsettings">
-
+      <h1 class="noselect">Settings</h1>
+      <div class="settingrow">
+        <p class="settingsbranchp noselect">Branch</p>
+        <div class="droplangselectsetting noselect">
+          <p id="langsel"></p>
+          <div class="dropmenusetting">
+            <p onclick="document.cookie = 'branch=sv;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="sv">sv</p>
+            <p onclick="document.cookie = 'branch=no;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="no">no</p>
+            <p onclick="document.cookie = 'branch=fi;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="fi">fi</p>
+          </div>
+        </div>
+      </div>
     </div>
+    <script>
+      if(document.cookie.includes("branch")){
+        var cookies = document.cookie.split(";");
+        for(var cookie of cookies){
+          if(cookie.includes("branch")){
+            var branch = cookie.replace("branch=","");
+            console.log(branch);
+            document.getElementById("langsel").innerHTML = branch;
+            document.getElementById(branch.trim()).style.display = "none";
+        }
+        }
+      }
+    </script>
   </body>
 </html>
