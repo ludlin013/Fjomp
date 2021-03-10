@@ -10,11 +10,15 @@
   <body>
     <div class="nav">
       <div class="navitem"><img src="static/pictures/{{theme}}/customers.png"><p>Customers</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/.png"><p>Parts</p></div>
-      <div class="navitem"><img src="static/pictures/dark.png"><p>Deliv. notes</p></div>
-      <div class="navitem"><img src="static/pictures/dark.png"><p>IR</p></div>
-      <div class="navitem"><img src="static/pictures/dark.png"><p>Swapouts</p></div>
-      <div class="navitem"><img src="static/pictures/dark.png"><p>Lookup</p></div>
+      <div class="navitem"><img src="static/pictures/{{theme}}/partsv2.png"><p>Parts</p></div>
+      <div class="navitem"><img src="static/pictures/{{theme}}/deliverynote.png"><p>Deliv. notes</p></div>
+      <div class="navitem"><img src="static/pictures/{{theme}}/ir.png"><p>IR</p></div>
+      <div class="navitem"><img src="static/pictures/{{theme}}/swapout.png"><p>Swapouts</p></div>
+      <div class="navitem"><img src="static/pictures/{{theme}}/lookup.png"><p>Lookup</p></div>
+    </div>
+    <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
+      <img src="static/pictures/{{theme}}.png">
+      <img src="static/pictures/{{notheme}}.png">
     </div>
   </body>
 </html>
