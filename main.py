@@ -33,7 +33,8 @@ def main():
         usr = request.cookies.get('username')
     else:
         return redirect(url_for("login"))
-    return render_template("index.html",cookie=usr)
+    theme,notheme = setTheme()
+    return render_template("index.html",cookie=usr,theme=theme,notheme=notheme)
 
 @app.route("/login",methods=["GET","POST"])
 def login():

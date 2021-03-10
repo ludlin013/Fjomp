@@ -8,15 +8,13 @@ body{
 
 }
 
-.nav{
+.navin{
   position: fixed;
   top: 0;
   left:0;
   width:100vw;
   max-width:60px;
   height:100vh;
-  background: #fdfdfd;
-  border-right: 1px solid #eee;
   transition-duration: .25s;
   overflow: hidden;
   display:flex;
@@ -24,19 +22,56 @@ body{
   justify-content: center;
 }
 
-.nav:hover{
+.navin:hover{
   max-width: 200px
 }
 
-.navitem{
+.navitemin{
   height:60px;
   width:200px;
   display: flex;
   align-items: center;
+  cursor:pointer;
 }
 
-.navitem img{
+.navitemin img{
   height:40px;
   width:40px;
   padding:10px 15px 10px 10px
+}
+
+
+.theme{
+  position: fixed;
+  bottom:10px;
+  right:10px;
+  background: rgb(245,245,245 );
+  height:60px;
+  width:60px;
+  display: flex;
+  align-items: center;
+  border-radius: 16vw;
+  overflow: hidden;
+  cursor:pointer;
+}
+
+.theme:hover img:nth-child(1){
+  margin-left: -60px
+}
+
+.theme img{
+  width: 45px;
+  height: 45px;
+  padding:7.5px;
+  transition-duration: .1s
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
