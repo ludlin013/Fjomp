@@ -5,6 +5,7 @@
 }
 
 body{
+  background:rgb(245,245,245);
   display:flex;
   justify-content: center;
   align-items: center;
@@ -14,14 +15,15 @@ body{
 .nav{
   display:flex;
   flex-wrap: wrap;
-  width:320px
+  width:320px;
+  justify-content: center;
 }
 
 .navitem{
   display: flex;
   flex-direction: column;
   width:calc(50% - 20px);
-  width:calc(50% - 20px);
+  height:calc(50% - 20px);
   align-items: center;
   margin:4px;
   padding:5px;
@@ -29,19 +31,17 @@ body{
   border:1px solid #ddd;
   border-radius: 10px;
   transition-duration: .1s;
-  box-shadow: 1px 1px 2px #555
 }
 
 .navitem:hover{
-  box-shadow: 2px 2px 5px #222;
   transform: scale(1.01);
   transition-duration: .25s;
 }
 
 .navitem img{
-  height:100px;
-  width:100px;
-  padding:10px
+  height:80px;
+  width:80px;
+  padding:20px
 }
 
 .theme{
