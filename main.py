@@ -20,7 +20,7 @@ def main():
         usr = request.cookies.get('username')
     else:
         return redirect(url_for("login"))
-    return render_template("landing.html",cookie=usr)
+    return render_template("index.html",cookie=usr)
 
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -47,5 +47,14 @@ def login():
         notheme = "light"
 
     return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)
+
+@app.route("/landing")
+def landing():
+    print(request.cookies.get('username'))
+    if "loggedin" in request.cookies:
+        usr = request.cookies.get('username')
+    else:
+        return redirect(url_for("login"))
+    return render_template("landing.html")
 
 app.run(host="0.0.0.0")
