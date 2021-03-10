@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bake</title>
     <link rel="stylesheet" href="static/general.css">
-    <link rel="stylesheet" href="static/dark.css">
+    <link rel="stylesheet" href="static/{{theme}}.css">
     <link rel="icon" href="./static/pictures/bake.ico">
   </head>
   <body>
     <div class="wrapper">
       <div class="mainlogin">
-        <img class="logo" src="./static/pictures/bakedatabashantering.png">
+        <img class="logo noselect" src="./static/pictures/bakedatabashantering.png">
         <form class="loginform" action="" method="post" autocomplete="off">
           <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
           <input class="field" type="password" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
           <input class="field" type="submit" id="submit" name="submit" value="Log in">
+          <p class="noselect"><input type="checkbox" id="checkbox" name="check"> Remember username?</p>
         </form>
       </div>
     </div>
+    <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
+      <img src="static/pictures/{{theme}}.png">
+      <img src="static/pictures/{{notheme}}.png">
+    </div>
     <script>
+      if(!document.cookie.includes("theme")){
+        document.cookie = "theme = light; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+      }
       var usrname = "{{username}}";
       if (usrname != "None"){
         document.getElementById('usernameinput').value = usrname;

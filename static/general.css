@@ -1,19 +1,18 @@
 *{
   padding:0;
   margin:0;
+  font-family: verdana,arial;
 }
 
 .wrapper{
   display: flex;
   justify-content: center;
-  height: 100vh;
 }
 
 .mainlogin{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 5vh;
 }
 
 .logo{
@@ -29,4 +28,62 @@
 .field{
   padding: 10px;
   margin:5px;
+  outline:none;
+  border-radius: 2px
+}
+
+.loginform p{
+  padding: 0 10px 10px 2px;
+  margin:2px 7px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+#submit{
+  cursor:pointer;
+  transition-duration: .2s
+}
+
+
+
+#checkbox{
+  margin-right: 5px;
+  cursor:pointer;
+}
+
+.theme{
+  position: fixed;
+  bottom:10px;
+  right:10px;
+  background: rgb(245,245,245 );
+  height:60px;
+  width:60px;
+  display: flex;
+  align-items: center;
+  border-radius: 16vw;
+  overflow: hidden;
+  cursor:pointer;
+}
+
+.theme:hover img:nth-child(1){
+  margin-left: -60px
+}
+
+.theme img{
+  width: 45px;
+  height: 45px;
+  padding:7.5px;
+  transition-duration: .1s
+}
+
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }

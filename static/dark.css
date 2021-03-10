@@ -1,3 +1,7 @@
+*{
+  color:white
+}
+
 body{
   background-color: #282828
 }
@@ -8,7 +12,11 @@ body{
 
 .field{
   background-color: rgb(80,80,80);
-  color:white;
   border: solid rgb(60,60,60);
   box-shadow: 1px 1px 2px rgb(20,20,20);
+  border-radius: 2px
+}
+
+#submit:hover{
+  background: #606060
 }

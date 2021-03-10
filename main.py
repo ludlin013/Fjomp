@@ -3,6 +3,7 @@ from flask import Flask,render_template,request,redirect,url_for
 app = Flask(__name__)
 
 def checklogin(username,password):
+    #temporary csv file
     with open("usr.csv","r") as f:
         usrs = f.read().split("\n")
     for usr in usrs:
@@ -31,6 +32,18 @@ def login():
         else:
             error = "Invalid"
     usr = request.cookies.get('username')
-    return render_template("login.html",username=usr)
+    theme = request.cookies.get('theme')
+    if theme != "dark" and theme != "light":
+        print("new")
+        theme = "light"
+
+    if theme == "light":
+        print(theme)
+        notheme = "dark"
+    elif theme == "dark":
+        print(theme)
+        notheme = "light"
+
+    return render_template("login.html",username=usr,theme=theme,notheme=notheme)
 
 app.run(host="0.0.0.0")
