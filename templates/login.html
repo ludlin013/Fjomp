@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" translate="no">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,12 +14,12 @@
         <img class="logo noselect" src="./static/pictures/bakedatabashantering.png">
         <form class="loginform" action="" method="post" autocomplete="off">
           <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
-          <input class="field" type="password" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
+          <input class="field" type="text" style="text-security:disc; -webkit-text-security:disc;" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
           <input class="field" type="submit" id="submit" name="submit" value="Log in">
           {%if error%}
           <p style="color:red;font-size:12px;padding:4px 2px">{{error}}</p>
           {%endif%}
-          <p class="noselect"><input type="checkbox" id="checkbox" name="check" value="{{request.form.check}}"> Remember username?</p>
+          <p class="noselect"><input type="checkbox" id="checkbox" name="check" value="{{request.form.check}}"> Remember username</p>
 
         </form>
       </div>
@@ -36,6 +36,7 @@
       if (usrname != "None"){
         document.getElementById('usernameinput').value = usrname;
         document.getElementById('pwin').focus();
+        document.getElementById('checkbox').checked = true;
       }
     </script>
   </body>
