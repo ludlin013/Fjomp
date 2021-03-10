@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake | Parts</title>
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="stylesheet" href="static/{{theme}}.css">
+    <link rel="icon" href="./static/pictures/icon.ico">
+  </head>
+  <body>
+    <div class="navin">
+      <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+      <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    </div>
+    <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
+      <img src="static/pictures/{{theme}}.png">
+      <img src="static/pictures/{{notheme}}.png">
+    </div>
+  </body>
+</html>
