@@ -18,7 +18,6 @@ def setTheme():
     if theme != "dark" and theme != "light":
         print("new")
         theme = "light"
-
     if theme == "light":
         print(theme)
         notheme = "dark"
@@ -59,6 +58,7 @@ def landing():
         pass
     else:
         return redirect(url_for("login"))
-    return render_template("landing.html")
+    theme,notheme = setTheme()
+    return render_template("landing.html",theme=theme,notheme=notheme)
 
 app.run(host="0.0.0.0")
