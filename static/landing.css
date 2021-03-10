@@ -14,19 +14,25 @@ body{
 .nav{
   display:flex;
   flex-wrap: wrap;
-  width:280px
+  width:320px
 }
 
 .navitem{
   display: flex;
   flex-direction: column;
   width:calc(50% - 20px);
+  width:calc(50% - 20px);
   align-items: center;
   margin:4px;
   padding:5px;
   cursor: pointer;
-  border:1px solid #eee;
-  border-radius: 10px
+  border:1px solid #ddd;
+  border-radius: 10px;
+  transition-duration: .2s;
+}
+
+.navitem:hover{
+  box-shadow: 2px 2px 4px #222
 }
 
 .navitem img{
