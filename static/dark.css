@@ -27,8 +27,7 @@ body{
 
 .navitemin{
   border:1px solid rgb(60,60,60);
-  background: rgb(80,80,80);
-  transition-duration: .2s
+  color:white
 }
 
 .navitem{
@@ -38,5 +37,5 @@ body{
 }
 
 .navitemin:hover{
-  background:#666
+  background: #303030;
 }

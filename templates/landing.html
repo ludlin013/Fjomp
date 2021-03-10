@@ -6,16 +6,17 @@
     <title>Bake</title>
     <link rel="stylesheet" href="static/landing.css">
     <link rel="stylesheet" href="static/{{theme}}.css">
+    <link rel="icon" href="./static/pictures/icon.ico">
   </head>
   <body>
     <div class="nav">
-      <div class="navitem"><img src="static/pictures/{{theme}}/customers.png"><p>Customers</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/partsv2.png"><p>Parts</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/deliverynote.png"><p>Deliv. notes</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/ir.png"><p>IR</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/swapout.png"><p>Swapouts</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/lookup.png"><p>Lookup</p></div>
-      <div class="navitem"><img src="static/pictures/{{theme}}/settings.png"><p>Settings</p></div>
+      <a class="navitem" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      <a class="navitem" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+      <a class="navitem" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+      <a class="navitem" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+      <a class="navitem" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+      <a class="navitem" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+      <a class="navitem" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     </div>
     <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
       <img src="static/pictures/{{theme}}.png">

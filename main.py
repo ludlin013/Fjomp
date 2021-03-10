@@ -28,7 +28,6 @@ def setTheme():
 
 @app.route("/")
 def main():
-    print(request.cookies.get('username'))
     if "loggedin" in request.cookies:
         usr = request.cookies.get('username')
     else:
@@ -54,12 +53,79 @@ def login():
 
 @app.route("/landing")
 def landing():
-    print(request.cookies.get('username'))
     if "loggedin" in request.cookies:
         pass
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
     return render_template("landing.html",theme=theme,notheme=notheme)
+
+@app.route("/customers")
+def customers():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("customers.html",theme=theme,notheme=notheme)
+
+@app.route("/parts")
+def parts():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("parts.html",theme=theme,notheme=notheme)
+
+@app.route("/delivnotes")
+def delivnotes():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("delivnotes.html",theme=theme,notheme=notheme)
+
+@app.route("/ir")
+def ir():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("ir.html",theme=theme,notheme=notheme)
+
+@app.route("/swapouts")
+def swapouts():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("swapouts.html",theme=theme,notheme=notheme)
+
+@app.route("/lookup")
+def lookup():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("lookup.html",theme=theme,notheme=notheme)
+
+@app.route("/settings")
+def settings():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+    return render_template("settings.html",theme=theme,notheme=notheme)
+
+
+
+
+
 
 app.run(host="0.0.0.0")
