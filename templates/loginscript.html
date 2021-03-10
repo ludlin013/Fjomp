@@ -14,6 +14,9 @@
         document.cookie = "username={{username}};path=/";
         document.cookie = "loggedin=True;path=/";
       }
+      if (!document.cookie.includes("branch")){
+        document.cookie = "branch=sv; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+      }
 
       window.location.replace("/landing");
     </script>
