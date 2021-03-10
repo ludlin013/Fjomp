@@ -6,7 +6,6 @@
 
 body{
   display: flex;
-
 }
 
 .navin{
@@ -16,15 +15,16 @@ body{
   width:100vw;
   max-width:60px;
   height:100%;
-  transition-duration: .25s;
   overflow: hidden;
   display:flex;
   flex-direction: column;
   justify-content: center;
+  transition-duration: .1s;
 }
 
 .navin:hover{
-  max-width: 200px
+  transition-duration: .25s;
+  max-width: 200px;
 }
 
 .navitemin{
