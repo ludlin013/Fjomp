@@ -16,6 +16,7 @@ body{
   flex-wrap: wrap;
   width:320px;
   justify-content: center;
+  margin-top:5vh
 }
 
 .navitem{

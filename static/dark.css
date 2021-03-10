@@ -10,6 +10,11 @@ body{
   color: rgb(255,255,255)
 }
 
+.selectlang{
+  transform: scale(1.25);
+  border:1px outset white
+}
+
 .field{
   background-color: rgb(80,80,80);
   border: solid rgb(60,60,60);

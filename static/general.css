@@ -9,6 +9,7 @@
   justify-content: center;
 }
 
+
 .mainlogin{
   display: flex;
   flex-direction: column;
@@ -18,6 +19,22 @@
 .logo{
   width: 300px;
   max-width: 80vw
+}
+
+.flags{
+  display:flex;
+  width: 300px;
+  max-width: 80vw;
+  justify-content: space-around;
+  margin-bottom: 20px
+}
+
+.flags img{
+  max-width:120px;
+  width:25%;
+  height:calc(25% * 0,61);
+  transition-duration: .1s;
+  cursor:pointer
 }
 
 .loginform{
