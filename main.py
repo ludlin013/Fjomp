@@ -33,7 +33,7 @@ def main():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("index.html",cookie=usr,theme=theme,notheme=notheme)
+    return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme)
 
 @app.route("/login",methods=["GET","POST"])
 def login():
