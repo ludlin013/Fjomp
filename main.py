@@ -80,8 +80,18 @@ def parts():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
     with open("static/DB/s_parts.txte","r",encoding="ansi") as f:
-        parts = f.read().strip().split("\n")
-    print([parts[0][1:4].strip(), parts[0][5:12].strip(), parts[0][22:52].strip(), parts[0][52:55].strip(),parts[0][55:65].strip(), parts[0][65:82].strip(), parts[0][82:92].strip(), parts[0][92:10].strip(), parts[0][102:117].strip(), parts[0][117:118].strip(), parts[0][118:122].strip(), parts[0][122:139].strip(), parts[0][139:156].strip(), parts[0][156:173].strip(), parts[0][173:190].strip(), parts[0][190:207].strip(), parts[0][207:224].strip(), parts[0][224:241].strip(), parts[0][241:258].strip()])
+        partse = f.read().strip().split("\n")
+
+    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
+        parts = f.read().split("\n")
+
+    for x in partse:
+        print([x[1:4].strip(), x[5:12].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
+    print("====================================")
+    for x in parts:
+        print([x[1:5].strip(), x[5:22].strip(), x[22:52].strip(),x[52:55].strip(), x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:102].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
+
+
     return render_template("parts.html",theme=theme,notheme=notheme)
 
 @app.route("/delivnotes")
