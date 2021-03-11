@@ -17,6 +17,7 @@
 }
 
 .settingadminrow{
+  text-decoration: none;
   padding:20px 10px;
   width:calc(100vw - 172px);
   max-width: 600px;
