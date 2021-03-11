@@ -3,7 +3,7 @@
 .toppage-parts{
   display: flex;
   margin-top: 15px;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 .mainwrapparts{
   margin-left: 61px;
@@ -35,8 +35,6 @@
 }
 
 .list-parts{
-  margin: 10px;
-  margin-bottom: 0px;
   margin-top: 34px;
 }
 
@@ -49,6 +47,14 @@ table, td, th {
 tr{
   table-layout: fixed;
   width: 100%;
+}
+
+#header-parts{
+  cursor: initial;
+}
+
+.row-parts:hover{
+  cursor: pointer;
 }
 
 table {
@@ -80,7 +86,7 @@ th{
 }
 
 .thsupplier-parts{
-  width: 75px;
+  width: 50px;
 }
 
 .thLP-parts{
@@ -93,7 +99,7 @@ th{
 
 @media only screen and (max-width: 800px){
   .tabell-parts{
-    width: 400px;
+    max-width: 400px;
     overflow-x:scroll;
   }
 
@@ -104,7 +110,7 @@ th{
 
 @media only screen and (max-width: 550px){
 .tabell-parts{
-  width: 250px;
+  max-width: 230px;
   overflow-x:scroll;
 }
 

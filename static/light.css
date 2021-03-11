@@ -114,3 +114,7 @@ body{
 table, td, th {
   border-color: rgb(245,245,245);
 }
+
+.row-parts:hover{
+  background-color: rgb(235,235,235)
+}
