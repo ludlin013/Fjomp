@@ -16,13 +16,10 @@ def checklogin(username,password):
 def setTheme():
     theme = request.cookies.get('theme')
     if theme != "dark" and theme != "light":
-        print("new")
         theme = "light"
     if theme == "light":
-        print(theme)
         notheme = "dark"
     elif theme == "dark":
-        print(theme)
         notheme = "light"
     return theme,notheme
 
@@ -33,6 +30,9 @@ def main():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
+    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
+        parts = f.read()
+
     return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme)
 
 @app.route("/login",methods=["GET","POST"])
@@ -40,10 +40,13 @@ def login():
     error = None
     if request.method == 'POST':
         check = request.form.get("check")
-        if check == "":
-            print(check)
         if checklogin(request.form['username'],request.form['password']):
-            return render_template("loginscript.html",checkbox=check,username=request.form['username'])
+            with open("static/authuser.csv","r",encoding="utf-8") as f:
+                authusr = f.read().strip().split("\n")
+            auth = False
+            if request.form['username'] in authusr:
+                auth = True
+            return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"
     usr = request.cookies.get('username')
@@ -120,8 +123,11 @@ def settings():
         pass
     else:
         return redirect(url_for("login"))
+    authenticated = False
+    if request.cookies["auth"] == "true":
+        authenticated = True
     theme,notheme = setTheme()
-    return render_template("settings.html",theme=theme,notheme=notheme)
+    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated)
 
 
 

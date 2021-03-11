@@ -53,6 +53,24 @@
 
           </div>
       </div>
+      {% if auth%}
+      <h1 class="noselect">Maintenance</h1>
+      <div class="settingadminrow">
+        <p class="settingsthemep noselect">Edit Techs</p>
+      </div>
+      <div class="settingadminrow">
+        <p class="settingsthemep noselect">Edit Vendors</p>
+      </div>
+      <div class="settingadminrow">
+        <p class="settingsthemep noselect">Edit Models</p>
+      </div>
+      <div class="settingadminrow">
+        <p class="settingsthemep noselect">Edit Model Types</p>
+      </div>
+      <div class="settingadminrow">
+        <p class="settingsthemep noselect">Edit System Categories</p>
+      </div>
+      {%endif%}
     </div>
     <script>
       if(document.cookie.includes("branch")){

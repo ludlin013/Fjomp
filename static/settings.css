@@ -1,10 +1,10 @@
 .mainwrapsettings{
   margin-left: 61px;
-  padding:50px 0 0 50px;
+  padding:30px 0 0 50px;
 }
 
 .mainwrapsettings h1{
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 .settingrow{
@@ -14,6 +14,22 @@
   display:flex;
   max-height: 39px;
   justify-content: space-between;
+}
+
+.settingadminrow{
+  padding:20px 10px;
+  width:calc(100vw - 172px);
+  max-width: 600px;
+  display:flex;
+  max-height: 39px;
+  justify-content: space-between;
+  transition-duration: .2s;
+  cursor:pointer;
+}
+
+.settingadminrow:hover{
+  padding:20px 20px ;
+
 }
 
 .settingsbranchp{
@@ -112,4 +128,9 @@
   border-radius: 5px;
   cursor: pointer;
   transition-duration: .2s
+}
+
+.navin:hover .mainwrapsettings{
+  transform: translateX(140px);
+  margin-left: 201px
 }
