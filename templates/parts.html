@@ -20,15 +20,15 @@
       <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     </div>
     <div class="mainwrapparts">
-      <h1>Parts</h1>
+      <h1 class="noselect">Parts</h1>
       <div class="toppage-parts">
         <form class="form-parts">
-          <label for="search" class="searchlabel-parts">Search for:</label>
-          <div class="formitem-parts"><label for="part-parts">Part #:</label><input class="forminput-parts" type="text" name="part-parts"></div>
-          <div class="formitem-parts"><label for="description-parts">Description:</label><input class="forminput-parts" type="text" name="description-parts"></div>
-          <div class="formitem-parts"><label for="supplier-parts">Supplier:</label><input class="forminput-parts" type="text" name="supplier-parts"></div>
-          <div class="formitem-parts"><label for="LP-parts">LP:</label><input class="forminput-parts" type="text" name="LP-parts"></div>
-          <div class="formitem-parts"><label for="restocklvl-parts">Restock lvl:</label><input class="forminput-parts" type="text" name="restocklvl-parts"></div>
+          <label for="search" class="searchlabel-parts noselect">Search for:</label>
+          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search(0,'part-parts')" class="forminput-parts" type="text" name="part-parts"></div>
+          <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search(1,'description-parts')" class="forminput-parts" type="text" name="description-parts"></div>
+          <div class="formitem-parts noselect"><label for="supplier-parts">Supplier:</label><input onkeyup="search(2,'supplier-parts')" class="forminput-parts" type="text" name="supplier-parts"></div>
+          <div class="formitem-parts noselect"><label for="LP-parts">LP:</label><input onkeyup="search(3,'LP-parts')" class="forminput-parts" type="text" name="LP-parts"></div>
+          <div class="formitem-parts noselect"><label for="restocklvl-parts">Restock lvl:</label><input onkeyup="search(4,'restocklvl-parts')" class="forminput-parts" type="text" name="restocklvl-parts"></div>
         </form>
         <div class="tabell-parts">
           <table class="list-parts">
@@ -42,70 +42,17 @@
               </tr>
             </thead>
             <tbody class="whatabody">
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Penasdasd</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">PAD</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Penasdasdasd</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Peasdasdn</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
-              </tr>
-              <tr class="row-parts" onclick="">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">PAD</td>
-                <td class="thLP-parts">PAD</td>
-                <td class="thQTY-parts">PAD</td>
-              </tr>
-              <tr class="row-parts" onclick="location.reload()">
-                <td class="thpart-parts">Pen</td>
-                <td class="thdesc-parts">Pen</td>
-                <td class="thsupplier-parts">Pen</td>
-                <td class="thLP-parts">Pen</td>
-                <td class="thQTY-parts">Pen</td>
+              {% for x in allparts%}
+              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["groupcode"]}}%{{x["lp"]}}%{{x["qty"]}}">
+                <td class="thpart-parts"><p>{{x["artid"]}}</p></td>
+                <td class="thdesc-parts"><p>{{x["name"]}}</p></td>
+                <td class="thsupplier-parts"><p>{{x["groupcode"]}}</p></td>
+                <td class="thLP-parts"><p>{{x["lp"]}}</p></td>
+                <td class="thQTY-parts"><p>{{x["qty"]}}</p></td>
+              {% endfor %}
               </tr>
             </tbody>
+            <script src="static/partsearch.js"></script>
           </table>
         </div>
       </div>

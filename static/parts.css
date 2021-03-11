@@ -1,4 +1,5 @@
-
+html{
+}
 
 .toppage-parts{
   display: flex;
@@ -42,6 +43,7 @@
 table, td, th {
   border: 1px solid;
   padding: 2px;
+  white-space: nowrap;
 }
 
 tr{
@@ -57,6 +59,11 @@ tr{
   cursor: pointer;
 }
 
+.row-parts td{
+  font-size: 14px;
+  overflow: hidden;
+}
+
 table {
   border-collapse: collapse;
 }
@@ -69,6 +76,23 @@ table {
   overflow-y: scroll;
 }
 
+.mainwrapparts ::-webkit-scrollbar {
+  width:18px
+}
+
+.mainwrapparts ::-webkit-scrollbar-track {
+  background: rgb(60,60,60);
+}
+
+.mainwrapparts ::-webkit-scrollbar-thumb {
+  background: #888;
+  transition-duration: .2s
+}
+
+.mainwrapparts ::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
 thead{
   display: block;
 }
@@ -77,11 +101,13 @@ th{
   text-align: left;
 }
 
-.thpart-parts{
+.thpart-parts,
+.thpart-parts p{
   width:150px;
 }
 
-.thdesc-parts{
+.thdesc-parts,
+.thdesc-parts p{
   width:200px;
 }
 
@@ -89,12 +115,17 @@ th{
   width: 50px;
 }
 
-.thLP-parts{
+.thLP-parts,
+.thLP-parts p{
   width: 50px;
 }
 
 .thQTY-parts{
   width:50px;
+}
+
+.thQTY-parts p{
+  width:32px;
 }
 
 @media only screen and (max-width: 800px){
@@ -104,7 +135,6 @@ th{
   }
 
   thead{
-    overflow-x: scroll;
   }
 }
 

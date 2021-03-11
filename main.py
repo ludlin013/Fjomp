@@ -23,6 +23,91 @@ def setTheme():
         notheme = "light"
     return theme,notheme
 
+def importer():
+    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
+        parts = f.read().rstrip().split("\n")
+
+    with open("static/DB/s_parts.txte","r",encoding="ansi") as f:
+        partse = f.read().strip().split("\n")
+
+    allparts = []
+
+    for x in parts:
+        groupcode = x[1:1+4].strip()
+        artid = x[5:5+17].strip()
+        name = x[22:22+30].strip()
+        qty = x[52:52+3].strip()
+        price1 = x[65:65+17].strip()
+        lp = x[102:102+15].strip()
+        type = x[117:117+1].strip()
+        price2 = x[124:124+17].strip()
+        price3 = x[141:141+17].strip()
+        price4 = x[158:158+17].strip()
+        price5 = x[175:175+17].strip()
+        price6 = x[192:192+17].strip()
+        price7 = x[209:209+17].strip()
+        price8 = x[226:226+17].strip()
+        price9 = x[243:243+17].strip()
+
+        Dict = {
+        "groupcode" : x[1:1+4].strip(),
+        "artid" : x[5:5+17].strip(),
+        "name" : x[22:22+30].strip(),
+        "qty" : x[52:52+3].strip(),
+        "price1" : x[65:65+17].strip(),
+        "lp" : x[102:102+15].strip(),
+        "type" : x[117:117+1].strip(),
+        "price2" : x[124:124+17].strip(),
+        "price3" : x[141:141+17].strip(),
+        "price4" : x[158:158+17].strip(),
+        "price5" : x[175:175+17].strip(),
+        "price6" : x[192:192+17].strip(),
+        "price7" : x[209:209+17].strip(),
+        "price8" : x[226:226+17].strip(),
+        "price9" : x[243:243+17].strip()
+        }
+        allparts.append(Dict)
+
+    for x in partse:
+        groupcode = x[1:1+4].strip()
+        artid = x[5:5+17].strip()
+        name = x[22:22+30].strip()
+        qty = x[52:52+3].strip()
+        price1 = x[65:65+17].strip()
+        lp = x[102:102+15].strip()
+        type = x[117:117+1].strip()
+        price2 = x[124:124+17].strip()
+        price3 = x[141:141+17].strip()
+        price4 = x[158:158+17].strip()
+        price5 = x[175:175+17].strip()
+        price6 = x[192:192+17].strip()
+        price7 = x[209:209+17].strip()
+        price8 = x[226:226+17].strip()
+        price9 = x[243:243+17].strip()
+
+        Dict = {
+        "groupcode" : x[1:1+4].strip(),
+        "artid" : x[5:5+17].strip(),
+        "name" : x[22:22+30].strip(),
+        "qty" : x[52:52+3].strip(),
+        "price1" : x[65:65+17].strip(),
+        "lp" : x[102:102+15].strip(),
+        "type" : x[117:117+1].strip(),
+        "price2" : x[122:122+17].strip(),
+        "price3" : x[139:139+17].strip(),
+        "price4" : x[156:156+17].strip(),
+        "price5" : x[173:173+17].strip(),
+        "price6" : x[190:190+17].strip(),
+        "price7" : x[207:207+17].strip(),
+        "price8" : x[224:224+17].strip(),
+        "price9" : x[241    :241+17].strip()
+        }
+        allparts.append(Dict)
+
+    allparts.sort(key = lambda x:x["artid"])
+    print(len(allparts))
+    return allparts
+
 @app.route("/")
 def main():
     if "loggedin" in request.cookies:
@@ -79,20 +164,15 @@ def parts():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    with open("static/DB/s_parts.txte","r",encoding="ansi") as f:
-        partse = f.read().strip().split("\n")
-
-    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
-        parts = f.read().split("\n")
-
-    for x in partse:
-        print([x[1:4].strip(), x[5:22].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
-    print("====================================")
-    for x in parts:
-        print([x[1:5].strip(), x[5:22].strip(), x[22:52].strip(),x[52:55].strip(), x[55:65].strip(),"förs 1" ,x[65:82].strip(), x[82:92].strip(), x[92:102].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
 
 
-    return render_template("parts.html",theme=theme,notheme=notheme)
+    #for x in partse:
+        #print([x[1:4].strip(), x[5:22].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
+
+    allparts = importer()
+
+
+    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts)
 
 @app.route("/delivnotes")
 def delivnotes():
