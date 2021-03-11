@@ -117,3 +117,7 @@ body{
 .settingthemeswitchwrap:hover #settingsthemeselect{
   max-width: 39px
 }
+
+table, td, th {
+  border-color: rgb(20,20,20);
+}

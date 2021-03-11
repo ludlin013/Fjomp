@@ -1,20 +1,20 @@
+
+
 .toppage-parts{
   display: flex;
-  justify-content: center;
   margin-top: 15px;
   flex-wrap: wrap;
 }
-
 .mainwrapparts{
   margin-left: 61px;
-  padding:50px;
+  padding:50px 0 0 50px;
 }
 
 .form-parts{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 400px;
+  width: 320px;
   padding-right: 20px;
 }
 
@@ -25,7 +25,6 @@
 .formitem-parts{
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-top: 5px;
 }
 
@@ -36,18 +35,99 @@
 }
 
 .list-parts{
+  margin: 10px;
+  margin-bottom: 0px;
   margin-top: 34px;
-  height: 250px;
-  max-height: 250px;
-  width:685px;
 }
 
-.header-parts{
-  display: flex;
-  flex-direction: row;
-}
 
-.headerbox-parts{
-  padding: 5px;
+table, td, th {
   border: 1px solid;
+  padding: 2px;
+}
+
+tr{
+  table-layout: fixed;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.whatabody{
+  margin-top: -1px;
+  display: block;
+  max-width: 617px;
+  max-height: 160px;
+  overflow-y: scroll;
+}
+
+thead{
+  display: block;
+}
+
+th{
+  text-align: left;
+}
+
+.thpart-parts{
+  width:150px;
+}
+
+.thdesc-parts{
+  width:200px;
+}
+
+.thsupplier-parts{
+  width: 75px;
+}
+
+.thLP-parts{
+  width: 50px;
+}
+
+.thQTY-parts{
+  width:50px;
+}
+
+@media only screen and (max-width: 800px){
+  .tabell-parts{
+    width: 400px;
+    overflow-x:scroll;
+  }
+
+  thead{
+    overflow-x: scroll;
+  }
+}
+
+@media only screen and (max-width: 550px){
+.tabell-parts{
+  width: 250px;
+  overflow-x:scroll;
+}
+
+thead{
+  overflow-x: scroll;
+}
+
+.mainwrapparts{
+  margin-left: 41px;
+  padding:30px;
+}
+
+.list-parts{
+  margin: 0px;
+  margin-bottom: 0px;
+  margin-top: 34px;
+}
+
+.form-parts{
+  width: 150px;
+}
+
+.formitem-parts{
+  flex-direction: column;
+}
 }
