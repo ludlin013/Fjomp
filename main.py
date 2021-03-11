@@ -8,7 +8,7 @@ def checklogin(username,password):
         usrs = f.read().split("\n")
     for usr in usrs:
         if usr != "":
-            u = usr.split(",")
+            u = usr.split(";")
             if u[0] == username and u[1] == password:
                 return True
     return False
@@ -79,6 +79,9 @@ def parts():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
+    with open("static/DB/s_parts.txte","r",encoding="ansi") as f:
+        parts = f.read().strip().split("\n")
+    print([parts[0][1:4].strip(), parts[0][5:12].strip(), parts[0][22:52].strip(), parts[0][52:55].strip(),parts[0][55:65].strip(), parts[0][65:82].strip(), parts[0][82:92].strip(), parts[0][92:10].strip(), parts[0][102:117].strip(), parts[0][117:118].strip(), parts[0][118:122].strip(), parts[0][122:139].strip(), parts[0][139:156].strip(), parts[0][156:173].strip(), parts[0][173:190].strip(), parts[0][190:207].strip(), parts[0][207:224].strip(), parts[0][224:241].strip(), parts[0][241:258].strip()])
     return render_template("parts.html",theme=theme,notheme=notheme)
 
 @app.route("/delivnotes")
