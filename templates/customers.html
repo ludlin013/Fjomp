@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake | customers</title>
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="icon" href="./static/pictures/icon.ico">
+  </head>
+  <body>
+    <div class="navin">
+      <a class="navitemin active" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+      <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    </div>
+    <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
+      <img src="static/pictures/{{theme}}.png">
+      <img src="static/pictures/{{notheme}}.png">
+    </div>
+    <div class="mainwrapcustomers">
+      <p class="noselect">Cust. #</p>
+      <p class="noselect">H.O #</p>
+      <p class="noselect">Name</p>
+      <p class="noselect">Address</p>
+      <p class="noselect">zip/city</p>
+        <div>
+          <p class="noselect">Phone</p>
+          <p class="noselect">Fax</p>
+          <p class="noselect">Tcpip</p>
+          <p class="noselect">Country</p>
+          <p class="noselect">Region</p>
+            <div>
+              <p class="noselect">Owner</p>
+              <p class="noselect">Contact</p>
+              <p class="noselect">Cust. type</p>
+                <div>
+                  <p class="noselect">Open date</p>
+                  <p class="noselect">Inst. date</p>
+                  <p class="noselect">Closed date</p>
+                    <div>
+                      <p class="noselect">Inv.month HW</p>
+                      <p class="noselect">Inv.month HD</p>
+                      ppppp
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
