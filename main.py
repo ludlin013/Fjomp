@@ -86,10 +86,10 @@ def parts():
         parts = f.read().split("\n")
 
     for x in partse:
-        print([x[1:4].strip(), x[5:12].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
+        print([x[1:4].strip(), x[5:22].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
     print("====================================")
     for x in parts:
-        print([x[1:5].strip(), x[5:22].strip(), x[22:52].strip(),x[52:55].strip(), x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:102].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
+        print([x[1:5].strip(), x[5:22].strip(), x[22:52].strip(),x[52:55].strip(), x[55:65].strip(),"förs 1" ,x[65:82].strip(), x[82:92].strip(), x[92:102].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
 
 
     return render_template("parts.html",theme=theme,notheme=notheme)
