@@ -22,7 +22,7 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <label>Delivery note #:</label><input id="delivnote-number" class="forminput-delivnotes" type="number" value="1337">
+        <div class="delivnote-deliv"><label>Delivery note #:</label><input id="delivnote-number" class="forminput-delivnotes" type="number" value="1337"></div>
         <div class="formitem-delivnotes offers-delivnotes">
           <label>Offer</label><input type="checkbox">
           <label>Finalized Offer</label><input type="checkbox">
@@ -80,23 +80,38 @@
         <textarea class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes"></textarea>
       </div>
       <div>
-        <table class="list-parts">
+        <table class="list-delivnotes">
           <thead>
             <tr class="header-delivnotes" id="header-parts">
-              <th class="thpart-parts">Part #</th>
-              <th class="thdesc-parts">Description</th>
-              <th class="thLP-parts">LP</th>
-              <th class="thQTY-parts">QTY</th>
-              <th class="thpr1-parts">Pr. 1</th>
+              <th class="thpart-delivnotes">Part #</th>
+              <th class="thdesc-delivnotes">Description</th>
+              <th class="thserial-delivnotes">Serial</th>
+              <th class="thQTY-delivnotes">QTY</th>
+              <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes">Pricegroup</th>
+              <th class="thprice-delivnotes">Price</th>
+
+              <th class="thdiscount-delivnotes">% Disc.</th>
+              <th class="thnetvalue-delivnotes">Netvalue</th>
+              <th class="thtotal-delivnotes">Total</th>
+              <th class="thnocharge-delivnotes">No charge</th>
+              <th class="thbackorder-delivnotes">Back order</th>
+              <th class="thdelivdate-delivnotes">Deliv.date</th>
             </tr>
           </thead>
           <tbody class="tbody-delivnotes">
             <tr class="row-delivnotes" onclick="" id="">
-              <td class="thpart-parts"><p>Ball</p></td>
-              <td class="thdesc-parts"><p>Ball</p></td>
-              <td class="thLP-parts"><p>Ball</p></td>
-              <td class="thQTY-parts"><p>Ball</p></td>
-              <td class="thQTY-parts"><p>Ball</p></td>
+              <td class="thpart-delivnotes"><p>Ball</p></td>
+              <td class="thdesc-delivnotes"><p>Ball</p></td>
+              <td class="thserial-delivnotes"><p>Ball</p></td>
+              <td class="thQTY-delivnotes"><p>Ball</p></td>
+              <td class="thpricegroup-delivnotes"><p>McDonalds</p></td>
+              <td class="thprice-delivnotes"><p>Ball</p></td>
+              <td class="thdiscount-delivnotes"><p>Ball</p></td>
+              <td class="thnetvalue-delivnotes"><p>22022</p></td>
+              <td class="thtotal-delivnotes"><p>33033</p></td>
+              <td class="thnocharge-delivnotes"><input type="checkbox"></td>
+              <td class="thbackorder-delivnotes"><input type="checkbox"></td>
+              <td class="thdelivdate-delivnotes"><p>Ball</p></td>
             </tr>
           </tbody>
           <script src="static/partsearch.js"></script>

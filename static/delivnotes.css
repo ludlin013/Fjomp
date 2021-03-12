@@ -69,9 +69,85 @@
 margin: 0;
 }
 
+th.thnetvalue-delivnotes, th.thprice-delivnotes, th.thtotal-delivnotes{
+  text-align: left;
+}
+
+.thtotal-delivnotes{
+  width: 100px;
+  text-align: right;
+}
+
+.delivnote-deliv{
+  display: flex;
+  justify-content: space-between;
+  width:410px;
+}
+
+.thbackorder-delivnotes{
+  width: 50px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.thnetvalue-delivnotes{
+  text-align: right;
+  width:100px;
+}
+
+.thnocharge-delivnotes{
+  width:50px;
+  font-size: 10px;
+  text-align: center;
+}
+
+.thpart-delivnotes{
+  text-align: left;
+  width: 150px;
+}
+
+.thdesc-delivnotes{
+  text-align: left;
+  width: 150px;
+}
+
+.thserial-delivnotes{
+  text-align: left;
+  width: 150px;
+}
+
+.thpricegroup-delivnotes{
+  width: 175px;
+  text-align: left;
+}
+
+.thprice-delivnotes{
+  width: 100px;
+  text-align: right;
+}
+
+table, td, th {
+  border: 1px solid;
+  padding: 2px;
+  white-space: nowrap;
+}
+
+tr{
+  table-layout: fixed;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
 @media only screen and (max-width: 1000px){
   .toppage-delivnotes{
     flex-direction: column;
+  }
+  .list-delivnotes{
+    max-width: 230px;
+    overflow-x:scroll;
   }
 
   #textarea-delivnotes{
@@ -81,9 +157,17 @@ margin: 0;
   .toppageright{
     margin-left: 0px;
   }
+
+
 }
 
 @media only screen and (max-width: 600px){
+
+  .delivnote-deliv{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
   .forminput-delivnotes{
     width: 150px;
   }

@@ -68,8 +68,8 @@ body{
   border-color: rgb(215,215,215)
 }
 
-.list-parts{
-  background-color: rgb(255,255,255);
+.list-parts, .list-delivnotes{
+  background-color: rgb(245,245,245);
 }
 
 .settingslogout{
