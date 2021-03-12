@@ -20,33 +20,27 @@
       <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     </div>
     <div class="mainwrapcustomers">
-      <p class="noselect">Cust. #</p>
-      <p class="noselect">H.O #</p>
-      <p class="noselect">Name</p>
-      <p class="noselect">Address</p>
-      <p class="noselect">zip/city</p>
-        <div>
-          <p class="noselect">Phone</p>
-          <p class="noselect">Fax</p>
-          <p class="noselect">Tcpip</p>
-          <p class="noselect">Country</p>
-          <p class="noselect">Region</p>
-            <div>
-              <p class="noselect">Owner</p>
-              <p class="noselect">Contact</p>
-              <p class="noselect">Cust. type</p>
-                <div>
-                  <p class="noselect">Open date</p>
-                  <p class="noselect">Inst. date</p>
-                  <p class="noselect">Closed date</p>
-                    <div>
-                      <p class="noselect">Inv.month HW</p>
-                      <p class="noselect">Inv.month HD</p>
-                      ppppp
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <h1>Customers</h1>
+      <div class="leftpage-customers">
+        <form class="form-customers">
+          <label for="search" class="searchlabel-customers">Search for:</label>
+          <div class="formitem-customers"><label for="cust. #-customers">Cust. #</label><input class="forminput-customers" type="text" name="cust. #-customers" readonly><label for="h.o #-customers">H.O #</label><input class="forminput-customers" type="text" name="h.o #-customers"></div>
+          <div class="formitem-customers"><label for="name-customers">Name</label><input class="forminput-customers" type="text" name="name-customers"></div>
+          <div class="formitem-customers"><label for="address-customers">Address</label><input class="forminput-customers" type="text" name="address-customers"></div>
+          <div class="formitem-customers"><label for="zip/city-customers">zip/city</label><input class="forminput-customers" type="text" name="zip-customers"><input class="forminput-customers" type="text" name="city-customers"></div>
+          <div class="formitem-customers"><label for="Price group-customers">Price group</label><select style="width: 210px;" class="forminput-parts" name="groupnumber-customers">
+            <option value=""></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-customers" type="text" name="group-customers"></div>
+      </div>
+      <div class="rightpage-customers">
+        <form class="form-customers">
+          <div class="formitem-customers"><label for="phone-customers">Phone</label><input class="forminput-customers" type="text" name="phone-customers"></div>
+          <div class="formitem-customers"><label for="open date-customers">Open date</label><input class="forminput-customers" type="text" name="open date-customers"></div>
+          <div class="formitem-customers"><label for="inst. date-customers">Inst. date</label><input class="forminput-customers" type="text" name="inst. date-customers"></div>
+          <div class="formitem-customers"><label for="closed date-customers">Closed date</label><input class="forminput-customers" type="text" name="closed date-customers"></div>
+          <div class="formitem-customers"><input class="forminput-customers" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input class="forminput-customers" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
+      </div>
+
   </body>
 </html>
