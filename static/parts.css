@@ -50,8 +50,6 @@ html{
 
 
 table, td, th {
-  border: 1px solid;
-  padding: 2px;
   white-space: nowrap;
 }
 
@@ -69,7 +67,7 @@ tr{
 }
 
 .row-parts td{
-  font-size: 12px;
+  font-size: 10px;
   overflow: hidden;
 }
 
@@ -93,13 +91,20 @@ th{
   text-align: left;
 }
 
+.row-parts input{
+  border:1px solid #282828;
+  outline:none;
+  margin:0 0 -1px -1px;
+  padding:2px
+}
+
 .thpart-parts,
-.thpart-parts p{
-  width:150px;
+.thpart-parts input{
+  width:125px;
 }
 
 .thdesc-parts,
-.thdesc-parts p{
+.thdesc-parts input{
   width:200px;
 }
 
@@ -108,19 +113,19 @@ th{
 }
 
 .thLP-parts,
-.thLP-parts p{
+.thLP-parts input{
   width: 50px;
 }
 
-.thQTY-parts{
+.thpr1-parts{
   width:50px;
 }
 
-.thQTY-parts p{
+.thQTY-parts input{
   width:32px;
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 700px){
   .tabell-parts{
     max-width: 400px;
     overflow-x:scroll;

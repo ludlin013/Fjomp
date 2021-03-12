@@ -3,23 +3,26 @@ import pyodbc
 
 app = Flask(__name__)
 
-def sql(sqlquery):
-    server = "10.3.1.193,50404\\FJOMP"
-    database = "Winstat"
-    username = "admin"
-    password = "admin"
+server = "10.3.1.193,50404\\FJOMP"
+database = "Winstat"
+username = "admin"
+password = "admin"
 
-    cnxn = pyodbc.connect(
-        'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
-        )
+cnxn = pyodbc.connect(
+    'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
+    )
 
-    cursor = cnxn.cursor()
+cursor = cnxn.cursor()
+
+
+def sql(type,sqlquery):
 
     cursor.execute(sqlquery)
 
-    result = cursor.fetchall()
-
-    cursor.close()
+    if type == "SELECT":
+        result = cursor.fetchall()
+    elif type == "INSERT":
+        mydb.commit()
 
     return result
 
@@ -126,23 +129,29 @@ def importer():
         "price8" : x[224:224+17].strip(),
         "price9" : x[241:241+17].strip()
         }
+
         if Dict not in allparts:
             allparts.append(Dict)
 
     allparts.sort(key = lambda x:x["artid"])
+    sqlparts = sql("SELECT","SELECT Part_Partno, Part_Vendor ,Part_Inactive, Part_Latuse, Part_Latupdat FROM Parts")
+    print(len(sqlparts))
     print(len(allparts))
     for n in allparts:
-        for x in sql("SELECT Part_Vendor ,Part_Inactive, Part_Latuse, Part_Latupdat FROM Parts WHERE Part_Partno = '" + n["artid"] +"'"):
-            n["vendor"] = x[0]
-            n["inactive"] = x[1]
-            n["lastuse"] = x[2]
-            n["lastupd"] = x[3]
-            print(x)
+        #print(n["artid"])
+        pass
+        #    n["partno"] = x[0]
+        #    n["vendor"] = x[1]
+        #    n["inactive"] = x[2]
+        #    n["lastuse"] = x[3]
+        #    n["lastupd"] = x[4]
 
     with open("static/units.csv","w") as f:
         for n in allparts:
             f.write(n["groupcode"]+";"+n["artid"]+";"+n["name"]+";"+n["qty"]+";"+n["price1"]+";"+n["lp"]+";"+n["type"]+";"+n["price2"]+";"+n["price3"]+";"+n["price4"]+";"+n["price5"]+";"+n["price6"]+";"+n["price7"]+";"+n["price8"]+";"+n["price9"]+"\n")
+
     return allparts
+
 
 @app.route("/")
 def main():

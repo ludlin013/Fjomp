@@ -26,8 +26,6 @@
           <label for="search" class="searchlabel-parts noselect">Search for:</label>
           <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search(0,'part-parts')" class="forminput-parts" type="text" name="part-parts"></div>
           <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search(1,'description-parts')" class="forminput-parts" type="text" name="description-parts"></div>
-          <div class="formitem-parts noselect"><label for="LP-parts">LP:</label><input onkeyup="search(3,'LP-parts')" class="forminput-parts" type="text" name="LP-parts"></div>
-          <div class="formitem-parts noselect"><label for="restocklvl-parts">Restock lvl:</label><input onkeyup="search(4,'restocklvl-parts')" class="forminput-parts" type="text" name="restocklvl-parts"></div>
           <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Active parts:</label><input onkeyup="search(5,'active-parts')" id="forminput-parts" type="checkbox" name="active-parts"></div>
         </form>
         <div class="tabell-parts">
@@ -44,11 +42,11 @@
             <tbody class="whatabody">
               {% for x in allparts%}
               <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["lp"]}}%{{x["qty"]}}">
-                <td class="thpart-parts"><p>{{x["artid"]}}</p></td>
-                <td class="thdesc-parts"><p>{{x["name"]}}</p></td>
-                <td class="thLP-parts"><p>{{x["lp"]}}</p></td>
-                <td class="thQTY-parts"><p>{{x["qty"]}}</p></td>
-                <td class="thQTY-parts"><p>{{x["price1"]}}</p></td>
+                <td class="thpart-parts"><input value="{{x["artid"]}}"></td>
+                <td class="thdesc-parts"><input value="{{x["name"]}}"></td>
+                <td class="thLP-parts"><input value="{{x["lp"]}}"></td>
+                <td class="thQTY-parts"><input value="{{x["qty"]}}"></td>
+                <td class="thpr1-parts"><input value="{{x["price1"]}}"></td>
               {% endfor %}
               </tr>
             </tbody>
