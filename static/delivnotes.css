@@ -3,6 +3,15 @@
   padding:50px 0 0 50px
 }
 
+.toppage-delivnotes{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toppageright{
+  margin-left: 10px;
+}
+
 .form-delivnotes{
   display: flex;
   flex-direction: column;
@@ -27,9 +36,13 @@
   border:none;
 }
 
+.selectdelivnotes{
+  width:200px;
+}
+
 #textarea-delivnotes{
   height: 100px;
-  width: 400px;
+  width: 820px;
   resize: none;
 }
 
@@ -44,4 +57,18 @@
 
 ::-webkit-scrollbar-thumb:hover{
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1000px){
+  .toppage-delivnotes{
+    flex-direction: column;
+  }
+
+  #textarea-delivnotes{
+    width: 400px;
+  }
+
+  .toppageright{
+    margin-left: 0px;
+  }
 }
