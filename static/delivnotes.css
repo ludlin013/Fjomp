@@ -141,12 +141,20 @@ table {
   border-collapse: collapse;
 }
 
+.list-delivnotes{
+  margin-top: -1px;
+  display: block;
+  max-width: 1000px;
+  max-height: 160px;
+  overflow-y: scroll;
+}
+
 @media only screen and (max-width: 1000px){
   .toppage-delivnotes{
     flex-direction: column;
   }
   .list-delivnotes{
-    max-width: 230px;
+    width: 300px;
     overflow-x:scroll;
   }
 
