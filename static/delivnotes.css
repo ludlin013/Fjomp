@@ -59,6 +59,11 @@
   cursor: pointer;
 }
 
+.offers-delivnotes{
+  width: 250px;
+  align-items: center;
+}
+
 @media only screen and (max-width: 1000px){
   .toppage-delivnotes{
     flex-direction: column;
@@ -70,5 +75,42 @@
 
   .toppageright{
     margin-left: 0px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .forminput-delivnotes{
+    width: 150px;
+  }
+
+  .forminput-delivnotes2{
+    width: 150px;
+  }
+
+  .formitem-delivnotes{
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+  }
+
+  .selectdelivnotes{
+    width: 160px;
+  }
+
+  #textarea-delivnotes{
+    width: 230px;
+  }
+
+  .mainwrapdelivnotes{
+    margin-left: 41px;
+    padding:30px;
+  }
+
+  .offers-delivnotes{
+    align-items: flex-start;
+  }
+
+  .toppage-delivnotes, .toppageleft-delivnotes, .toppageright, .form-delivnotes, .delivnotes2, .mainwrapdelivnotes{
+    width: 230px;
   }
 }
