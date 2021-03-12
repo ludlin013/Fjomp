@@ -29,10 +29,19 @@ html{
   margin-top: 5px;
 }
 
+#formitem-parts{
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .forminput-parts{
   padding: 5px;
   width:200px;
   border:none;
+}
+
+#forminput-parts{
+  margin-left: 7px;
 }
 
 .list-parts{
@@ -136,12 +145,22 @@ th{
 
   thead{
   }
+
 }
 
 @media only screen and (max-width: 550px){
 .tabell-parts{
   max-width: 230px;
   overflow-x:scroll;
+}
+
+#formitem-parts{
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#forminput-parts{
+  margin-left:0px;
 }
 
 thead{
