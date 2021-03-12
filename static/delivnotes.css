@@ -64,6 +64,11 @@
   align-items: center;
 }
 
+#delivnote-number::-webkit-outer-spin-button, #delivnote-number::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
 @media only screen and (max-width: 1000px){
   .toppage-delivnotes{
     flex-direction: column;

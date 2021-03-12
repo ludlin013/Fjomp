@@ -22,7 +22,7 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <label>Delivery note #:</label><input class="forminput-delivnotes" type="text" value="#1337" readonly>
+        <label>Delivery note #:</label><input id="delivnote-number" class="forminput-delivnotes" type="number" value="1337">
         <div class="formitem-delivnotes offers-delivnotes">
           <label>Offer</label><input type="checkbox">
           <label>Finalized Offer</label><input type="checkbox">
@@ -78,6 +78,29 @@
       <div class="bottompage-delivnotes">
         <div class="formitem-delivnotes"><label>Notes:</label></div>
         <textarea class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes"></textarea>
+      </div>
+      <div>
+        <table class="list-parts">
+          <thead>
+            <tr class="header-delivnotes" id="header-parts">
+              <th class="thpart-parts">Part #</th>
+              <th class="thdesc-parts">Description</th>
+              <th class="thLP-parts">LP</th>
+              <th class="thQTY-parts">QTY</th>
+              <th class="thpr1-parts">Pr. 1</th>
+            </tr>
+          </thead>
+          <tbody class="tbody-delivnotes">
+            <tr class="row-delivnotes" onclick="" id="">
+              <td class="thpart-parts"><p>Ball</p></td>
+              <td class="thdesc-parts"><p>Ball</p></td>
+              <td class="thLP-parts"><p>Ball</p></td>
+              <td class="thQTY-parts"><p>Ball</p></td>
+              <td class="thQTY-parts"><p>Ball</p></td>
+            </tr>
+          </tbody>
+          <script src="static/partsearch.js"></script>
+        </table>
       </div>
     </div>
   </body>
