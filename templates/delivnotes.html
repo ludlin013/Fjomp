@@ -21,6 +21,13 @@
     </div>
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
+      <div>
+        <label>Delivery note #:</label><input class="forminput-delivnotes" type="text" value="#1337" readonly>
+        <div class="formitem-delivnotes offers-delivnotes">
+          <label>Offer</label><input type="checkbox">
+          <label>Finalized Offer</label><input type="checkbox">
+        </div>
+      </div>
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
@@ -28,7 +35,7 @@
             <div class="formitem-delivnotes"><label>Ref:</label><input class="forminput-delivnotes" type="text"></div>
             <div class="formitem-delivnotes"><label>Name:</label><input class="forminput-delivnotes" type="text"></div>
             <div class="formitem-delivnotes"><label>Address:</label><input class="forminput-delivnotes" type="text"></div>
-            <div class="formitem-delivnotes"><label>ZIP/City:</label><input id="ZIP" class="forminput-delivnotes" type="text"><input id="City" class="forminput-delivnotes" type="text"></div>
+            <div class="formitem-delivnotes"><label>ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text"><input id="City" class="forminput-delivnotes" type="text"></div></div>
           </form>
         </div>
         <div class="toppageright">
@@ -56,12 +63,14 @@
               </select>
             </div>
             <div class="formitem-delivnotes"><label>Price group:</label>
-              <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select id="inputname" class="forminput-delivnotes2" type="text">
-              <input class="forminput-delivnotes2" type="text">
+              <div>
+                <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
+                  <option value=""></option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                </select id="inputname" class="forminput-delivnotes2" type="text">
+                <input class="forminput-delivnotes2" type="text">
+              </div>
             </div>
           </form>
         </div>
