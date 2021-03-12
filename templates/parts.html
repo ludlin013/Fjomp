@@ -24,9 +24,9 @@
       <div class="toppage-parts">
         <form class="form-parts">
           <label for="search" class="searchlabel-parts noselect">Search for:</label>
-          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search(0,'part-parts')" class="forminput-parts" type="text" name="part-parts"></div>
-          <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search(1,'description-parts')" class="forminput-parts" type="text" name="description-parts"></div>
-          <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Active parts:</label><input onkeyup="search(5,'active-parts')" id="forminput-parts" type="checkbox" name="active-parts"></div>
+          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search()" class="forminput-parts" type="text" name="part-parts"></div>
+          <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search()" class="forminput-parts" type="text" name="description-parts"></div>
+          <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Only active parts:</label><input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked></div>
         </form>
         <div class="tabell-parts">
           <table class="list-parts">
@@ -41,8 +41,8 @@
             </thead>
             <tbody class="whatabody">
               {% for x in allparts%}
-              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["lp"]}}%{{x["qty"]}}">
-                <td class="thpart-parts"><input value="{{x["artid"]}}"></td>
+              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
+                <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
                 <td class="thdesc-parts"><input value="{{x["name"]}}"></td>
                 <td class="thLP-parts"><input value="{{x["lp"]}}"></td>
                 <td class="thQTY-parts"><input value="{{x["qty"]}}"></td>

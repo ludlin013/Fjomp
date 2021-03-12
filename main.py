@@ -7,6 +7,7 @@ server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"
+cursor = ""
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
@@ -29,14 +30,10 @@ def sql(type,sqlquery):
 
 
 def checklogin(username,password):
-    #temporary csv file
-    with open("usr.csv","r") as f:
-        usrs = f.read().split("\n")
+    usrs = sql("SELECT","SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Pwd FROM Technicians")
     for usr in usrs:
-        if usr != "":
-            u = usr.split(";")
-            if u[0] == username and u[1] == password:
-                return True
+        if username == usr[0].strip() and password == usr[3].strip():
+            return True
     return False
 
 def setTheme():
@@ -176,6 +173,7 @@ def login():
             auth = False
             if request.form['username'] in authusr:
                 auth = True
+            importer()
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"
@@ -210,10 +208,24 @@ def parts():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    allparts = importer()
+    #allparts = importer()
 
+    allparts = []
 
+    sqlq = sql("SELECT","SELECT * FROM Parts")
+    for x in sqlq:
+        Dict = {}
 
+        Dict["artid"] = x[0].strip()
+        Dict["name"] = x[1].strip()
+        Dict["lp"] = str(x[12]).strip()
+        Dict["qty"] = str(x[7]).strip()
+        Dict["price1"] = str(x[6]).strip()
+        Dict["inactive"] = str(x[14]).strip()
+
+        allparts.append(Dict)
+
+    allparts.sort(key = lambda x:x["artid"])
 
 
     return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts)
@@ -265,7 +277,6 @@ def settings():
         authenticated = True
     theme,notheme = setTheme()
     return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated)
-
 
 
 
