@@ -86,9 +86,12 @@ body{
   border-color: rgb(40,40,40);
 }
 
-.list-parts,
-.row-parts input{
+.list-parts{
   background-color: rgb(80,80,80);
+}
+
+.row-parts input{
+  background-color: rgb(60,60,60);
 }
 
 
