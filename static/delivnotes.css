@@ -6,7 +6,7 @@
 .form-delivnotes{
   display: flex;
   flex-direction: column;
-  width: 338px;
+  width: 410px;
 }
 
 .formitem-delivnotes{
@@ -17,15 +17,31 @@
 
 .forminput-delivnotes{
   padding:5px;
-  width: 200px;
+  width: 250px;
+  border:none;
+}
+
+.forminput-delivnotes2{
+  padding:5px;
+  width: 190px;
   border:none;
 }
 
 #textarea-delivnotes{
-  height: 75px;
+  height: 100px;
+  width: 400px;
+  resize: none;
 }
 
 #ZIP{
   width: 42px;
   margin-right: 5px;
+}
+
+#inputnum{
+  width: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  cursor: pointer;
 }
