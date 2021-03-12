@@ -1,6 +1,29 @@
 from flask import Flask,render_template,request,redirect,url_for
+import pyodbc
 
 app = Flask(__name__)
+
+def sql(sqlquery):
+    server = "10.3.1.193,50404\\FJOMP"
+    database = "Winstat"
+    username = "admin"
+    password = "admin"
+
+    cnxn = pyodbc.connect(
+        'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
+        )
+
+    cursor = cnxn.cursor()
+
+    cursor.execute(sqlquery)
+
+    result = cursor.fetchall()
+
+    cursor.close()
+
+    return result
+
+
 
 def checklogin(username,password):
     #temporary csv file
@@ -66,7 +89,8 @@ def importer():
         "price8" : x[226:226+17].strip(),
         "price9" : x[243:243+17].strip()
         }
-        allparts.append(Dict)
+        if Dict not in allparts:
+            allparts.append(Dict)
 
     for x in partse:
         groupcode = x[1:1+4].strip()
@@ -100,12 +124,21 @@ def importer():
         "price6" : x[190:190+17].strip(),
         "price7" : x[207:207+17].strip(),
         "price8" : x[224:224+17].strip(),
-        "price9" : x[241    :241+17].strip()
+        "price9" : x[241:241+17].strip()
         }
-        allparts.append(Dict)
+        if Dict not in allparts:
+            allparts.append(Dict)
 
     allparts.sort(key = lambda x:x["artid"])
     print(len(allparts))
+    for n in allparts:
+        for x in sql("SELECT Part_Vendor ,Part_Inactive, Part_Latuse, Part_Latupdat FROM Parts WHERE Part_Partno = '" + n["artid"] +"'"):
+            n["vendor"] = x[0]
+            n["inactive"] = x[1]
+            n["lastuse"] = x[2]
+            n["lastupd"] = x[3]
+            print(x)
+
     with open("static/units.csv","w") as f:
         for n in allparts:
             f.write(n["groupcode"]+";"+n["artid"]+";"+n["name"]+";"+n["qty"]+";"+n["price1"]+";"+n["lp"]+";"+n["type"]+";"+n["price2"]+";"+n["price3"]+";"+n["price4"]+";"+n["price5"]+";"+n["price6"]+";"+n["price7"]+";"+n["price8"]+";"+n["price9"]+"\n")
@@ -168,11 +201,10 @@ def parts():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-
-    #for x in partse:
-        #print([x[1:4].strip(), x[5:22].strip(), x[22:52].strip(), x[52:55].strip(),x[55:65].strip(), x[65:82].strip(), x[82:92].strip(), x[92:10].strip(), x[102:117].strip(), x[117:118].strip(), x[118:122].strip(), x[122:139].strip(), x[139:156].strip(), x[156:173].strip(), x[173:190].strip(), x[190:207].strip(), x[207:224].strip(), x[224:241].strip(), x[241:258].strip()])
-
     allparts = importer()
+
+
+
 
 
     return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts)

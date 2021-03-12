@@ -1,6 +1,6 @@
 import pyodbc
 
-server = "localhost,50404"
+server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"
@@ -11,12 +11,12 @@ cnxn = pyodbc.connect(
 
 cursor = cnxn.cursor()
 
-cursor.execute("SELECT Part_Part,Part_Latuse,Part_Latupdat  FROM Parts")
+cursor.execute("SELECT Part_Latuse,Part_Latupdat  FROM Parts")
 
 techs = cursor.fetchall()
 
 
 for x in techs:
-    print(x)
+    print(x[0],x[1])
 
 cursor.close()
