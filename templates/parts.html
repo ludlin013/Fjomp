@@ -26,7 +26,6 @@
           <label for="search" class="searchlabel-parts noselect">Search for:</label>
           <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search(0,'part-parts')" class="forminput-parts" type="text" name="part-parts"></div>
           <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search(1,'description-parts')" class="forminput-parts" type="text" name="description-parts"></div>
-          <div class="formitem-parts noselect"><label for="supplier-parts">Supplier:</label><input onkeyup="search(2,'supplier-parts')" class="forminput-parts" type="text" name="supplier-parts"></div>
           <div class="formitem-parts noselect"><label for="LP-parts">LP:</label><input onkeyup="search(3,'LP-parts')" class="forminput-parts" type="text" name="LP-parts"></div>
           <div class="formitem-parts noselect"><label for="restocklvl-parts">Restock lvl:</label><input onkeyup="search(4,'restocklvl-parts')" class="forminput-parts" type="text" name="restocklvl-parts"></div>
           <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Active parts:</label><input onkeyup="search(5,'active-parts')" id="forminput-parts" type="checkbox" name="active-parts"></div>
@@ -37,24 +36,25 @@
               <tr class="header-parts" id="header-parts">
                 <th class="thpart-parts">Part #</th>
                 <th class="thdesc-parts">Description</th>
-                <th class="thsupplier-parts">Sup</th>
                 <th class="thLP-parts">LP</th>
                 <th class="thQTY-parts">QTY</th>
+                <th class="thpr1-parts">Pr. 1</th>
               </tr>
             </thead>
             <tbody class="whatabody">
               {% for x in allparts%}
-              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["groupcode"]}}%{{x["lp"]}}%{{x["qty"]}}">
+              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["lp"]}}%{{x["qty"]}}">
                 <td class="thpart-parts"><p>{{x["artid"]}}</p></td>
                 <td class="thdesc-parts"><p>{{x["name"]}}</p></td>
-                <td class="thsupplier-parts"><p>{{x["groupcode"]}}</p></td>
                 <td class="thLP-parts"><p>{{x["lp"]}}</p></td>
                 <td class="thQTY-parts"><p>{{x["qty"]}}</p></td>
+                <td class="thQTY-parts"><p>{{x["price1"]}}</p></td>
               {% endfor %}
               </tr>
             </tbody>
             <script src="static/partsearch.js"></script>
           </table>
+          <a href="static/units.csv" download>ladda ner </a>
         </div>
       </div>
     </div>
