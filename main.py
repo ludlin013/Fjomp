@@ -106,6 +106,9 @@ def importer():
 
     allparts.sort(key = lambda x:x["artid"])
     print(len(allparts))
+    with open("units.csv","w") as f:
+        for n in allparts:
+            f.write(n["groupcode"]+";"+n["artid"]+";"+n["name"]+";"+n["qty"]+";"+n["price1"]+";"+n["lp"]+";"+n["type"]+";"+n["price2"]+";"+n["price3"]+";"+n["price4"]+";"+n["price5"]+";"+n["price6"]+";"+n["price7"]+";"+n["price8"]+";"+n["price9"]+"\n")
     return allparts
 
 @app.route("/")
