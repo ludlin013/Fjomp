@@ -1,0 +1,31 @@
+.mainwrapdelivnotes{
+  margin-left: 61px;
+  padding:50px 0 0 50px
+}
+
+.form-delivnotes{
+  display: flex;
+  flex-direction: column;
+  width: 338px;
+}
+
+.formitem-delivnotes{
+  display: flex;
+  justify-content: space-between;
+  margin-top:5px;
+}
+
+.forminput-delivnotes{
+  padding:5px;
+  width: 200px;
+  border:none;
+}
+
+#textarea-delivnotes{
+  height: 75px;
+}
+
+#ZIP{
+  width: 42px;
+  margin-right: 5px;
+}
