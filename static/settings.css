@@ -24,13 +24,15 @@
   display:flex;
   max-height: 39px;
   justify-content: space-between;
-  transition-duration: .2s;
   cursor:pointer;
 }
 
-.settingadminrow:hover{
-  padding:20px 20px ;
+.settingadminrow p{
+  transition-duration: .2s
+}
 
+.settingadminrow:hover p{
+  padding:0 10px ;
 }
 
 .settingsbranchp{
