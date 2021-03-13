@@ -144,6 +144,21 @@ th{
   width:54px;
 }
 
+#excelaparts{
+  width:30px;
+  margin:5px;
+  padding:5px;
+}
+
+#excelparts{
+  width:30px;
+  transition-duration: .2s;
+}
+
+#excelparts:hover{
+  transform: scale(1.1);
+}
+
 @media only screen and (max-width: 700px){
   .tabell-parts{
     max-width: 400px;

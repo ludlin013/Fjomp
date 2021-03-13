@@ -46,7 +46,7 @@ def setTheme():
         notheme = "light"
     return theme,notheme
 
-def importer():
+def createcsv():
     with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
         parts = f.read().rstrip().split("\n")
 
@@ -131,21 +131,14 @@ def importer():
             allparts.append(Dict)
 
     allparts.sort(key = lambda x:x["artid"])
-    sqlparts = sql("SELECT","SELECT Part_Partno, Part_Vendor ,Part_Inactive, Part_Latuse, Part_Latupdat FROM Parts")
-    print(len(sqlparts))
-    print(len(allparts))
-    for n in allparts:
-        #print(n["artid"])
-        pass
-        #    n["partno"] = x[0]
-        #    n["vendor"] = x[1]
-        #    n["inactive"] = x[2]
-        #    n["lastuse"] = x[3]
-        #    n["lastupd"] = x[4]
+
+    sqlparts = sql("SELECT","SELECT * FROM Parts")
 
     with open("static/units.csv","w") as f:
-        for n in allparts:
-            f.write(n["groupcode"]+";"+n["artid"]+";"+n["name"]+";"+n["qty"]+";"+n["price1"]+";"+n["lp"]+";"+n["type"]+";"+n["price2"]+";"+n["price3"]+";"+n["price4"]+";"+n["price5"]+";"+n["price6"]+";"+n["price7"]+";"+n["price8"]+";"+n["price9"]+"\n")
+        for n in sqlparts:
+            for x in n:
+                f.write(str(x).strip()+";")
+            f.write("\n")
 
     return allparts
 
@@ -173,7 +166,7 @@ def login():
             auth = False
             if request.form['username'] in authusr:
                 auth = True
-            importer()
+            createcsv()
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"
@@ -206,14 +199,15 @@ def parts():
         pass
     else:
         return redirect(url_for("login"))
-    theme,notheme = setTheme()
 
-    #allparts = importer()
+    theme,notheme = setTheme()
 
     allparts = []
 
     sqlq = sql("SELECT","SELECT * FROM Parts")
+
     for x in sqlq:
+
         Dict = {}
 
         Dict["artid"] = x[0].strip()
@@ -222,11 +216,12 @@ def parts():
         Dict["qty"] = str(x[7]).strip()
         Dict["price1"] = str(x[6]).strip()
         Dict["inactive"] = str(x[14]).strip()
+        Dict["lastusd"] = str(x[9]).strip()
+        Dict["lastupd"] = str(x[17]).strip()
 
         allparts.append(Dict)
 
     allparts.sort(key = lambda x:x["artid"])
-
 
     return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts)
 

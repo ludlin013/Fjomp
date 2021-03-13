@@ -24,7 +24,7 @@
       <div class="toppage-parts">
         <form class="form-parts">
           <label for="search" class="searchlabel-parts noselect">Search for:</label>
-          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search()" class="forminput-parts" type="text" name="part-parts"></div>
+          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="search()" class="forminput-parts" type="text" name="part-parts" autofocus></div>
           <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="search()" class="forminput-parts" type="text" name="description-parts"></div>
           <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Only active parts:</label><input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked></div>
         </form>
@@ -43,17 +43,19 @@
               {% for x in allparts%}
               <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
                 <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
-                <td class="thdesc-parts"><input value="{{x["name"]}}"></td>
-                <td class="thLP-parts"><input value="{{x["lp"]}}"></td>
-                <td class="thQTY-parts"><input value="{{x["qty"]}}"></td>
-                <td class="thpr1-parts"><input value="{{x["price1"]}}"></td>
+                <td class="thdesc-parts"><input onclick="this.select()" value="{{x["name"]}}"></td>
+                <td class="thLP-parts"><input onclick="this.select()" value="{{x["lp"]}}"></td>
+                <td class="thQTY-parts"><input onclick="this.select()" value="{{x["qty"]}}"></td>
+                <td class="thpr1-parts"><input onclick="this.select()" value="{{x["price1"]}}"></td>
+                <td class="thpart-parts"><input readonly value="{{x["lastusd"]}}"></td>
+                <td class="thpart-parts"><input readonly value="{{x["lastupd"]}}"></td>
               {% endfor %}
               </tr>
             </tbody>
             <script src="static/partsearch.js"></script>
           </table>
         </div>
-        <a href="static/units.csv" download>ladda ner </a>
+        <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
       </div>
     </div>
   </body>
