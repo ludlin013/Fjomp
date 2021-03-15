@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bake | IR</title>
+    <link rel="stylesheet" href="static/index.css">
+    <link rel="stylesheet" href="static/ir.css">
+    <link rel="stylesheet" href="static/{{theme}}.css">
+    <link rel="icon" href="./static/pictures/icon.ico">
+  </head>
+  <body>
+    <div class="navin">
+      <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+      <a class="navitemin active" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+      <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    </div>
+    <div class="mainwrapir">
+      <h1 class="noselect">IR</h1>
+      <div class="toppage-ir">
+        <div class="toppageleft-ir">
+          <form class="form-ir" name="form-top-ir">
+            <div class="formitem-ir"><label>IR #</label><input class="forminput-ir" type="text" readonly></div>
+            <div class="formitem-ir"><label>Open IR #:</label><input class="forminput-ir" type="text"></div>
+          </form>
+        </div>
+        <div class="toppageleft2-ir">
+          <form class="form-ir" name="form-top-ir2">
+            <div class="formitem-ir"><label>Cust.</label><input class="forminput-ir" type="text" readonly></div>
+            <div class="formitem-ir"><label>IR Status:</label><input class="forminput-ir" type="text"></div>
+          </form>
+        </div>
+        <div class="toppageright2-ir"
+          <form class="form-ir" name="form-top-ir3">
+            <div class="formitem-ir"><label>Name</label><input class="forminput-ir" type="text" readonly></div>
+            <div class="formitem-ir"><label>Address</label><input class="forminput-ir" type="text" readonly></div>
+            <div class="formitem-ir"><label>Zip/City</label><input class="forminput-ir" type="text" readonly><<input class="forminput-ir" type="text" readonly></div>
+          </form>
+        </div>
+        <div class="toppageright-ir">
+          <form class="form-ir" name="form-top-ir4">
+            <div class="formitem-ir"><label>Owner</label><input class="forminput-ir" type="text" readonly></div>
+            <div class="formitem-ir"><label>Phone</label><input class="forminput-ir" type="text" readonly></div>
+          </form>
+        </div>
+      </div>
+      <div class="2toppage-ir">
+        <div class="2toppageleft-ir">
+          <form class="form-ir" name="form-2top-ir">
+            <div class="formitem-ir"><label>Open Date</label><input class="forminput-ir" type="text"></div>
+            <div class="formitem-ir"><label>Sign.</label><input class="forminput-ir" type="text" readonly></div>
+          </form>
+        </div>
+        <div class="2toppagemiddle-ir">
+          <form class="form-ir" name="form-2top-ir">
+            <div class="formitem-ir"><label>Notes</label><input class="forminput-ir" type="text"></div>
+          </form>
+        </div>
+        <div class="2toppageright-ir">
+          <form class="form-ir" name="form-2top-ir">
+            <div class="formitem-ir"><label>Arrival</label><input class="forminput-ir" type="text"></div>
+            <div class="formitem-ir"><label>Sent with (Freight type)</label><input class="forminput-ir" type="text"></div>
+            <div class="formitem-ir"><label>Repair location:</label><input class="forminput-ir" type="text"></div>
+          </form>
+        </div>
+        <div class="tabell-ir">
+          <table class="list-receivedunits">
+            <thead>
+              <tr class="header-ir" id="header-ir">
+                <th class="thtype-ir">Type:</th>
+                <th class="thmanufact-ir">Manufact.:</th>
+                <th class="thmodel-ir">Model:</th>
+                <th class="thserial-ir">Serial:</th>
+                <th class="thcharge-ir">Charge:</th>
+                <th class="thnotes-ir">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="whatabody-ir">
+              <tr class="row-ir" onclick="">
+                <td class="thtype-ir">Pen</td>
+                <td class="thmanufact-ir">Pen</td>
+                <td class="thmodel-ir">Pen</td>
+                <td class="thserial-ir">Pen</td>
+                <td class="thcharge-ir">Pen</td>
+                <td class="thnotes-ir">Pen</td>
+              </tr>
+              <tr class="row-ir" onclick="">
+                <td class="thtype-ir">Pen</td>
+                <td class="thmanufact-ir">Pen</td>
+                <td class="thmodel-ir">Pen</td>
+                <td class="thserial-ir">Pen</td>
+                <td class="thcharge-ir">Pen</td>
+                <td class="thnotes-ir">Pen</td>
+              </tr>
+              <tr class="row-ir" onclick="">
+                <td class="thtype-ir">Pen</td>
+                <td class="thmanufact-ir">Pen</td>
+                <td class="thmodel-ir">Pen</td>
+                <td class="thserial-ir">Pen</td>
+                <td class="thcharge-ir">Pen</td>
+                <td class="thnotes-ir">Pen</td>
+              </tr>
+              <tr class="row-ir" onclick="">
+                <td class="thtype-ir">Pen</td>
+                <td class="thmanufact-ir">Pen</td>
+                <td class="thmodel-ir">Pen</td>
+                <td class="thserial-ir">Pen</td>
+                <td class="thcharge-ir">Pen</td>
+                <td class="thnotes-ir">Pen</td>
+              </tr>
+            </tbody>
