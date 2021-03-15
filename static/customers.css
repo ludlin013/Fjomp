@@ -3,6 +3,11 @@
   padding:50px 0 0 50px
 }
 
+.toppage-customers{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .leftpage-customers{
   display: flex;
   flex-wrap: wrap;
