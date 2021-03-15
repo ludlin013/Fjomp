@@ -149,7 +149,61 @@ table {
   overflow-y: scroll;
 }
 
+.button-delivnote{
+  width: 20px;
+  margin: 5px;
+}
+
+.buttonpic-delivnote{
+  width: 20px;
+}
+
+.buttons-delivnote{
+  display: flex;
+  flex-direction: row;
+}
+
+.controllpanel-delivnote{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ordersum-delivnote{
+  display: flex;
+  flex-direction: row;
+  margin-left: 30px;
+  width: 800px;
+  justify-content: space-between;
+}
+
+.ordersumnum-delivnote::-webkit-outer-spin-button,
+.ordersumnum-delivnote::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @media only screen and (max-width: 1000px){
+
+  .ordersum-delivnote{
+    width: 400px;
+  }
+
+  .ordersum{
+    flex-direction: column;
+  }
+
+  .ordersum-delivnote{
+    margin-left: 0px;
+    flex-direction: column;
+  }
+
+  .controllpanel-delivnote{
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .toppage-delivnotes{
     flex-direction: column;
   }
@@ -174,6 +228,10 @@ table {
   .delivnote-deliv{
     flex-direction: column;
     justify-content: flex-start;
+    width: 230px;
+  }
+
+  .ordersum-delivnote{
     width: 230px;
   }
 
