@@ -7,7 +7,6 @@ server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"
-cursor = ""
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
@@ -26,7 +25,6 @@ def sql(type,sqlquery):
         mydb.commit()
 
     return result
-
 
 
 def checklogin(username,password):
@@ -261,7 +259,7 @@ def lookup():
     theme,notheme = setTheme()
     return render_template("lookup.html",theme=theme,notheme=notheme)
 
-@app.route("/settings")
+@app.route("/settings",methods=["GET","POST"])
 def settings():
     if "loggedin" in request.cookies:
         pass
@@ -271,8 +269,29 @@ def settings():
     if request.cookies["auth"] == "true":
         authenticated = True
     theme,notheme = setTheme()
-    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated)
 
+    techs = sql("SELECT","SELECT * FROM Technicians")
+
+    #print(techs)
+
+    if request.method == 'POST':
+        techid = request.form.getlist('id')
+        techfirst = request.form.getlist('firstname')
+        techlast = request.form.getlist('lastname')
+        techoffice = request.form.getlist('office')
+        techtech = request.form.getlist('tech')
+
+        for i in range(len(techid)):
+            for x in techs:
+                if techid[i] == x[0]:
+                    print(techid[i],"id finns")
+                    if techfirst[i] == x[1].strip() and techlast[i] == x[2].strip():
+                        print(techid[i],"finns")
+                        break
+
+
+
+    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs)
 
 
 app.run(host="0.0.0.0",port="80")

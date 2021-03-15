@@ -90,6 +90,33 @@
       </a>
       {%endif%}
     </div>
+
+    <form class="settingstechmain" method="POST" action="">
+      {% for tech in techs %}
+      <a class="settingadmintech">
+        <input class="settingsthemep noselect techid" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
+        <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
+        <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
+        <input class="settingsthemep noselect techoffice" name="office" id="techoffice" value="{{tech[4]}}">
+        <input class="settingsthemep noselect techtech" name="tech" id="techtech" value="{{tech[5]}}">
+        <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img src="static/pictures/{{theme}}/add.png"></div>
+      </a>
+      {% endfor %}
+      <div class="settingstechcontrols">
+          <div class="settingstechnew">
+            New User
+          </div>
+        <div class="settingstechdiv">
+          <div class="settingstechcancel">
+            Cancel
+          </div>
+          <input type="submit" value="Save">
+        </div>
+    </div>
+    </form>
+
+
+
     <script>
       if(document.cookie.includes("branch")){
         var cookies = document.cookie.split(";");
@@ -116,6 +143,13 @@
           location.reload();
         }
       }
+
+    function remtech(id){
+      document.getElementById(id).parentElement.style.maxHeight = "0";
+      setTimeout(function(){
+        document.getElementById(id).parentElement.remove();
+      },250);
+    }
     </script>
   </body>
 </html>

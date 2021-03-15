@@ -134,6 +134,84 @@
 }
 
 .navin:hover .mainwrapsettings{
-  transform: translateX(140px);
+  transform: translateY(140px)!important;
   margin-left: 201px
+}
+
+.settingstechmain{
+  padding:100px
+}
+
+.settingadmintech{
+  display:flex;
+  padding:0 5px;
+  transition-duration: .25s;
+  height:100vw;
+  max-height: 37px;
+  overflow: hidden;
+}
+
+.settingstechmain input{
+  border:none;
+  padding:10px 0 10px 5px;
+  outline:none;
+}
+
+.techid{
+  width:50px
+}
+
+.techfirst
+,.techlast{
+  width:150px
+}
+
+.techoffice
+,.techtech{
+  width:50px
+}
+
+.techremove{
+  width:50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.techremove img{
+  transition-duration: .1s;
+  width:25px;
+  height:25px;
+  transform: rotate(45deg);
+}
+
+.techremove:hover img{
+
+}
+
+.settingstechcontrols{
+  display:flex;
+  padding:10px 5px;
+  justify-content: space-between;
+}
+
+.settingstechdiv{
+  display: flex;
+  width:220px;
+  justify-content: space-between;
+}
+
+.settingstechcontrols input{
+  padding: 10px;
+  width:100px
+}
+
+.settingstechnew,
+.settingstechcancel{
+  width:98px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:1px solid
 }
