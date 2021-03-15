@@ -204,7 +204,8 @@
 
 .settingstechcontrols input{
   padding: 10px;
-  width:100px
+  width:100px;
+  cursor:pointer;
 }
 
 .settingstechnew,
@@ -213,5 +214,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border:1px solid
+  border:1px solid;
+  cursor:pointer;
+}
+
+.techid{
+  text-transform: uppercase;
 }

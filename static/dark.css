@@ -163,10 +163,14 @@ table, td, th {
   background: #999;
 }
 
-.settingstechmain input{
+.settingstechmain input,
+.settingstechcontrols input{
   background:rgb(20,20,20);
   border-top:1px solid #282828;
   border-left:1px solid #282828;
+}
+
+.settingadmintech:nth-last-child(2){
 }
 
 

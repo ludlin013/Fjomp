@@ -22,7 +22,8 @@ def sql(type,sqlquery):
     if type == "SELECT":
         result = cursor.fetchall()
     elif type == "INSERT":
-        mydb.commit()
+        cnxn.commit()
+        result = None
 
     return result
 
@@ -281,14 +282,21 @@ def settings():
         techoffice = request.form.getlist('office')
         techtech = request.form.getlist('tech')
 
+
+####
+##
+#
+        #göras om här
         for i in range(len(techid)):
             for x in techs:
                 if techid[i] == x[0]:
-                    print(techid[i],"id finns")
                     if techfirst[i] == x[1].strip() and techlast[i] == x[2].strip():
-                        print(techid[i],"finns")
                         break
-
+            if techid[i] == "" or techfirst[i] == "" or techlast[i] == "" or techoffice[i] == "" or techtech[i] == "":
+                break
+            else:
+                sql("INSERT","INSERT INTO Technicians (Tech_ID,Tech_Firstname,Tech_Lastname,Tech_Office,Tech_Tech) VALUES ('" + techid[i].upper()+"','"+ techfirst[i]+"','"+ techlast[i]+"','"+ techoffice[i]+"','"+ techtech[i]+"')")
+        return redirect(url_for("settings"))
 
 
     return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs)

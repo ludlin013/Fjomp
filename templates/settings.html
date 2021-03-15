@@ -90,31 +90,31 @@
       </a>
       {%endif%}
     </div>
-
-    <form class="settingstechmain" method="POST" action="">
+    <div>
+    <form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
       {% for tech in techs %}
       <a class="settingadmintech">
-        <input class="settingsthemep noselect techid" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
+        <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
         <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
         <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
         <input class="settingsthemep noselect techoffice" name="office" id="techoffice" value="{{tech[4]}}">
         <input class="settingsthemep noselect techtech" name="tech" id="techtech" value="{{tech[5]}}">
-        <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img src="static/pictures/{{theme}}/add.png"></div>
+        <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
       {% endfor %}
+      </form>
       <div class="settingstechcontrols">
-          <div class="settingstechnew">
+          <div class="settingstechnew noselect" onclick="technewuser()">
             New User
           </div>
-        <div class="settingstechdiv">
-          <div class="settingstechcancel">
+        <div class="settingstechdiv noselect">
+          <div class="settingstechcancel" onclick="window.location.reload()">
             Cancel
           </div>
-          <input type="submit" value="Save">
+          <input type="submit" form="techuserform" value="Save">
         </div>
     </div>
-    </form>
-
+</div>
 
 
     <script>
@@ -149,6 +149,47 @@
       setTimeout(function(){
         document.getElementById(id).parentElement.remove();
       },250);
+    }
+
+    function technewuser(){
+      console.log("newuser");
+
+      var parent = document.getElementById("techuserform");
+
+      var usera = document.createElement("a");
+      var inputid = document.createElement("input");
+      var inputfirst = document.createElement("input");
+      var inputlast = document.createElement("input");
+      var inputoffice = document.createElement("input");
+      var inputtech = document.createElement("input");
+
+      inputid.name = "id";
+      inputfirst.name ="firstname";
+      inputlast.name ="lastname";
+      inputoffice.name ="office";
+      inputtech.name ="tech";
+
+      inputid.maxLength = "3";
+      inputoffice.maxLength = "1";
+      inputtech.maxLength = "1";
+
+      usera.classList.add("settingadmintech");
+      inputid.classList.add("settingsthemep","noselect","techid");
+      inputfirst.classList.add("settingsthemep","noselect","techfirst");
+      inputlast.classList.add("settingsthemep","noselect","techlast");
+      inputoffice.classList.add("settingsthemep","noselect","techoffice");
+      inputtech.classList.add("settingsthemep","noselect","techtech");
+
+
+
+
+      usera.appendChild(inputid);
+      usera.appendChild(inputfirst);
+      usera.appendChild(inputlast);
+      usera.appendChild(inputoffice);
+      usera.appendChild(inputtech);
+
+      parent.appendChild(usera)
     }
     </script>
   </body>
