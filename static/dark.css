@@ -139,6 +139,7 @@ body{
 
 table, td, th {
   border-color: rgb(20,20,20);
+  background: rgb(80,80,80)
 }
 
 .row-parts:hover{
@@ -160,4 +161,15 @@ table, td, th {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
+}
+
+.settingstechmain input{
+  background:rgb(20,20,20);
+  border-top:1px solid #282828;
+  border-left:1px solid #282828;
+}
+
+
+.techtech{
+  border-right:1px solid #282828;
 }
