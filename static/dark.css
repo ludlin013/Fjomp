@@ -177,3 +177,9 @@ table, td, th {
 .techtech{
   border-right:1px solid #282828;
 }
+
+.techid ::placeholder,
+.techid :-ms-input-placeholder,
+.techid ::-ms-input-placeholder{
+  color:red
+}

@@ -138,8 +138,11 @@
   margin-left: 201px
 }
 
-.settingstechmain{
+.settingstechwrap{
   padding:100px
+}
+
+.settingstechmain{
 }
 
 .settingadmintech{
@@ -160,6 +163,8 @@
 .techid{
   width:50px
 }
+
+
 
 .techfirst
 ,.techlast{
@@ -220,4 +225,33 @@
 
 .techid{
   text-transform: uppercase;
+}
+
+.settingstechhead,
+.settingsvendorhead{
+  display: flex;
+  padding:5px;
+}
+
+.settingstechhead p,
+.settingsvendorhead p{
+  padding:0 5px
+}
+
+#settingstechid{
+  width:46px
+}
+
+#settingstechfirst,
+#settingstechlast{
+  width:146px
+}
+
+#settingstechoffice,
+#settingstechtech{
+  width:46px
+}
+
+.settingsvendorwrap{
+  padding:100px
 }
