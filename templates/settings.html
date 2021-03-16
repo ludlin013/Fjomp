@@ -103,11 +103,11 @@
     <form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
       {% for tech in techs %}
       <a class="settingadmintech">
-        <input class="settingsthemep noselect" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
-        <input class="settingsthemep noselect" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
-        <input class="settingsthemep noselect " name="lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect " name="office" id="techoffice" value="{{tech[4]}}">
-        <input class="settingsthemep noselect" name="tech" id="techtech" value="{{tech[5]}}">
+        <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
+        <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
+        <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
+        <input class="settingsthemep noselect techoffice" name="office" id="techoffice" value="{{tech[4]}}">
+        <input class="settingsthemep noselect techtech" name="tech" id="techtech" value="{{tech[5]}}">
         <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
       {% endfor %}
@@ -142,11 +142,11 @@
 <form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
   {% for vendor in vendors %}
   <a class="settingadmintech">
-    <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
-    <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{vendor[1].strip()}}">
-    <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{vendor[2].strip()}}">
-    <input class="settingsthemep noselect techoffice" name="office" id="techoffice" value="{{vendor[4]}}">
-    <input class="settingsthemep noselect techtech" name="tech" id="techtech" value="{{vendor[5]}}">
+    <input class="settingsthemep noselect" readonly maxlength="3" name="id" id="{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
+    <input class="settingsthemep noselect" name="firstname" id="techfirst" value="{{vendor[1].strip()}}">
+    <input class="settingsthemep noselect" name="lastname" id="techlast" value="{{vendor[2].strip()}}">
+    <input class="settingsthemep noselect" name="office" id="techoffice" value="{{vendor[4]}}">
+    <input class="settingsthemep noselect" name="tech" id="techtech" value="{{vendor[5]}}">
     <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{vendor[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
   </a>
   {% endfor %}
