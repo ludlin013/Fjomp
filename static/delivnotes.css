@@ -184,7 +184,31 @@ table {
   margin: 0;
 }
 
+.buttonsbar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.buttonsbar-item-delivnotes{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 12px;
+}
+
+.buttonbarpic-delivnotes{
+  width: 40px;
+}
+
 @media only screen and (max-width: 1000px){
+
+  .buttonsbar-item-delivnotes{
+    margin: 5px;
+    font-size: 10px;
+  }
 
   .ordersum-delivnote{
     width: 400px;
