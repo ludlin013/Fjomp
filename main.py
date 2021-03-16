@@ -254,7 +254,7 @@ def swapouts():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("swapouts.html",theme=theme,notheme=notheme)
+    return render_template("swapout.html",theme=theme,notheme=notheme)
 
 @app.route("/lookup")
 def lookup():
