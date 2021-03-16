@@ -197,18 +197,45 @@ def customers():
     theme,notheme = setTheme()
     return render_template("customers.html",theme=theme,notheme=notheme)
 
-@app.route("/parts")
+@app.route("/parts",methods=["GET","POST"])
 def parts():
     if "loggedin" in request.cookies:
         pass
     else:
         return redirect(url_for("login"))
+    authenticated = False
+    if request.cookies["auth"] == "true":
+        authenticated = True
 
     theme,notheme = setTheme()
 
     allparts = []
+    sqlq = []
+    partn = ""
+    partd = ""
 
-    sqlq = sql("SELECT","SELECT * FROM Parts")
+    if request.method == 'POST':
+        partn = request.form["part-parts"]
+        partd = request.form["description-parts"]
+        parta = None
+        try:
+            parta = request.form.getlist("active-parts")[0]
+        except:
+            pass
+
+
+        sqlquery = "SELECT * FROM Parts"
+        sqlq=[]
+
+        for x in sql("SELECT", sqlquery):
+        #    print(x[0],x[1],x[14])
+            if partn.lower() in x[0].lower() and partd.lower() in x[1].lower():
+                sqlq.append(x)
+
+        #print(sqlq)
+
+
+
 
     for x in sqlq:
 
@@ -227,7 +254,7 @@ def parts():
 
     allparts.sort(key = lambda x:x["artid"])
 
-    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts)
+    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn,che=parta)
 
 @app.route("/delivnotes")
 def delivnotes():
