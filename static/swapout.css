@@ -35,7 +35,7 @@
 .formitem-swapout{
   display: flex;
   justify-content: space-between;
-  width: 450px;
+  width: 420px;
   align-items: center;
   margin: 5px;
 }
@@ -47,4 +47,27 @@
 .forminput-swapout{
   padding: 5px;
   border:none;
+}
+@media only screen and (max-width: 600px){
+  .formitem-swapout{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .forminput-swapout{
+    margin-bottom: 5px;
+  }
+
+  .formitem-swapout{
+    width: 240px;
+  }
+
+  .mainwrapswapout{
+    margin-left: 41px;
+    padding:30px;
+  }
+
+  .lvl1-swapout, .lvl2-swapout, .lvl3-swapout, .lvl4-swapout, .lvl5-swapout, .lvl6-swapout, .mainwrapswapout{
+    width: 240px;
+  }
 }
