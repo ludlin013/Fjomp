@@ -3,6 +3,15 @@
   padding:50px 0 0 50px;
 }
 
+#ZIP{
+  width: 50px;
+  margin-right: 5px;
+}
+
+.smallerinput-swapout{
+  width: 100px;
+}
+
 .lvl1-swapout{
   margin-bottom: 50px;
 }
@@ -26,8 +35,9 @@
 .formitem-swapout{
   display: flex;
   justify-content: space-between;
-  width: 550px;
+  width: 450px;
   align-items: center;
+  margin: 5px;
 }
 
 .nostyle{
@@ -36,4 +46,5 @@
 
 .forminput-swapout{
   padding: 5px;
+  border:none;
 }
