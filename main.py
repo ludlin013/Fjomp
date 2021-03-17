@@ -256,14 +256,45 @@ def parts():
 
     return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn)
 
-@app.route("/delivnotes")
+@app.route("/delivnotes", methods=["GET","POST"])
 def delivnotes():
     if "loggedin" in request.cookies:
         pass
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("delivnotes.html",theme=theme,notheme=notheme)
+
+    sqlq = []
+    Dict = {}
+
+    if request.method == 'POST':
+        delivnote = request.form["delivnotename-delivnote"]
+
+        sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
+        sqlq=[]
+        priceGroup={}
+        if sqlquery:
+            for x in sqlquery:
+                sqlq.append(x)
+
+                Dict["storenum"] = x[0].strip()
+                Dict["number"] = x[1]
+                Dict["storename"] = x[2].strip()
+                Dict["referens"] = x[3].strip()
+                Dict["date"] = x[4]
+                Dict["sign"] = x[16].strip()
+                Dict["notes"] = x[17].strip()
+                Dict["freight"] = x[15]
+                Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office WHERE OF_No = '"+str(x[23])+"'")
+                print(x)
+
+            z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
+            priceGroup["pricegroup"] = sql("SELECT", "SELECT * FROM Pricegroups WHERE pg_no = '"+str(x[26])+"'")
+            Dict["street"] = z[3].strip()
+            Dict["zip"] = z[5].strip()
+            Dict["city"] = z[6].strip()
+
+    return render_template("delivnotes.html",theme=theme,notheme=notheme, sqlq=sqlq, Dict=Dict, priceGroup=priceGroup)
 
 @app.route("/ir")
 def ir():

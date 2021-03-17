@@ -22,7 +22,7 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <div class="delivnote-deliv"><label>Delivery note #:</label><input id="delivnote-number" class="forminput-delivnotes" type="number" value="1337"></div>
+        <div class="delivnote-deliv"><form name="delivnote-form" method="POST" action=""><label>Delivery note #:</label><input name="delivnotename-delivnote" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{Dict["number"]}}" autofocus><input type="submit"></form></div>
         <div class="formitem-delivnotes offers-delivnotes">
           <label>Offer</label><input type="checkbox">
           <label>Finalized Offer</label><input type="checkbox">
@@ -31,7 +31,7 @@
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label>Store #:</label><input class="forminput-delivnotes" type="text"></div>
+            <div class="formitem-delivnotes"><label>Store #:</label><input class="forminput-delivnotes" type="text" value="Dict["storenum"]"></div>
             <div class="formitem-delivnotes"><label>Ref:</label><input class="forminput-delivnotes" type="text"></div>
             <div class="formitem-delivnotes"><label>Name:</label><input class="forminput-delivnotes" type="text"></div>
             <div class="formitem-delivnotes"><label>Address:</label><input class="forminput-delivnotes" type="text"></div>
@@ -99,20 +99,22 @@
             </tr>
           </thead>
           <tbody class="tbody-delivnotes">
+            {% for x in sqlq%}
             <tr class="row-delivnotes" onclick="" id="">
-              <td class="thpart-delivnotes"><p>Ball</p></td>
-              <td class="thdesc-delivnotes"><p>Ball</p></td>
-              <td class="thserial-delivnotes"><p>Ball</p></td>
-              <td class="thQTY-delivnotes"><p>Ball</p></td>
-              <td class="thpricegroup-delivnotes"><p>McDonalds</p></td>
-              <td class="thprice-delivnotes"><p>Ball</p></td>
-              <td class="thdiscount-delivnotes"><p>Ball</p></td>
-              <td class="thnetvalue-delivnotes"><p>22022</p></td>
-              <td class="thtotal-delivnotes"><p>33033</p></td>
-              <td class="thnocharge-delivnotes"><input type="checkbox"></td>
-              <td class="thbackorder-delivnotes"><input type="checkbox"></td>
-              <td class="thdelivdate-delivnotes"><p>Ball</p></td>
+              <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5]}}"></td>
+              <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6]}}"></td>
+              <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7]}}"></td>
+              <td class="thQTY-delivnotes"><input class="forminput-delivnotes" value="{{x[8]}}"></td>
+              <td class="thpricegroup-delivnotes"><input class="forminput-delivnotes" value="{{x[26]}}"></td>
+              <td class="thprice-delivnotes"><input class="forminput-delivnotes" value="{{x[9]}}"></td>
+              <td class="thdiscount-delivnotes"><input class="forminput-delivnotes" value="{{x[10]}}"></td>
+              <td class="thnetvalue-delivnotes"><input class="forminput-delivnotes" value="{{x[11]}}"></td>
+              <td class="thtotal-delivnotes"><input class="forminput-delivnotes" value="{{x[12]}}"></td>
+              <td class="thnocharge-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
+              <td class="thbackorder-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
+              <td class="thdelivdate-delivnotes"><input class="forminput-delivnotes" value="{{x[4]}}"></td>
             </tr>
+            {% endfor %}
           </tbody>
           <script src="static/partsearch.js"></script>
         </table>
