@@ -159,6 +159,15 @@ th{
   transform: scale(1.1);
 }
 
+.partssearch{
+  padding:10px;
+  margin:5px 0;
+  border-radius: 2px;
+  border:none;
+  outline:none;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 700px){
   .tabell-parts{
     max-width: 400px;

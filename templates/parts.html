@@ -1,63 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" translate="no">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bake | Parts</title>
-    <link rel="stylesheet" href="static/index.css">
-    <link rel="stylesheet" href="static/parts.css">
-    <link rel="stylesheet" href="static/{{theme}}.css">
-    <link rel="icon" href="./static/pictures/icon.ico">
-  </head>
-  <body>
-    <div class="navin">
-      <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
-      <a class="navitemin active" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
-      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
-      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
-      <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
-      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
-      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
-    </div>
-    <div class="mainwrapparts">
-      <h1 class="noselect">Parts</h1>
-      <div class="toppage-parts">
-        <form class="form-parts" action="" method="POST">
-          <label for="search" class="searchlabel-parts noselect">Search for:</label>
-          <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="" class="forminput-parts" type="text" name="part-parts" autofocus value="{{par}}"></div>
-          <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="" class="forminput-parts" type="text" name="description-parts" value="{{des}}"></div>
-          <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Only active parts:</label><input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" {%if che%} checked {% endif %}></div>
-          <input type="submit" name="partsubmit" value="Search">
-        </form>
-        <div class="tabell-parts">
-          <table class="list-parts">
-            <thead>
-              <tr class="header-parts" id="header-parts">
-                <th class="thpart-parts">Part #</th>
-                <th class="thdesc-parts">Description</th>
-                <th class="thLP-parts">LP</th>
-                <th class="thQTY-parts">QTY</th>
-                <th class="thpr1-parts">Pr. 1</th>
-              </tr>
-            </thead>
-            <tbody class="whatabody">
-              {% for x in allparts%}
-              <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
-                <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
-                <td class="thdesc-parts"><input onclick="this.select()" value="{{x["name"]}}"></td>
-                <td class="thLP-parts"><input onclick="this.select()" value="{{x["lp"]}}"></td>
-                <td class="thQTY-parts"><input onclick="this.select()" value="{{x["qty"]}}"></td>
-                <td class="thpr1-parts"><input onclick="this.select()" value="{{x["price1"]}}"></td>
-                <td class="thpart-parts"><input readonly value="{{x["lastusd"]}}"></td>
-                <td class="thpart-parts"><input readonly value="{{x["lastupd"]}}"></td>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bake | Parts</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/parts.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+<body>
+  <div class="navin">
+    <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin active" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+  </div>
+  <div class="mainwrapparts">
+    <h1 class="noselect">Parts</h1>
+    <div class="toppage-parts">
+      <form class="form-parts" action="" method="POST">
+        <label for="search" class="searchlabel-parts noselect">Search for:</label>
+        <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="" class="forminput-parts" type="text" name="part-parts" autofocus value="{{par}}"></div>
+        <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="" class="forminput-parts" type="text" name="description-parts" value="{{des}}"></div>
+        <div id="formitem-parts" class="formitem-parts noselect"><label for="active-parts">Only active parts:</label><input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked ></div>
+        <input class="partssearch" type="submit" name="partsubmit" value="Search">
+      </form>
+      <div class="tabell-parts">
+        <table class="list-parts">
+          <thead>
+            <tr class="header-parts" id="header-parts">
+              <th class="thpart-parts">Part #</th>
+              <th class="thdesc-parts">Description</th>
+              <th class="thLP-parts">LP</th>
+              <th class="thQTY-parts">QTY</th>
+              <th class="thpr1-parts">Pr. 1</th>
+            </tr>
+          </thead>
+          <tbody class="whatabody">
+            {% for x in allparts%}
+            <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
+              <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
+              <td class="thdesc-parts"><input onclick="this.select()" value="{{x["name"]}}"></td>
+              <td class="thLP-parts"><input onclick="this.select()" value="{{x["lp"]}}"></td>
+              <td class="thQTY-parts"><input onclick="this.select()" value="{{x["qty"]}}"></td>
+              <td class="thpr1-parts"><input onclick="this.select()" value="{{x["price1"]}}"></td>
+              <td class="thpart-parts"><input readonly value="{{x["lastusd"]}}"></td>
+              <td class="thpart-parts"><input readonly value="{{x["lastupd"]}}"></td>
               {% endfor %}
-              </tr>
-            </tbody>
-            <script src="static/partsearch.js"></script>
-          </table>
-        </div>
-        <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
+            </tr>
+          </tbody>
+          <script src="static/partsearch.js"></script>
+        </table>
       </div>
+      <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
     </div>
-  </body>
+  </div>
+</body>
 </html>

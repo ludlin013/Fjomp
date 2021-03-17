@@ -142,11 +142,17 @@
 <form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
   {% for vendor in vendors %}
   <a class="settingadmintech">
-    <input class="settingsthemep noselect" readonly maxlength="3" name="id" id="{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
-    <input class="settingsthemep noselect" name="firstname" id="techfirst" value="{{vendor[1].strip()}}">
-    <input class="settingsthemep noselect" name="lastname" id="techlast" value="{{vendor[2].strip()}}">
-    <input class="settingsthemep noselect" name="office" id="techoffice" value="{{vendor[4]}}">
-    <input class="settingsthemep noselect" name="tech" id="techtech" value="{{vendor[5]}}">
+    <input class="settingsthemep noselect vendorid" name="id" id="vendor{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
+    <input class="settingsthemep noselect vendorname" name="id" id="vendorname" value="{{vendor[1].strip()}}">
+    <input class="settingsthemep noselect vendorcur" name="id" id="vendorcur" value="{{vendor[2].strip()}}">
+    <input class="settingsthemep noselect vendoradd1" name="id" id="vendoradd1" value="{{vendor[3].strip()}}">
+    <input class="settingsthemep noselect vendoradd2" name="id" id="vendoradd2" value="{{vendor[4].strip()}}">
+    <input class="settingsthemep noselect vendoradd3" name="id" id="vendoradd3" value="{{vendor[5].strip()}}">
+    <input class="settingsthemep noselect vendorzip" name="id" id="vendorzip" value="{{vendor[6].strip()}}">
+    <input class="settingsthemep noselect vendorcountry" name="id" id="vendorcountry" value="{{vendor[7].strip()}}">
+    <input class="settingsthemep noselect vendorphone" name="id" id="vendorphone" value="{{vendor[8].strip()}}">
+    <input class="settingsthemep noselect vendorcontact" name="id" id="vendorcontact" value="{{vendor[10].strip()}}">
+    <input class="settingsthemep noselect vendormail" name="id" id="vendormail" value="{{vendor[11].strip()}}">
     <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{vendor[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
   </a>
   {% endfor %}

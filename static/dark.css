@@ -177,7 +177,6 @@ table, td, th {
 .settingadmintech:nth-last-child(2){
 }
 
-
 .techtech{
   border-right:1px solid #282828;
 }
@@ -186,4 +185,8 @@ table, td, th {
 .techid :-ms-input-placeholder,
 .techid ::-ms-input-placeholder{
   color:red
+}
+
+.partssearch{
+  background: rgb(80,80,80)
 }
