@@ -213,15 +213,15 @@ def parts():
     sqlq = []
     partn = ""
     partd = ""
+    parta = None
 
     if request.method == 'POST':
         partn = request.form["part-parts"]
         partd = request.form["description-parts"]
-        parta = None
         try:
             parta = request.form.getlist("active-parts")[0]
         except:
-            pass
+            parta = ""
 
 
         sqlquery = "SELECT * FROM Parts"
@@ -254,7 +254,7 @@ def parts():
 
     allparts.sort(key = lambda x:x["artid"])
 
-    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn,che=parta)
+    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn)
 
 @app.route("/delivnotes")
 def delivnotes():
