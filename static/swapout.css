@@ -1,0 +1,39 @@
+.mainwrapswapout{
+  margin-left: 61px;
+  padding:50px 0 0 50px;
+}
+
+.lvl1-swapout{
+  margin-bottom: 50px;
+}
+
+.lvl2-swapout{
+  margin-bottom: 50px;
+}
+
+.lvl3-swapout{
+  margin-bottom: 50px;
+}
+
+.lvl4-swapout{
+  margin-bottom: 50px;
+}
+
+.lvl5-swapout{
+  margin-bottom: 50px;
+}
+
+.formitem-swapout{
+  display: flex;
+  justify-content: space-between;
+  width: 550px;
+  align-items: center;
+}
+
+.nostyle{
+  justify-content: flex-start;
+}
+
+.forminput-swapout{
+  padding: 5px;
+}
