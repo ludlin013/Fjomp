@@ -24,50 +24,68 @@
     <div class="toppage-ir">
       <div class="toppageleft-ir">
         <form class="form-ir" name="form-top-ir">
-          <div class="formitem-ir"><label>IR #</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Open IR #:</label><select class="forminput-ir" style="width: 210px;" type="text" name="openir-ir">
+          <div class="formitem-ir"><label>IR #:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Open IR #:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
             <option value="0"></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="openir-ir"></div>
+          </select><input class="forminput-ir" type="text" name="status-ir"></div>
         </form>
       </div>
       <div class="toppageleft2-ir">
         <form class="form-ir" name="form-top-ir2">
-          <div class="formitem-ir"><label>Cust.</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>IR Status:</label><input class="forminput-ir" type="text"></div>
+          <div class="formitem-ir"><label>Cust.:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+            <option value="Returned"></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="status-ir"></div>
         </form>
       </div>
       <div class="toppageright2-ir">
         <form class="form-ir" name="form-top-ir3">
-          <div class="formitem-ir"><label>Name</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Address</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Zip/City</label><input class="forminput-ir" type="text" readonly><<input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Name:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Address:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Zip/City:</label><input class="forminput-ir" type="text" readonly><<input class="forminput-ir" type="text" readonly></div>
         </form>
       </div>
       <div class="toppageright-ir">
         <form class="form-ir" name="form-top-ir4">
-          <div class="formitem-ir"><label>Owner</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Phone</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Owner:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Phone:</label><input class="forminput-ir" type="text" readonly></div>
         </form>
       </div>
     </div>
     <div class="2toppage-ir">
       <div class="2toppageleft-ir">
         <form class="form-ir" name="form-2top-ir">
-          <div class="formitem-ir"><label>Open Date</label><input class="forminput-ir" type="text"></div>
-          <div class="formitem-ir"><label>Sign.</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label>Open Date:</label><select class="forminput-ir" style="width: 210px;" type="text" name="opendate-ir">
+            <option value=""></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="opendate-ir"></div>
+          <div class="formitem-ir"><label>Sign.:</label><select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir">
+            <option value=""></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="sign-ir"></div>
         </form>
       </div>
       <div class="2toppagemiddle-ir">
         <form class="form-ir" name="form-2top-ir">
-          <div class="formitem-ir"><label>Notes</label><input class="forminput-ir" type="text"></div>
+          <div class="formitem-ir"><label>Notes:</label><input class="forminput-ir" type="text"></div>
         </form>
       </div>
       <div class="2toppageright-ir">
         <form class="form-ir" name="form-2top-ir">
-          <div class="formitem-ir"><label>Arrival</label><input class="forminput-ir" type="text"></div>
-          <div class="formitem-ir"><label>Sent with (Freight type)</label><input class="forminput-ir" type="text"></div>
-          <div class="formitem-ir"><label>Repair location:</label><input class="forminput-ir" type="text"></div>
+          <div class="formitem-ir"><label>Arrival:</label><select class="forminput-ir" style="width: 210px;" type="text" name="arrival-ir">
+            <option value=""></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="arrival-ir"></div>
+          <div class="formitem-ir"><label>Sent with (freight type):</label><select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
+            <option value=""></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="sent-ir"></div>
+          <div class="formitem-ir"><label>Repair Location:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
+            <option value="Linköping"></option>
+            <option value="valuehere">Det ska vara saker här</option>
+          </select><input class="forminput-ir" type="text" name="repairlocation-ir"></div>
         </form>
       </div>
     </div>
@@ -154,9 +172,18 @@
           </div>
           <div class="bottommiddle-ir">
             <form class="form-ir" name="form-ir">
-              <div class="formitem-ir"><label>Repaired by:</label><input class="forminput-ir" type="text" readonly></div>
-              <div class="formitem-ir"><label>Return freight:</label><input class="forminput-ir" type="text" readonly></div>
-              <div class="formitem-ir"><label>Return:</label><input class="forminput-ir" type="text"></div>
+              <div class="formitem-ir"><label>Repaired by:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
+                <option value=""></option>
+                <option value="valuehere">Det ska vara saker här</option>
+              </select><input class="forminput-ir" type="text" name="repairby-ir"></div>
+              <div class="formitem-ir"><label>Return freight:</label><select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
+                <option value="0"></option>
+                <option value="valuehere">Det ska vara saker här</option>
+              </select><input class="forminput-ir" type="text" name="returnfreight-ir"></div>
+              <div class="formitem-ir"><label>Return:</label><select class="forminput-ir" style="width: 210px;" type="text" name="return-ir">
+                <option value="0"></option>
+                <option value="valuehere">Det ska vara saker här</option>
+              </select><input class="forminput-ir" type="text" name="return-ir"></div>
             </form>
           </div>
         </div>
