@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bake | Lookup</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/ir.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+<body>
+  <div class="navin">
+    <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin active" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+  </div>
+  <div class="mainwraplookup">
+    <h1 class="noselect">Part/Unit info</h1>
+    <div class="toppage-lookup">
+      <div class="topleftpage-lookup">
+        <div class="inputrutor-lookup">
+          <form class="form-lookup" name="form-topleftpage-lookup">
+            <div class="formitem-lookup"><label>Enter Part # or Part Name:</label><input class="forminput-lookup" type="text"><input class="forminput-lookup" type="text" readonly></div>
+            <div class="formitem-lookup"><label>Or Enter Serial #:</label><input class="forminput-lookup" type="text"></div>
+            <div class="formitem-lookup"><label>Between Dates:</label><input class="forminput-lookup" type="text"><label>-</label><input class="forminput-swapout" type="text"></div>
+          </form>
+        </div>
+        <div class=toprightpage-lookup">
+          <form class="form-lookup" name="form-toprightpage-lookup">
+            <div class="formitem-lookup"><input class="forminput-lookup" type="radio"><label>Exact</label><input class="forminput-swapout" type="radio"><label>Part off</label><input class="forminput-swapout" type="radio"></div>
+<!--Måste ta en närmare titt på-->
+            <div class="formitem-lookup"><input type="number" id="quantity" name="quantity" min="1" max="5">
