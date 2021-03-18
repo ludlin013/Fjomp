@@ -44,10 +44,10 @@
             {% for x in allparts%}
             <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
               <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
-              <td class="thdesc-parts"><input onclick="this.select()" value="{{x["name"]}}"></td>
-              <td class="thLP-parts"><input onclick="this.select()" value="{{x["lp"]}}"></td>
-              <td class="thQTY-parts"><input onclick="this.select()" value="{{x["qty"]}}"></td>
-              <td class="thpr1-parts"><input onclick="this.select()" value="{{x["price1"]}}"></td>
+              <td class="thdesc-parts"><input readonly onclick="this.select()" value="{{x["name"]}}"></td>
+              <td class="thLP-parts"><input readonly onclick="this.select()" value="{{x["lp"]}}"></td>
+              <td class="thQTY-parts"><input readonly onclick="this.select()" value="{{x["qty"]}}"></td>
+              <td class="thpr1-parts"><input readonly onclick="this.select()" value="{{x["price1"]}}"></td>
               <td class="thpart-parts"><input readonly value="{{x["lastusd"]}}"></td>
               <td class="thpart-parts"><input readonly value="{{x["lastupd"]}}"></td>
               {% endfor %}
