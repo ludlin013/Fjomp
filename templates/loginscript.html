@@ -26,11 +26,11 @@
         document.cookie = "auth=false;path=/"
       }
 
-      document.cookie = "sp=parts; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
-
       for (x of document.cookie.split(";")){
         if(x.trim().startsWith("sp=")){
           window.location.replace("/"+x.trim().replace("sp=","").trim())
+        }else{
+          window.location.replace("/");
         }
       }
       //window.location.replace("/");

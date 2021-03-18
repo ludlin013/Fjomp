@@ -11,60 +11,58 @@
 </head>
 <body>
   <div class="navin">
-    <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
-    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
-    <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
-    <a class="navitemin active" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
-    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
-    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
-    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    <a class="navitemin noselect" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin noselect" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin noselect" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin active noselect" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin noselect" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin noselect" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin noselect" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
   </div>
   <div class="mainwrapir">
     <h1 class="noselect">IR</h1>
     <div class="toppage-ir">
       <div class="toppageleft-ir">
-        <form class="form-ir" name="form-top-ir">
-          <div class="formitem-ir"><label>IR #:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Open IR #:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
-            <option value="0"></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="status-ir"></div>
-        </form>
-      </div>
-      <div class="toppageleft2-ir">
-        <form class="form-ir" name="form-top-ir2">
-          <div class="formitem-ir"><label>Cust.:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
-            <option value="Returned"></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="status-ir"></div>
+        <form class="form-ir iridform" name="form-top-ir">
+          <div class="ircustid">
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" type="text"></div>
+            <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text"></div>
+          </div>
+          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+            <option value="0">Not Recieved</option>
+            <option value="2">Recieved</option>
+            <option value="3">In process</option>
+            <option value="4">Finished</option>
+            <option value="1" selected>Returned</option>
+          </select></div>
         </form>
       </div>
       <div class="toppageright2-ir">
-        <form class="form-ir" name="form-top-ir3">
-          <div class="formitem-ir"><label>Name:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Address:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Zip/City:</label><input class="forminput-ir" type="text" readonly><input class="forminput-ir" type="text" readonly></div>
+        <form class="form-ir formnazc" name="form-top-ir3">
+          <div class="formitem-ir"><label class="noselect">Name:</label><input class="forminput-ir" type="text" ></div>
+          <div class="formitem-ir"><label class="noselect">Address:</label><input class="forminput-ir" type="text" ></div>
+          <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input id="irzip" class="forminput-ir" type="text" ><input id="ircity" class="forminput-ir" type="text"></div></div>
         </form>
       </div>
       <div class="toppageright-ir">
-        <form class="form-ir" name="form-top-ir4">
-          <div class="formitem-ir"><label>Owner:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label>Phone:</label><input class="forminput-ir" type="text" readonly></div>
+        <form class="form-ir irownph" name="form-top-ir4">
+          <div class="formitem-ir"><label class="noselect">Owner:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly></div>
         </form>
       </div>
     </div>
+
     <div class="2toppage-ir">
       <div class="2toppageleft-ir">
         <form class="form-ir" name="form-2top-ir">
           <div class="formitem-ir"><label>Open Date:</label><select class="forminput-ir" style="width: 210px;" type="text" name="opendate-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="opendate-ir"></div>
+          </select></div>
           <div class="formitem-ir"><label>Sign.:</label><select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="sign-ir"></div>
+          </select></div>
         </form>
       </div>
       <div class="2toppagemiddle-ir">
@@ -77,18 +75,18 @@
           <div class="formitem-ir"><label>Arrival:</label><select class="forminput-ir" style="width: 210px;" type="text" name="arrival-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="arrival-ir"></div>
+          </select></div>
           <div class="formitem-ir"><label>Sent with (freight type):</label><select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="sent-ir"></div>
+          </select></div>
           <div class="formitem-ir"><label>Repair Location:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
             <option value="Linköping"></option>
             <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-ir" type="text" name="repairlocation-ir"></div>
+          </select>
         </form>
       </div>
-    </div>
+    </div><!--
     <div class="middlepage-ir">
       <div class="tabell-ir">
         <table class="list-receivedunits">
