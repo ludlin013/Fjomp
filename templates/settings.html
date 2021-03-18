@@ -20,7 +20,7 @@
       <a class="navitemin active" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     </div>
     <div class="mainwrapsettings">
-      <h1 class="noselect">Settings</h1>
+      <h1 class="noselect settingsheader">Settings</h1>
       <div class="settingrow">
         <p class="settingsbranchp noselect">Branch</p>
         <div class="droplangselectsetting noselect">
@@ -29,6 +29,21 @@
             <p onclick="document.cookie = 'branch=sv;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="sv">sv</p>
             <p onclick="document.cookie = 'branch=no;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="no">no</p>
             <p onclick="document.cookie = 'branch=fi;expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()" class="settingdropmenuitem" id="fi">fi</p>
+          </div>
+        </div>
+      </div>
+      <div class="settingrow">
+        <p class="settingsbranchp noselect">Start Page</p>
+        <div class="droplangselectsetting noselect">
+          <p id="spsel"></p>
+          <div class="dropmenusetting" id="spdrop">
+            <p onclick="startpage('Landing')" class="settingdropmenuitem" id="landing">Landing</p>
+            <p onclick="startpage('Customers')" class="settingdropmenuitem" id="customers">Customers</p>
+            <p onclick="startpage('Parts')" class="settingdropmenuitem" id="parts">Parts</p>
+            <p onclick="startpage('Deliv Notes')" class="settingdropmenuitem" id="delivnotes">Deliv Notes</p>
+            <p onclick="startpage('IR')" class="settingdropmenuitem" id="ir">IR</p>
+            <p onclick="startpage('Swapouts')" class="settingdropmenuitem" id="swapouts">Swapouts</p>
+            <p onclick="startpage('Lookup')" class="settingdropmenuitem" id="lookup">Lookup</p>
           </div>
         </div>
       </div>
@@ -44,6 +59,7 @@
           </div>
         </div>
       </div>
+
       <a class="settingadminrow" href="/settings/changepassword">
         <p class="settingsthemep noselect">Change Password</p>
       </a>
@@ -57,7 +73,7 @@
           </div>
       </div>
       {% if auth%}
-      <h1 class="noselect">Maintenance</h1>
+      <h1 class="noselect settingsheader">Maintenance</h1>
       <a class="settingadminrow" onclick="show('settingstech')">
         <p class="settingsthemep noselect">Edit Techs</p>
       </a>
@@ -182,6 +198,27 @@
             document.getElementById(branch.trim()).style.display = "none";
         }
         }
+      }
+
+      if(document.cookie.includes("sp")){
+        var cookies = document.cookie.split(";");
+        for(var cookie of cookies){
+          if(cookie.includes("sp")){
+            var sp = cookie.replace("sp=","");
+            console.log(branch);
+            document.getElementById("spsel").innerHTML = sp.slice(0,2).toUpperCase() + sp.slice(2);
+            document.getElementById(sp.trim()).style.display = "none";
+        }
+        }
+      }
+
+      function startpage(selected){
+        document.getElementById('spsel').innerHTML = selected;
+        for(x of document.getElementsByClassName('settingdropmenuitem')){
+          x.style.display = "block"
+        }
+        document.getElementById(selected.toLowerCase().replace(" ","")).style.display = "none";
+        document.cookie = 'sp=' +selected.toLowerCase() + ';expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';
       }
 
       var theme = "{{theme}}";
