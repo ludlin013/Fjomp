@@ -1,36 +1,4 @@
 .mainwraplookup{
   margin-left: 61px;
-  padding:50px 0 0 50px
-}
-
-.toppage-lookup{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.toppageright-lookup{
-  margin-left: 10px;
-}
-
-.form-lookup{
-  display: flex;
-  flex-direction: column;
-  width: 410px;
-}
-
-.formitem-lookup{
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
-}
-
-.forminput-lookup{
-  padding: 5px;
-  width: 250px;
-  border: none;
-}
-
-.thtype-lookup{
-  width: 75px;
-  text-align: right;
+  padding:50px 0 0 50px;
 }
