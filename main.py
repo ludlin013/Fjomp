@@ -274,6 +274,10 @@ def delivnotes():
     Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office")
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
 
+    Dict["DN_Sign"] = request.cookies.get("username")
+    Dict["DN_Freight"] = ""
+    Dict["DN_PGDescription"] = ""
+
 
     if request.method == 'POST':
         delivnote = request.form["delivnotename-delivnote"]
@@ -303,8 +307,7 @@ def delivnotes():
             Dict["zip"] = z[0][5].strip()
             Dict["city"] = z[0][6].strip()
         else:
-            Dict["DN_Freight"] = ""
-            Dict["DN_PGDescription"] = ""
+
             notFound = "Delivery note not found"
 
 
