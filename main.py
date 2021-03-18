@@ -266,14 +266,23 @@ def delivnotes():
 
     sqlq = []
     Dict = {}
+    notFound = None
+    delivnote = ""
+
+    Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
+    Dict["pricegroup"] = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
+    Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office")
+    Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
+
 
     if request.method == 'POST':
         delivnote = request.form["delivnotename-delivnote"]
 
         sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
         sqlq=[]
-        priceGroup={}
-        if sqlquery:
+
+        print(sqlquery)
+        if len(sqlquery) != 0:
             for x in sqlquery:
                 sqlq.append(x)
 
@@ -282,19 +291,24 @@ def delivnotes():
                 Dict["storename"] = x[2].strip()
                 Dict["referens"] = x[3].strip()
                 Dict["date"] = x[4]
-                Dict["sign"] = x[16].strip()
+                Dict["DN_Sign"] = x[16]
                 Dict["notes"] = x[17].strip()
-                Dict["freight"] = x[15]
-                Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office WHERE OF_No = '"+str(x[23])+"'")
-                print(x)
+                Dict["DN_Freight"] = x[15]
+                Dict["DN_Pricegroup"] = x[26]
+                Dict["DN_PGDescription"] = x[25]
+                #print(x)
 
             z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
-            priceGroup["pricegroup"] = sql("SELECT", "SELECT * FROM Pricegroups WHERE pg_no = '"+str(x[26])+"'")
-            Dict["street"] = z[3].strip()
-            Dict["zip"] = z[5].strip()
-            Dict["city"] = z[6].strip()
+            Dict["street"] = z[0][3].strip()
+            Dict["zip"] = z[0][5].strip()
+            Dict["city"] = z[0][6].strip()
+        else:
+            Dict["DN_Freight"] = ""
+            Dict["DN_PGDescription"] = ""
+            notFound = "Delivery note not found"
 
-    return render_template("delivnotes.html",theme=theme,notheme=notheme, sqlq=sqlq, Dict=Dict, priceGroup=priceGroup)
+
+    return render_template("delivnotes.html",theme=theme,notheme=notheme, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 
 @app.route("/ir")
 def ir():

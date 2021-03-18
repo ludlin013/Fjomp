@@ -22,7 +22,10 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <div class="delivnote-deliv"><form name="delivnote-form" method="POST" action=""><label>Delivery note #:</label><input name="delivnotename-delivnote" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{Dict["number"]}}" autofocus><input type="submit"></form></div>
+        <div class="delivnote-deliv"><form name="delivnote-form" method="POST" action=""><label>Delivery note #:</label><input name="delivnotename-delivnote" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
+        {% if notFound %}
+        <p style="color: red;">{{notFound}}</p>
+        {% endif %}
         <div class="formitem-delivnotes offers-delivnotes">
           <label>Offer</label><input type="checkbox">
           <label>Finalized Offer</label><input type="checkbox">
@@ -31,45 +34,46 @@
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label>Store #:</label><input class="forminput-delivnotes" type="text" value="Dict["storenum"]"></div>
-            <div class="formitem-delivnotes"><label>Ref:</label><input class="forminput-delivnotes" type="text"></div>
-            <div class="formitem-delivnotes"><label>Name:</label><input class="forminput-delivnotes" type="text"></div>
-            <div class="formitem-delivnotes"><label>Address:</label><input class="forminput-delivnotes" type="text"></div>
-            <div class="formitem-delivnotes"><label>ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text"><input id="City" class="forminput-delivnotes" type="text"></div></div>
+            <div class="formitem-delivnotes"><label>Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}"></div>
+            <div class="formitem-delivnotes"><label>Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}"></div>
+            <div class="formitem-delivnotes"><label>Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label>Address:</label><input class="forminput-delivnotes" type="text" value="{{Dict["street"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label>ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" type="text" value="{{Dict["city"]}}"></div></div>
           </form>
         </div>
         <div class="toppageright">
           <form class="form-delivnotes" name="form-delivnotes2">
-            <div class="formitem-delivnotes"><label>Date:</label><input class="forminput-delivnotes2" type="text"></div>
+            <div class="formitem-delivnotes"><label>Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}"></div>
             <div class="formitem-delivnotes"><label>Sign:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                {% for x in Dict["sign"]%}
+                <option value="{{x[0]}}" {% if Dict["DN_Sign"] == x[0]: %}selected{% endif %}>{{x[0]}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="formitem-delivnotes"><label>Sent with (Freight type):</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                {% for x in Dict["freight"]%}
+                <option value="{{Dict["freight"][x]}}" {% if Dict["DN_Freight"].strip() == x.strip(): %}selected{% endif %}>{{Dict["freight"][x]}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="formitem-delivnotes"><label>Sent from:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
+                {% for x in Dict["sentfrom"]%}
+                <option value="{{x[1]}}" {% if x[0] == 1: %}selected{% endif %}>{{x[1]}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="formitem-delivnotes"><label>Price group:</label>
               <div>
                 <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
                   <option value=""></option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
+                  {% for x in Dict["pricegroup"]%}
+                  <option value="{{x}}"{% if Dict["DN_Pricegroup"] == x %}selected{% endif %}>{{x}}</option>
+                  {% endfor %}
                 </select id="inputname" class="forminput-delivnotes2" type="text">
-                <input class="forminput-delivnotes2" type="text">
+                <input class="forminput-delivnotes2" type="text" value="{{Dict["pricegroup"][Dict["DN_Pricegroup"]]}}">
               </div>
             </div>
           </form>
@@ -77,7 +81,7 @@
       </div>
       <div class="bottompage-delivnotes">
         <div class="formitem-delivnotes"><label>Notes:</label></div>
-        <textarea class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes"></textarea>
+        <textarea spellcheck="false" class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes">{{Dict["notes"]}}</textarea>
       </div>
       <div>
         <table class="list-delivnotes">

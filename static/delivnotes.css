@@ -47,9 +47,13 @@
 }
 
 #ZIP{
-  width: 42px;
+  width: 50px;
   margin-right: 5px;
 }
+
+  input[type=submit]{
+    display: none;
+  }
 
 #inputnum{
   width: 50px;
