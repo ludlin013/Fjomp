@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for
 import pyodbc
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -277,29 +278,40 @@ def delivnotes():
     Dict["DN_Sign"] = request.cookies.get("username")
     Dict["DN_Freight"] = ""
     Dict["DN_PGDescription"] = ""
+    total = 0
+    delivnote = request.args.get("dn")
 
+    #if request.method == 'GET':
+    if delivnote != None:
 
-    if request.method == 'POST':
-        delivnote = request.form["delivnotename-delivnote"]
+        print(delivnote)
 
         sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
         sqlq=[]
 
-        print(sqlquery)
+
+        #print(sqlquery)
         if len(sqlquery) != 0:
             for x in sqlquery:
+
+                total += x[12]
+
                 sqlq.append(x)
 
                 Dict["storenum"] = x[0].strip()
                 Dict["number"] = x[1]
                 Dict["storename"] = x[2].strip()
                 Dict["referens"] = x[3].strip()
-                Dict["date"] = x[4]
+                Dict["date"] = x[4].strftime("%d/%m/%Y")
                 Dict["DN_Sign"] = x[16]
                 Dict["notes"] = x[17].strip()
                 Dict["DN_Freight"] = x[15]
                 Dict["DN_Pricegroup"] = x[26]
                 Dict["DN_PGDescription"] = x[25]
+                Dict["netvalue"] = x[11]
+                Dict["DN_Closed"] = x[14]
+                Dict["offer"] = x[27]
+                Dict["finaloffer"] = x[28]
                 #print(x)
 
             z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
@@ -310,8 +322,7 @@ def delivnotes():
 
             notFound = "Delivery note not found"
 
-
-    return render_template("delivnotes.html",theme=theme,notheme=notheme, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 
 @app.route("/ir")
 def ir():
