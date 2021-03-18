@@ -25,21 +25,17 @@
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
           <form class="form-lookup" name="form-topleftpage-lookup">
-            <div class="formitem-lookup"><label>Enter Part # or Part Name:</label><input class="forminput-lookup" name="inputpart" type="text"><input class="forminput-lookup" type="text" readonly></div>
-            <div class="formitem-lookup"><label>Or Enter Serial #:</label><input class="forminput-lookup" name="inputserial" type="text"><input class="forminput-lookup" type="radio"><label>Exact</label><input class="forminput-swapout" type="radio"><label>Part off</label></div>
-            <div class="formitem-lookup"><label>Between Dates:</label><input class="forminput-lookup" type="text"><label>-</label><input class="forminput-swapout" type="text"></div>
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text"><input class="forminput-lookup" id="inputpartname" type="text" readonly></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio"><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio"><label>Part off</label></div>
+            <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="text"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="text"></div>
           </form>
         </div>
       </div>
       <div class="middlepage-lookup">
         <div class="middleleftpage-lookup">
           <form class="form-lookup" name="form-middleleftpage-lookup">
-            <div class="formitem-lookup nostyle"><label>Show:</label><input class="forminput-lookup" type="checkbox"><label>Deliv. Notes</label><input class="forminput-lookup" type="checkbox"><label>IR</label><input class="forminput-lookup" type="checkbox"><label>IR-Parts</label><input class="forminput-lookup" type="checkbox"><label>Sent Swap-outs</label></div>
-          </form>
-        </div>
-        <div class="middlerightpage-lookup">
-          <form class="form-lookup" name="form-middlerightpage-lookup">
-            <div class="formitem-lookup nostyle"><input class="forminput-lookup" type="checkbox"><label>Returned Swap-Outs</label><input class="forminput-lookup" type="checkbox"><label>Units File</label><input class="forminput-lookup" type="checkbox"><label>Units History</label></div>
+            <div class="formitem-lookup nostyle"><label>Show:</label></div><div class="delivnotes-lookup"><input class="forminput-lookup" type="checkbox"><label>Deliv. Notes</label></div><div class="ir-lookup"><input class="forminput-lookup" type="checkbox"><label>IR</label></div><div class="irparts-lookup"><input class="forminput-lookup" type="checkbox"><label>IR-Parts</label></div><div class="sentswapout-lookup"<input class="forminput-lookup" type="checkbox"><label>Sent Swap-outs</label></div>
+            <div class="returnswapout-lookup"<input class="forminput-lookup" type="checkbox"><label>Returned Swap-Outs</label></div><div class="unitsfile-lookup"><input class="forminput-lookup" type="checkbox"><label>Units File</label></div><div class="unitshistory-lookup"><input class="forminput-lookup" type="checkbox"><label>Units History</label></div>
           </form>
         </div>
       </div>
