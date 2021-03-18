@@ -218,7 +218,7 @@
           x.style.display = "block"
         }
         document.getElementById(selected.toLowerCase().replace(" ","")).style.display = "none";
-        document.cookie = 'sp=' +selected.toLowerCase() + ';expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';
+        document.cookie = 'sp=' +selected.toLowerCase().replace(" ","") + ';expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';
       }
 
       var theme = "{{theme}}";

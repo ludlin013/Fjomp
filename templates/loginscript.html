@@ -28,9 +28,11 @@
 
       for (x of document.cookie.split(";")){
         if(x.trim().startsWith("sp=")){
-          window.location.replace("/"+x.trim().replace("sp=","").trim())
+          console.log("/"+x.trim().replace("sp=","").replace(" ",""));
+          window.location.replace("./"+x.trim().replace("sp=","").replace(" ",""))
         }else{
-          window.location.replace("/");
+          console.log("fel");
+          //window.location.replace("/");
         }
       }
       //window.location.replace("/");
