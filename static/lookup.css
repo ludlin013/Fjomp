@@ -15,10 +15,6 @@
 
 }
 
-.form-lookup{
-
-}
-
 .forminput-lookup{
 
 }
@@ -44,4 +40,66 @@
 
 #radiopartoff{
   margin-left: 20px;
+}
+
+.form-lookup{
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  justify-content: space-between;
+}
+
+.show-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.delivnotes-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.ir-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.irparts-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.sentswapout-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.returnswapout-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.unitsfile-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+.unitshistory-lookup{
+margin: 5px;
+margin-bottom: 5px;
+}
+
+table, td, th{
+  border: 1px solid;
+  padding: 2px;
+  white-space: nowrap;
+}
+
+tr{
+  table-layout: fixed;
+  width: 100%;
+}
+
+table{
+  border-collapse: collapse;
 }
