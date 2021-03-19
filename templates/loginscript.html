@@ -26,16 +26,18 @@
         document.cookie = "auth=false;path=/"
       }
 
+      var start = false;
+
       for (x of document.cookie.split(";")){
         if(x.trim().startsWith("sp=")){
-          console.log("/"+x.trim().replace("sp=","").replace(" ",""));
           window.location.replace("./"+x.trim().replace("sp=","").replace(" ",""))
-        }else{
-          console.log("fel");
-          //window.location.replace("/");
+          start = true;
+          break;
         }
       }
-      //window.location.replace("/");
+      if(!start){
+        window.location.replace("/");
+      }
     </script>
   </head>
 </html>

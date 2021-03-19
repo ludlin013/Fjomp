@@ -270,6 +270,8 @@ def delivnotes():
     notFound = None
     delivnote = ""
 
+
+
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
     Dict["pricegroup"] = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
     Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office")
@@ -331,7 +333,28 @@ def ir():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("ir.html",theme=theme,notheme=notheme)
+
+    types = sql("SELECT","SELECT * FROM Modeltype")
+    manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
+    models = sql("SELECT","SELECT * FROM Models")
+    charge = sql("SELECT","SELECT * FROM Chargemode")
+
+    irnumber = request.args.get("ir")
+
+    if irnumber != None:
+        print(irnumber)
+        
+    else:
+        irnumber = ""
+
+
+
+    types.sort(key= lambda type:type[0])
+    manufact.sort(key= lambda vend:vend[0])
+    models.sort(key= lambda model:model[0])
+
+
+    return render_template("ir.html",theme=theme,notheme=notheme,types=types,manufact=manufact,models=models,charge=charge,irnumber=irnumber)
 
 @app.route("/swapouts")
 def swapouts():

@@ -25,8 +25,13 @@
       <div class="toppageleft-ir">
         <form class="form-ir iridform" name="form-top-ir">
           <div class="ircustid">
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" type="text"></div>
+            <form class="" action="" method="get">
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="text" value="{{irnumber}}"></div>
+            <input type="submit" style="display:none">
+          </form>
+          <form class="" action="" method="post">
             <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text"></div>
+          </form>
           </div>
           <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
             <option value="0">Not Recieved</option>
@@ -52,9 +57,9 @@
       </div>
     </div>
 
-    <div class="2toppage-ir">
+    <div class="toppage2-ir">
       <div class="2toppageleft-ir">
-        <form class="form-ir" name="form-2top-ir">
+        <form class="form-ir iropensign" name="form-2top-ir">
           <div class="formitem-ir"><label>Open Date:</label><select class="forminput-ir" style="width: 210px;" type="text" name="opendate-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
@@ -65,13 +70,8 @@
           </select></div>
         </form>
       </div>
-      <div class="2toppagemiddle-ir">
-        <form class="form-ir" name="form-2top-ir">
-          <div class="formitem-ir"><label>Notes:</label><input class="forminput-ir" type="text"></div>
-        </form>
-      </div>
       <div class="2toppageright-ir">
-        <form class="form-ir" name="form-2top-ir">
+        <form class="form-ir irarrsent" name="form-2top-ir">
           <div class="formitem-ir"><label>Arrival:</label><select class="forminput-ir" style="width: 210px;" type="text" name="arrival-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
@@ -86,124 +86,132 @@
           </select>
         </form>
       </div>
-    </div><!--
-    <div class="middlepage-ir">
-      <div class="tabell-ir">
-        <table class="list-receivedunits">
-          <thead>
-            <tr class="header-ir" id="header-ir">
-              <th class="thtype-ir">Type:</th>
-              <th class="thmanufact-ir">Manufact.:</th>
-              <th class="thmodel-ir">Model:</th>
-              <th class="thserial-ir">Serial:</th>
-              <th class="thcharge-ir">Charge:</th>
-              <th class="thnotes-ir">Notes</th>
-            </tr>
-          </thead>
-          <tbody class="whatabody-ir">
-            <tr class="row-ir" onclick="">
-              <td class="thtype-ir">Pen</td>
-              <td class="thmanufact-ir">Pen</td>
-              <td class="thmodel-ir">Pen</td>
-              <td class="thserial-ir">Pen</td>
-              <td class="thcharge-ir">Pen</td>
-              <td class="thnotes-ir">Pen</td>
-            </tr>
-            <tr class="row-ir" onclick="">
-              <td class="thtype-ir">Pen</td>
-              <td class="thmanufact-ir">Pen</td>
-              <td class="thmodel-ir">Pen</td>
-              <td class="thserial-ir">Pen</td>
-              <td class="thcharge-ir">Pen</td>
-              <td class="thnotes-ir">Pen</td>
-            </tr>
-            <tr class="row-ir" onclick="">
-              <td class="thtype-ir">Pen</td>
-              <td class="thmanufact-ir">Pen</td>
-              <td class="thmodel-ir">Pen</td>
-              <td class="thserial-ir">Pen</td>
-              <td class="thcharge-ir">Pen</td>
-              <td class="thnotes-ir">Pen</td>
-            </tr>
-            <tr class="row-ir" onclick="">
-              <td class="thtype-ir">Pen</td>
-              <td class="thmanufact-ir">Pen</td>
-              <td class="thmodel-ir">Pen</td>
-              <td class="thserial-ir">Pen</td>
-              <td class="thcharge-ir">Pen</td>
-              <td class="thnotes-ir">Pen</td>
-            </tr>
-          </tbody>
-        </div>
-        <div class="middlemiddlepage-ir">
-          <form class="form-ir" name="form-middle-ir">
-            <div class="formitem-ir"><label>Reported Problem:</label><input class="forminput-ir" type="text" readonly></div>
-            <div class="formitem-ir"><label>Action/Repair:</label><input class="forminput-ir" type="text" readonly></div>
-          </form>
-        </div>
-      </div>
-      <div class="bottompage-ir">
-        <div>
-          <table class="list-spareparts-ir">
-            <thead>
-              <tr class="header-ir" id="header2-ir">
-                <th class="thpart-ir">Part #</th>
-                <th class="thdesc-ir">Description</th>
-                <th class="thprice-ir">Price</th>
-                <th class="thqty-ir">QTY</th>
-                <th class="thcharge2-ir">Charge</th>
-                <th class="thmodel2-ir">Model</th>
-                <th class="thserial2">Serial</th>
-              </tr>
-            </thead>
-            <tbody class="tbody-ir">
-              <tr class="row-ir" onclick="" id="list2-ir">
-                <td class="thpart-ir">BALL</td>
-                <td class="thdesc-ir">BALL</td>
-                <td class="thprice-ir">BALL</td>
-                <td class="thqty-ir">BALL</td>
-                <td class="thcharge2-ir">BALL</td>
-                <td class="thmodel2-ir">BALL</td>
-                <td class="thserial2">BALL</td>
-              </tr>
-            </tbody>
-          </div>
-          <div class="bottommiddle-ir">
-            <form class="form-ir" name="form-ir">
-              <div class="formitem-ir"><label>Repaired by:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select><input class="forminput-ir" type="text" name="repairby-ir"></div>
-              <div class="formitem-ir"><label>Return freight:</label><select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
-                <option value="0"></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select><input class="forminput-ir" type="text" name="returnfreight-ir"></div>
-              <div class="formitem-ir"><label>Return:</label><select class="forminput-ir" style="width: 210px;" type="text" name="return-ir">
-                <option value="0"></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select><input class="forminput-ir" type="text" name="return-ir"></div>
-            </form>
-          </div>
-        </div>
-        <div class="rightpage-ir">
-          <div class="listright-ir">
-            <table class="list-ir">
-              <thead>
-                <tr class="header-ir" id="header3-ir">
-                  <th class="thpart2-ir">Part #</th>
-                  <th class="thpartdesc-ir">Part Description</th>
-                  <th class="thunit-ir">Unit</th>
-                </tr>
-              </thead>
-              <tbody class="tbody-ir">
-                <tr class="row-ir" onclick="" id="list3-ir">
-                  <td class="thpart2-ir">BALL</td>
-                  <td class="thpartdesc-ir">BALL</td>
-                  <td class="thunit-ir">BALL</td>
-                </tr>
-              </tbody>
-            </div>
-          </div>
-        </div>
-      </body>
-    </html>
+    </div>
+    <div class="2toppagemiddle-ir">
+      <form class="form-ir" name="form-2top-ir">
+        <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text"></textarea></div>
+      </form>
+    </div>
+  </div>
+  <div class="middlepage-ir">
+    <div class="tabell-ir">
+      <table class="list-receivedunits">
+        <thead>
+          <tr class="header-ir" id="header-ir">
+            <th class="thtype-ir">Type:</th>
+            <th class="thmanufact-ir">Manufact.:</th>
+            <th class="thmodel-ir">Model:</th>
+            <th class="thserial-ir">Serial:</th>
+            <th class="thcharge-ir">Charge:</th>
+            <th class="thnotes-ir">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="whatabody-ir">
+          <tr class="row-ir" onclick="">
+            <td class="thtype-ir">
+              <select class="irtypedrop" name="">
+                {% for x in types %}
+                <option value="{{x[0]}}">{{x[0]+"   "+x[1]}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td class="thmanufact-ir">
+              <select class="irvenddrop" name="">
+                {% for x in manufact %}
+                <option value="{{x[0]}}">{{x[0]}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td class="thmodel-ir">
+              <select class="irmodeldrop" name="" onchange="console.log(this.value)">
+                {% for x in models %}
+                <option value="{{x[0]+"%"+x[2]}}">{{x[1]+x[0]}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td class="thserial-ir">Pen</td>
+            <td class="thcharge-ir">
+              <select class="irmodeldrop" name="">
+                {% for x in charge %}
+                <option value="{{x[0]}}">{{x[1]}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td class="thnotes-ir">Pen</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="middlemiddlepage-ir">
+      <form class="form-ir" name="form-middle-ir">
+        <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" ></textarea></div>
+        <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" ></textarea></div>
+      </form>
+    </div>
+  </div><!--
+    <div class="bottompage-ir">
+    <div>
+    <table class="list-spareparts-ir">
+    <thead>
+    <tr class="header-ir" id="header2-ir">
+    <th class="thpart-ir">Part #</th>
+    <th class="thdesc-ir">Description</th>
+    <th class="thprice-ir">Price</th>
+    <th class="thqty-ir">QTY</th>
+    <th class="thcharge2-ir">Charge</th>
+    <th class="thmodel2-ir">Model</th>
+    <th class="thserial2">Serial</th>
+  </tr>
+</thead>
+<tbody class="tbody-ir">
+<tr class="row-ir" onclick="" id="list2-ir">
+<td class="thpart-ir">BALL</td>
+<td class="thdesc-ir">BALL</td>
+<td class="thprice-ir">BALL</td>
+<td class="thqty-ir">BALL</td>
+<td class="thcharge2-ir">BALL</td>
+<td class="thmodel2-ir">BALL</td>
+<td class="thserial2">BALL</td>
+</tr>
+</tbody>
+</div>
+<div class="bottommiddle-ir">
+<form class="form-ir" name="form-ir">
+<div class="formitem-ir"><label>Repaired by:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
+<option value=""></option>
+<option value="valuehere">Det ska vara saker här</option>
+</select><input class="forminput-ir" type="text" name="repairby-ir"></div>
+<div class="formitem-ir"><label>Return freight:</label><select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
+<option value="0"></option>
+<option value="valuehere">Det ska vara saker här</option>
+</select><input class="forminput-ir" type="text" name="returnfreight-ir"></div>
+<div class="formitem-ir"><label>Return:</label><select class="forminput-ir" style="width: 210px;" type="text" name="return-ir">
+<option value="0"></option>
+<option value="valuehere">Det ska vara saker här</option>
+</select><input class="forminput-ir" type="text" name="return-ir"></div>
+</form>
+</div>
+</div>
+<div class="rightpage-ir">
+<div class="listright-ir">
+<table class="list-ir">
+<thead>
+<tr class="header-ir" id="header3-ir">
+<th class="thpart2-ir">Part #</th>
+<th class="thpartdesc-ir">Part Description</th>
+<th class="thunit-ir">Unit</th>
+</tr>
+</thead>
+<tbody class="tbody-ir">
+<tr class="row-ir" onclick="" id="list3-ir">
+<td class="thpart2-ir">BALL</td>
+<td class="thpartdesc-ir">BALL</td>
+<td class="thunit-ir">BALL</td>
+</tr>
+</tbody>
+</div>
+</div>
+</div>
+</body>
+</html>

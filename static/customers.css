@@ -1,6 +1,6 @@
 .mainwrapcustomers{
   margin-left: 61px;
-  padding:50px 0 0 50px
+  padding: 50px 0 0 50px;
 }
 
 .toppage-customers{
@@ -26,13 +26,13 @@
 .formitem-customers{
   display: flex;
   justify-content: space-between;
-  margin-top:5px;
+  margin-top: 5px;
 }
 
 .forminput-customers{
-  padding:5px;
+  padding: 5px;
   width: 250px;
-  border:none;
+  border: none;
 }
 
 table, td, th {
@@ -56,33 +56,4 @@ table {
   max-width: 1000px;
   max-height: 160px;
   overflow-y: scroll;
-}
-
-@media only screen and (max-width: 1000px){
-  .leftpage-customers{
-    flex-direction: column;
-}
-.list-units{
-  width: 230px;
-  overflow-x:scroll;
-}
-
-@media only screen and (max-width: 600px){
-  .forminput-customers{
-    width: 150px;
-  }
-
-  .formitem-customers{
-    display: flex;
-    flex-direction: column;
-    width: 230px;
-  }
-
-  .mainwrapcustomers{
-    margin-left: 41px;
-    padding:30px;
-  }
-  body, .leftpage-customers, .rightpage-customers, .form-customers, .mainwrapcustomers{
-    width: 220px;
-  }
 }

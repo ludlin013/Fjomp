@@ -5,7 +5,9 @@
 
 .toppage-ir{
   display:flex;
-  padding:10px
+  padding:10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px
 }
 
 .ircustid{
@@ -34,17 +36,23 @@
   padding:10px 0
 }
 
-input{
+input,select{
   border:none;
   padding:5px;
+  background: #222
 }
 
 label{
   padding-right: 5px
 }
 
+textarea{
+  padding:10px;
+  resize: none
+}
+
 .toppageleft-ir{
-  padding-right: 10px
+  padding-right: 10px;
 }
 
 .toppageright2-ir{
@@ -92,4 +100,82 @@ label{
   display: flex;
   justify-content: space-between;
   margin:0 0 4px 0
+}
+
+.iropensign{
+  width:350px;
+  display: flex;
+  flex-direction: column;
+}
+
+.iropensign div{
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+  margin: 0 0 4px 0;
+}
+
+.toppage2-ir{
+  display:flex;
+  width:900px;
+  flex-wrap: wrap;
+}
+
+.irarrsent{
+  width:450px;
+  padding-left: 10px
+}
+
+.irarrsent div{
+  display:flex;
+  justify-content: space-between;
+  width:100%;
+  margin: 0 0 4px 0;
+}
+
+.irnotediv{
+  display:flex;
+
+}
+
+#irnotefield{
+  width:480px;
+  height:80px;
+}
+
+.middlepage-ir{
+  display:flex;
+  width:1000px;
+  justify-content: space-between;
+}
+
+.middlemiddlepage-ir div{
+  display: flex;
+  width:400px;
+  justify-content: space-between;
+  margin: 0 0 4px 0;
+}
+
+.tabell-ir table{
+  width:750px;
+  max-height: 150px;
+  overflow-y: scroll;
+  display:block;
+
+}
+
+.tabell-ir th{
+  text-align: left;
+}
+
+.tabell-ir th,.tabell-ir tr{
+  padding:0 2px
+}
+
+.irtypedrop{
+  width:52px
+}
+
+.irvenddrop{
+  width:75px
 }
