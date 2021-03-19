@@ -159,6 +159,25 @@ th{
   transform: scale(1.1);
 }
 
+.buttonsbar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.buttonsbar-item-parts{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  font-size: 12px;
+}
+
+.buttonbarpic-parts{
+  width: 40px;
+}
+
 .partssearch{
   padding:10px;
   margin:5px 0;
