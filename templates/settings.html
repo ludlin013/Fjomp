@@ -200,6 +200,8 @@
         }
       }
 
+      document.getElementById("spsel").innerHTML = "Landing";
+      
       if(document.cookie.includes("sp")){
         var cookies = document.cookie.split(";");
         for(var cookie of cookies){
@@ -209,6 +211,7 @@
             document.getElementById("spsel").innerHTML = sp.slice(0,2).toUpperCase() + sp.slice(2);
             document.getElementById(sp.trim()).style.display = "none";
         }
+
         }
       }
 
