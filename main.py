@@ -356,9 +356,8 @@ def ir():
         parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
         wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
 
-        for h in wo:
-            print(h[12])
-        print(charge)
+        for x in models:
+            print(x)
     else:
         irnumber = ""
 

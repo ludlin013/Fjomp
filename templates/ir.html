@@ -88,7 +88,7 @@
     </div>
     <div class="2toppagemiddle-ir">
       <form class="form-ir" name="form-2top-ir">
-        <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text"></textarea></div>
+        <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{{irinfo[9]}}</textarea></div>
       </form>
     </div>
   </div>
@@ -106,21 +106,22 @@
           </tr>
         </thead>
         <tbody class="whatabody-ir">
-          <tr class="row-ir" onclick="">
-            {% for n in wo %}
+          {% for n in wo %}
+          <tr class="row-ir" onclick="changerepact('{{wo.index(n)}}repact')">
             <td class="thtype-ir">
               <select class="irtypedrop" name="" id="{{wo.index(n)}}type">
                 <option value="" selected hidden></option>
                 {% for x in types %}
-                <option value="{{x[0]}}" {% if x[0].strip() == n[3].strip() %} selected {% endif %}>{{x[0]+"   "+x[1]}}</option>
+                <option value="{{x[0].strip()}}" {% if x[0].strip() == n[3].strip() %} selected {% endif %}>{{x[0]+"   "+x[1]}}</option>
                 {% endfor %}
               </select>
             </td>
             <td class="thmanufact-ir">
               <select class="irvenddrop" name="" id="{{wo.index(n)}}vendor">
                 <option value="" selected hidden></option>
+                <option value="QD">QD</option>
                 {% for x in manufact %}
-                <option value="{{x[0]}}" {% if x[0].strip() == n[4].strip() %} selected {% endif %}>{{x[0]}}</option>
+                <option value="{{x[0].strip()}}" {% if x[0].strip() == n[4].strip() %} selected {% endif %}>{{x[0]}}</option>
                 {% endfor %}
               </select>
             </td>
@@ -128,7 +129,7 @@
               <select class="irmodeldrop" name="" onchange="update(this.value)">
                 <option value="" selected hidden></option>
                 {% for x in models %}
-                <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]+x[0]}}</option>
+                <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]}}</option>
                 {% endfor %}
               </select>
             </td>
@@ -149,13 +150,16 @@
       </table>
     </div>
     <div class="middlemiddlepage-ir">
-      <form class="form-ir" name="form-middle-ir">
-        <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" ></textarea></div>
-        <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" ></textarea></div>
+      {% for n in wo %}
+      <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
+        <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+        <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
       </form>
+      {% endfor %}
     </div>
   </div>
   <script src="./static/irjs.js"></script>
+
   <!--
     <div class="bottompage-ir">
     <div>
