@@ -36,6 +36,11 @@
   padding:10px 0
 }
 
+::-webkit-outer-spin-button, ::-webkit-inner-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+
 input,select{
   border:none;
   padding:5px;
@@ -154,6 +159,10 @@ textarea{
   width:400px;
   justify-content: space-between;
   margin: 0 0 4px 0;
+}
+
+.tabell-ir{
+  padding:10px 0
 }
 
 .tabell-ir table{

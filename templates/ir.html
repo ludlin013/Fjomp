@@ -26,33 +26,33 @@
         <form class="form-ir iridform" name="form-top-ir">
           <div class="ircustid">
             <form class="" action="" method="get">
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="text" value="{{irnumber}}"></div>
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
             <input type="submit" style="display:none">
           </form>
           <form class="" action="" method="post">
-            <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text"></div>
+            <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
           </form>
           </div>
           <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
-            <option value="0">Not Recieved</option>
-            <option value="2">Recieved</option>
-            <option value="3">In process</option>
-            <option value="4">Finished</option>
-            <option value="1" selected>Returned</option>
+            <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
+            <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
+            <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>
+            <option value="4" {% if irinfo[12] == 4%} selected {% endif %}>Finished</option>
+            <option value="1"  {% if irinfo[12] == 1%} selected {% endif %}>Returned</option>
           </select></div>
         </form>
       </div>
       <div class="toppageright2-ir">
         <form class="form-ir formnazc" name="form-top-ir3">
-          <div class="formitem-ir"><label class="noselect">Name:</label><input class="forminput-ir" type="text" ></div>
-          <div class="formitem-ir"><label class="noselect">Address:</label><input class="forminput-ir" type="text" ></div>
-          <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input id="irzip" class="forminput-ir" type="text" ><input id="ircity" class="forminput-ir" type="text"></div></div>
+          <div class="formitem-ir"><label class="noselect">Name:</label><input class="forminput-ir" type="text" value="{{customer[2].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Address:</label><input class="forminput-ir" type="text" value="{{customer[3].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
         </form>
       </div>
       <div class="toppageright-ir">
         <form class="form-ir irownph" name="form-top-ir4">
-          <div class="formitem-ir"><label class="noselect">Owner:</label><input class="forminput-ir" type="text" readonly></div>
-          <div class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly></div>
+          <div class="formitem-ir"><label class="noselect">Owner:</label><input class="forminput-ir" type="text" readonly value="{{customer[9].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
         </form>
       </div>
     </div>
@@ -60,22 +60,21 @@
     <div class="toppage2-ir">
       <div class="2toppageleft-ir">
         <form class="form-ir iropensign" name="form-2top-ir">
-          <div class="formitem-ir"><label>Open Date:</label><select class="forminput-ir" style="width: 210px;" type="text" name="opendate-ir">
-            <option value=""></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select></div>
-          <div class="formitem-ir"><label>Sign.:</label><select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir">
-            <option value=""></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select></div>
+          <div class="formitem-ir"><label>Open Date:</label><input type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
+          <div class="formitem-ir"><label>Sign.:</label>
+            <select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir" >
+              {% for x in techs %}
+              <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
+              {% endfor %}
+          </select>
+        </div>
         </form>
       </div>
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
-          <div class="formitem-ir"><label>Arrival:</label><select class="forminput-ir" style="width: 210px;" type="text" name="arrival-ir">
-            <option value=""></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select></div>
+          <div class="formitem-ir"><label>Arrival:</label>
+            <input type="date"  {% if found%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+        </div>
           <div class="formitem-ir"><label>Sent with (freight type):</label><select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
             <option value=""></option>
             <option value="valuehere">Det ska vara saker här</option>
@@ -108,37 +107,43 @@
         </thead>
         <tbody class="whatabody-ir">
           <tr class="row-ir" onclick="">
+            {% for n in wo %}
             <td class="thtype-ir">
-              <select class="irtypedrop" name="">
+              <select class="irtypedrop" name="" id="{{wo.index(n)}}type">
+                <option value="" selected hidden></option>
                 {% for x in types %}
-                <option value="{{x[0]}}">{{x[0]+"   "+x[1]}}</option>
+                <option value="{{x[0]}}" {% if x[0].strip() == n[3].strip() %} selected {% endif %}>{{x[0]+"   "+x[1]}}</option>
                 {% endfor %}
               </select>
             </td>
             <td class="thmanufact-ir">
-              <select class="irvenddrop" name="">
+              <select class="irvenddrop" name="" id="{{wo.index(n)}}vendor">
+                <option value="" selected hidden></option>
                 {% for x in manufact %}
-                <option value="{{x[0]}}">{{x[0]}}</option>
+                <option value="{{x[0]}}" {% if x[0].strip() == n[4].strip() %} selected {% endif %}>{{x[0]}}</option>
                 {% endfor %}
               </select>
             </td>
             <td class="thmodel-ir">
-              <select class="irmodeldrop" name="" onchange="console.log(this.value)">
+              <select class="irmodeldrop" name="" onchange="update(this.value)">
+                <option value="" selected hidden></option>
                 {% for x in models %}
-                <option value="{{x[0]+"%"+x[2]}}">{{x[1]+x[0]}}</option>
+                <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]+x[0]}}</option>
                 {% endfor %}
               </select>
             </td>
-            <td class="thserial-ir">Pen</td>
+            <td class="thserial-ir" value="{{n[6]}}">{{n[6]}}</td>
             <td class="thcharge-ir">
-              <select class="irmodeldrop" name="">
+              <select class="irchargedrop" name="">
+                <option value="" selected hidden></option>
                 {% for x in charge %}
-                <option value="{{x[0]}}">{{x[1]}}</option>
+                <option value="{{x[0]}}" {% if x[0] == n[12]+1 and n[12] != 0 %} selected {% endif %}>{{x[1]}}</option>
                 {% endfor %}
               </select>
             </td>
             <td class="thnotes-ir">Pen</td>
           </tr>
+          {% endfor %}
 
         </tbody>
       </table>
@@ -149,7 +154,9 @@
         <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" ></textarea></div>
       </form>
     </div>
-  </div><!--
+  </div>
+  <script src="./static/irjs.js"></script>
+  <!--
     <div class="bottompage-ir">
     <div>
     <table class="list-spareparts-ir">
