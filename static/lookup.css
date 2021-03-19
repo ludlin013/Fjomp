@@ -138,3 +138,22 @@ table{
   max-height: 300px;
   overflow-y: scroll;
 }
+
+.buttonsbar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.buttonsbar-item-lookup{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-size: 12px;
+}
+
+.buttonbarpic-lookup{
+  width: 40px;
+}
