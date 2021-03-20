@@ -338,12 +338,27 @@ def ir():
     manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
     models = sql("SELECT","SELECT * FROM Models")
     charge = sql("SELECT","SELECT * FROM Chargemode")
-
+    charge.append((0,""))
+    techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
     irnumber = request.args.get("ir")
 
+    customer = ["","","","","","","","","","","","",""]
+    irinfo = []
+    parts = []
+    wo = []
+
+    found = False
+
     if irnumber != None:
-        print(irnumber)
-        
+        found = True
+        irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")[0]
+        customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0] + "'")[0]
+        parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+        wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+
+        for h in wo:
+            print(h[12])
+        print(charge)
     else:
         irnumber = ""
 
@@ -351,10 +366,11 @@ def ir():
 
     types.sort(key= lambda type:type[0])
     manufact.sort(key= lambda vend:vend[0])
-    models.sort(key= lambda model:model[0])
+    models.sort(key= lambda model:model[1])
+    techs.sort(key= lambda tech:tech[0])
 
 
-    return render_template("ir.html",theme=theme,notheme=notheme,types=types,manufact=manufact,models=models,charge=charge,irnumber=irnumber)
+    return render_template("ir.html",theme=theme,notheme=notheme,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/swapouts")
 def swapouts():
