@@ -168,7 +168,7 @@ th{
 .buttonsbar-item-parts{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   margin: 10px;
   font-size: 12px;
