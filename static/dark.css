@@ -98,11 +98,15 @@ body{
   background-color: rgb(80,80,80);
 }
 
+.forminput-customers{
+  background-color: rgb(80,80,80);
+}
+
 .headerbox-parts{
   border-color: rgb(40,40,40);
 }
 
-.list-parts, .list-delivnotes{
+.list-parts, .list-delivnotes, .list-units{
   background-color: rgb(80,80,80);
 }
 
