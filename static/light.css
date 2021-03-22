@@ -69,7 +69,7 @@ body{
   border-color: rgb(215,215,215)
 }
 
-.list-parts, .list-delivnotes, .list-part-unitinfo{
+.list-parts, .list-delivnotes, .list-part-unitinfo, .list-units{
   background-color: rgb(245,245,245);
 }
 
