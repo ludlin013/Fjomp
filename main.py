@@ -350,15 +350,22 @@ def ir():
     wo = []
     error = None
     found = False
-
     numbers = sql("SELECT","SELECT IR_Irno FROM IR")
     max = numbers[len(numbers)-1][0]
     min = numbers[0][0]
 
+    allir = sql("SELECT","SELECT * FROM IR")
+    allir.sort(key = lambda x:x[3])
+
+    next = max
+    previous = min
+
+
     if irnumber != None:
+        next = int(irnumber) + 1
+        previous = int(irnumber) - 1
         for x in numbers:
             if irnumber == str(x[0]):
-                #print(irnumber)
                 found = True
                 irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
                 customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")[0]
@@ -368,6 +375,17 @@ def ir():
             error = "No"
         if len(irinfo) > 0:
             irinfo = irinfo[0]
+
+        while next in allir and next <= max:
+            next += 1
+
+
+        while previous in allir and previous > min:
+            previous -= 1
+        if next > max: next = max
+        if previous < min: previous = min
+        print(next,previous)
+
 
     else:
         irnumber = ""
@@ -380,7 +398,7 @@ def ir():
     techs.sort(key= lambda tech:tech[0])
 
 
-    return render_template("ir.html",theme=theme,notheme=notheme,error=error,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    return render_template("ir.html",theme=theme,notheme=notheme,error=error,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/swapouts")
 def swapouts():

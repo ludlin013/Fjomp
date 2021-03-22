@@ -166,8 +166,8 @@ textarea{
 }
 
 .tabell-ir table{
-  width:750px;
-  max-height: 150px;
+  width:640px;
+  height: 109px;
   overflow-y: scroll;
   display:block;
 
@@ -190,7 +190,19 @@ textarea{
 }
 
 .bottompage-ir{
-padding-top: 20px
+  padding-top: 20px;
+  display: flex;
+}
+
+.bottommiddle-ir{
+  display:flex;
+  flex-direction: column;
+}
+
+.bottommiddle-ir div{
+  display: flex;
+  justify-content: space-between;
+  margin:0 0 4px 0
 }
 
 #list2-ir input,select{
@@ -221,9 +233,25 @@ padding-top: 20px
   width:80px
 }
 
+.list-receivedunits{
+}
+
 .list-spareparts-ir{
-  max-height: 250px;
+  height: 158px;
   display:block;
   overflow-y: scroll;
   width:968px
+}
+
+.ircontrols{
+  display:flex;
+}
+
+.ircontrols a{
+  padding:10px 5px
+}
+
+.ircontrols img{
+  width:40px;
+  height:40px
 }
