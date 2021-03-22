@@ -1,6 +1,16 @@
 .mainwrapswapout{
+  display: flex;
   margin-left: 61px;
+  margin-top: 20px;
   padding:50px 0 0 50px;
+  flex-wrap: wrap;
+}
+
+.header-swapout{
+  position: absolute;
+  z-index: 10;
+  margin-left: 100px;
+  padding: 20px;
 }
 
 #ZIP{
@@ -14,22 +24,32 @@
 
 .lvl1-swapout{
   margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .lvl2-swapout{
   margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .lvl3-swapout{
   margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .lvl4-swapout{
   margin-bottom: 50px;
+  margin-right: 20px;
 }
 
 .lvl5-swapout{
   margin-bottom: 50px;
+  margin-right: 20px;
+}
+
+.topright-swapout{
+  margin-bottom: 20px;
+  margin-top: -20px;
 }
 
 .formitem-swapout{
@@ -64,7 +84,12 @@
 
   .mainwrapswapout{
     margin-left: 41px;
+    margin-top: 60px;
     padding:30px;
+  }
+
+  .header-swapout{
+    margin-left: 55px;
   }
 
   .lvl1-swapout, .lvl2-swapout, .lvl3-swapout, .lvl4-swapout, .lvl5-swapout, .lvl6-swapout, .mainwrapswapout{
