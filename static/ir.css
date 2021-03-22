@@ -188,3 +188,42 @@ textarea{
 .irvenddrop{
   width:75px
 }
+
+.bottompage-ir{
+padding-top: 20px
+}
+
+#list2-ir input,select{
+  font-size: 12px
+}
+
+#list2-ir select{
+  padding:4px 5px
+}
+
+.irpartno{
+  width:150px
+}
+
+.irpartde{
+  width:225px
+}
+
+.irpartpr{
+  width:75px
+}
+
+.irpartqt{
+  width:65px
+}
+
+.irpartse{
+  width:80px
+}
+
+.list-spareparts-ir{
+  max-height: 250px;
+  display:block;
+  overflow-y: scroll;
+  width:968px
+}

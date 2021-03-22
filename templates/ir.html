@@ -26,12 +26,15 @@
         <form class="form-ir iridform" name="form-top-ir">
           <div class="ircustid">
             <form class="" action="" method="get">
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
-            <input type="submit" style="display:none">
-          </form>
-          <form class="" action="" method="post">
-            <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
-          </form>
+              <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
+              <input type="submit" style="display:none">
+            </form>
+            {% if error  %}
+            {{error}}
+            {% endif %}
+            <form class="" action="" method="post">
+              <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+            </form>
           </div>
           <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
             <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
@@ -63,166 +66,185 @@
           <div class="formitem-ir"><label>Open Date:</label><input type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
           <div class="formitem-ir"><label>Sign.:</label>
             <select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir" >
+              <option value="" selected hidden></option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
               {% endfor %}
-          </select>
-        </div>
+            </select>
+          </div>
         </form>
       </div>
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
           <div class="formitem-ir"><label>Arrival:</label>
             <input type="date"  {% if found%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+          </div>
+          <div class="formitem-ir"><label>Sent with (freight type):</label>
+            <select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
+              <option value="2" selected hidden>POSTEN 16:00</option>
+              {% for x in freight %}
+              <option value="{{x[0]}}" {% if irinfo[10] == x[0] %}selected{% endif %}>{{x[1]}}</option>
+              {% endfor %}
+            </select></div>
+            <div class="formitem-ir"><label>Repair Location:</label>
+              <select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
+                {% for x in office %}
+                <option value="{{x[0]}}">{{x[1]}}</option>
+                {% endfor %}
+              </select>
+            </form>
+          </div>
         </div>
-          <div class="formitem-ir"><label>Sent with (freight type):</label><select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
-            <option value=""></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select></div>
-          <div class="formitem-ir"><label>Repair Location:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
-            <option value="Linköping"></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select>
-        </form>
+        <div class="2toppagemiddle-ir">
+          <form class="form-ir" name="form-2top-ir">
+            <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{{irinfo[9]}}</textarea></div>
+          </form>
+        </div>
       </div>
-    </div>
-    <div class="2toppagemiddle-ir">
-      <form class="form-ir" name="form-2top-ir">
-        <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{{irinfo[9]}}</textarea></div>
-      </form>
-    </div>
-  </div>
-  <div class="middlepage-ir">
-    <div class="tabell-ir">
-      <table class="list-receivedunits">
-        <thead>
-          <tr class="header-ir" id="header-ir">
-            <th class="thtype-ir">Type:</th>
-            <th class="thmanufact-ir">Manufact.:</th>
-            <th class="thmodel-ir">Model:</th>
-            <th class="thserial-ir">Serial:</th>
-            <th class="thcharge-ir">Charge:</th>
-            <th class="thnotes-ir">Notes</th>
-          </tr>
-        </thead>
-        <tbody class="whatabody-ir">
+      <div class="middlepage-ir">
+        <div class="tabell-ir">
+          <table class="list-receivedunits">
+            <thead>
+              <tr class="header-ir" id="header-ir">
+                <th class="thtype-ir">Type:</th>
+                <th class="thmanufact-ir">Manufact.:</th>
+                <th class="thmodel-ir">Model:</th>
+                <th class="thserial-ir">Serial:</th>
+                <th class="thcharge-ir">Charge:</th>
+                <th class="thnotes-ir">Notes</th>
+              </tr>
+            </thead>
+            <tbody class="whatabody-ir">
+              {% for n in wo %}
+              <tr class="row-ir" onclick="changerepact('{{wo.index(n)}}repact')">
+                <td class="thtype-ir">
+                  <select class="irtypedrop" name="" id="{{wo.index(n)}}type">
+                    <option value="" selected hidden></option>
+                    {% for x in types %}
+                    <option value="{{x[0].strip()}}" {% if x[0].strip() == n[3].strip() %} selected {% endif %}>{{x[0]+"   "+x[1]}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="thmanufact-ir">
+                  <select class="irvenddrop" name="" id="{{wo.index(n)}}vendor">
+                    <option value="" selected hidden></option>
+                    <option value="QD">QD</option>
+                    {% for x in manufact %}
+                    <option value="{{x[0].strip()}}" {% if x[0].strip() == n[4].strip() %} selected {% endif %}>{{x[0]}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="thmodel-ir">
+                  <select class="irmodeldrop" name="" onchange="update(this.value)">
+                    <option value="" selected hidden></option>
+                    {% for x in models %}
+                    <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="thserial-ir" value="{{n[6]}}">{{n[6]}}</td>
+                <td class="thcharge-ir">
+                  <select class="irchargedrop" name="">
+                    <option value="" selected hidden></option>
+                    {% for x in charge %}
+                    <option value="{{x[0]}}" {% if x[0] == n[12]+1 and n[12] != 0 %} selected {% endif %}>{{x[1]}}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+                <td class="thnotes-ir">Pen</td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+          </table>
+        </div>
+        <div class="middlemiddlepage-ir">
           {% for n in wo %}
-          <tr class="row-ir" onclick="changerepact('{{wo.index(n)}}repact')">
-            <td class="thtype-ir">
-              <select class="irtypedrop" name="" id="{{wo.index(n)}}type">
-                <option value="" selected hidden></option>
-                {% for x in types %}
-                <option value="{{x[0].strip()}}" {% if x[0].strip() == n[3].strip() %} selected {% endif %}>{{x[0]+"   "+x[1]}}</option>
-                {% endfor %}
-              </select>
-            </td>
-            <td class="thmanufact-ir">
-              <select class="irvenddrop" name="" id="{{wo.index(n)}}vendor">
-                <option value="" selected hidden></option>
-                <option value="QD">QD</option>
-                {% for x in manufact %}
-                <option value="{{x[0].strip()}}" {% if x[0].strip() == n[4].strip() %} selected {% endif %}>{{x[0]}}</option>
-                {% endfor %}
-              </select>
-            </td>
-            <td class="thmodel-ir">
-              <select class="irmodeldrop" name="" onchange="update(this.value)">
-                <option value="" selected hidden></option>
-                {% for x in models %}
-                <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]}}</option>
-                {% endfor %}
-              </select>
-            </td>
-            <td class="thserial-ir" value="{{n[6]}}">{{n[6]}}</td>
-            <td class="thcharge-ir">
-              <select class="irchargedrop" name="">
-                <option value="" selected hidden></option>
-                {% for x in charge %}
-                <option value="{{x[0]}}" {% if x[0] == n[12]+1 and n[12] != 0 %} selected {% endif %}>{{x[1]}}</option>
-                {% endfor %}
-              </select>
-            </td>
-            <td class="thnotes-ir">Pen</td>
-          </tr>
+          <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
+            <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+            <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
+          </form>
           {% endfor %}
+        </div>
+      </div>
+      <script src="./static/irjs.js"></script>
 
-        </tbody>
-      </table>
-    </div>
-    <div class="middlemiddlepage-ir">
-      {% for n in wo %}
-      <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
-        <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
-        <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
-      </form>
-      {% endfor %}
-    </div>
-  </div>
-  <script src="./static/irjs.js"></script>
 
-  <!--
-    <div class="bottompage-ir">
-    <div>
-    <table class="list-spareparts-ir">
-    <thead>
-    <tr class="header-ir" id="header2-ir">
-    <th class="thpart-ir">Part #</th>
-    <th class="thdesc-ir">Description</th>
-    <th class="thprice-ir">Price</th>
-    <th class="thqty-ir">QTY</th>
-    <th class="thcharge2-ir">Charge</th>
-    <th class="thmodel2-ir">Model</th>
-    <th class="thserial2">Serial</th>
-  </tr>
-</thead>
-<tbody class="tbody-ir">
-<tr class="row-ir" onclick="" id="list2-ir">
-<td class="thpart-ir">BALL</td>
-<td class="thdesc-ir">BALL</td>
-<td class="thprice-ir">BALL</td>
-<td class="thqty-ir">BALL</td>
-<td class="thcharge2-ir">BALL</td>
-<td class="thmodel2-ir">BALL</td>
-<td class="thserial2">BALL</td>
-</tr>
-</tbody>
-</div>
-<div class="bottommiddle-ir">
-<form class="form-ir" name="form-ir">
-<div class="formitem-ir"><label>Repaired by:</label><select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
-<option value=""></option>
-<option value="valuehere">Det ska vara saker här</option>
-</select><input class="forminput-ir" type="text" name="repairby-ir"></div>
-<div class="formitem-ir"><label>Return freight:</label><select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
-<option value="0"></option>
-<option value="valuehere">Det ska vara saker här</option>
-</select><input class="forminput-ir" type="text" name="returnfreight-ir"></div>
-<div class="formitem-ir"><label>Return:</label><select class="forminput-ir" style="width: 210px;" type="text" name="return-ir">
-<option value="0"></option>
-<option value="valuehere">Det ska vara saker här</option>
-</select><input class="forminput-ir" type="text" name="return-ir"></div>
-</form>
-</div>
-</div>
-<div class="rightpage-ir">
-<div class="listright-ir">
-<table class="list-ir">
-<thead>
-<tr class="header-ir" id="header3-ir">
-<th class="thpart2-ir">Part #</th>
-<th class="thpartdesc-ir">Part Description</th>
-<th class="thunit-ir">Unit</th>
-</tr>
-</thead>
-<tbody class="tbody-ir">
-<tr class="row-ir" onclick="" id="list3-ir">
-<td class="thpart2-ir">BALL</td>
-<td class="thpartdesc-ir">BALL</td>
-<td class="thunit-ir">BALL</td>
-</tr>
-</tbody>
-</div>
-</div>
-</div>
-</body>
-</html>
+      <div class="bottompage-ir">
+        <div>
+          <table class="list-spareparts-ir">
+            <thead>
+              <tr class="header-ir" id="header2-ir">
+                <th class="thpart-ir">Part #</th>
+                <th class="thdesc-ir">Description</th>
+                <th class="thprice-ir">Price</th>
+                <th class="thqty-ir">QTY</th>
+                <th class="thcharge2-ir">Charge</th>
+                <th class="thmodel2-ir">Model</th>
+                <th class="thserial2">Serial</th>
+              </tr>
+            </thead>
+            <tbody class="tbody-ir irparttable">
+              {% for n in parts %}
+              <tr class="row-ir" onclick="" id="list2-ir">
+                <td class="thpart-ir "><input class="irpartno" type="text" value="{{n[4].strip()}}"></td>
+                <td class="thdesc-ir"><input class="irpartde" type="text" value="{{n[5].strip()}}"></td>
+                <td class="thprice-ir"><input class="irpartpr" type="text" value="{{n[8]}}"></td>
+                <td class="thqty-ir"><input class="irpartqt" type="text" value="{{n[6]}}"></td>
+                <td class="thcharge2-ir">
+                  <select class="irchargedrop irpartch" name="">
+                    <option value="" selected hidden></option>
+                    {% for x in charge %}
+                    <option value="{{x[0]}}" {% if x[0] == n[9]+1 and n[9] != 0 %} selected {% endif %}>{{x[1].strip()}}</option>
+                    {% endfor %}
+                  </select></td>
+                <td class="thmodel2-ir"><input class="irpartmo" type="text" value="{{n[2].strip()}}"></td>
+                <td class="thserial2"><input class="irpartse" type="text" value="{{n[3].strip()}}"></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          </div>
+          <div class="bottommiddle-ir">
+            <form class="form-ir" name="form-ir">
+              <div class="formitem-ir"><label>Repaired by:</label>
+                <select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
+                  <option value="" selected hidden></option>
+                  {% for x in techs %}
+                  <option value="{{x[0]}}" {% if x[0] == irinfo[5] %} selected {% endif %}>{{x[0]}}</option>
+                  {% endfor %}
+              </select></div>
+              <div class="formitem-ir"><label>Return freight:</label>
+                <select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
+                  {% for x in freight %}
+                  <option value="{{x[0]}}" {% if irinfo[11] == x[0] %}selected{% endif %}>{{x[1]}}</option>
+                  {% endfor %}
+              </select></div>
+              <div class="formitem-ir"><label>Return:</label>
+                <input class="forminput-ir" type="date" name="return-ir" {% if found%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+            </form>
+          </div>
+        </div>
+        <div class="rightpage-ir">
+          <div class="listright-ir">
+            <table class="list-ir">
+              <thead>
+                <tr class="header-ir" id="header3-ir">
+                  <th class="thpart2-ir">Part #</th>
+                  <th class="thpartdesc-ir">Part Description</th>
+                  <th class="thunit-ir">Unit</th>
+                </tr>
+              </thead>
+              <tbody class="tbody-ir">
+                <tr class="row-ir" onclick="" id="list3-ir">
+                  <td class="thpart2-ir">BALL</td>
+                  <td class="thpartdesc-ir">BALL</td>
+                  <td class="thunit-ir">BALL</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </div>
+      </body>
+      </html>

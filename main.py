@@ -338,26 +338,37 @@ def ir():
     manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
     models = sql("SELECT","SELECT * FROM Models")
     charge = sql("SELECT","SELECT * FROM Chargemode")
-    charge.append((0,""))
+    #charge.append((0,""))
     techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
+    office = sql("SELECT","SELECT * FROM Office")
+    freight = sql("SELECT","SELECT * FROM FreightTypes")
     irnumber = request.args.get("ir")
 
     customer = ["","","","","","","","","","","","",""]
-    irinfo = []
+    irinfo = ["","","","","","","","","","","","",""]
     parts = []
     wo = []
-
+    error = None
     found = False
 
-    if irnumber != None:
-        found = True
-        irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")[0]
-        customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0] + "'")[0]
-        parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
-        wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+    numbers = sql("SELECT","SELECT IR_Irno FROM IR")
+    max = numbers[len(numbers)-1][0]
+    min = numbers[0][0]
 
-        for x in models:
-            print(x)
+    if irnumber != None:
+        for x in numbers:
+            if irnumber == str(x[0]):
+                #print(irnumber)
+                found = True
+                irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
+                customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")[0]
+                parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+                wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+        if not found:
+            error = "No"
+        if len(irinfo) > 0:
+            irinfo = irinfo[0]
+
     else:
         irnumber = ""
 
@@ -369,7 +380,7 @@ def ir():
     techs.sort(key= lambda tech:tech[0])
 
 
-    return render_template("ir.html",theme=theme,notheme=notheme,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    return render_template("ir.html",theme=theme,notheme=notheme,error=error,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/swapouts")
 def swapouts():
