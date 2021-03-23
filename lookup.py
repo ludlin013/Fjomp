@@ -36,11 +36,81 @@ def sql(type,sqlquery):
     return result
 
 
-@app.route("/lookup")
+@app.route("/lookup", methods=["GET","POST"])
 def lookup():
     if "loggedin" in request.cookies:
         pass
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
+
+    lookupdata = []
+
+    if request.method == 'POST':
+        looknumname = request.form["lookupnumname"]
+        lookserial = request.form["lookserial"]
+
+        print("!"+looknumname + "//"+lookserial+"!")
+
+        if looknumname != "":
+            delivnote_result = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_Part ='"+looknumname+"' OR DN_Partno = '"+looknumname+"'")
+            irparts_result = sql("SELECT", "SELECT * FROM IRParts WHERE IRP_Part ='"+looknumname+"' OR IRP_Partno = '"+looknumname+"'")
+            sentswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_NewPart ='"+looknumname+"' OR SWP_NewPartno = '"+looknumname+"'")
+            returnedswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_OldPart ='"+looknumname+"' OR SWP_OldPartno = '"+looknumname+"'")
+
+            print("-----Numname-----")
+
+        elif lookserial != "":
+            delivnote_result = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_Serial ='"+lookserial+"'")
+            irparts_result = sql("SELECT", "SELECT * FROM IRParts WHERE IRP_Serial ='"+lookserial+"'")
+            sentswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_NewSerial ='"+lookserial+"'")
+            returnedswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_OldSerial ='"+lookserial+"'")
+            unitsfile = sql("SELECT", "SELECT * FROM Unit WHERE Unit_History = '0' AND Unit_Serial ='"+lookserial+"'")
+            unitshistory = sql("SELECT", "SELECT * FROM Unit WHERE Unit_History = '1' AND Unit_Serial ='"+lookserial+"'")
+
+            print("-----Serial-----")
+
+        for x in delivnote_result:
+            Dict = {}
+
+            Dict["type"] = "Deliverynote"
+            Dict["ref"] = x[1]
+            Dict["customerID"] = x[0]
+            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            Dict["date"] = x[4]
+            Dict["serial"] = x[7]
+
+            lookupdata.append(Dict)
+        print("-----Delivnote-----")
+        for x in irparts_result:
+            Dict = {}
+
+            Dict["type"] = "IR Parts Used"
+            Dict["ref"] = x[1]
+            Dict["customerID"] = x[0]
+            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            Dict["date"] = x[10]
+            Dict["serial"] = x[3]
+
+            lookupdata.append(Dict)
+
+        print("-----irparts-----")
+        for x in sentswap:
+            Dict = {}
+
+            Dict["type"] = "Sent-Swapouts"
+            Dict["ref"] = x[1]
+            Dict["customerID"] = x[0]
+            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            Dict["date"] = x[3]
+            Dict["serial"] = x[9]
+
+            lookupdata.append(Dict)
+
+        for x in lookupdata:
+            print(x)
+
+
+
+
     return render_template("lookup.html",theme=theme,notheme=notheme)

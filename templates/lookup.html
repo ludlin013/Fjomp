@@ -24,18 +24,17 @@
     <div class="toppage-lookup">
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
-          <form class="form-lookup" name="form-topleftpage-lookup">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text"><input class="forminput-lookup" id="inputpartname" type="text" readonly></div>
-            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio"><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio"><label>Part off</label></div>
+          <form class="form-lookup" name="form-topleftpage-lookup" method="POST" action="">
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text" name="lookupnumname"><input class="forminput-lookup" id="inputpartname" type="text" readonly></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text" name="lookserial"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio"><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio"><label>Part off</label></div>
             <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="text"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="text"></div>
-          </form>
         </div>
       </div>
       <div class="middlepage-lookup">
         <div class="middlepage-lookup">
-          <form class="form-lookup" name="form-middlepage-lookup">
+          <div class="form-lookup">
             <div class="show-lookup"><label>Show:</label></div><div class="delivnotes-lookup"><input class="forminput-lookup" type="checkbox"><label>Deliv. Notes</label></div><div class="ir-lookup"><input class="forminput-lookup" type="checkbox"><label>IR</label></div><div class="irparts-lookup"><input class="forminput-lookup" type="checkbox"><label>IR-Parts</label></div><div class="sentswapout-lookup"><input class="forminput-lookup" type="checkbox"><label>Sent Swap-outs</label></div>
-            <div class="returnswapout-lookup"><input class="forminput-lookup" type="checkbox"><label>Returned Swap-Outs</label></div><div class="unitsfile-lookup"><input class="forminput-lookup" type="checkbox"><label>Units File</label></div><div class="unitshistory-lookup"><input class="forminput-lookup" type="checkbox"><label>Units History</label></div>
+            <div class="returnswapout-lookup"><input class="forminput-lookup" type="checkbox"><label>Returned Swap-Outs</label></div><div class="unitsfile-lookup"><input class="forminput-lookup" type="checkbox"><label>Units File</label></div><div class="unitshistory-lookup"><input class="forminput-lookup" type="checkbox"><label>Units History</label><input type="submit" style="display: none;"></div>
           </form>
         </div>
       </div>

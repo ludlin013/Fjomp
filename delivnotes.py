@@ -47,7 +47,7 @@ def delivnotes():
     sqlq = []
     Dict = {}
     notFound = None
-    delivnote = ""
+    delivnote = None
 
 
 
