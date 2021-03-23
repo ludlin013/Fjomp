@@ -249,6 +249,7 @@ textarea{
 
 .ircontrols{
   display:flex;
+  align-items: center;
 }
 
 .ircontrols a{
@@ -274,4 +275,29 @@ textarea{
 .addremirpart img{
   width: 20px;
   height: 20px;
+}
+
+#irerror{
+  font-size: 10px;
+  position: absolute;
+  margin:30px 0 0 50px
+}
+
+.nextdateno{
+  display:flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.nextdateno div{
+  display:flex;
+  justify-content: space-between;
+  width:120px;
+  align-items: center;
+  padding:2px
+}
+
+.nextdateno div *,
+.nextdateno div{
+  cursor:pointer
 }

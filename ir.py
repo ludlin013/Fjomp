@@ -72,6 +72,9 @@ def ir():
     next = max
     previous = min
 
+    sortmode = request.cookies.get("irsort")
+    print(sortmode)
+
 
     if irnumber != None:
 
@@ -87,17 +90,15 @@ def ir():
                 parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
                 wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
         if not found:
-            error = "No"
+            error = "No IR With that Number"
         if len(irinfo) > 0:
             irinfo = irinfo[0]
 
-        for x in range(len(numbers)-1):
+        for x in range(len(numbers)):
             if numbers[x][0] == int(irnumber):
-                print(x)
                 ni = x + 1
                 pi = x - 1
-                if ni < max:
-                    print(ni)
+                if ni < len(numbers) - 1:
                     next = numbers[ni][0]
                 else:
                     next = max
@@ -108,15 +109,10 @@ def ir():
                 break
         if previous < min: previous = min
 
-
-        print(previous,next)
-
-
-
     types.sort(key= lambda type:type[0])
     manufact.sort(key= lambda vend:vend[0])
     models.sort(key= lambda model:model[1])
     techs.sort(key= lambda tech:tech[0])
 
 
-    return render_template("ir.html",theme=theme,notheme=notheme,error=error,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    return render_template("ir.html",theme=theme,notheme=notheme,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
