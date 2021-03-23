@@ -32,6 +32,9 @@
             {% if error  %}
             {{error}}
             {% endif %}
+            <script>
+              document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+            </script>
             <form class="" action="" method="post">
               <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
             </form>
@@ -142,7 +145,7 @@
                     {% endfor %}
                   </select>
                 </td>
-                <td class="thserial-ir" value="{{n[6]}}">{{n[6]}}</td>
+                <td class="thserial-ir" value="{{n[6]}}"><input id="partserialir" value="{{n[6]}}"></td>
                 <td class="thcharge-ir">
                   <select class="irchargedrop" name="">
                     <option value="" selected hidden></option>
@@ -157,7 +160,12 @@
 
             </tbody>
           </table>
+          <div class="addremirpart">
+            <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
+            <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
+          </div>
         </div>
+
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
           <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
@@ -167,6 +175,7 @@
           {% endfor %}
         </div>
       </div>
+
       <script src="./static/irjs.js"></script>
 
 
@@ -204,6 +213,10 @@
                 {% endfor %}
               </tbody>
             </table>
+            <div class="addremirpart">
+              <div class="ir-add"><a href=""><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
+              <div class="ir-rem"><a href=""><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
+            </div>
           </div>
           <div class="bottommiddle-ir">
             <form class="form-ir" name="form-ir">
@@ -246,11 +259,16 @@
     </table>
   </div>
 </div>-->
+
 <div class="ircontrols">
   <a href="/ir?ir={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
   <a href="/ir?ir={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
   <a href="/ir?ir={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
   <a href="/ir?ir={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+  <div class="nextdateno">
+    <input type="radio" name="nexttype" checked>
+    <input type="radio" name="nexttype" >
+  </div>
 </div>
 </div>
 </body>
