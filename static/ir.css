@@ -250,6 +250,8 @@ textarea{
 .ircontrols{
   display:flex;
   align-items: center;
+  width:100%;
+  justify-content: space-between;
 }
 
 .ircontrols a{
@@ -300,4 +302,21 @@ textarea{
 .nextdateno div *,
 .nextdateno div{
   cursor:pointer
+}
+
+.irfirstcontrols{
+  display: flex;
+  align-items: center;
+}
+
+.ircontrolbuttons{
+  display: flex;
+}
+
+.buttonsbar-item-ir{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px
 }

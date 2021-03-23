@@ -33,7 +33,7 @@
             <p id="irerror" class="noselect">{{error}}</p>
             {% endif %}
             <script>
-              document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+            document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
             </script>
             <form class="" action="" method="post">
               <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
@@ -69,7 +69,7 @@
           <div class="formitem-ir"><label>Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
           <div class="formitem-ir"><label>Sign.:</label>
             <select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir" >
-              <option value="" selected hidden></option>
+              <option value="{{user}}" selected hidden>{{user}}</option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
               {% endfor %}
@@ -100,7 +100,7 @@
         </div>
         <div class="2toppagemiddle-ir">
           <form class="form-ir" name="form-2top-ir">
-            <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{{irinfo[9]}}</textarea></div>
+            <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
           </form>
         </div>
       </div>
@@ -234,7 +234,7 @@
                     {% endfor %}
                   </select></div>
                   <div class="formitem-ir"><label>Return:</label>
-                    <input class="forminput-ir" type="date" name="return-ir" {% if found%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+                    <input class="forminput-ir" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
                   </form>
                 </div>
               </div>
@@ -261,6 +261,7 @@
 </div>-->
 
 <div class="ircontrols">
+  <div class="irfirstcontrols">
   <a href="/ir?ir={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
   <a href="/ir?ir={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
   <a href="/ir?ir={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
@@ -268,6 +269,17 @@
   <div class="nextdateno">
     <div class="noselect" onclick="document.getElementById('irsortdate').checked = true;document.cookie = 'irsort = date; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label>Date order</label><input id="irsortdate" type="radio" name="nexttype" {% if sortmode == "date" or sortmode == None %}checked{% endif %}></div>
     <div class="noselect" onclick="document.getElementById('irsortno').checked = true;document.cookie = 'irsort = no; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label>IR #</label><input id="irsortno" type="radio" name="nexttype" {% if sortmode == "no" %} checked {% endif %}></div>
+  </div>
+  </div>
+  <div class="ircontrolbuttons">
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
+    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
   </div>
 </div>
 </div>

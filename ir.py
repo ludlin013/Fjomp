@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
+import datetime
 
 server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"
@@ -68,7 +69,7 @@ def ir():
 
     lastir = request.cookies.get("lastir")
     sortmode = request.cookies.get("irsort")
-    print(sortmode)
+    user = request.cookies.get("username")
 
     if irnumber == None:
         allir.sort()
@@ -82,11 +83,12 @@ def ir():
             if irnumber == str(x[0]):
                 found = True
                 irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
-                customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
-                if len(customer) > 0:
+                if irinfo[0][0] != None:
+                    customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
                     customer = customer[0]
                 else:
                     customer = ["","","","","","","","","","","","",""]
+
                 parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
                 wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
         if not found:
@@ -111,7 +113,9 @@ def ir():
                 ni += 1
             while pi not in allir and pi > min:
                 pi -= 1
-            next = ni
+            if next < max:
+                next = ni
+                
             previous = pi
 
         else:
@@ -147,4 +151,22 @@ def ir():
     techs.sort(key= lambda tech:tech[0])
 
 
-    return render_template("ir.html",theme=theme,notheme=notheme,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    return render_template("ir.html",theme=theme,notheme=notheme,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+
+
+@app.route("/newir",methods=["GET","POST"])
+def newir():
+    numbers = sql("SELECT","SELECT IR_Irno FROM IR")
+
+    allir = []
+    for n in numbers:
+        allir.append(n[0])
+
+    newir = str(allir[len(allir)-1]+1)
+    print(newir)
+    print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    #print("INSERT INTO IR (IR_Irno,IR_Opendate) VALUES ('" + newir + "','"+ str(datetime.datetime.now()) +"')")
+
+    sql("INSERT","INSERT INTO IR (IR_Irno,IR_Opendate) VALUES ('" + newir + "','"+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") +"')")
+    #return "yes"
+    return redirect("/ir?ir="+newir)
