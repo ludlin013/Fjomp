@@ -141,7 +141,7 @@
     </div>
 </div>
 
-<div class="settingsvendorwrap settingscategories" id="settingsvendor" style="">
+<div class="settingsvendorwrap settingscategories" id="settingsvendor" style="display:none">
   <div class="settingsvendorhead">
     <p id="settingsvendorid">ID</p>
     <p id="settingsvendorname">Name</p>
@@ -201,7 +201,7 @@
       }
 
       document.getElementById("spsel").innerHTML = "Landing";
-      
+
       if(document.cookie.includes("sp")){
         var cookies = document.cookie.split(";");
         for(var cookie of cookies){
