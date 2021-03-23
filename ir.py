@@ -35,7 +35,7 @@ def sql(type,sqlquery):
 
     return result
 
-@app.route("/ir")
+@app.route("/ir",methods=["GET","POST"])
 def ir():
     if "loggedin" in request.cookies:
         pass
@@ -47,7 +47,6 @@ def ir():
     manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
     models = sql("SELECT","SELECT * FROM Models")
     charge = sql("SELECT","SELECT * FROM Chargemode")
-    #charge.append((0,""))
     techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
     office = sql("SELECT","SELECT * FROM Office")
     freight = sql("SELECT","SELECT * FROM FreightTypes")
@@ -59,44 +58,58 @@ def ir():
     wo = []
     error = None
     found = False
-    numbers = sql("SELECT","SELECT IR_Irno FROM IR")
-    max = numbers[len(numbers)-1][0]
-    min = numbers[0][0]
+    numbers = sql("SELECT","SELECT IR_Irno,IR_Opendate FROM IR")
 
-    allir = sql("SELECT","SELECT * FROM IR")
-    allir.sort(key = lambda x:x[3])
+    numbers.sort(key = lambda x:x[1])
+
+    allir = []
+    for n in numbers:
+        allir.append(n[0])
+    #allir.sort()
+    max = allir[len(allir)-1]
+    min = allir[0]
 
     next = max
     previous = min
 
 
-    if irnumber == None:
-        irnumber = str(max)
+    if irnumber != None:
 
-    next = int(irnumber) + 1
-    previous = int(irnumber) - 1
-    for x in numbers:
-        if irnumber == str(x[0]):
-            found = True
-            irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
-            customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")[0]
-            parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
-            wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
-    if not found:
-        error = "No"
-    if len(irinfo) > 0:
-        irinfo = irinfo[0]
+        for x in numbers:
+            if irnumber == str(x[0]):
+                found = True
+                irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
+                customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
+                if len(customer) > 0:
+                    customer = customer[0]
+                else:
+                    customer = ["","","","","","","","","","","","",""]
+                parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+                wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+        if not found:
+            error = "No"
+        if len(irinfo) > 0:
+            irinfo = irinfo[0]
 
-    while next in allir and next <= max:
-        next += 1
+        for x in range(len(numbers)-1):
+            if numbers[x][0] == int(irnumber):
+                print(x)
+                ni = x + 1
+                pi = x - 1
+                if ni < max:
+                    print(ni)
+                    next = numbers[ni][0]
+                else:
+                    next = max
+                if pi > min:
+                    previous = numbers[pi][0]
+                else:
+                    previous = min
+                break
+        if previous < min: previous = min
 
 
-    while previous in allir and previous > min:
-        previous -= 1
-    if next > max: next = max
-    if previous < min: previous = min
-    print(next,previous)
-
+        print(previous,next)
 
 
 

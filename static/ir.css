@@ -140,7 +140,10 @@ textarea{
 
 .irnotediv{
   display:flex;
+}
 
+#partserialir{
+  width:80px
 }
 
 #irnotefield{
@@ -162,7 +165,7 @@ textarea{
 }
 
 .tabell-ir{
-  padding:10px 0
+  padding:10px 0 0 0
 }
 
 .tabell-ir table{
@@ -191,6 +194,7 @@ textarea{
 
 .bottompage-ir{
   padding-top: 20px;
+  padding-bottom: 10px;
   display: flex;
 }
 
@@ -254,4 +258,20 @@ textarea{
 .ircontrols img{
   width:40px;
   height:40px
+}
+
+.addremirpart{
+  display:flex;
+}
+
+.addremirpart a {
+  padding:10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.addremirpart img{
+  width: 20px;
+  height: 20px;
 }
