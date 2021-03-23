@@ -24,56 +24,60 @@
       <h1 class="noselect">Swap-Out Service</h1>
       <div class="toppage-swapout">
         <div class="lvl1-swapout">
-          <form class="form-swapout" name="form-lvl1-swapout">
-            <div class="formitem-swapout"><label>Store#/Ref:</label><input class="forminput-swapout smallerinput-swapout" type="text"><input class="forminput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Name:</label><input class="forminput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Address:</label><input class="forminput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Zip/City:</label><div><input id="ZIP" class="forminput-swapout" type="text"><input class="forminput-swapout" type="text"></div></div>
-          </form>
+          <div>
+            <form class="form-swapout" name="form-lvl1-swapout">
+              <div class="formitem-swapout"><label>Store#/Ref:</label><input class="forminput-swapout smallerinput-swapout" type="text"><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Name:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Address:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Zip/City:</label><div><input id="ZIP" class="forminput-swapout" type="text"><input class="forminput-swapout" type="text"></div></div>
+            </form>
+          </div>
           <div class="topmiddle-swapout">
             <form class="form-swapout" name="form-topmiddle-swapout">
               <div class="formitem-swapout nostyle"><input class="forminput-swapout" type="checkbox"><label>Loan management (no swap)</label></div>
               <div class="formitem-swapout nostyle"><input class="forminput-swapout" type="checkbox"><label>RMA management only</label></div>
               <div class="formitem-swapout nostyle"><input class="forminput-swapout" type="checkbox"><label>Repair warranty</label></div>
-              <div class="formitem-swapout"><label>Open Date:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Open Date:</label><input class="forminput-swapout" type="date" value="2021-03-23"></div>
             </form>
           </div>
-        </div>
-        <div class="topright-swapout">
-          <form class="form-swapout" name="form-topright-swapout">
-            <div class="formitem-swapout"><label>Swap #:</label><input class="forminput-swapout smallerinput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Open swap #:</label><input class="forminput-swapout smallerinput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Status:</label><select class="forminput-swapout" style="width: 160px;" type="text" name="status-swapout">
-              <option value="Ingen åtgärd"></option>
-              <option value="valuehere">Det ska vara saker här</option>
-            </select></div>
-          </form>
+          <div class="topright-swapout">
+            <form class="form-swapout" name="form-topright-swapout">
+              <div class="formitem-swapout"><label>Swap #:</label><input class="forminput-swapout smallerinput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Open swap #:</label><input class="forminput-swapout smallerinput-swapout" type="text"></div>
+              <div class="formitem-swapout"><label>Status:</label><select class="forminput-swapout" style="width: 160px;" type="text" name="status-swapout">
+                <option value="Ingen åtgärd"></option>
+                <option value="valuehere">Det ska vara saker här</option>
+              </select></div>
+            </form>
+          </div>
         </div>
       </div>
       <div class="lvl2-swapout">
         <h1 class="noselect">Sent Unit:</h1>
-        <div class="leftside2-swapout">
-          <form class="form-swapout" name="form-leftside2-swapout">
-            <div class="formitem-swapout"><label>Part #:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="part2-swapout">
-              <option value=""></option>
-              <option value="valuehere">Det ska vara saker här</option>
-            </select></div>
-              <div class="formitem-swapout"><label>Predef. Texts:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="predef-swapout">
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select></div>
-          </form>
-        </div>
+        <div class="lvl2-header-swapout">
+          <div class="leftside2-swapout">
+            <form class="form-swapout" name="form-leftside2-swapout">
+              <div class="formitem-swapout"><label>Part #:</label>
+                <select class="forminput-swapout" style="width: 190px;" type="text" name="part2-swapout">
+                  <option value=""></option>
+                  <option value="valuehere">Det ska vara saker här</option>
+                </select></div>
+                <div class="formitem-swapout"><label>Predef. Texts:</label>
+                  <select class="forminput-swapout" style="width: 190px;" type="text" name="predef-swapout">
+                    <option value=""></option>
+                    <option value="valuehere">Det ska vara saker här</option>
+                  </select></div>
+            </form>
+          </div>
         <div class="middle2-swapout">
           <form class="form-swapout" name="form-middle2-swapout">
-            <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"></div>
-            <div class="formitem-swapout"><label>Notes/Text:</label><input class="forminput-swapout" type="text"></div>
             <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text"></div>
+            <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"></div>
           </form>
         </div>
         <div class="right2-swapout">
           <form class="form-swapout" name="form-right2-swapout">
-            <div class="formitem-swapout"><label>Sent Date:</label><input class="forminput-swapout" type="text"></div>
+            <div class="formitem-swapout"><label>Sent Date:</label><input class="forminput-swapout" type="date" value="2021-03-23" style="width: 180px;"></div>
             <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sent2-swapout">
               <option value=""></option>
               <option value="valuehere">Det ska vara saker här</option>
@@ -81,47 +85,43 @@
           </form>
         </div>
       </div>
+      <div class="formitem-swapout formitem-textarea-swapout"><label>Notes/Text:</label><textarea class="forminput-swapout textarea-swapout"></textarea></div>
+      </div>
         <div class="lvl3-swapout">
           <h1 class="noselect">Received Unit:</h1>
           <div class="leftside3-swapout">
-            <form class="form-swapout" name="form-leftside3-swapout">
-              <div class="formitem-swapout"><label>Part #:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="part3-swapout">
+            <form class="form-swapout lvl3-form-swapout" name="form-leftside3-swapout">
+              <div class="formitem-swapout partnumber-swapout"><label>Part #:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="part3-swapout">
                 <option value=""></option>
                 <option value="valuehere">Det ska vara saker här</option>
               </select></div>
-              <div class="formitem-swapout"><label>Problem description, Internal notes:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Description</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Returned Date:</label><input class="forminput-swapout" type="date" style="width:150px;"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 100px;" type="text" name="recevied3-swapout">
+                <option value=""></option>
+                <option value="valuehere">Det ska vara saker här</option>
+              </select></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>No. of times recycled:</label><input class="forminput-swapout" type="number"></div>
             </form>
           </div>
           <div class="rightside3-swapout">
-            <form class="form-swapout" name="form-rightside3-swapout">
-              <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Returned Date:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="recevied3-swapout">
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select></div>
+            <form class="form-swapout lvl3-form-swapout" name="form-rightside3-swapout">
+              <div class="formitem-swapout formitem-textarea-swapout"><label>Problem description, Internal notes:</label><textarea class="forminput-swapout textarea-swapout"></textarea></div>
             </form>
-          </div>
-          <div class="recycled-swapout">
-            <div class="formitem-swapout"><label>No. of times recycled:</label><input class="forminput-swapout" type="text"></div>
           </div>
         </div>
         <div class="lvl4-swapout">
           <h1 class="noselect">Loan Unit:</h1>
           <div class="leftside4-swapout">
-            <form class="form-swapout" name="form-leftside4-swapout">
-              <div class="formitem-swapout"><label>Repaired unit returned to customer:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sent4-swapout">
+            <form class="form-swapout formleftside4-swapout" name="form-leftside4-swapout">
+              <div class="formitem-swapout lvl4item-swapout"><label>Repaired unit returned to customer:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sent4-swapout">
                 <option value=""></option>
                 <option value="valuehere">Det ska vara saker här</option>
               </select></div>
-            </form>
-          </div>
-          <div class="rightside4-swapout">
-            <form class="form-swapout" name="form-rightside4-swapout">
-              <div class="formitem-swapout"><label>Loan unit returned from customer:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="recevied4-swapout">
+              <div class="formitem-swapout lvl4item-swapout"><label>Loan unit returned from customer:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="recevied4-swapout">
                 <option value=""></option>
                 <option value="valuehere">Det ska vara saker här</option>
               </select></div>
@@ -131,37 +131,25 @@
         <div class="lvl5-swapout">
           <h1 class="noselect">RMA:</h1>
           <div class="leftside5-swapout">
-            <form class="form-swapout" name="form-leftside5-swapout">
-              <div class="formitem-swapout"><label>Sent to supplier:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sentsuppl5-swapout">
+            <form class="form-swapout lvl5form-swapout" name="form-leftside5-swapout">
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent to supplier:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sentsuppl5-swapout">
                 <option value=""></option>
                 <option value="valuehere">Det ska vara saker här</option>
               </select></div>
-            </form>
-          </div>
-          <div class="middleleftside5-swapout">
-            <form class="form-swapout" name="form-middleleftside5-swapout">
-              <div class="formitem-swapout"><label>RMA #/Reference:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label>Sent Date:</label><input class="forminput-swapout" type="text"></div>
-            </form>
-          </div>
-          <div class="middlerightside5-swapout">
-            <form class="form-swapout" name="form-middlerightside5-swapout">
-              <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sent5-swapout">
+              <div class="formitem-swapout lvl5item-swapout"><label>RMA #/Reference:</label><input class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Sent Date:</label><input class="forminput-swapout" type="date"></div>
+              <div class="formitem-swapout lvl5item-swapout" style="width:100px;"><label>Sent by:</label><select class="forminput-swapout" style="width: 100px;" type="text" name="sent5-swapout">
                 <option value=""></option>
                 <option value="valuehere">Det ska vara saker här</option>
               </select></div>
-              <div class="formitem-swapout"><label>Returned Date:</label><input class="forminput-swapout" type="text"></div>
-            </form>
-          </div>
-          <div class="rightside5-swapout">
-            <form class="form-swapout" name="form-rightside5-swapout">
-              <div class="formitem-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="recevied5-swapout">
+              <div class="formitem-swapout lvl5item-swapout"><label>Returned Date:</label><input class="forminput-swapout" type="date"></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="recevied5-swapout">
                 <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
+                <option value="valuehere lvl4item-swapout">Det ska vara saker här</option>
               </select></div>
-              <div class="formitem-swapout"><label>Charge model:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="charge5-swapout">
+              <div class="formitem-swapout lvl5item-swapout"><label>Charge model:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="charge5-swapout">
                 <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
+                <option value="valuehere lvl5item-swapout">Det ska vara saker här</option>
               </select></div>
             </form>
           </div>
