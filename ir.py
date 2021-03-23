@@ -71,6 +71,10 @@ def ir():
     print(sortmode)
 
     if irnumber == None:
+        allir.sort()
+        irnumber = str(allir[len(allir)-1])
+        if lastir == None:
+            return redirect("/ir?ir="+irnumber)
         return redirect("/ir?ir="+lastir)
     else:
 
