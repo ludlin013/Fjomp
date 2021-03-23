@@ -57,7 +57,7 @@ def lookup():
         for x in allcust:
             cust[x[0].strip()] = x[1].strip()
 
-        print(cust)
+
         if looknumname != "":
             delivnote_result = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_Part ='"+looknumname+"' OR DN_Partno = '"+looknumname+"'")
             irparts_result = sql("SELECT", "SELECT * FROM IRParts WHERE IRP_Part ='"+looknumname+"' OR IRP_Partno = '"+looknumname+"'")
@@ -71,8 +71,8 @@ def lookup():
             irparts_result = sql("SELECT", "SELECT * FROM IRParts WHERE IRP_Serial ='"+lookserial+"'")
             sentswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_NewSerial ='"+lookserial+"'")
             returnedswap = sql("SELECT", "SELECT * FROM Swap WHERE SWP_OldSerial ='"+lookserial+"'")
-            unitsfile = sql("SELECT", "SELECT * FROM Unit WHERE Unit_History = '0' AND Unit_Serial ='"+lookserial+"'")
-            unitshistory = sql("SELECT", "SELECT * FROM Unit WHERE Unit_History = '1' AND Unit_Serial ='"+lookserial+"'")
+            unitsfile = sql("SELECT", "SELECT * FROM Units WHERE Unit_History = '0' AND Unit_Serial ='"+lookserial+"'")
+            unitshistory = sql("SELECT", "SELECT * FROM Units WHERE Unit_History = '1' AND Unit_Serial ='"+lookserial+"'")
 
             print("-----Serial-----")
 
@@ -124,6 +124,9 @@ def lookup():
             lookupdata.append(Dict)
 
 
-        print(lookupdata)
+        lookupdata.sort(key = lambda x:x["ref"])
+
+        for x in lookupdata:
+            print(x)
 
     return render_template("lookup.html",theme=theme,notheme=notheme)
