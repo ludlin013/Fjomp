@@ -46,6 +46,10 @@ h1{
   border: none;
 }
 
+.cust-customers, .name-customers, .address-customers, .zipcity-customers, .pricegroup-customers{
+  width: px;
+}
+
 #checkdt{
   margin-left: 17px;
 }
