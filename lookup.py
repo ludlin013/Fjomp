@@ -52,6 +52,12 @@ def lookup():
 
         print("!"+looknumname + "//"+lookserial+"!")
 
+        allcust = sql("SELECT", "SELECT Cust_CustID,Cust_Name FROM Customers")
+        cust = {}
+        for x in allcust:
+            cust[x[0].strip()] = x[1].strip()
+
+        print(cust)
         if looknumname != "":
             delivnote_result = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_Part ='"+looknumname+"' OR DN_Partno = '"+looknumname+"'")
             irparts_result = sql("SELECT", "SELECT * FROM IRParts WHERE IRP_Part ='"+looknumname+"' OR IRP_Partno = '"+looknumname+"'")
@@ -76,24 +82,31 @@ def lookup():
             Dict["type"] = "Deliverynote"
             Dict["ref"] = x[1]
             Dict["customerID"] = x[0]
-            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            try:
+                Dict["customerName"] = cust[x[0].strip()]
+            except Exception:
+                Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '" + x[0] + "'")
             Dict["date"] = x[4]
             Dict["serial"] = x[7]
 
             lookupdata.append(Dict)
         print("-----Delivnote-----")
+        print(len(delivnote_result))
         for x in irparts_result:
             Dict = {}
 
             Dict["type"] = "IR Parts Used"
             Dict["ref"] = x[1]
             Dict["customerID"] = x[0]
-            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            try:
+                Dict["customerName"] = cust[x[0].strip()]
+            except Exception:
+                Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '" + x[0] + "'")
             Dict["date"] = x[10]
             Dict["serial"] = x[3]
 
             lookupdata.append(Dict)
-
+        print(len(irparts_result))
         print("-----irparts-----")
         for x in sentswap:
             Dict = {}
@@ -101,16 +114,16 @@ def lookup():
             Dict["type"] = "Sent-Swapouts"
             Dict["ref"] = x[1]
             Dict["customerID"] = x[0]
-            Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '"+x[0].strip()+"'")
+            try:
+                Dict["customerName"] = cust[x[0].strip()]
+            except Exception:
+                Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '" + x[0] + "'")
             Dict["date"] = x[3]
             Dict["serial"] = x[9]
 
             lookupdata.append(Dict)
 
-        for x in lookupdata:
-            print(x)
 
-
-
+        print(lookupdata)
 
     return render_template("lookup.html",theme=theme,notheme=notheme)
