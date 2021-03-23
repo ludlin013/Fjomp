@@ -65,18 +65,14 @@ def ir():
     allir = []
     for n in numbers:
         allir.append(n[0])
-    #allir.sort()
-    max = allir[len(allir)-1]
-    min = allir[0]
 
-    next = max
-    previous = min
-
+    lastir = request.cookies.get("lastir")
     sortmode = request.cookies.get("irsort")
     print(sortmode)
 
-
-    if irnumber != None:
+    if irnumber == None:
+        return redirect("/ir?ir="+lastir)
+    else:
 
         for x in numbers:
             if irnumber == str(x[0]):
@@ -94,20 +90,52 @@ def ir():
         if len(irinfo) > 0:
             irinfo = irinfo[0]
 
-        for x in range(len(numbers)):
-            if numbers[x][0] == int(irnumber):
-                ni = x + 1
-                pi = x - 1
-                if ni < len(numbers) - 1:
-                    next = numbers[ni][0]
-                else:
-                    next = max
-                if pi > min:
-                    previous = numbers[pi][0]
-                else:
-                    previous = min
-                break
-        if previous < min: previous = min
+
+        if sortmode == "no":
+            allir.sort()
+            max = allir[len(allir)-1]
+            min = allir[0]
+
+            next = max
+            previous = min
+
+            numbers.sort(key = lambda x:x[0])
+            ni = int(irnumber) + 1
+            pi = int(irnumber) - 1
+
+            while ni not in allir and ni < max:
+                ni += 1
+            while pi not in allir and pi > min:
+                pi -= 1
+            next = ni
+            previous = pi
+
+        else:
+            max = allir[len(allir)-1]
+            min = allir[0]
+
+            next = max
+            previous = min
+
+            for x in range(len(numbers)):
+                if numbers[x][0] == int(irnumber):
+                    ni = x + 1
+                    pi = x - 1
+                    if ni < len(numbers) - 1:
+                        next = numbers[ni][0]
+                    else:
+                        next = max
+                    if pi > min:
+                        previous = numbers[pi][0]
+                    else:
+                        previous = min
+                    break
+            if previous < min: previous = min
+
+        print(previous," : ",next)
+
+
+
 
     types.sort(key= lambda type:type[0])
     manufact.sort(key= lambda vend:vend[0])
