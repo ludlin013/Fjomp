@@ -205,5 +205,32 @@ def delir():
 
 @app.route("/saveir",methods=["GET","POST"])
 def saveir():
-    print(request.form["ircustid"])
-    return "save"
+    irnum = request.form["saveirirn"]
+    ircust = request.form["saveircusn"]
+    opendate = request.form["saveiropendate"]
+    recvdate = request.form["saveirredate"]
+    shipdate = request.form["saveirshipdate"]
+    techid = request.form["saveirrepairid"]
+    note = request.form["saveirnotefield"]
+    ccl = request.form["saveccl"]
+    onsite = request.form["saveonsite"]
+    infreight = request.form["saveirinfreight"]
+    outfreight = request.form["saveirrefreight"]
+    closed = request.form["saveirclosed"]
+    openid = request.form["savetechid"]
+    office = request.form["saveirloc"]
+
+    if opendate != "":
+        opendate = str(datetime.datetime.strptime(opendate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+    if recvdate != "":
+        recvdate = str(datetime.datetime.strptime(recvdate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+    if shipdate != "":
+        shipdate = str(datetime.datetime.strptime(shipdate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+
+    sqlq = "UPDATE IR SET IR_custID = '" + ircust + "',IR_Opendate = '" + opendate + "',IR_Recvdate = '" + recvdate + "',IR_Shipdate = '" + shipdate + "',IR_TechID = '" + techid + "',IR_Ccl = '" + ccl + "',IR_Onsite = '" + onsite + "',IR_Notes = '" + note + "',IR_Infreight = '" + infreight + "',IR_Outfreight = '" + outfreight + "',IR_Closed = '" + closed + "',IR_OpenID = '" + openid + "',IR_Office= '" + office + "' WHERE IR_Irno = '"+ irnum +"'"
+
+    print(sqlq)
+
+    sql("INSERT",sqlq)
+
+    return redirect("/ir?ir="+str(irnum))

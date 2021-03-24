@@ -50,7 +50,7 @@
               {% endif %}
             </form>
           </div>
-          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
             <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
             <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
             <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>
@@ -79,7 +79,7 @@
         <form class="form-ir iropensign" name="form-2top-ir">
           <div class="formitem-ir"><label class="noselect">Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
           <div class="formitem-ir"><label class="noselect">Sign.:</label>
-            <select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir" >
+            <select class="forminput-ir" id="techid" style="width: 210px;" type="text" name="sign-ir" >
               <option value="{{user}}" selected hidden>{{user}}</option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
@@ -91,17 +91,17 @@
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
           <div class="formitem-ir"><label class="noselect">Arrival:</label>
-            <input type="date"  {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+            <input type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
           </div>
           <div class="formitem-ir"><label class="noselect">Sent with (freight type):</label>
-            <select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
+            <select class="forminput-ir" id="irinfreight" style="width: 210px;" type="text" name="sent-ir">
               <option value="2" selected hidden>POSTEN 16:00</option>
               {% for x in freight %}
               <option value="{{x[0]}}" {% if irinfo[10] == x[0] %}selected{% endif %}>{{x[1]}}</option>
               {% endfor %}
             </select></div>
             <div class="formitem-ir"><label class="noselect">Repair Location:</label>
-              <select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
+              <select class="forminput-ir" id="irloc" style="width: 210px;" type="text" name="repairlocation-ir">
                 {% for x in office %}
                 <option value="{{x[0]}}">{{x[1]}}</option>
                 {% endfor %}
@@ -232,20 +232,20 @@
           <div class="bottommiddle-ir">
             <form class="form-ir" name="form-ir">
               <div class="formitem-ir"><label class="noselect">Repaired by:</label>
-                <select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
+                <select class="forminput-ir" id="irrepairid" style="width: 210px;" type="text" name="repairby-ir">
                   <option value="" selected hidden></option>
                   {% for x in techs %}
                   <option value="{{x[0]}}" {% if x[0] == irinfo[5] %} selected {% endif %}>{{x[0]}}</option>
                   {% endfor %}
                 </select></div>
                 <div class="formitem-ir"><label class="noselect">Return freight:</label>
-                  <select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
+                  <select class="forminput-ir" id="irrefreight" style="width: 210px;" type="text" name="returnfreight-ir">
                     {% for x in freight %}
                     <option value="{{x[0]}}" {% if irinfo[11] == x[0] %}selected{% endif %}>{{x[1]}}</option>
                     {% endfor %}
                   </select></div>
                   <div class="formitem-ir"><label class="noselect">Return:</label>
-                    <input class="forminput-ir" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+                    <input class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
                   </form>
                 </div>
               </div>
@@ -287,14 +287,31 @@
     <a href="/newir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
     <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/delir'}" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
     <a href="/ir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
-    <a onclick="document.getElementById('custform').submit()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
+    <a onclick="saveir()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
   </div>
 </div>
 </div>
+<form action="/saveir" method="post" id="irsaveform" style="display:none">
+  <input id="saveirirn" name="saveirirn" value="">
+  <input id="saveircusn" name="saveircusn" value="">
+  <input id="saveiropendate" name="saveiropendate" value="">
+  <input id="saveirredate" name="saveirredate" value="">
+  <input id="saveirshipdate" name="saveirshipdate" value="">
+  <input id="saveirrepairid" name="saveirrepairid" value="">
+  <input id="saveirnotefield" name="saveirnotefield" value="">
+  <input name="saveccl" value="0">
+  <input name="saveonsite" value="0">
+  <input id="saveirinfreight" name="saveirinfreight" value="">
+  <input id="saveirrefreight" name="saveirrefreight" value="">
+  <input id="saveirclosed" name="saveirclosed" value="">
+  <input id="savetechid" name="savetechid" value="">
+  <input id="saveirloc" name="saveirloc" value="">
+</form>
 </body>
+<script src="/static/saveir.js"></script>
 <script>
 if (document.getElementById('iropendate').valueAsDate == null){
   document.getElementById('iropendate').valueAsDate = new Date();
