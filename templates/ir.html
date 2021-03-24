@@ -23,7 +23,7 @@
     <h1 class="noselect">IR</h1>
     <div class="toppage-ir">
       <div class="toppageleft-ir">
-        <form class="form-ir iridform" name="form-top-ir">
+        <form class="form-ir iridform" action="/saveir" method="POST" name="form-top-ir">
           <div class="ircustid">
             <form class="" action="" method="get">
               <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
@@ -35,11 +35,22 @@
             <script>
             document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
             </script>
-            <form class="" action="" method="post">
-              <div class="formitem-ir"><label class="noselect">Cust.:</label><input id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+            <form action="" method="post" id="custform">
+              <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+              {% if customers !=  []%}
+              <div class="irdropblack" onclick="window.location.replace('/ir')">
+            </div>
+              <div class="ircustdrop">
+                 {% for x in customers %}
+                 <div onclick="document.getElementById('ircusn').value='{{x["id"].strip()}}';document.getElementById('custform').submit()">
+                 <p>{{x["id"]}}</p><p>{{x["name"]}}</p>
+               </div>
+                 {% endfor %}
+              </div>
+              {% endif %}
             </form>
           </div>
-          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
             <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
             <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
             <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>
@@ -50,9 +61,9 @@
       </div>
       <div class="toppageright2-ir">
         <form class="form-ir formnazc" name="form-top-ir3">
-          <div class="formitem-ir"><label class="noselect">Name:</label><input class="forminput-ir" type="text" value="{{customer[2].strip()}}"></div>
-          <div class="formitem-ir"><label class="noselect">Address:</label><input class="forminput-ir" type="text" value="{{customer[3].strip()}}"></div>
-          <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
+          <div class="formitem-ir"><label class="noselect">Name:</label><input readonly class="forminput-ir" type="text" value="{{customer[2].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Address:</label><input readonly class="forminput-ir" type="text" value="{{customer[3].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input readonly id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input readonly id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
         </form>
       </div>
       <div class="toppageright-ir">
@@ -66,9 +77,9 @@
     <div class="toppage2-ir">
       <div class="2toppageleft-ir">
         <form class="form-ir iropensign" name="form-2top-ir">
-          <div class="formitem-ir"><label>Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
-          <div class="formitem-ir"><label>Sign.:</label>
-            <select class="forminput-ir" style="width: 210px;" type="text" name="sign-ir" >
+          <div class="formitem-ir"><label class="noselect">Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
+          <div class="formitem-ir"><label class="noselect">Sign.:</label>
+            <select class="forminput-ir" id="techid" style="width: 210px;" type="text" name="sign-ir" >
               <option value="{{user}}" selected hidden>{{user}}</option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
@@ -79,18 +90,18 @@
       </div>
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
-          <div class="formitem-ir"><label>Arrival:</label>
-            <input type="date"  {% if found%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+          <div class="formitem-ir"><label class="noselect">Arrival:</label>
+            <input type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
           </div>
-          <div class="formitem-ir"><label>Sent with (freight type):</label>
-            <select class="forminput-ir" style="width: 210px;" type="text" name="sent-ir">
+          <div class="formitem-ir"><label class="noselect">Sent with (freight type):</label>
+            <select class="forminput-ir" id="irinfreight" style="width: 210px;" type="text" name="sent-ir">
               <option value="2" selected hidden>POSTEN 16:00</option>
               {% for x in freight %}
               <option value="{{x[0]}}" {% if irinfo[10] == x[0] %}selected{% endif %}>{{x[1]}}</option>
               {% endfor %}
             </select></div>
-            <div class="formitem-ir"><label>Repair Location:</label>
-              <select class="forminput-ir" style="width: 210px;" type="text" name="repairlocation-ir">
+            <div class="formitem-ir"><label class="noselect">Repair Location:</label>
+              <select class="forminput-ir" id="irloc" style="width: 210px;" type="text" name="repairlocation-ir">
                 {% for x in office %}
                 <option value="{{x[0]}}">{{x[1]}}</option>
                 {% endfor %}
@@ -100,7 +111,7 @@
         </div>
         <div class="2toppagemiddle-ir">
           <form class="form-ir" name="form-2top-ir">
-            <div class="formitem-ir irnotediv"><label>Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
+            <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
           </form>
         </div>
       </div>
@@ -169,8 +180,8 @@
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
           <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
-            <div class="formitem-ir"><label>Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
-            <div class="formitem-ir"><label>Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
+            <div class="formitem-ir"><label class="noselect">Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+            <div class="formitem-ir"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
           </form>
           {% endfor %}
         </div>
@@ -220,21 +231,21 @@
           </div>
           <div class="bottommiddle-ir">
             <form class="form-ir" name="form-ir">
-              <div class="formitem-ir"><label>Repaired by:</label>
-                <select class="forminput-ir" style="width: 210px;" type="text" name="repairby-ir">
+              <div class="formitem-ir"><label class="noselect">Repaired by:</label>
+                <select class="forminput-ir" id="irrepairid" style="width: 210px;" type="text" name="repairby-ir">
                   <option value="" selected hidden></option>
                   {% for x in techs %}
                   <option value="{{x[0]}}" {% if x[0] == irinfo[5] %} selected {% endif %}>{{x[0]}}</option>
                   {% endfor %}
                 </select></div>
-                <div class="formitem-ir"><label>Return freight:</label>
-                  <select class="forminput-ir" style="width: 210px;" type="text" name="returnfreight-ir">
+                <div class="formitem-ir"><label class="noselect">Return freight:</label>
+                  <select class="forminput-ir" id="irrefreight" style="width: 210px;" type="text" name="returnfreight-ir">
                     {% for x in freight %}
                     <option value="{{x[0]}}" {% if irinfo[11] == x[0] %}selected{% endif %}>{{x[1]}}</option>
                     {% endfor %}
                   </select></div>
-                  <div class="formitem-ir"><label>Return:</label>
-                    <input class="forminput-ir" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+                  <div class="formitem-ir"><label class="noselect">Return:</label>
+                    <input class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
                   </form>
                 </div>
               </div>
@@ -267,23 +278,40 @@
   <a href="/ir?ir={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
   <a href="/ir?ir={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
   <div class="nextdateno">
-    <div class="noselect" onclick="document.getElementById('irsortdate').checked = true;document.cookie = 'irsort = date; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label>Date order</label><input id="irsortdate" type="radio" name="nexttype" {% if sortmode == "date" or sortmode == None %}checked{% endif %}></div>
-    <div class="noselect" onclick="document.getElementById('irsortno').checked = true;document.cookie = 'irsort = no; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label>IR #</label><input id="irsortno" type="radio" name="nexttype" {% if sortmode == "no" %} checked {% endif %}></div>
+    <div class="noselect" onclick="document.getElementById('irsortdate').checked = true;document.cookie = 'irsort = date; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">Date order</label><input id="irsortdate" type="radio" name="nexttype" {% if sortmode == "date" or sortmode == None %}checked{% endif %}></div>
+    <div class="noselect" onclick="document.getElementById('irsortno').checked = true;document.cookie = 'irsort = no; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">IR #</label><input id="irsortno" type="radio" name="nexttype" {% if sortmode == "no" %} checked {% endif %}></div>
   </div>
   </div>
   <div class="ircontrolbuttons">
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
+    <a href="/newir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
+    <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/delir'}" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
+    <a href="/ir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
+    <a onclick="saveir()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
   </div>
 </div>
 </div>
+<form action="/saveir" method="post" id="irsaveform" style="display:none">
+  <input id="saveirirn" name="saveirirn" value="">
+  <input id="saveircusn" name="saveircusn" value="">
+  <input id="saveiropendate" name="saveiropendate" value="">
+  <input id="saveirredate" name="saveirredate" value="">
+  <input id="saveirshipdate" name="saveirshipdate" value="">
+  <input id="saveirrepairid" name="saveirrepairid" value="">
+  <input id="saveirnotefield" name="saveirnotefield" value="">
+  <input name="saveccl" value="0">
+  <input name="saveonsite" value="0">
+  <input id="saveirinfreight" name="saveirinfreight" value="">
+  <input id="saveirrefreight" name="saveirrefreight" value="">
+  <input id="saveirclosed" name="saveirclosed" value="">
+  <input id="savetechid" name="savetechid" value="">
+  <input id="saveirloc" name="saveirloc" value="">
+</form>
 </body>
+<script src="/static/saveir.js"></script>
 <script>
 if (document.getElementById('iropendate').valueAsDate == null){
   document.getElementById('iropendate').valueAsDate = new Date();

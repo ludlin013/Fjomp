@@ -115,7 +115,7 @@ def ir():
                 pi -= 1
             if next < max:
                 next = ni
-                
+
             previous = pi
 
         else:
@@ -150,9 +150,34 @@ def ir():
     models.sort(key= lambda model:model[1])
     techs.sort(key= lambda tech:tech[0])
 
+    customers = []
 
-    return render_template("ir.html",theme=theme,notheme=notheme,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    if request.method == 'POST':
+        custid = request.form["ircustid"]
 
+        allcustomer = sql("SELECT","SELECT * FROM Customers")
+
+        for x in allcustomer:
+            if custid.lower() == x[0].lower().strip():
+                customer = x
+                customers = []
+                break
+
+            elif custid.lower() in x[0].lower():
+                Dict = {}
+
+                Dict["id"] = x[0]
+                Dict["name"] = x[2]
+                Dict["address"] = x[3]
+                Dict["zip"] = x[5]
+                Dict["city"] = x[6]
+                Dict["owner"] = x[9]
+                Dict["phone"] = x[10]
+
+                customers.append(Dict)
+                customer[0] = custid
+
+    return render_template("ir.html",theme=theme,notheme=notheme,customers=customers,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/newir",methods=["GET","POST"])
 def newir():
@@ -168,5 +193,44 @@ def newir():
     #print("INSERT INTO IR (IR_Irno,IR_Opendate) VALUES ('" + newir + "','"+ str(datetime.datetime.now()) +"')")
 
     sql("INSERT","INSERT INTO IR (IR_Irno,IR_Opendate) VALUES ('" + newir + "','"+ datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") +"')")
-    #return "yes"
+
     return redirect("/ir?ir="+newir)
+
+@app.route("/delir",methods=["GET","POST"])
+def delir():
+    lastir = request.cookies.get("lastir")
+    sql("INSERT", "DELETE FROM IR WHERE IR_Irno = '" + lastir + "'")
+
+    return redirect("/ir?ir="+str(int(lastir)-1))
+
+@app.route("/saveir",methods=["GET","POST"])
+def saveir():
+    irnum = request.form["saveirirn"]
+    ircust = request.form["saveircusn"]
+    opendate = request.form["saveiropendate"]
+    recvdate = request.form["saveirredate"]
+    shipdate = request.form["saveirshipdate"]
+    techid = request.form["saveirrepairid"]
+    note = request.form["saveirnotefield"]
+    ccl = request.form["saveccl"]
+    onsite = request.form["saveonsite"]
+    infreight = request.form["saveirinfreight"]
+    outfreight = request.form["saveirrefreight"]
+    closed = request.form["saveirclosed"]
+    openid = request.form["savetechid"]
+    office = request.form["saveirloc"]
+
+    if opendate != "":
+        opendate = str(datetime.datetime.strptime(opendate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+    if recvdate != "":
+        recvdate = str(datetime.datetime.strptime(recvdate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+    if shipdate != "":
+        shipdate = str(datetime.datetime.strptime(shipdate+" 00:00:00.00", '%Y-%m-%d %H:%M:%S.%f'))
+
+    sqlq = "UPDATE IR SET IR_custID = '" + ircust + "',IR_Opendate = '" + opendate + "',IR_Recvdate = '" + recvdate + "',IR_Shipdate = '" + shipdate + "',IR_TechID = '" + techid + "',IR_Ccl = '" + ccl + "',IR_Onsite = '" + onsite + "',IR_Notes = '" + note + "',IR_Infreight = '" + infreight + "',IR_Outfreight = '" + outfreight + "',IR_Closed = '" + closed + "',IR_OpenID = '" + openid + "',IR_Office= '" + office + "' WHERE IR_Irno = '"+ irnum +"'"
+
+    print(sqlq)
+
+    sql("INSERT",sqlq)
+
+    return redirect("/ir?ir="+str(irnum))
