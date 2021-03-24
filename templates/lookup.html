@@ -25,8 +25,8 @@
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
           <form class="form-lookup" name="form-topleftpage-lookup" method="POST" action="">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text" name="lookupnumname"><input class="forminput-lookup" id="inputpartname" type="text" readonly></div>
-            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text" name="lookserial"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio"><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio"><label>Part off</label></div>
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}"><input class="forminput-lookup" id="inputpartname" type="text" value="{{partname[0][0]}}" readonly></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text" name="lookserial"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" checked><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff"><label>Part off</label></div>
             <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="text"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="text"></div>
         </div>
       </div>
@@ -53,60 +53,17 @@
               </tr>
             </thead>
             <tbody class="whatabody-lookup">
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
+              {% for x in lookupdata %}
+              <tr class="row-lookup" onclick="window.location.href='{{x["url"]}}'">
+                <td class="thtype-lookup">{{x["type"]}}</td>
+                <td class="thref-lookup">{{x["ref"]}}</td>
+                <td class="thcustid-lookup">{{x["customerID"]}}</td>
+                <td class="thcustname-lookup">{{x["customerName"]}}</td>
+                <td class="thdate-lookup">{{x["date"]}}</td>
+                <td class="thserial-lookup">{{x["serial"]}}</td>
                 <td class="thmodel-lookup">PEN</td>
               </tr>
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
-                <td class="thmodel-lookup">PEN</td>
-              </tr>
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
-                <td class="thmodel-lookup">PEN</td>
-              </tr>
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
-                <td class="thmodel-lookup">PEN</td>
-              </tr>
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
-                <td class="thmodel-lookup">PEN</td>
-              </tr>
-              <tr class="row-lookup" onclick="">
-                <td class="thtype-lookup">PEN</td>
-                <td class="thref-lookup">PEN</td>
-                <td class="thcustid-lookup">PEN</td>
-                <td class="thcustname-lookup">PEN</td>
-                <td class="thdate-lookup">PEN</td>
-                <td class="thserial-lookup">PEN</td>
-                <td class="thmodel-lookup">PEN</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
           </div>
