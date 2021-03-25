@@ -203,6 +203,19 @@ def delir():
 
     return redirect("/ir?ir="+str(int(lastir)-1))
 
+@app.route("/newunit/<a>",methods=["GET","POST"])
+def newunit(a):
+
+    lastir = request.cookies.get("lastir")
+
+
+    sqlq = "INSERT INTO WO VALUES ('" + a + "','" + str(lastir) + "','0','','','','','','',NULL,NULL,NULL,'0','','','','0','')"
+
+    sql("INSERT",sqlq)
+    print(sqlq)
+    #return "newunit"
+    return redirect("/ir?ir="+str(lastir))
+
 @app.route("/saveir",methods=["GET","POST"])
 def saveir():
     irnum = request.form["saveirirn"]
