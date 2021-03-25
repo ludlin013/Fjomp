@@ -33,8 +33,8 @@
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
           <form class="form-lookup" id="hughe-form" name="form-topleftpage-lookup" method="POST" action="">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}"><input class="forminput-lookup" id="inputpartname" type="text" {% if partname != "" %}value="{{partname[0][0]}}"{% endif %} readonly></div>
-            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text" name="lookupserial"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" checked><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff"><label>Part off</label></div>
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"><input class="forminput-lookup" id="inputpartname" type="text" {% if partname != "" %}value="{{partname[0][0]}}"{% endif %} readonly></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" onfocus="document.getElementById('lookupnumname').value = ''"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" checked><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff"><label>Part off</label></div>
             <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="text"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="text"></div>
         </div>
       </div>
