@@ -19,8 +19,10 @@ function hamburger(){
     bot.style.left = "19px";
 
     dim.style.display = "block";
-    dim.style.opacity = ".5";
     document.body.style.overflow = "hidden"
+    setTimeout(function(){
+      dim.style.opacity = ".5";
+    },50);
 
     x = false
   }else{

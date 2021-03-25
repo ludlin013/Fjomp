@@ -114,7 +114,6 @@ body{
     height:5px;
     transition-duration: .2s;
     width:40px;;
-    background: #fff;
     border-radius: 4px;
     overflow: hidden;
     display: block;
@@ -126,7 +125,7 @@ body{
     top:16px;
   }
   #hammid{
-    top:calc(50% - 2.5px)
+    top:calc(50% - 2px)
   }
   #hambot{
     transform-origin: left;

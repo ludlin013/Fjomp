@@ -140,3 +140,11 @@ table, td, th {
 ::-webkit-scrollbar-thumb:hover {
   background: #999;
 }
+
+.hamham div{
+  background: #222;
+}
+
+.mobilehead{
+  background:#fff
+}
