@@ -98,7 +98,7 @@
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
           <div class="formitem-ir"><label class="noselect">Arrival:</label>
-            <input type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+            <input ondblclick="setday(irredate)" type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
           </div>
           <div class="formitem-ir"><label class="noselect">Sent with (freight type):</label>
             <select class="forminput-ir" id="irinfreight" style="width: 210px;" type="text" name="sent-ir">
@@ -252,7 +252,7 @@
                     {% endfor %}
                   </select></div>
                   <div class="formitem-ir"><label class="noselect">Return:</label>
-                    <input class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+                    <input ondblclick="setday(irshipdate)" class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
                   </form>
                 </div>
               </div>
