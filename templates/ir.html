@@ -23,7 +23,6 @@
     <h1 class="noselect">IR</h1>
     <div class="toppage-ir">
       <div class="toppageleft-ir">
-        <form class="form-ir iridform" action="/saveir" method="POST" name="form-top-ir">
           <div class="ircustid">
             <form class="" action="" method="get">
               <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
@@ -57,7 +56,7 @@
             <option value="4" {% if irinfo[12] == 4%} selected {% endif %}>Finished</option>
             <option value="1"  {% if irinfo[12] == 1%} selected {% endif %}>Returned</option>
           </select></div>
-        </form>
+
       </div>
       <div class="toppageright2-ir">
         <form class="form-ir formnazc" name="form-top-ir3">

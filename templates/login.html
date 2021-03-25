@@ -18,8 +18,8 @@
           <img id="fi" class="flag" src="./static/pictures/flags/fi.png">
         </div>
         <form class="loginform" action="" method="post" autocomplete="off">
-          <input class="field" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
-          <input class="field" type="text" style="text-security:disc; -webkit-text-security:disc;" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
+          <input class="field" autocapitalize="off" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
+          <input class="field" autocapitalize="off" type="text" style="text-security:disc; -webkit-text-security:disc;" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
           <input class="field" type="submit" id="submit" name="submit" value="Log in">
           {%if error%}
           <p style="color:red;font-size:12px;padding:4px 2px">{{error}}</p>

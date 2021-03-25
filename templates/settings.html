@@ -10,6 +10,14 @@
     <link rel="icon" href="./static/pictures/icon.ico">
   </head>
   <body>
+    <div class="mobilehead" style="display:none;z-index:100000;">
+      <div class="hamham" onclick="hamburger()" >
+        <div id="hamtop"></div>
+        <div id="hammid"></div>
+        <div id="hambot"></div>
+      </div>
+      <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+    </div>
     <div class="navin">
       <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
       <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
@@ -187,13 +195,13 @@
 </div>
 {%endif%}
 
+    <script src="/static/mobile.js"></script>
     <script>
       if(document.cookie.includes("branch")){
         var cookies = document.cookie.split(";");
         for(var cookie of cookies){
           if(cookie.includes("branch")){
             var branch = cookie.replace("branch=","");
-            console.log(branch);
             document.getElementById("langsel").innerHTML = branch;
             document.getElementById(branch.trim()).style.display = "none";
         }
@@ -207,7 +215,6 @@
         for(var cookie of cookies){
           if(cookie.includes("sp")){
             var sp = cookie.replace("sp=","");
-            console.log(branch);
             document.getElementById("spsel").innerHTML = sp.slice(0,2).toUpperCase() + sp.slice(2);
             document.getElementById(sp.trim()).style.display = "none";
         }
@@ -226,7 +233,6 @@
 
       var theme = "{{theme}}";
       if(theme=="dark"){
-        console.log(theme);
       }else if(theme=="light"){
       }
       log();
@@ -246,7 +252,6 @@
     }
 
     function technewuser(){
-      console.log("newuser");
 
       var parent = document.getElementById("techuserform");
 

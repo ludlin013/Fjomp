@@ -2,6 +2,7 @@
   margin:0;
   padding:0;
   font-family: verdana;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 body{
@@ -84,8 +85,9 @@ body{
 
 @media only screen and (max-width: 600px){
   body{
-    padding-top:60px;
+    padding-top:30px;
     padding-left:0;
+    overflow-x: hidden;
   }
 
   .navin{
@@ -98,7 +100,59 @@ body{
 
   .navin:hover{
     transition-duration: .25s;
-    max-width: 80vw
+    max-width: 60vw
+  }
+
+  .hamham{
+    height:30px;
+    width:40px;
+    padding:10px 5px;
+    margin-left: 10px;
+  }
+
+  .hamham div{
+    height:5px;
+    transition-duration: .2s;
+    width:40px;;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+  }
+
+  #hamtop{
+    transform-origin: left;
+    top:16px;
+  }
+  #hammid{
+    top:calc(50% - 2.5px)
+  }
+  #hambot{
+    transform-origin: left;
+    top:40px;
+  }
+
+  #menudim{
+    position: fixed;
+    width:100vw;
+    height: 100vh;
+    top:60px;
+    left:0;
+    background: #000;
+    transition-duration: .2s
+  }
+
+
+  .mobilehead{
+    display:flex!important;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width:700px;
+    height:60px;
+    background:rgb(40,40,40)
   }
 
 }
