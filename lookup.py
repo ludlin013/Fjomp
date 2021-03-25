@@ -49,10 +49,13 @@ def lookup():
     looknumname = ""
     lookserial = ""
     lookupdata = []
+    delivnote_result = []
+    irparts_result = []
     unitsfile_results = None
     unitshistory_results = None
     sentswap_results = []
     returnedswap_results = []
+
 
     if request.method == 'POST':
         looknumname = request.form["lookupnumname"]
@@ -95,6 +98,8 @@ def lookup():
 
 
         partname = sql("SELECT", "SELECT Part_Part FROM Parts WHERE Part_Partno ='"+looknumname+"' OR Part_Part = '"+looknumname+"'")
+        if partname == []:
+            partname = [["Nothing found"]]
 
         allcust = sql("SELECT", "SELECT Cust_CustID,Cust_Name FROM Customers")
         cust = {}
