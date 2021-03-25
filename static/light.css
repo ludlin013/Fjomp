@@ -32,6 +32,11 @@ body{
   border-right: 1px solid #eee;
 }
 
+input,select{
+  background: #fff
+}
+
+
 .navitemin{
   border-top:1px solid #ddd;
   color:black
