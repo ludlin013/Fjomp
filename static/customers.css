@@ -54,11 +54,11 @@ h1{
 
 .ho-customers{
   margin-left: 10px;
-  width: 75px !important;
+  width: 65px !important;
 }
 
 .phone-customers, .opendate-customers, .instdate-customers, .closeddate-customers{
-  width: 110px;
+  width: 102px;
 }
 
 #checkdt{
@@ -116,4 +116,59 @@ table {
 
 .buttonbarpic-customers{
   width: 40px;
+}
+
+@media only screen and (max-width: 1000px){
+
+  .toppage-customers{
+    flex-direction: column;
+  }
+
+  .rightpage-customers{
+    margin-left: 0px;
+    margin-top: 0px;
+  }
+
+  h1{
+    margin-left: -5px;
+  }
+
+  .mainwrapcustomers{
+    margin-left: -45px;
+  }
+
+  .forminput-customers{
+    max-width: 100px;
+  }
+
+  .list-customers{
+    width: 230px !important;
+    overflow-x:scroll;
+  }
+
+  .buttonsbar-item-customers{
+    margin: 5px;
+    font-size: 10px;
+  }
+
+  .ho-customers{
+    margin-left: 5px;
+  }
+
+  .cust-customers, .ho-customers, .name-customers, .address-customers, .zipcity-customers, .pricegroup-customers{
+    width: 70px;
+  }
+
+  .phone-customers, .opendate-customers, .instdate-customers, .closeddate-customers{
+    width: 70px;
+  }
+
+  #checkdt{
+    margin-left: 80px;
+  }
+
+  #checkwt{
+  margin-left: 20px;
+  }
+
 }
