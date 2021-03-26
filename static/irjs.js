@@ -3,7 +3,7 @@ var allrepact = document.getElementsByClassName('irrepact');
 for (x of allrepact){
   x.style.display = "none";
 }
-allrepact[0].style.display = "block";
+allrepact[0].style.display = "flex";
 
 
 function update(inf){
@@ -23,7 +23,7 @@ function changerepact(idd){
     x.style.display = "none";
   }
   for (x of document.getElementsByClassName(idd)){
-    x.style.display = "block"
+    x.style.display = "flex"
 }
 }
 

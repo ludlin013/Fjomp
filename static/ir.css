@@ -52,7 +52,7 @@ label{
 }
 
 textarea{
-  padding:10px;
+  padding:5px;
   resize: none
 }
 
@@ -137,6 +137,29 @@ textarea{
   display: flex;
   flex-direction: column;
   margin-top: 0
+}
+
+.repdiv{
+  margin-left: 60px
+}
+
+.reporttextarea{
+  width:233px!important
+}
+
+.irrepact{
+  display: flex;
+  padding:10px 0 0 10px
+}
+
+.irrepact label{
+  width:160px
+}
+
+.actiontextarea,
+.reporttextarea{
+  width:250px;
+  height:80px
 }
 
 .irownph div{

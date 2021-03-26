@@ -121,7 +121,7 @@
             <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
           </form>
             {% for n in wo %}
-              <div class="formitem-ir irrepact {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+              <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
             {% endfor %}
         </div>
       </div>
@@ -189,9 +189,7 @@
 
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
-          <form class="form-ir irrepact {{wo.index(n)}}repact" name="form-middle-ir" id="{{wo.index(n)}}repact">
-            <div class="formitem-ir"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
-          </form>
+            <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" type="text" >{{n[8]}}</textarea></div>
           {% endfor %}
         </div>
       </div>

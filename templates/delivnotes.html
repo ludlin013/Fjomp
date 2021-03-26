@@ -79,12 +79,10 @@
             <div class="formitem-delivnotes"><label>Price group:</label>
               <div>
                 <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
-                  <option value=""></option>
                   {% for x in Dict["pricegroup"]%}
-                  <option value="{{x}}"{% if Dict["DN_Pricegroup"] == x %}selected{% endif %}>{{x}}</option>
+                  <option value="{{x}}"{% if Dict["DN_Pricegroup"] == x %}selected{% endif %}>{{x}}: {{Dict["pricegroup"][x]}}</option>
                   {% endfor %}
                 </select id="inputname" class="forminput-delivnotes2" type="text">
-                <input class="forminput-delivnotes2" type="text" value="{{Dict["pricegroup"][Dict["DN_Pricegroup"]]}}">
               </div>
             </div>
           </form>

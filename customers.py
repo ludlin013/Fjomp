@@ -52,6 +52,8 @@ def customers():
     customers = ["" for x in range(35)]
     pricegroups = sql("SELECT","SELECT * FROM Pricegroups")
 
+    pricegroups.sort(key = lambda x:x[0])
+
     if customer != None:
 
         customers = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + customer + "'")[0]
