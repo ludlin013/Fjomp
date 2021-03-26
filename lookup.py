@@ -50,6 +50,7 @@ def lookup():
     looknumname = ""
     lookserial = ""
     current_date = datetime.now().date()
+    date = datetime(1900,1,1).date()
     rbball = "exact"
 
     btwdate1 = datetime(2010, 1, 1).date()
@@ -152,7 +153,11 @@ def lookup():
 
         if checked_delivnotes == "1":
             for x in delivnote_result:
-                if btwdate1 < x[4].date() < btwdate2:
+                date = datetime(1900,1,1).date()
+                if x[4].date() != None:
+                    print("HELLO")
+                    date = x[4].date()
+                if btwdate1 < date < btwdate2:
                     Dict = {}
                     Dict["url"] = "/delivnotes?dn="+str(x[1])
                     Dict["type"] = "Deliverynote"
@@ -171,14 +176,19 @@ def lookup():
                         Dict["date_check"] = x[4].date()
 
                     else:
-                        Dict["date_check"] = datetime.date(1900,1,1)
+                        Dict["date_check"] = datetime(1900,1,1).date()
 
                     lookupdata.append(Dict)
 
 
         if checked_irparts == "1":
             for x in irparts_result:
-                if btwdate1 < x[10].date() < btwdate2:
+                date = datetime(1900,1,1).date()
+                if x[10].date() != None:
+                    print("HELLO")
+                    date = x[10].date()
+                if btwdate1 < date < btwdate2:
+                    print([x])
                     Dict = {}
                     Dict["url"] = "/ir?ir="+str(x[1])
                     Dict["type"] = "IR Parts Used"
@@ -197,14 +207,18 @@ def lookup():
                         Dict["date_check"] = x[10].date()
 
                     else:
-                        Dict["date_check"] = datetime.date(1900,1,1)
+                        Dict["date_check"] = datetime(1900,1,1).date()
 
                     lookupdata.append(Dict)
 
 
         if checked_sent_swapout == "1":
             for x in sentswap_results:
-                if btwdate1 < x[3] < btwdate2:
+                date = datetime(1900,1,1).date()
+                if x[3] != None:
+                    print("HELLO")
+                    date = x[3]
+                if btwdate1 < date < btwdate2:
                     Dict = {}
                     Dict["url"] = "/swapouts?so="+str(x[1])
                     Dict["type"] = "Sent-Swapouts"
@@ -223,14 +237,18 @@ def lookup():
                         Dict["date_check"] = x[3]
 
                     else:
-                        Dict["date_check"] = datetime.date(1900,1,1)
+                        Dict["date_check"] = datetime(1900,1,1).date()
 
                     lookupdata.append(Dict)
 
 
         if checked_returned_swapout == "1":
             for x in returnedswap_results:
-                if btwdate1 < x[3] < btwdate2:
+                date = datetime(1900,1,1).date()
+                if x[3] != None:
+                    print("HELLO")
+                    date = x[3]
+                if btwdate1 < date < btwdate2:
                     Dict = {}
                     Dict["url"] = "/swapouts?so="+str(x[1])
                     Dict["type"] = "Returned-Swapouts"
@@ -249,7 +267,7 @@ def lookup():
                         Dict["date_check"] = x[3]
 
                     else:
-                        Dict["date_check"] = datetime.date(1900,1,1)
+                        Dict["date_check"] = datetime(1900,1,1).date()
 
                     lookupdata.append(Dict)
 
@@ -257,7 +275,11 @@ def lookup():
         if checked_unit_file == "1":
             if unitsfile_results != None:
                 for x in unitsfile_results:
-                    if btwdate1 < x[6] < btwdate2:
+                    date = datetime(1900,1,1).date()
+                    if x[6] != None:
+                        print("HELLO")
+                        date = x[6]
+                    if btwdate1 < date < btwdate2:
                         Dict = {}
                         Dict["url"] = "/"
                         Dict["type"] = "Unit-File"
@@ -276,7 +298,7 @@ def lookup():
                             Dict["date_check"] = x[6]
 
                         else:
-                            Dict["date_check"] = datetime.date(1900,1,1)
+                            Dict["date_check"] = datetime(1900,1,1).date()
 
                         lookupdata.append(Dict)
 
@@ -284,7 +306,11 @@ def lookup():
         if checked_unit_history == "1":
             if unitshistory_results != None:
                 for x in unitshistory_results:
-                    if btwdate1 < x[6] < btwdate2:
+                    date = datetime(1900,1,1).date()
+                    if x[6] != None:
+                        print("HELLO")
+                        date = x[6]
+                    if btwdate1 < date < btwdate2:
                         Dict = {}
                         Dict["url"] = "/"
                         Dict["type"] = "Unit-History"
@@ -302,7 +328,7 @@ def lookup():
                         if x[6] != None:
                             Dict["date_check"] = x[6]
                         else:
-                            Dict["date_check"] = datetime.date(1900,1,1)
+                            Dict["date_check"] = datetime(1900,1,1).date()
 
                         lookupdata.append(Dict)
 
