@@ -32,23 +32,76 @@
     <div class="toppage-lookup">
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
-          <form class="form-lookup" name="form-topleftpage-lookup" method="POST" action="">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}"><input class="forminput-lookup" id="inputpartname" type="text" {% if partname != "" %}value="{{partname[0][0]}}"{% endif %} readonly></div>
-            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input class="forminput-lookup" type="text" name="lookupserial"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" checked><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff"><label>Part off</label></div>
-            <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="text"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="text"></div>
+          <form class="form-lookup" id="hughe-form" name="form-topleftpage-lookup" method="POST" action="">
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" value="{{lookserial}}" onfocus="document.getElementById('lookupnumname').value = ''"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" {% if rbball == "exact" %}checked{% endif %}><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff" {% if rbball == "partoff" %}checked{% endif %}><label>Part off</label></div>
+            <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="date" name="btwdate1" value="{{btwdate1}}"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="date" name="btwdate2" value="{{btwdate2}}"></div>
         </div>
       </div>
       <div class="middlepage-lookup">
         <div class="middlepage-lookup">
           <div class="form-lookup">
             <div class="show-lookup"><label>Show:</label></div>
-            <div class="delivnotes-lookup"><label><input class="forminput-lookup" type="checkbox" name="delivnotes_check" value="1">Deliv. Notes</label></div>
-            <div class="ir-lookup"><label><input class="forminput-lookup" type="checkbox" name="ir_check" value="1">IR</label></div>
-            <div class="irparts-lookup"><label><input class="forminput-lookup" type="checkbox" name="irparts_check" value="1">IR-Parts</label></div>
-            <div class="sentswapout-lookup"><label><input class="forminput-lookup" type="checkbox" name="sent_swapout_check" value="1">Sent Swap-outs</label></div>
-            <div class="returnswapout-lookup"><input class="forminput-lookup" type="checkbox" name="returned_swapout_check" value="1"><label>Returned Swap-Outs</label></div>
-            <div class="unitsfile-lookup"><input class="forminput-lookup" type="checkbox" name="unit_file_check" value="1"><label>Units File</label></div>
-            <div class="unitshistory-lookup"><label><input class="forminput-lookup" type="checkbox" name="unit_history_check" value="1">Units History</label><input type="submit" style="display: none;"></div>
+            <div class="delivnotes-lookup"><label onclick="document.cookie = 'dn_checked='+document.getElementById('dn_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="dn_lu_id" type="checkbox" name="delivnotes_check" value="1">Deliv. Notes</label></div>
+            <div class="ir-lookup"><label onclick="document.cookie = 'ir_checked='+document.getElementById('ir_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="ir_lu_id" type="checkbox" name="ir_check" value="1">IR</label></div>
+            <div class="irparts-lookup"><label onclick="document.cookie = 'irpart_checked='+document.getElementById('irpart_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="irpart_lu_id" type="checkbox" name="irparts_check" value="1">IR-Parts</label></div>
+            <div class="sentswapout-lookup"><label onclick="document.cookie = 'sntswp_checked='+document.getElementById('sntswp_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="sntswp_lu_id" type="checkbox" name="sent_swapout_check" value="1">Sent Swap-outs</label></div>
+            <div class="returnswapout-lookup"><label onclick="document.cookie = 'rtnswp_checked='+document.getElementById('rtnswp_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="rtnswp_lu_id" type="checkbox" name="returned_swapout_check" value="1">Returned Swap-Outs</label></div>
+            <div class="unitsfile-lookup"><label onclick="document.cookie = 'unifle_checked='+document.getElementById('unifle_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="unifle_lu_id" type="checkbox" name="unit_file_check" value="1">Units File</label></div>
+            <div class="unitshistory-lookup"><label onclick="document.cookie = 'unihis_checked='+document.getElementById('unihis_lu_id').checked; document.getElementById('hughe-form').submit()"><input class="forminput-lookup" id="unihis_lu_id" type="checkbox" name="unit_history_check" value="1">Units History</label><input type="submit" style="display: none;"></div>
+            <script>
+            function getCookie(cname) {
+              var name = cname + "=";
+              var decodedCookie = decodeURIComponent(document.cookie);
+              var ca = decodedCookie.split(';');
+              for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+                }
+              }
+              return "";
+            }
+            var dn_var = getCookie("dn_checked")
+            var ir_var = getCookie("ir_checked")
+            var irpart_var = getCookie("irpart_checked")
+            var sntswp_var = getCookie("sntswp_checked")
+            var rtnswp_var = getCookie("rtnswp_checked")
+            var unifle_var = getCookie("unifle_checked")
+            var unihis_var = getCookie("unihis_checked")
+
+            if (dn_var == "true"){
+              document.getElementById("dn_lu_id").checked = true;
+            }
+
+            if (ir_var == "true"){
+              document.getElementById("ir_lu_id").checked = true;
+            }
+
+            if (irpart_var == "true"){
+              document.getElementById("irpart_lu_id").checked = true;
+            }
+
+            if (sntswp_var == "true"){
+              document.getElementById("sntswp_lu_id").checked = true;
+            }
+
+            if (rtnswp_var == "true"){
+              document.getElementById("rtnswp_lu_id").checked = true;
+            }
+
+            if (unifle_var == "true"){
+              document.getElementById("unifle_lu_id").checked = true;
+            }
+
+            if (unihis_var == "true"){
+              document.getElementById("unihis_lu_id").checked = true;
+            }
+
+            </script>
           </form>
         </div>
       </div>
@@ -63,7 +116,6 @@
                 <th class="thcustname-lookup">Cust. Name:</th>
                 <th class="thdate-lookup">Date:</th>
                 <th class="thserial-lookup">Serial:</th>
-                <th class="thmodel-lookup">Model:</th>
               </tr>
             </thead>
             <tbody class="whatabody-lookup">
@@ -73,9 +125,8 @@
                 <td class="thref-lookup">{{x["ref"]}}</td>
                 <td class="thcustid-lookup">{{x["customerID"]}}</td>
                 <td class="thcustname-lookup">{{x["customerName"]}}</td>
-                <td class="thdate-lookup">{{x["date"]}}</td>
+                <td class="thdate-lookup">{{x["date_check"]}}</td>
                 <td class="thserial-lookup">{{x["serial"]}}</td>
-                <td class="thmodel-lookup">---</td>
               </tr>
               {% endfor %}
             </tbody>

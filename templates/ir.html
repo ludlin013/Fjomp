@@ -98,7 +98,7 @@
       <div class="2toppageright-ir">
         <form class="form-ir irarrsent" name="form-2top-ir">
           <div class="formitem-ir"><label class="noselect">Arrival:</label>
-            <input type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
+            <input ondblclick="setday(irredate)" type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
           </div>
           <div class="formitem-ir"><label class="noselect">Sent with (freight type):</label>
             <select class="forminput-ir" id="irinfreight" style="width: 210px;" type="text" name="sent-ir">
@@ -163,7 +163,7 @@
                     {% endfor %}
                   </select>
                 </td>
-                <td class="thserial-ir" value="{{n[6]}}"><input id="partserialir" value="{{n[6]}}"></td>
+                <td class="thserial-ir"><input id="partserialir" value="{{n[6].strip()}}"></td>
                 <td class="thcharge-ir">
                   <select class="irchargedrop" name="">
                     <option value="" selected hidden></option>
@@ -179,7 +179,7 @@
             </tbody>
           </table>
           <div class="addremirpart">
-            <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
+            <div class="button-delivnote"><a href="/newunit/{{irinfo[0]}}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
             <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
           </div>
         </div>
@@ -252,7 +252,7 @@
                     {% endfor %}
                   </select></div>
                   <div class="formitem-ir"><label class="noselect">Return:</label>
-                    <input class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
+                    <input ondblclick="setday(irshipdate)" class="forminput-ir" id="irshipdate" type="date" name="return-ir" {% if irinfo[4]%} value="{{irinfo[4].strftime("%Y-%m-%d")}}" {% endif %}></div>
                   </form>
                 </div>
               </div>
@@ -296,7 +296,7 @@
     <a href="/ir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
     <a onclick="saveir()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
+    <a onclick="print()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
   </div>
 </div>

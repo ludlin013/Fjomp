@@ -26,6 +26,10 @@ body{
   background: #606060
 }
 
+input,select{
+  background: #222
+}
+
 .navin{
   border-right: 1px solid #444;
   background-color: rgb(40,40,40)

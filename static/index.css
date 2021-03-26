@@ -22,6 +22,7 @@ body{
   flex-direction: column;
   justify-content: center;
   transition-duration: .1s;
+  white-space: nowrap;
 }
 
 .navin:hover{
@@ -36,7 +37,8 @@ body{
   align-items: center;
   cursor:pointer;
   transition-duration: .2s;
-  text-decoration: none
+  text-decoration: none;
+  overflow:hidden;
 }
 
 .navitemin{

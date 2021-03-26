@@ -32,13 +32,18 @@ body{
   border-right: 1px solid #eee;
 }
 
+input,select{
+  background: #fff
+}
+
+
 .navitemin{
-  border-bottom:1px solid #ddd;
+  border-top:1px solid #ddd;
   color:black
 }
 
-.navitemin:nth-child(1){
-  border-top:1px solid #ddd;
+.navitemin:nth-last-child(1){
+  border-bottom:1px solid #ddd;
 }
 
 .navitem:hover{

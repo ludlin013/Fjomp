@@ -103,4 +103,12 @@ def delivnotes():
 
             notFound = "Delivery note not found"
 
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    mailbody = ""
+    for x in sqlq:
+        mailno = x[5].strip()
+        mailname = x[6].strip()
+        mailqty = str(x[8]).strip()
+        print([mailno],[mailname],[mailqty])
+        mailbody += mailno+"\r\t"+mailname+mailqty+"%0D%0A"
+    #return mailbody
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)

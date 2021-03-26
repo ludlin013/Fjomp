@@ -45,7 +45,6 @@ margin: 0;
 input,select{
   border:none;
   padding:5px;
-  background: #222
 }
 
 label{
@@ -70,6 +69,7 @@ textarea{
   width:100%;
   display:flex;
   flex-direction: column;
+  margin-top: 0
 }
 
 .formnazc div{
@@ -129,6 +129,7 @@ textarea{
   width:270px;
   display: flex;
   flex-direction: column;
+  margin-top: 0
 }
 
 .irownph div{
