@@ -34,11 +34,14 @@ h1{
 }
 
 #radioexact{
-  margin-left: 32px;
+  margin: 2px;
+  margin-left: 5px
 }
 
 #radiopartoff{
-  margin-left: 20px;
+  margin:2px;
+  margin-left: 15px;
+  white-space: nowrap;
 }
 
 .form-lookup{

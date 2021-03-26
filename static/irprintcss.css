@@ -1,0 +1,21 @@
+* {
+  margin:0;
+  padding:0;
+  font-family: sans-serif
+}
+
+html {
+  background: black
+}
+
+body {
+  margin:auto;
+  width:100vw;
+  height:calc(100vw * 0.7070707070);
+  overflow: hidden;
+  background: white
+}
+
+img {
+  width:15vw
+}

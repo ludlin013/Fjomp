@@ -216,6 +216,13 @@ def newunit(a):
     #return "newunit"
     return redirect("/ir?ir="+str(lastir))
 
+@app.route("/irprint/<b>",methods=["GET","POST"])
+def irprint(b):
+    order = b.split("&")[0]
+
+    return render_template("irprint.html",order=order)
+    #return redirect("/ir?ir="+str(lastir))
+
 @app.route("/saveir",methods=["GET","POST"])
 def saveir():
     irnum = request.form["saveirirn"]
