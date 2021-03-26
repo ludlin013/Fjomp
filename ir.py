@@ -163,7 +163,7 @@ def ir():
                 customers = []
                 break
 
-            elif custid.lower() in x[0].lower():
+            elif custid.lower() in x[0].lower() or custid.lower() in x[2].lower():
                 Dict = {}
 
                 Dict["id"] = x[0]
@@ -173,6 +173,7 @@ def ir():
                 Dict["city"] = x[6]
                 Dict["owner"] = x[9]
                 Dict["phone"] = x[10]
+                Dict["type"] = x[1]
 
                 customers.append(Dict)
                 customer[0] = custid

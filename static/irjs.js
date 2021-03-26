@@ -18,11 +18,16 @@ function update(inf){
 }
 
 function changerepact(idd){
+  console.log(idd);
   for (x of allrepact){
     x.style.display = "none";
   }
-  document.getElementById(idd).style.display = "block"
+  for (x of document.getElementsByClassName(idd)){
+    x.style.display = "block"
 }
+}
+
+changerepact('0repact')
 
 var active = false;
 

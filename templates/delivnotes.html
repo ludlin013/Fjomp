@@ -34,6 +34,9 @@
         {% if notFound %}
         <p style="color: red;">{{notFound}}</p>
         {% endif %}
+        <script>
+        document.cookie = "lastdn = {{delivnote}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+        </script>
         <div class="formitem-delivnotes offers-delivnotes">
           <label>Offer</label><input type="checkbox" {% if Dict["offer"] == 1%}checked{% endif %}>
           <label>Finalized Offer</label><input type="checkbox" {% if Dict["finaloffer"] == 1%}checked{% endif %}>
@@ -140,6 +143,13 @@
           </div>
         </div>
         <div class="buttonsbar">
+          <div class="delivfirstcontrols">
+            <a href="/delivnotes?dn={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
+            <a href="/delivnotes?dn={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
+            <a href="/delivnotes?dn={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
+            <a href="/delivnotes?dn={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+          </div>
+          <div class="buttonbarigen">
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/copy.png"><p>Copy</p></a>
@@ -150,6 +160,7 @@
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
+        </div>
         </div>
       </div>
     </div>

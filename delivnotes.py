@@ -49,6 +49,19 @@ def delivnotes():
     notFound = None
     delivnote = None
 
+    numbers = []
+    allnumbers = sql("SELECT","SELECT DN_no FROM DelivNotes")
+
+    for n in allnumbers:
+        numbers.append(n[0])
+    numbers.sort()
+
+    min = numbers[0]
+    max = numbers[len(numbers) - 1]
+    previous = min
+    next = max
+    lastdn = request.cookies.get("lastdn")
+
 
 
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
@@ -61,11 +74,27 @@ def delivnotes():
     Dict["DN_PGDescription"] = ""
     total = 0
     delivnote = request.args.get("dn")
+    if delivnote == None and lastdn == None:
+        return redirect("/delivnotes?dn=" + str(max))
+    elif delivnote == None:
+        return redirect("/delivnotes?dn=" + str(lastdn))
 
-    #if request.method == 'GET':
+
     if delivnote != None:
 
         print(delivnote)
+
+        if int(delivnote) < max:
+            next = int(delivnote) + 1
+            while next not in numbers and next < max:
+                next += 1
+
+        if int(delivnote) > min:
+            previous = int(delivnote) - 1
+            while previous not in numbers and previous > min:
+                previous -= 1
+        print(previous,next)
+
 
         sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
         sqlq=[]
@@ -111,4 +140,4 @@ def delivnotes():
         print([mailno],[mailname],[mailqty])
         mailbody += mailno+"\r\t"+mailname+mailqty+"%0D%0A"
     #return mailbody
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=max,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)

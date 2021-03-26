@@ -31,39 +31,39 @@
     <h1 class="noselect">IR</h1>
     <div class="toppage-ir">
       <div class="toppageleft-ir">
-          <div class="ircustid">
-            <form class="" action="" method="get">
-              <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
-              <input type="submit" style="display:none">
-            </form>
-            {% if error  %}
-            <p id="irerror" class="noselect">{{error}}</p>
-            {% endif %}
-            <script>
-            document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
-            </script>
-            <form action="" method="post" id="custform">
-              <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
-              {% if customers !=  []%}
-              <div class="irdropblack" onclick="window.location.replace('/ir')">
+        <div class="ircustid">
+          <form class="" action="" method="get">
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
+            <input type="submit" style="display:none">
+          </form>
+          {% if error  %}
+          <p id="irerror" class="noselect">{{error}}</p>
+          {% endif %}
+          <script>
+          document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+          </script>
+          <form action="" method="post" id="custform">
+            <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+            {% if customers !=  []%}
+            <div class="irdropblack" onclick="window.location.replace('/ir')">
             </div>
-              <div class="ircustdrop">
-                 {% for x in customers %}
-                 <div onclick="document.getElementById('ircusn').value='{{x["id"].strip()}}';document.getElementById('custform').submit()">
-                 <p>{{x["id"]}}</p><p>{{x["name"]}}</p>
-               </div>
-                 {% endfor %}
+            <div class="ircustdrop">
+              {% for x in customers %}
+              <div onclick="document.getElementById('ircusn').value='{{x["id"].strip()}}';document.getElementById('custform').submit()">
+                <p class="custdropnumber">{{x["id"]}}</p><p>{{x["type"]}} {{x["name"]}}</p>
               </div>
-              {% endif %}
-            </form>
-          </div>
-          <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
-            <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
-            <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
-            <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>
-            <option value="4" {% if irinfo[12] == 4%} selected {% endif %}>Finished</option>
-            <option value="1"  {% if irinfo[12] == 1%} selected {% endif %}>Returned</option>
-          </select></div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </form>
+        </div>
+        <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+          <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
+          <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
+          <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>
+          <option value="4" {% if irinfo[12] == 4%} selected {% endif %}>Finished</option>
+          <option value="1"  {% if irinfo[12] == 1%} selected {% endif %}>Returned</option>
+        </select></div>
 
       </div>
       <div class="toppageright2-ir">
@@ -116,10 +116,13 @@
             </form>
           </div>
         </div>
-        <div class="2toppagemiddle-ir">
+        <div class="toppagemiddle2-ir">
           <form class="form-ir" name="form-2top-ir">
             <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
           </form>
+            {% for n in wo %}
+              <div class="formitem-ir irrepact {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+            {% endfor %}
         </div>
       </div>
       <div class="middlepage-ir">
@@ -186,8 +189,7 @@
 
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
-          <form class="form-ir irrepact" name="form-middle-ir" id="{{wo.index(n)}}repact">
-            <div class="formitem-ir"><label class="noselect">Reported Problem:</label><textarea class="forminput-ir" type="text" >{{n[7]}}</textarea></div>
+          <form class="form-ir irrepact {{wo.index(n)}}repact" name="form-middle-ir" id="{{wo.index(n)}}repact">
             <div class="formitem-ir"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir" type="text" >{{n[8]}}</textarea></div>
           </form>
           {% endfor %}
@@ -280,14 +282,14 @@
 
 <div class="ircontrols">
   <div class="irfirstcontrols">
-  <a href="/ir?ir={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
-  <a href="/ir?ir={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
-  <a href="/ir?ir={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
-  <a href="/ir?ir={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
-  <div class="nextdateno">
-    <div class="noselect" onclick="document.getElementById('irsortdate').checked = true;document.cookie = 'irsort = date; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">Date order</label><input id="irsortdate" type="radio" name="nexttype" {% if sortmode == "date" or sortmode == None %}checked{% endif %}></div>
-    <div class="noselect" onclick="document.getElementById('irsortno').checked = true;document.cookie = 'irsort = no; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">IR #</label><input id="irsortno" type="radio" name="nexttype" {% if sortmode == "no" %} checked {% endif %}></div>
-  </div>
+    <a href="/ir?ir={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
+    <a href="/ir?ir={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
+    <a href="/ir?ir={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
+    <a href="/ir?ir={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+    <div class="nextdateno">
+      <div class="noselect" onclick="document.getElementById('irsortdate').checked = true;document.cookie = 'irsort = date; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">Date order</label><input id="irsortdate" type="radio" name="nexttype" {% if sortmode == "date" or sortmode == None %}checked{% endif %}></div>
+      <div class="noselect" onclick="document.getElementById('irsortno').checked = true;document.cookie = 'irsort = no; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/';location.reload()"><label class="noselect">IR #</label><input id="irsortno" type="radio" name="nexttype" {% if sortmode == "no" %} checked {% endif %}></div>
+    </div>
   </div>
   <div class="ircontrolbuttons">
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>

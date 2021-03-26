@@ -149,7 +149,7 @@ table {
   margin-top: -1px;
   display: block;
   max-width: 1000px;
-  max-height: 160px;
+  height: 260px;
   overflow-y: scroll;
 }
 
@@ -192,6 +192,7 @@ table {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .buttonsbar-item-delivnotes{
@@ -206,6 +207,25 @@ table {
 .buttonbarpic-delivnotes{
   width: 40px;
 }
+
+.buttonbarigen{
+  display:flex;
+}
+
+.delivfirstcontrols{
+  display: flex;
+  align-items: center;
+}
+
+.delivfirstcontrols a{
+  padding:10px 5px
+}
+
+.delivfirstcontrols img{
+  width:40px;
+  height:40px;
+}
+
 
 @media only screen and (max-width: 1000px){
 

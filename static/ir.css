@@ -105,7 +105,6 @@ textarea{
   display: flex;
   flex-direction: column;
   width:400px;
-  background: #282828;
   max-height: 300px;
   overflow-y: scroll;
   padding:0 10px 1px 10px;
@@ -115,14 +114,22 @@ textarea{
 
 .ircustdrop div{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding:10px 5px;
   cursor: pointer;
   border-bottom:1px solid
 }
 
+.ircustdrop div:nth-last-child(1){
+  border:none
+}
+
 .toppageright2-ir input{
 
+}
+
+.custdropnumber{
+  width:75px;
 }
 
 .irownph{
@@ -172,6 +179,10 @@ textarea{
 
 .irnotediv{
   display:flex;
+}
+
+.toppagemiddle2-ir{
+  display:flex
 }
 
 #partserialir{
