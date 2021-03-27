@@ -116,9 +116,9 @@
             {% for x in sqlq%}
 
             <tr class="row-delivnotes" onclick="" id="">
-              <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5]}}"></td>
-              <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6]}}"></td>
-              <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7]}}"></td>
+              <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5].strip()}}"></td>
+              <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
+              <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
               <td class="thQTY-delivnotes"><input class="forminput-delivnotes" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes"><input class="forminput-delivnotes" value="{{x[26]}}"></td>
               <td class="thprice-delivnotes"><input class="forminput-delivnotes" value="{{x[9]}}"></td>

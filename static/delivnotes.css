@@ -73,8 +73,12 @@
 margin: 0;
 }
 
-th.thnetvalue-delivnotes, th.thprice-delivnotes, th.thtotal-delivnotes{
+th.thnetvalue-delivnotes, th.thtotal-delivnotes{
   text-align: left;
+}
+
+tr th{
+  text-align: center;
 }
 
 .thtotal-delivnotes{
@@ -94,10 +98,6 @@ th.thnetvalue-delivnotes, th.thprice-delivnotes, th.thtotal-delivnotes{
   text-align: center;
 }
 
-.thnetvalue-delivnotes{
-  text-align: right;
-  width:100px;
-}
 
 .thnocharge-delivnotes{
   width:50px;
@@ -105,30 +105,47 @@ th.thnetvalue-delivnotes, th.thprice-delivnotes, th.thtotal-delivnotes{
   text-align: center;
 }
 
-.thpart-delivnotes{
+.thpart-delivnotes input{
   text-align: left;
   width: 150px;
 }
 
-.thdesc-delivnotes{
+.thdesc-delivnotes input{
   text-align: left;
-  width: 150px;
+  width: 200px;
 }
 
-.thserial-delivnotes{
+.thserial-delivnotes input{
   text-align: left;
-  width: 150px;
+  width: 130px;
 }
 
-.thpricegroup-delivnotes{
-  width: 175px;
+.thQTY-delivnotes input{
+  width: 50px;
   text-align: left;
 }
 
-.thprice-delivnotes{
-  width: 100px;
+.thpricegroup-delivnotes input{
+  width: 80px;
+  text-align: left;
+}
+
+.thprice-delivnotes input{
+  width: 70px;
   text-align: right;
 }
+
+.thdiscount-delivnotes input,
+.thnetvalue-delivnotes input,
+.thtotal-delivnotes input{
+  width:70px
+}
+
+.thnocharge-delivnotes input,
+.thbackorder-delivnotes input{
+  width:50px
+}
+
 
 table, td, th {
   border: 1px solid;
@@ -148,7 +165,7 @@ table {
 .list-delivnotes{
   margin-top: -1px;
   display: block;
-  max-width: 1000px;
+  max-width: 1280px;
   height: 260px;
   overflow-y: scroll;
 }
