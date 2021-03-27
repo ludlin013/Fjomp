@@ -77,8 +77,24 @@ margin-left: 20px;
   margin-left: 10px;
 }
 
+.middlepage-customers{
+  display: flex;
+  width: 900px;
+}
+
+.middlepage-customers div{
+  width: 25%;
+  background: rgb(80,80,80);
+  text-align:center;
+  padding: 5px;
+  border-right: 1px solid;
+}
+
+.middlepage-customers div:nth-last-child(1){
+  border: none;
+}
+
 table, td, th {
-  border: 1px solid;
   padding: 2px;
   white-space: nowrap;
 }
@@ -92,9 +108,9 @@ table {
   border-collapse: collapse;
 }
 
-.list-units{
+.list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
-  max-width: 800px;
+  max-width: 900px;
   max-height: 300px;
   overflow-y: scroll;
 }

@@ -43,4 +43,7 @@ def customers():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("customers.html",theme=theme,notheme=notheme)
+    table = request.cookies.get('custtable')
+    if table == None:
+        table = "units"
+    return render_template("customers.html",theme=theme,notheme=notheme,table=table)

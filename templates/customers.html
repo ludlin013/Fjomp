@@ -53,39 +53,51 @@
         </form>
       </div>
     </div>
+    <div class="middlepage-customers">
+        <div class="buttonunits-customers" onclick="document.cookie = 'custtable = units';location.reload()">Units</div>
+        <div class="buttonir-customers" onclick="document.cookie = 'custtable = irhistory';location.reload()">IR-History</div>
+        <div class="buttondelivery-customers" onclick="document.cookie = 'custtable = deliverynotes';location.reload()">Delivery Notes</div>
+        <div class="buttonswapouts-customers" onclick="document.cookie = 'custtable = swapouts';location.reload()">Swapouts</div>
+    </div>
       <div class="customers-tablewrap">
         <div class="searchflik">
 
         </div>
+
+        {% if table == "units" %}
         <div class="tabell-customers">
           <table class="list-units">
             <thead>
               <tr class="header-customers" id="header-customers">
-                <th class="thdate-customers">Date</th>
-                <th class="thnote-customers">Note #</th>
-                <th class="thpart-customers">Part #</th>
-                <th class="thdesc-customers">Part descr.</th>
-                <th class="thqty-customers">Qty</th>
-                <th class="thprice-customers">Price</th>
-                <th class="thtotal-customers">Total</th>
+                <th class="thcatu-customers">Cat.</th>
+                <th class="thtypeu-customers">Type</th>
+                <th class="thvendoru-customers">Vendor</th>
+                <th class="thmodelu-customers">Model</th>
+                <th class="thserialu-customers">Serial #</th>
+                <th class="thinstu-customers">Installation date</th>
+                <th class="thwarrantyu-customers">Warranty ends</th>
+                <th class="thcontru-customers">Contr. Type</th>
+                <th class="threplu-customers">Repl. Date</th>
               </tr>
             </thead>
             <tbody class="whatabody-customers">
               <tr class="row-Customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thqty-Customers">Pen</td>
-                <td class="thprice-customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
+                <td class="thcatu-customers"><input></td>
+                <td class="thtypeu-customers"><input></td>
+                <td class="thvendoru-customers"><input></td>
+                <td class="thmodelu-customers"><input></td>
+                <td class="thserialu-customers"><input></td>
+                <td class="thinstu-customers"><input></td>
+                <td class="thwarrantyu-customers"><input></td>
+                <td class="thcontru-customers"><input></td>
+                <td class="threplu-customers"><input></td>
               </tr>
               <tr class="row-Customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thqty-Customers">Pen</td>
+                <td class="thcatu-customers"><input></td>
+                <td class="thtypeu-customers"><input></td>
+                <td class="thpart-Customers"><input></td>
+                <td class="thdesc-Customers"><input></td>
+                <td class="thqty-Customers">PEN</td>
                 <td class="thprice-customers">Pen</td>
                 <td class="thtotal-Customers">Pen</td>
               </tr>
@@ -140,6 +152,262 @@
             </tbody>
           </table>
           </div>
+          {% endif %}
+          {% if table == "irhistory" %}
+          <div class="tabell-customers">
+            <table class="list-irhistory">
+              <thead>
+                <tr class="header-customers" id="header-customers">
+                  <th class="thdatei-customers">Date</th>
+                  <th class="thiri-customers">IR #</th>
+                  <th class="thmodeli-customers">Model</th>
+                  <th class="thseriali-customers">Serial #</th>
+                  <th class="thproblemi-customers">Problem</th>
+                  <th class="thactioni-customers">Action</th>
+                </tr>
+              </thead>
+              <tbody class="whatabody-customers">
+                <tr class="row-Customers" onclick="">
+                  <td class="thdatei-customers"><input></td>
+                  <td class="thiri-customers"><input></td>
+                  <td class="thmodeli-customers"><input></td>
+                  <td class="thseriali-customers"><input></td>
+                  <td class="thproblemi-customers"><input></td>
+                  <td class="thactioni-customers"><input></td>
+                </tr>
+                <tr class="row-Customers" onclick="">
+                  <td class="thdate-Customers"><input></td>
+                  <td class="thnote-Customers"><input></td>
+                  <td class="thpart-Customers"><input></td>
+                  <td class="thdesc-Customers"><input></td>
+                  <td class="thqty-Customers">PEN</td>
+                  <td class="thprice-customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+                <tr class="row-customers" onclick="">
+                  <td class="thdate-Customers">Pen</td>
+                  <td class="thnote-Customers">Pen</td>
+                  <td class="thpart-Customers">Pen</td>
+                  <td class="thdesc-Customers">Pen</td>
+                  <td class="thprice-Customers">Pen</td>
+                  <td class="thtotal-Customers">Pen</td>
+                </tr>
+              </tbody>
+            </table>
+            </div>
+            {% endif %}
+            {% if table == "deliverynotes" %}
+            <div class="tabell-customers">
+              <table class="list-deliverynotes">
+                <thead>
+                  <tr class="header-customers" id="header-customers">
+                    <th class="thdated-customers">Date</th>
+                    <th class="thnoted-customers">Note #</th>
+                    <th class="thpartd-customers">Part #</th>
+                    <th class="thdescd-customers">Part descr.</th>
+                    <th class="thqtyd-customers">Qty</th>
+                    <th class="thpriced-customers">Price</th>
+                    <th class="thtotald-customers">Total</th>
+                  </tr>
+                </thead>
+                <tbody class="whatabody-customers">
+                  <tr class="row-Customers" onclick="">
+                    <td class="thdated-Customers"><input></td>
+                    <td class="thnoted-Customers"><input></td>
+                    <td class="thpartd-Customers"><input></td>
+                    <td class="thdescd-Customers"><input></td>
+                    <td class="thqtyd-Customers"><input></td>
+                    <td class="thpriced-customers"><input></td>
+                    <td class="thtotald-Customers"><input></td>
+                  </tr>
+                  <tr class="row-Customers" onclick="">
+                    <td class="thdate-Customers"><input></td>
+                    <td class="thnote-Customers"><input></td>
+                    <td class="thpart-Customers"><input></td>
+                    <td class="thdesc-Customers"><input></td>
+                    <td class="thqty-Customers">PEN</td>
+                    <td class="thprice-customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                  <tr class="row-customers" onclick="">
+                    <td class="thdate-Customers">Pen</td>
+                    <td class="thnote-Customers">Pen</td>
+                    <td class="thpart-Customers">Pen</td>
+                    <td class="thdesc-Customers">Pen</td>
+                    <td class="thprice-Customers">Pen</td>
+                    <td class="thtotal-Customers">Pen</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              {% endif %}
+              {% if table == "swapouts" %}
+              <div class="tabell-customers">
+                <table class="list-swapouts">
+                  <thead>
+                    <tr class="header-customers" id="header-customers">
+                      <th class="thdates-customers">Date</th>
+                      <th class="threfs-customers">Ref. #</th>
+                      <th class="thparts-customers">Part #</th>
+                      <th class="thdescs-customers">Part descr.</th>
+                      <th class="thserialss-customers">Serial # Sent</th>
+                      <th class="thserialrs-customers">Serial # Returned</th>
+                      <th class="thrdates-customers">Return Date</th>
+                      <th class="thstatuss-customers">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody class="whatabody-customers">
+                    <tr class="row-Customers" onclick="">
+                      <td class="thdates-customers"><input></td>
+                      <td class="threfs-customers"><input></td>
+                      <td class="thparts-customers"><input></td>
+                      <td class="thdescs-customers"><input></td>
+                      <td class="thserialss-customers"><input></td>
+                      <td class="thserialrs-customers"><input></td>
+                      <td class="thrdates-customers"><input></td>
+                      <td class="thstatuss-customers"><input></td>
+                    </tr>
+                    <tr class="row-Customers" onclick="">
+                      <td class="thdate-Customers"><input></td>
+                      <td class="thnote-Customers"><input></td>
+                      <td class="thpart-Customers"><input></td>
+                      <td class="thdesc-Customers"><input></td>
+                      <td class="thqty-Customers">PEN</td>
+                      <td class="thprice-customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                    <tr class="row-customers" onclick="">
+                      <td class="thdate-Customers">Pen</td>
+                      <td class="thnote-Customers">Pen</td>
+                      <td class="thpart-Customers">Pen</td>
+                      <td class="thdesc-Customers">Pen</td>
+                      <td class="thprice-Customers">Pen</td>
+                      <td class="thtotal-Customers">Pen</td>
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+                {% endif %}
         </div>
         <div class="buttonsbar">
           <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>
