@@ -35,6 +35,17 @@
           <form class="form-lookup" id="hughe-form" name="form-topleftpage-lookup" method="POST" action="">
             <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"></div>
             <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" value="{{lookserial}}" onfocus="document.getElementById('lookupnumname').value = ''"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" {% if rbball == "exact" %}checked{% endif %}><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff" {% if rbball == "partoff" %}checked{% endif %}><label>Part off</label></div>
+            {% if parts !=  []%}
+            <div class="ludropblack" onclick="window.history.back()">
+            </div>
+            <div class="lucustdrop">
+              {% for x in parts %}
+              <div onclick="document.getElementById('lookupnumname').value='{{x["name"].strip()}}';document.getElementById('hughe-form').submit()">
+                <p>{{x["name"]}}</p><p>{{x["num"]}}</p>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
             <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="date" name="btwdate1" value="{{btwdate1}}"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="date" name="btwdate2" value="{{btwdate2}}"></div>
         </div>
       </div>

@@ -66,6 +66,9 @@ def lookup():
     sentswap_results = []
     returnedswap_results = []
 
+    part = ["","","","","","","","","","","","",""]
+    parts = []
+
 
     if request.method == 'POST':
         looknumname = request.form["lookupnumname"]
@@ -73,6 +76,24 @@ def lookup():
         rbball = request.form["radiobuttons-lookup"]
         btwdate1 = datetime.strptime(request.form["btwdate1"], '%Y-%m-%d').date()
         btwdate2 = datetime.strptime(request.form["btwdate2"], '%Y-%m-%d').date()
+
+
+        allparts = sql("SELECT", "SELECT Part_Part, Part_Partno FROM Parts")
+
+        for x in allparts:
+            if looknumname.lower() == x[0].lower().strip():
+                part = x
+                parts = []
+                break
+
+            elif looknumname.lower() in x[0].lower() or looknumname.lower() in x[1].lower():
+                Dict = {}
+
+                Dict["name"] = x[0]
+                Dict["num"] = x[1]
+
+                parts.append(Dict)
+                part[0] = looknumname
 
 
 
@@ -337,4 +358,4 @@ def lookup():
         lookupdata.sort(key = lambda x:x["date_check"], reverse=True)
 
 
-    return render_template("lookup.html",theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball)
+    return render_template("lookup.html",theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball, parts=parts, part=part)
