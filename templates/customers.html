@@ -29,27 +29,31 @@
     </div>
     <div class="mainwrapcustomers">
       <h1 class="noselect">Customers</h1>
+      <form class="seek-customers" method="GET" action="">
+        <input name="customer">
+      </form>
       <div class="toppage-customers">
       <div class="leftpage-customers">
         <form class="form-customers">
           <label for="search" class="searchlabel-customers">Search for:</label>
-          <div class="formitem-customers"><label class="cust-customers">Cust. #:</label><input class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers">H.O. #:</label><input class="forminput-customers" type="text" name="h.o #-customers"></div>
-          <div class="formitem-customers"><label class="name-customers">Name:</label><input class="forminput-customers" type="text" name="name-customers"></div>
-          <div class="formitem-customers"><label class="address-customers">Address:</label><input class="forminput-customers" type="text" name="address-customers"></div>
-          <div class="formitem-customers"><label class="zipcity-customers">Zip/City:</label><input class="forminput-customers" type="text" name="zip-customers"><input class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
+          <div class="formitem-customers"><label class="cust-customers">Cust. #:</label><input value="{{customers[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers">H.O. #:</label><input value="{{customers[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
+          <div class="formitem-customers"><label class="name-customers">Name:</label><input value="{{customers[2].strip()}}" class="forminput-customers" type="text" name="name-customers"></div>
+          <div class="formitem-customers"><label class="address-customers">Address:</label><input value="{{customers[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
+          <div class="formitem-customers"><label class="zipcity-customers">Zip/City:</label><input value="{{customers[5].strip()}}" class="forminput-customers" type="text" name="zip-customers"><input value="{{customers[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
           <div class="formitem-customers"><label class="pricegroup-customers">Price group:</label><select style="width: 190px;" class="forminput-customers" type="text" name="groupnumber-customers">
-            <option value=""></option>
-            <option value="valuehere">Det ska vara saker här</option>
-          </select><input class="forminput-customers" id="priceinput" type="text" name="groupnumber-customers"></div>
+            {% for x in pricegroups %}
+            <option value="{{x[0]}}"  {% if x[0] == customers[33] %}selected {% endif %}>{{x[0]}}: {{x[1].strip()}}</option>
+            {% endfor %}
+          </select>
         </form>
       </div>
       <div class="rightpage-customers">
         <form class="form-customers">
-          <div class="formitem-customers"><label class="phone-customers">Phone:</label><input class="forminput-customers" type="text" name="phone-customers"></div>
-          <div class="formitem-customers"><label class="opendate-customers">Open date:</label><input class="forminput-customers" type="text" name="open date-customers"></div>
-          <div class="formitem-customers"><label class="instdate-customers">Inst. date:</label><input class="forminput-customers" type="text" name="inst. date-customers"></div>
-          <div class="formitem-customers"><label class="closeddate-customers">Closed date:</label><input class="forminput-customers" type="text" name="closed date-customers"></div>
-          <div class="formitem-customers"><input class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
+          <div class="formitem-customers"><label class="phone-customers">Phone:</label><input value="{{customers[10]}}" class="forminput-customers" type="text" name="phone-customers"></div>
+          <div class="formitem-customers"><label class="opendate-customers">Open date:</label><input value="{{customers[21]}}" class="forminput-customers" type="date" name="open date-customers"></div>
+          <div class="formitem-customers"><label class="instdate-customers">Inst. date:</label><input value="{{customers[22]}}" class="forminput-customers" type="date" name="inst. date-customers"></div>
+          <div class="formitem-customers"><label class="closeddate-customers">Closed date:</label><input value="{{customers[24]}}" class="forminput-customers" type="date" name="closed date-customers"></div>
+          <div class="formitem-customers"><input  {% if 1 == customers[26] %}checked {% endif %} class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input {% if 1 == customers[27] %}checked {% endif %} class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
         </form>
       </div>
     </div>
@@ -408,7 +412,8 @@
                 </table>
                 </div>
                 {% endif %}
-        </div>
+              </div>
+            </div>
         <div class="buttonsbar">
           <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>
           <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
@@ -416,7 +421,7 @@
           <a href="customers?cs={{customers}}" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
           <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
       </div>
-      </div>
+    </div>
       <script src="/static/mobile.js"></script>
   </body>
 </html>

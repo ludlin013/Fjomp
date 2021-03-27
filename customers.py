@@ -46,4 +46,21 @@ def customers():
     table = request.cookies.get('custtable')
     if table == None:
         table = "units"
-    return render_template("customers.html",theme=theme,notheme=notheme,table=table)
+
+    customer = request.args.get("customer")
+
+    customers = ["" for x in range(35)]
+    pricegroups = sql("SELECT","SELECT * FROM Pricegroups")
+
+    if customer != None:
+
+        customers = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + customer + "'")[0]
+        print(customers)
+
+        customers[21] = str(customers[21])[0:10]
+        customers[22] = str(customers[22])[0:10]
+        customers[24] = str(customers[24])[0:10]
+        if customers[24] == "1900-01-01":
+            customers[24] = ""
+
+    return render_template("customers.html",theme=theme,notheme=notheme,table=table,customers=customers,pricegroups=pricegroups)
