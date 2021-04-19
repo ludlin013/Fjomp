@@ -57,6 +57,11 @@ h1{
   width: 65px !important;
 }
 
+.owner-customers{
+  margin-left: 10px;
+  width: 65px;
+}
+
 .phone-customers, .opendate-customers, .instdate-customers, .closeddate-customers{
   width: 102px;
 }
@@ -175,7 +180,7 @@ table {
     margin-left: 5px;
   }
 
-  .cust-customers, .ho-customers, .name-customers, .address-customers, .zipcity-customers, .pricegroup-customers{
+  .cust-customers, .ho-customers, .name-customers, .address-customers, .zipcity-customers, .pricegroup-customers, .owner-customers{
     width: 70px;
   }
 
