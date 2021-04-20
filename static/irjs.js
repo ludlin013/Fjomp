@@ -25,6 +25,8 @@ function changerepact(idd){
   for (x of document.getElementsByClassName(idd)){
     x.style.display = "flex"
 }
+  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.borderLeft = "4px solid #fff"
+  console.log(document.getElementById(idd.replace("repact","type")).parentElement.parentElement);
 }
 
 changerepact('0repact')

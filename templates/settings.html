@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bake</title>
+    <title>Bake | Settings</title>
     <link rel="stylesheet" href="static/index.css">
     <link rel="stylesheet" href="static/settings.css">
     <link rel="stylesheet" href="static/{{theme}}.css">
@@ -130,8 +130,8 @@
         <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
         <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
         <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect techoffice" name="office" id="techoffice" value="{{tech[4]}}">
-        <input class="settingsthemep noselect techtech" name="tech" id="techtech" value="{{tech[5]}}">
+        <input class="settingsthemep noselect techoffice" type="checkbox" name="office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techtech" type="checkbox" name="tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
         <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
       {% endfor %}
@@ -303,6 +303,8 @@
 
 
     }
+
+    show('settingstech')
     </script>
   </body>
 </html>

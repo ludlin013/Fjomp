@@ -21,5 +21,10 @@ function saveir(){
     }
   }
 
-  document.getElementById('irsaveform').submit()
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("POST","/saveir",true);
+  const fd = new FormData(document.getElementById('irsaveform'))
+  xhttp.send(fd)
+  //document.getElementById('irsaveform').submit()
 }

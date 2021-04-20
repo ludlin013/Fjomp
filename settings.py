@@ -58,7 +58,8 @@ def settings():
         techlast = request.form.getlist('lastname')
         techoffice = request.form.getlist('office')
         techtech = request.form.getlist('tech')
-
+        print(techoffice)
+        print(techtech)
         sqltechs = []
         updtechs = []
 
@@ -66,7 +67,7 @@ def settings():
             sqltechs.append((x[0],x[1].strip(),x[2].strip(),str(x[4]),str(x[5])))
 
         print("=====================")
-        for x in range(len(techid)):
+        for x in range(len(techid)-1):
             updtechs.append((techid[x],techfirst[x],techlast[x],techoffice[x],techtech[x]))
 
         deleteuser = [list(set(sqltechs) - set(updtechs))]

@@ -13,9 +13,9 @@
       <div class="mainlogin">
         <img class="logo noselect" src="./static/pictures/logo.png">
         <div class="flags">
-          <img id="sv" class="flag selectlang" src="./static/pictures/flags/sv.png">
-          <img id="no" class="flag" src="./static/pictures/flags/no.png">
-          <img id="fi" class="flag" src="./static/pictures/flags/fi.png">
+          <img id="sv" onclick="selectland('sv')" class="flag " src="./static/pictures/flags/sv.png">
+          <img id="no" onclick="selectland('no')" class="flag " src="./static/pictures/flags/no.png">
+          <img id="fi" onclick="selectland('fi')" class="flag" src="./static/pictures/flags/fi.png">
         </div>
         <form class="loginform" action="" method="post" autocomplete="off">
           <input class="field" autocapitalize="off" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
@@ -42,6 +42,22 @@
         document.getElementById('usernameinput').value = usrname;
         document.getElementById('pwin').focus();
         document.getElementById('checkbox').checked = true;
+      }
+
+      var c = document.cookie.split(";");
+      for(x of c){
+        if(x.includes("branch=")){
+          document.getElementById(x.replace("branch=","").trim()).classList.add("selectlang");
+        }
+      }
+
+      function selectland(co){
+        for (n of document.getElementsByClassName('flag')){
+          n.classList.remove("selectlang");
+        }
+        document.getElementById(co).classList.add("selectlang");
+
+        document.cookie = "branch = " + co + "; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
       }
 
 

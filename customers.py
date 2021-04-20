@@ -47,22 +47,49 @@ def customers():
     if table == None:
         table = "units"
 
-    customer = request.args.get("customer")
+    cust = request.args.get("customer")
 
-    customers = ["" for x in range(35)]
+    units = []
+    customers = []
+    customer = ["","","","","","","","","","","","","","","","","","","","","",""]
     pricegroups = sql("SELECT","SELECT * FROM Pricegroups")
 
     pricegroups.sort(key = lambda x:x[0])
 
-    if customer != None:
+    if cust != None:
+        allcustomers = sql("SELECT","SELECT * FROM Customers")
 
-        customers = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + customer + "'")[0]
-        print(customers)
+        for x in allcustomers:
+            if cust.strip().lower() == x[0].strip().lower():
+                customer = x
+                customers = []
+                customer[21] = str(customer[21])[0:10]
+                customer[22] = str(customer[22])[0:10]
+                customer[24] = str(customer[24])[0:10]
+                if customer[24] == "1900-01-01":
+                    customer[24] = ""
+                table = request.cookies.get("custtable")
 
-        customers[21] = str(customers[21])[0:10]
-        customers[22] = str(customers[22])[0:10]
-        customers[24] = str(customers[24])[0:10]
-        if customers[24] == "1900-01-01":
-            customers[24] = ""
+                if table == "irhistory":
+                    pass
 
-    return render_template("customers.html",theme=theme,notheme=notheme,table=table,customers=customers,pricegroups=pricegroups)
+                else:
+                    # Units #
+                    units = sql("SELECT","SELECT * FROM Units WHERE LOWER(Unit_CustID) = LOWER('" + cust.strip() + "')")
+                    print(units)
+
+
+
+
+
+
+                break
+
+            elif cust.strip().lower() in x[0].strip().lower() or cust.strip().lower() in x[2].strip().lower() or cust.strip().lower() in x[9].strip().lower():
+                customers.append(x)
+
+
+
+
+
+    return render_template("customers.html",theme=theme,notheme=notheme,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)

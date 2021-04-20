@@ -29,31 +29,42 @@
     </div>
     <div class="mainwrapcustomers">
       <h1 class="noselect">Customers</h1>
-      <form class="seek-customers" method="GET" action="">
-        <input name="customer">
+      <form class="seek-customers" method="GET" action="" id="custidform">
+        <input name="customer" id="custid" value="">
+        {% if customers !=  []%}
+        <div class="irdropblack" onclick="window.location.replace('/customers')">
+        </div>
+        <div class="ircustdrop">
+          {% for x in customers %}
+          <div onclick="document.getElementById('custid').value='{{x[0].strip()}}';document.getElementById('custidform').submit()">
+            <p class="custdropnumber">{{x[0]}}</p><p>{{x[1]}} {{x[2]}}</p><p>{{x[9]}}</p>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </form>
       <div class="toppage-customers">
       <div class="leftpage-customers">
         <form class="form-customers">
           <label for="search" class="searchlabel-customers">Search for:</label>
-          <div class="formitem-customers"><label class="cust-customers">Cust. #:</label><input value="{{customers[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers">H.O. #:</label><input value="{{customers[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
-          <div class="formitem-customers"><label class="name-customers">Name:</label><input value="{{customers[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers">Owner:</label><input value="{{customers[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
-          <div class="formitem-customers"><label class="address-customers">Address:</label><input value="{{customers[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
-          <div class="formitem-customers"><label class="zipcity-customers">Zip/City:</label><input value="{{customers[5].strip()}}" class="forminput-customers" type="text" name="zip-customers"><input value="{{customers[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
+          <div class="formitem-customers"><label class="cust-customers">Cust. #:</label><input value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
+          <div class="formitem-customers"><label class="name-customers">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
+          <div class="formitem-customers"><label class="address-customers">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
+          <div class="formitem-customers"><label class="zipcity-customers">Zip/City:</label><input value="{{customer[5].strip()}}" class="forminput-customers" type="text" name="zip-customers"><input value="{{customer[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
           <div class="formitem-customers"><label class="pricegroup-customers">Price group:</label><select style="width: 190px;" class="forminput-customers" type="text" name="groupnumber-customers">
             {% for x in pricegroups %}
-            <option value="{{x[0]}}"  {% if x[0] == customers[33] %}selected {% endif %}>{{x[0]}}: {{x[1].strip()}}</option>
+            <option value="{{x[0]}}"  {% if x[0] == customer[33] %}selected {% endif %}>{{x[0]}}: {{x[1].strip()}}</option>
             {% endfor %}
           </select>
         </form>
       </div>
       <div class="rightpage-customers">
         <form class="form-customers">
-          <div class="formitem-customers"><label class="phone-customers">Phone:</label><input value="{{customers[10]}}" id="phoneinput-customers" class="forminput-customers" type="text" name="phone-customers"></div>
-          <div class="formitem-customers"><label class="opendate-customers">Open date:</label><input value="{{customers[21]}}" class="forminput-customers" type="date" name="open date-customers"></div>
-          <div class="formitem-customers"><label class="instdate-customers">Inst. date:</label><input value="{{customers[22]}}" class="forminput-customers" type="date" name="inst. date-customers"></div>
-          <div class="formitem-customers"><label class="closeddate-customers">Closed date:</label><input value="{{customers[24]}}" class="forminput-customers" type="date" name="closed date-customers"></div>
-          <div class="formitem-customers"><input  {% if 1 == customers[26] %}checked {% endif %} class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input {% if 1 == customers[27] %}checked {% endif %} class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
+          <div class="formitem-customers"><label class="phone-customers">Phone:</label><input value="{{customer[10]}}" id="phoneinput-customers" class="forminput-customers" type="text" name="phone-customers"></div>
+          <div class="formitem-customers"><label class="opendate-customers">Open date:</label><input value="{{customer[21]}}" class="forminput-customers" type="date" name="open date-customers"></div>
+          <div class="formitem-customers"><label class="instdate-customers">Inst. date:</label><input value="{{customer[22]}}" class="forminput-customers" type="date" name="inst. date-customers"></div>
+          <div class="formitem-customers"><label class="closeddate-customers">Closed date:</label><input value="{{customer[24]}}" class="forminput-customers" type="date" name="closed date-customers"></div>
+          <div class="formitem-customers"><input  {% if 1 == customer[26] %}checked {% endif %} class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input {% if 1 == customer[27] %}checked {% endif %} class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
         </form>
       </div>
     </div>
@@ -68,7 +79,7 @@
 
         </div>
 
-        {% if table == "units" %}
+        {% if table == "units" or table == None%}
         <div class="tabell-customers">
           <table class="list-units">
             <thead>
@@ -85,74 +96,19 @@
               </tr>
             </thead>
             <tbody class="whatabody-customers">
+              {% for x in units %}
               <tr class="row-Customers" onclick="">
-                <td class="thcatu-customers"><input></td>
-                <td class="thtypeu-customers"><input></td>
-                <td class="thvendoru-customers"><input></td>
-                <td class="thmodelu-customers"><input></td>
-                <td class="thserialu-customers"><input></td>
-                <td class="thinstu-customers"><input></td>
-                <td class="thwarrantyu-customers"><input></td>
-                <td class="thcontru-customers"><input></td>
-                <td class="threplu-customers"><input></td>
+                <td class="thcatu-customers"><input value="{{x[1]}}"></td>
+                <td class="thtypeu-customers"><input value="{{x[5]}}"></td>
+                <td class="thvendoru-customers"><input value="{{x[2]}}"></td>
+                <td class="thmodelu-customers"><input value="{{x[3]}}"></td>
+                <td class="thserialu-customers"><input value="{{x[4]}}"></td>
+                <td class="thinstu-customers"><input type="date" value="{{x[6]}}"></td>
+                <td class="thwarrantyu-customers"><input type="date" value="{{x[7]}}"></td>
+                <td class="thcontru-customers"><input value="{{x[8]}}"></td>
+                <td class="threplu-customers"><input type="date" value="{{x[9]}}"></td>
               </tr>
-              <tr class="row-Customers" onclick="">
-                <td class="thcatu-customers"><input></td>
-                <td class="thtypeu-customers"><input></td>
-                <td class="thpart-Customers"><input></td>
-                <td class="thdesc-Customers"><input></td>
-                <td class="thqty-Customers">PEN</td>
-                <td class="thprice-customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
           </div>

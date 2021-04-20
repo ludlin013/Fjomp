@@ -18,7 +18,8 @@
 
 .logo{
   width: 300px;
-  max-width: 80vw
+  max-width: 80vw;
+  margin-bottom: -35px
 }
 
 .flags{
@@ -26,8 +27,8 @@
   width: 300px;
   max-width: 80vw;
   justify-content: space-around;
-  margin-bottom: 20px;
-  height:calc(25% * 0.61);
+  align-items: center;
+  min-height: 100px
 }
 
 .flags img{
