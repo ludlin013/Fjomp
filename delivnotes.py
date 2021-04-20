@@ -34,6 +34,15 @@ def sql(type,sqlquery):
         result = None
 
     return result
+@app.route("/pdffile", methods=["GET", "POST"])
+def pdffile():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    return render_template("pdffile.html",)
 
 
 @app.route("/delivnotes", methods=["GET","POST"])

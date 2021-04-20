@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body onload="docPrint()">
+  <h1>Jippie</h1>
+  <script>
+    function docPrint(){
+      window.print()
+      setTimeout("closePrintView()", 1000);
+    }
+    function closePrintView() {
+      document.location.href = 'delivnotes';
+    }
+  </script>
+</body>
+</html>
