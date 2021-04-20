@@ -1,7 +1,61 @@
 <html>
 <head></head>
+<style>
+  body{
+    font-family: arial;
+  }
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+  }
+
+  .toprightheader{
+    width: 300px;
+    border: 1px black solid;
+    display:flex;
+    flex-direction: row;
+  }
+
+  .toprightleftheader{
+    width: 40%;
+    text-align: right;
+    padding-right: 20px;
+  }
+
+  .toprightrightheader{
+    width:60%;
+  }
+
+</style>
 <body onload="docPrint()">
-  <h1>Jippie</h1>
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerleft">
+        <img src="static/pictures/ekablogo.png" height="75px">
+        <p style="font-size:20px;"><b>Delivery Note:</b></p>
+      </div>
+      <div class="headerright">
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Cust. ID:</b></p>
+            <p><b>Cust. Name:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>ZIP / City:</b></p>
+            <p><b>Cust. Ref:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>Namn</p>
+            <p>Namn</p>
+            <p>Namn</p>
+            <p>Namn</p>
+            <p>Namn</p>
+          </div>
+        </div>
+        <div class="bottomrightheader"></div>
+        <div></div>
+      </div>
+  </div>
   <script>
     function docPrint(){
       window.print()
