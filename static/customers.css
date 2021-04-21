@@ -130,6 +130,7 @@ margin-left: 20px;
   text-align:center;
   padding: 5px;
   border-right: 1px solid;
+  cursor: pointer;
 }
 
 .middlepage-customers div:nth-last-child(1){
@@ -148,6 +149,18 @@ tr{
 
 table {
   border-collapse: collapse;
+}
+
+td input{
+  padding:2px 2px;
+  border:none;
+  outline:none
+}
+
+td input[type=date]{
+  padding:0px 2px;
+  border:none;
+  outline:none
 }
 
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
@@ -174,6 +187,26 @@ table {
 
 .buttonbarpic-customers{
   width: 40px;
+}
+
+.thcatu-customers,
+.thcatu-customers input{
+  width:50px
+}
+
+.thtypeu-customers,
+.thtypeu-customers input{
+  width:60px
+}
+
+.thvendoru-customers,
+.thvendoru-customers input{
+  width:70px
+}
+
+.thmodelu-customers,
+.thmodelu-customers input{
+  width:90px
 }
 
 @media only screen and (max-width: 1000px){

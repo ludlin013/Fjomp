@@ -176,7 +176,6 @@ def lookup():
             for x in delivnote_result:
                 date = datetime(1900,1,1).date()
                 if x[4].date() != None:
-                    print("HELLO")
                     date = x[4].date()
                 if btwdate1 < date < btwdate2:
                     Dict = {}
@@ -206,10 +205,8 @@ def lookup():
             for x in irparts_result:
                 date = datetime(1900,1,1).date()
                 if x[10].date() != None:
-                    print("HELLO")
                     date = x[10].date()
                 if btwdate1 < date < btwdate2:
-                    print([x])
                     Dict = {}
                     Dict["url"] = "/ir?ir="+str(x[1])
                     Dict["type"] = "IR Parts Used"
@@ -237,7 +234,6 @@ def lookup():
             for x in sentswap_results:
                 date = datetime(1900,1,1).date()
                 if x[3] != None:
-                    print("HELLO")
                     date = x[3]
                 if btwdate1 < date < btwdate2:
                     Dict = {}
@@ -267,7 +263,6 @@ def lookup():
             for x in returnedswap_results:
                 date = datetime(1900,1,1).date()
                 if x[3] != None:
-                    print("HELLO")
                     date = x[3]
                 if btwdate1 < date < btwdate2:
                     Dict = {}
@@ -298,7 +293,6 @@ def lookup():
                 for x in unitsfile_results:
                     date = datetime(1900,1,1).date()
                     if x[6] != None:
-                        print("HELLO")
                         date = x[6]
                     if btwdate1 < date < btwdate2:
                         Dict = {}
@@ -329,7 +323,6 @@ def lookup():
                 for x in unitshistory_results:
                     date = datetime(1900,1,1).date()
                     if x[6] != None:
-                        print("HELLO")
                         date = x[6]
                     if btwdate1 < date < btwdate2:
                         Dict = {}

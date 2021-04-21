@@ -51,6 +51,13 @@ def customers():
 
     units = []
     customers = []
+
+    cat = []
+    type = []
+    vend = []
+    model = []
+    charge = []
+
     customer = ["","","","","","","","","","","","","","","","","","","","","",""]
     pricegroups = sql("SELECT","SELECT * FROM Pricegroups")
 
@@ -69,6 +76,7 @@ def customers():
                 if customer[24] == "1900-01-01":
                     customer[24] = ""
                 table = request.cookies.get("custtable")
+                sort = request.cookies.get("custsort")
 
                 if table == "irhistory":
                     pass
@@ -76,12 +84,42 @@ def customers():
                 else:
                     # Units #
                     units = sql("SELECT","SELECT * FROM Units WHERE LOWER(Unit_CustID) = LOWER('" + cust.strip() + "')")
-                    print(units)
+                    cat = sql("SELECT","SELECT * FROM SystemCat")
+                    type = sql("SELECT","SELECT * FROM Modeltype")
+                    vend = sql("SELECT","SELECT Vend_Code FROM Vendors")
+                    model = sql("SELECT","SELECT * FROM Models")
+                    charge = sql("SELECT","SELECT * FROM Chargemode")
+
+                    cat.sort()
+                    type.sort()
+                    vend.sort()
+                    model.sort()
+                    charge.sort()
 
 
+                    if sort == "cat":
+                        units.sort(key = lambda x:x[1])
+                    elif sort == "type":
+                        units.sort(key = lambda x:x[5])
+                    elif sort == "vend":
+                        units.sort(key = lambda x:x[2])
+                    elif sort == "model":
+                        units.sort(key = lambda x:x[3])
+                    elif sort == "serial":
+                        units.sort(key = lambda x:x[4])
+                    elif sort == "install":
+                        units.sort(key = lambda x:x[6])
+                    elif sort == "warranty":
+                        units.sort(key = lambda x:x[7])
+                    elif sort == "charge":
+                        units.sort(key = lambda x:x[8])
+                    elif sort == "replace":
+                        units.sort(key = lambda x:x[9])
+                    else:
+                        units.sort(key = lambda x:x[1])
 
-
-
+                    for x in units:
+                        print(x[2])
 
                 break
 
@@ -92,4 +130,4 @@ def customers():
 
 
 
-    return render_template("customers.html",theme=theme,notheme=notheme,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",theme=theme,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)

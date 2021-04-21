@@ -164,6 +164,9 @@
                     {% for x in models %}
                     <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}" {% if x[1].strip() == n[5].strip() %} selected {% endif %}>{{x[1]}}</option>
                     {% endfor %}
+                    {% if n[5] not in models %}
+                    <option value="%%{{wo.index(n)}}" selected>{{n[5].strip()}}</option>
+                    {% endif %}
                   </select>
                 </td>
                 <td class="thserial-ir"><input id="partserialir" value="{{n[6].strip()}}"></td>
