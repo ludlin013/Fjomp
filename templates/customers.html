@@ -47,11 +47,11 @@
       <div class="leftpage-customers">
         <form class="form-customers">
           <label for="search" class="searchlabel-customers">Search for:</label>
-          <div class="formitem-customers"><label class="cust-customers">Cust. #:</label><input value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
-          <div class="formitem-customers"><label class="name-customers">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
-          <div class="formitem-customers"><label class="address-customers">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
-          <div class="formitem-customers"><label class="zipcity-customers">Zip/City:</label><input value="{{customer[5].strip()}}" class="forminput-customers" type="text" name="zip-customers"><input value="{{customer[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
-          <div class="formitem-customers"><label class="pricegroup-customers">Price group:</label><select style="width: 190px;" class="forminput-customers" type="text" name="groupnumber-customers">
+          <div class="formitem-customers"><label class="cust-customers noselect">Cust. #:</label><input value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers noselect">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
+          <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
+          <div class="formitem-customers"><label class="address-customers noselect">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
+          <div class="formitem-customers"><label class="zipcity-customers noselect">Zip/City:</label><input value="{{customer[5].strip()}}" class="forminput-customers" type="text" name="zip-customers"><input value="{{customer[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="city-customers"></div>
+          <div class="formitem-customers"><label class="pricegroup-customers noselect">Price group:</label><select style="width: 190px;" class="forminput-customers" type="text" name="groupnumber-customers">
             {% for x in pricegroups %}
             <option value="{{x[0]}}"  {% if x[0] == customer[33] %}selected {% endif %}>{{x[0]}}: {{x[1].strip()}}</option>
             {% endfor %}
@@ -60,21 +60,21 @@
       </div>
       <div class="rightpage-customers">
         <form class="form-customers">
-          <div class="formitem-customers"><label class="phone-customers">Phone:</label><input value="{{customer[10]}}" id="phoneinput-customers" class="forminput-customers" type="text" name="phone-customers"></div>
-          <div class="formitem-customers"><label class="opendate-customers">Open date:</label><input value="{{customer[21]}}" class="forminput-customers" type="date" name="open date-customers"></div>
-          <div class="formitem-customers"><label class="instdate-customers">Inst. date:</label><input value="{{customer[22]}}" class="forminput-customers" type="date" name="inst. date-customers"></div>
-          <div class="formitem-customers"><label class="closeddate-customers">Closed date:</label><input value="{{customer[24]}}" class="forminput-customers" type="date" name="closed date-customers"></div>
-          <div class="formitem-customers"><input  {% if 1 == customer[26] %}checked {% endif %} class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers">Dt</label><input {% if 1 == customer[27] %}checked {% endif %} class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers">Wt</label></div>
+          <div class="formitem-customers noselect"><label class="phone-customers noselect">Phone:</label><input value="{{customer[10].strip()}}" id="phoneinput-customers" class="forminput-customers" type="text" name="phone-customers"></div>
+          <div class="formitem-customers noselect"><label class="opendate-customers noselect">Open date:</label><input value="{{customer[21]}}" class="forminput-customers" type="date" name="open date-customers"></div>
+          <div class="formitem-customers noselect"><label class="instdate-customers noselect">Inst. date:</label><input value="{{customer[22]}}" class="forminput-customers" type="date" name="inst. date-customers"></div>
+          <div class="formitem-customers noselect"><label class="closeddate-customers noselect">Closed date:</label><input value="{{customer[24]}}" class="forminput-customers" type="date" name="closed date-customers"></div>
+          <div class="formitem-customers noselect"><input  {% if 1 == customer[26] %}checked {% endif %} class="forminput-customers" id="checkdt" type="checkbox" name="dt-customers"><label for="dt-customers" class=" noselect">Dt</label><input {% if 1 == customer[27] %}checked {% endif %} class="forminput-customers" id="checkwt" type="checkbox" name="wt-customers"><label for="wt-customers" class=" noselect">Wt</label></div>
         </form>
       </div>
     </div>
     <div class="">
 
       <div class="middlepage-customers">
-        <div class="buttonunits-customers" onclick="document.cookie = 'custtable = units';location.reload()">Units</div>
-        <div class="buttonir-customers" onclick="document.cookie = 'custtable = irhistory';location.reload()">IR-History</div>
-        <div class="buttondelivery-customers" onclick="document.cookie = 'custtable = deliverynotes';location.reload()">Delivery Notes</div>
-        <div class="buttonswapouts-customers" onclick="document.cookie = 'custtable = swapouts';location.reload()">Swapouts</div>
+        <div class="buttonunits-customers noselect" onclick="document.cookie = 'custtable = units';location.reload()">Units</div>
+        <div class="buttonir-customers noselect" onclick="document.cookie = 'custtable = irhistory';location.reload()">IR-History</div>
+        <div class="buttondelivery-customers noselect" onclick="document.cookie = 'custtable = deliverynotes';location.reload()">Delivery Notes</div>
+        <div class="buttonswapouts-customers noselect" onclick="document.cookie = 'custtable = swapouts';location.reload()">Swapouts</div>
       </div>
       <div class="customers-tablewrap">
         <div class="searchflik">
@@ -86,15 +86,15 @@
           <table class="list-units">
             <thead>
               <tr class="header-customers" id="header-customers">
-                <th onclick="document.cookie = 'custsort = cat';location.reload()" class="thcatu-customers">Cat.</th>
-                <th onclick="document.cookie = 'custsort = type';location.reload()" class="thtypeu-customers">Type</th>
-                <th onclick="document.cookie = 'custsort = vend';location.reload()" class="thvendoru-customers">Vendor</th>
-                <th onclick="document.cookie = 'custsort = model';location.reload()" class="thmodelu-customers">Model</th>
-                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="thserialu-customers">Serial #</th>
-                <th onclick="document.cookie = 'custsort = install';location.reload()" class="thinstu-customers">Installation date</th>
-                <th onclick="document.cookie = 'custsort = warranty';location.reload()" class="thwarrantyu-customers">Warranty ends</th>
-                <th onclick="document.cookie = 'custsort = charge';location.reload()" class="thcontru-customers">Contr. Type</th>
-                <th onclick="document.cookie = 'custsort = replace';location.reload()" class="threplu-customers">Repl. Date</th>
+                <th onclick="document.cookie = 'custsort = cat';location.reload()" class="thcatu-customers noselect">Cat.</th>
+                <th onclick="document.cookie = 'custsort = type';location.reload()" class="thtypeu-customers noselect">Type</th>
+                <th onclick="document.cookie = 'custsort = vend';location.reload()" class="thvendoru-customers noselect">Vendor</th>
+                <th onclick="document.cookie = 'custsort = model';location.reload()" class="thmodelu-customers noselect">Model</th>
+                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="thserialu-customers noselect">Serial #</th>
+                <th onclick="document.cookie = 'custsort = install';location.reload()" class="thinstu-customers noselect">Installation date</th>
+                <th onclick="document.cookie = 'custsort = warranty';location.reload()" class="thwarrantyu-customers noselect">Warranty ends</th>
+                <th onclick="document.cookie = 'custsort = charge';location.reload()" class="thcontru-customers noselect">Contr. Type</th>
+                <th onclick="document.cookie = 'custsort = replace';location.reload()" class="threplu-customers noselect">Repl. Date</th>
               </tr>
             </thead>
             <tbody class="whatabody-customers">

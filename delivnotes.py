@@ -134,9 +134,14 @@ def delivnotes():
                 #print(x)
 
             z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
-            Dict["street"] = z[0][3].strip()
-            Dict["zip"] = z[0][5].strip()
-            Dict["city"] = z[0][6].strip()
+            if len(z)!=0:
+                Dict["street"] = z[0][3].strip()
+                Dict["zip"] = z[0][5].strip()
+                Dict["city"] = z[0][6].strip()
+            else:
+                Dict["street"] = ""
+                Dict["zip"] = ""
+                Dict["city"] = ""
         else:
 
             notFound = "Delivery note not found"

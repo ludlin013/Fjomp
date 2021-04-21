@@ -94,7 +94,7 @@ def customers():
                     type.sort()
                     vend.sort()
                     model.sort()
-                    charge.sort()
+                    charge.sort() 
 
 
                     if sort == "cat":

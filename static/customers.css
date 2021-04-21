@@ -121,7 +121,7 @@ margin-left: 20px;
 
 .middlepage-customers{
   display: flex;
-  width: 900px;
+  width: 1180px;
 }
 
 .middlepage-customers div{
@@ -165,7 +165,7 @@ td input[type=date]{
 
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
-  max-width: 900px;
+  max-width: 1180px;
   max-height: 300px;
   overflow-y: scroll;
 }
@@ -207,6 +207,11 @@ td input[type=date]{
 .thmodelu-customers,
 .thmodelu-customers input{
   width:90px
+}
+
+.thserialu-customers,
+.thserialu-customers input{
+  width:140px
 }
 
 @media only screen and (max-width: 1000px){
