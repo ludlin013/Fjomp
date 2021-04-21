@@ -10,11 +10,24 @@
     justify-content:space-between;
   }
 
+  .headerleft{
+    height: 200px;
+  }
+
   .toprightheader{
     width: 300px;
     border: 1px black solid;
     display:flex;
     flex-direction: row;
+  }
+
+  .bottomrightheader{
+    width: 300px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    justify-content: center;
   }
 
   .toprightleftheader{
@@ -27,13 +40,61 @@
     width:60%;
   }
 
+  .bottomrightstatic{
+    text-align: right;
+  }
+
+  .bottomrightleft{
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+  }
+
+  .bottomrightright{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+  }
+
+  .textnotes{
+    display: flex;
+    align-items: flex-end;
+    height: 150px;
+  }
+
+  .textbox{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px black solid;
+    height: 100px;
+  }
+
+  .itembox{
+    border: 1px black solid;
+    min-height: 550px;
+  }
+  .itemheader{
+    border: 1px black solid;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .Partnum{
+    width: 100px;
+  }
+
+  .Part{
+    width: 100px;
+  }
+
 </style>
 <body onload="docPrint()">
   <div class="wrapper">
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px">
-        <p style="font-size:20px;"><b>Delivery Note:</b></p>
+        <p style="font-size:20px;"><b>Deliverynote #:</b></p>
+        <div class="textnotes"><p><b>Text/Notes</b></p></div>
       </div>
       <div class="headerright">
         <div class="toprightheader">
@@ -52,8 +113,43 @@
             <p>Namn</p>
           </div>
         </div>
-        <div class="bottomrightheader"></div>
-        <div></div>
+        <div class="bottomrightheader">
+          <div class="bottomrightleft">
+            <div class="bottomrightstatic">
+              <p><b>Date: </b></p>
+              <p><b>Office: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>Namn</p>
+              <p>Namn</p>
+            </div>
+          </div>
+          <div class="bottomrightright">
+            <div class="bottomrightstatic">
+              <p><b>Our ref: </b></p>
+              <p><b>Shipping: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>Namn</p>
+              <p>Namn</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="textbox"></div>
+      <div class="itembox">
+        <div class="itemheader">
+          <div class="Partnum">Part #</div>
+          <div class="Part">Part</div>
+          <div class="Qty">Qty</div>
+          <div class="Price">Price</div>
+          <div class="Disc.">Disc.</div>
+          <div class="Netvalue">Netvalue</div>
+          <div class="Total">Total</div>
+          <div class="Back ord.">Back ord.</div>
+          <div class="No charge">No charge</div>
+        </div>
       </div>
   </div>
   <script>
