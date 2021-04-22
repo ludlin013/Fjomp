@@ -15,29 +15,30 @@
   }
 
   .toprightheader{
-    width: 300px;
+    width: 400px;
     border: 1px black solid;
     display:flex;
     flex-direction: row;
   }
 
   .bottomrightheader{
-    width: 300px;
+    width: 400px;
     border: 1px black solid;
     display: flex;
     flex-direction: row;
     margin-top: 5px;
-    justify-content: center;
   }
 
   .toprightleftheader{
-    width: 40%;
+    width: 30%;
     text-align: right;
     padding-right: 20px;
+    font-size: 14px;
   }
 
   .toprightrightheader{
-    width:60%;
+    width:70%;
+    font-size: 14px;
   }
 
   .bottomrightstatic{
@@ -45,15 +46,21 @@
   }
 
   .bottomrightleft{
+    padding: 10px;
+    width: 40%;
     display: flex;
     flex-direction: row;
     margin-right: 5px;
+    font-size: 14px;
   }
 
   .bottomrightright{
+    padding: 10px;
+    width: 60%;
     display: flex;
     flex-direction: row;
     margin-left: 5px;
+    font-size: 14px;
   }
 
   .textnotes{
@@ -71,10 +78,17 @@
 
   .itembox{
     border: 1px black solid;
-    min-height: 550px;
+    min-height: 500px;
+    font-size: 12px;
   }
   .itemheader{
-    border: 1px black solid;
+    border-bottom: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .itemrow{
     display: flex;
     flex-direction: row;
   }
@@ -84,7 +98,68 @@
   }
 
   .Part{
+    width: 150px;
+  }
+
+  .Qty{
+    width: 50px;
+  }
+
+  .Price{
+    width: 75px;
+  }
+
+  .Disc{
+    width: 50px;
+  }
+
+  .Netvalue{
+    width: 75px;
+  }
+
+  .Total{
+    width: 75px;
+  }
+
+  .Backord{
+    width: 50px;
+  }
+
+  .Nocharge{
+    width: 50px;
+  }
+
+  .righttotalvalue{
+    width: 30%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .totalvalue{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .dynamicprice{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
     width: 100px;
+  }
+
+  .contactinfo{
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    border-top: 1px solid black;
+    width: 100%;
+  }
+
+  .column{
+    width: 400px;
   }
 
 </style>
@@ -140,15 +215,61 @@
       <div class="textbox"></div>
       <div class="itembox">
         <div class="itemheader">
-          <div class="Partnum">Part #</div>
-          <div class="Part">Part</div>
-          <div class="Qty">Qty</div>
-          <div class="Price">Price</div>
-          <div class="Disc.">Disc.</div>
-          <div class="Netvalue">Netvalue</div>
-          <div class="Total">Total</div>
-          <div class="Back ord.">Back ord.</div>
-          <div class="No charge">No charge</div>
+          <div class="Partnum"><b>Part #</b></div>
+          <div class="Part"><b>Part</b></div>
+          <div class="Qty"><b>Qty</b></div>
+          <div class="Price"><b>Price</b></div>
+          <div class="Disc"><b>Disc.</b></div>
+          <div class="Netvalue"><b>Netvalue</b></div>
+          <div class="Total"><b>Total</b></div>
+          <div class="Backord"><b>Back ord.</b></div>
+          <div class="Nocharge"><b>No charge</b></div>
+        </div>
+        <div class="itemrow">
+          <div class="Partnum">Namn</div>
+          <div class="Part">Namn</div>
+          <div class="Qty">Namn</div>
+          <div class="Price">Namn</div>
+          <div class="Disc">Namn</div>
+          <div class="Netvalue">Namn</div>
+          <div class="Total">Namn</div>
+          <div class="Backord">Namn</div>
+          <div class="Nocharge">Namn</div>
+        </div>
+        <div class="itemrow">
+          <div class="Partnum">Namn</div>
+          <div class="Part">Namn</div>
+          <div class="Qty">Namn</div>
+          <div class="Price">Namn</div>
+          <div class="Disc">Namn</div>
+          <div class="Netvalue">Namn</div>
+          <div class="Total">Namn</div>
+          <div class="Backord">Namn</div>
+          <div class="Nocharge">Namn</div>
+        </div>
+      </div>
+      <div class="totalvalue">
+        <div class="righttotalvalue"><p><b>Total value: </b></p><div class="dynamicprice"><p>10101010 <b>kr</b></p></div></div>
+      </div>
+      <div class="contactinfo">
+        <div class="column">
+          <p>Ekab Systemservice AB</p>
+          <p>Molijns väg 8</p>
+          <p>589 41 Linköping</p>
+        </div>
+        <div class="column">
+          <p>Email / Web:</p>
+          <p>info@ekabss.com</p>
+          <p>www.ekabss.com</p>
+        </div>
+        <div class="column">
+          <p>Phone:</p>
+          <p>Nat. 013-369340</p>
+          <p>Int. +46 13 369340</p>
+        </div>
+        <div class="column">
+          <p>Org.no / VAT:</p>
+          <p>556549-5305</p>
         </div>
       </div>
   </div>
