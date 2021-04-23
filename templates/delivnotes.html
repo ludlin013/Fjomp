@@ -72,7 +72,7 @@
             <div class="formitem-delivnotes"><label>Sent from:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
                 {% for x in Dict["sentfrom"]%}
-                <option value="{{x[1]}}" {% if x[0] == 1: %}selected{% endif %}>{{x[1]}}</option>
+                <option value="{{Dict["sentfrom"][x]}}" {% if Dict["DN_Office"] == x: %}selected{% endif %}>{{Dict["sentfrom"][x]}}</option>
                 {% endfor %}
               </select>
             </div>
@@ -156,7 +156,7 @@
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
           <a {% if delivnote %}href="mailto:lager@nisse.se?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}"{% endif %} class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>
-          <a href="/pdffile" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
+          <a href="/pdffile?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
           <a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
         </div>
         </div>

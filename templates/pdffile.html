@@ -74,6 +74,7 @@
     margin-bottom: 5px;
     border: 1px black solid;
     height: 100px;
+    padding: 5px;
   }
 
   .itembox{
@@ -94,15 +95,15 @@
   }
 
   .Partnum{
-    width: 100px;
-  }
-
-  .Part{
     width: 150px;
   }
 
+  .Part{
+    width: 170px;
+  }
+
   .Qty{
-    width: 50px;
+    width: 40px;
   }
 
   .Price{
@@ -110,7 +111,7 @@
   }
 
   .Disc{
-    width: 50px;
+    width: 40px;
   }
 
   .Netvalue{
@@ -122,11 +123,11 @@
   }
 
   .Backord{
-    width: 50px;
+    width: 40px;
   }
 
   .Nocharge{
-    width: 50px;
+    width: 40px;
   }
 
   .righttotalvalue{
@@ -162,13 +163,17 @@
     width: 400px;
   }
 
+  .betedig{
+    margin: 0px;
+  }
+
 </style>
 <body onload="docPrint()">
   <div class="wrapper">
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px">
-        <p style="font-size:20px;"><b>Deliverynote #:</b></p>
+        <p style="font-size:20px;"><b>Deliverynote #: {{delivnote}}</b></p>
         <div class="textnotes"><p><b>Text/Notes</b></p></div>
       </div>
       <div class="headerright">
@@ -181,11 +186,11 @@
             <p><b>Cust. Ref:</b></p>
           </div>
           <div class="toprightrightheader">
-            <p>Namn</p>
-            <p>Namn</p>
-            <p>Namn</p>
-            <p>Namn</p>
-            <p>Namn</p>
+            <p>{{Dict["storenum"]}}</p>
+            <p>{{Dict["storename"]}}</p>
+            <p>{{Dict["street"]}}</p>
+            <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
+            <p>{{Dict["referens"]}}</p>
           </div>
         </div>
         <div class="bottomrightheader">
@@ -195,8 +200,8 @@
               <p><b>Office: </b></p>
             </div>
             <div class="bottomrightdynamic">
-              <p>Namn</p>
-              <p>Namn</p>
+              <p>&nbsp{{Dict["date"]}}</p>
+              <p>&nbsp{{Dict["office"]}}</p>
             </div>
           </div>
           <div class="bottomrightright">
@@ -205,14 +210,14 @@
               <p><b>Shipping: </b></p>
             </div>
             <div class="bottomrightdynamic">
-              <p>Namn</p>
-              <p>Namn</p>
+              <p>&nbsp{{Dict["DN_Sign"]}}</p>
+              <p>&nbsp{{Dict["freighttype"]}}</p>
             </div>
           </div>
         </div>
         </div>
       </div>
-      <div class="textbox"></div>
+      <div class="textbox"><p class="betedig">{{Dict["notes"]}}</p></div>
       <div class="itembox">
         <div class="itemheader">
           <div class="Partnum"><b>Part #</b></div>
@@ -225,31 +230,22 @@
           <div class="Backord"><b>Back ord.</b></div>
           <div class="Nocharge"><b>No charge</b></div>
         </div>
+        {% for x in sqlq%}
         <div class="itemrow">
-          <div class="Partnum">Namn</div>
-          <div class="Part">Namn</div>
-          <div class="Qty">Namn</div>
-          <div class="Price">Namn</div>
-          <div class="Disc">Namn</div>
-          <div class="Netvalue">Namn</div>
-          <div class="Total">Namn</div>
-          <div class="Backord">Namn</div>
-          <div class="Nocharge">Namn</div>
+          <div class="Partnum">{{x[6].strip()}}</div>
+          <div class="Part">{{x[6].strip()}}</div>
+          <div class="Qty">{{x[8]}}</div>
+          <div class="Price">{{x[9]}}</div>
+          <div class="Disc">{{x[10]}}</div>
+          <div class="Netvalue">{{x[11]}}</div>
+          <div class="Total">{{x[12]}}</div>
+          <div class="Backord">{% if x[18] != 0%}✔{% endif %}</div>
+          <div class="Nocharge">{% if x[13] != 0%}✔{% endif %}</div>
         </div>
-        <div class="itemrow">
-          <div class="Partnum">Namn</div>
-          <div class="Part">Namn</div>
-          <div class="Qty">Namn</div>
-          <div class="Price">Namn</div>
-          <div class="Disc">Namn</div>
-          <div class="Netvalue">Namn</div>
-          <div class="Total">Namn</div>
-          <div class="Backord">Namn</div>
-          <div class="Nocharge">Namn</div>
-        </div>
+        {% endfor %}
       </div>
       <div class="totalvalue">
-        <div class="righttotalvalue"><p><b>Total value: </b></p><div class="dynamicprice"><p>10101010 <b>kr</b></p></div></div>
+        <div class="righttotalvalue"><p><b>Total value: </b></p><div class="dynamicprice"><p>{{total}} <b>kr</b></p></div></div>
       </div>
       <div class="contactinfo">
         <div class="column">

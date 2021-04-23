@@ -42,7 +42,62 @@ def pdffile():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    return render_template("pdffile.html",)
+    delivnote = None
+    delivnote = request.args.get("dn")
+    Dict = {}
+    total = 0
+
+    sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
+    Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
+    Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
+    sqlq=[]
+
+    if len(sqlquery) != 0:
+        for x in sqlquery:
+
+            total += x[12]
+
+            Dict["storenum"] = x[0].strip()
+            Dict["number"] = x[1]
+            Dict["storename"] = x[2].strip()
+            Dict["referens"] = x[3].strip()
+            Dict["date"] = x[4].strftime("%d/%m/%Y")
+            Dict["DN_Sign"] = x[16]
+            Dict["notes"] = x[17].strip()
+            Dict["DN_Freight"] = x[15]
+            Dict["DN_Office"] = x[23]
+            Dict["DN_Pricegroup"] = x[26]
+            Dict["DN_PGDescription"] = x[25]
+            Dict["netvalue"] = x[11]
+            Dict["DN_Closed"] = x[14]
+            Dict["offer"] = x[27]
+            Dict["finaloffer"] = x[28]
+
+
+            sqlq.append(x)
+
+            for x in Dict["freight"]:
+                if x.strip() == Dict["DN_Freight"].strip():
+                    Dict["freighttype"] = Dict["freight"][x]
+            print(Dict["freighttype"])
+
+            print(Dict["sentfrom"])
+            for x in Dict["sentfrom"]:
+                if x == Dict["DN_Office"]:
+                    Dict["office"] = Dict["sentfrom"][x]
+
+
+        z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
+        if len(z)!=0:
+            Dict["street"] = z[0][3].strip()
+            Dict["zip"] = z[0][5].strip()
+            Dict["city"] = z[0][6].strip()
+        else:
+            Dict["street"] = ""
+            Dict["zip"] = ""
+            Dict["city"] = ""
+
+    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote)
 
 
 @app.route("/delivnotes", methods=["GET","POST"])
@@ -75,7 +130,7 @@ def delivnotes():
 
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
     Dict["pricegroup"] = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
-    Dict["sentfrom"] = sql("SELECT", "SELECT * FROM Office")
+    Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
 
     Dict["DN_Sign"] = request.cookies.get("username")
@@ -125,6 +180,7 @@ def delivnotes():
                 Dict["DN_Sign"] = x[16]
                 Dict["notes"] = x[17].strip()
                 Dict["DN_Freight"] = x[15]
+                Dict["DN_Office"] = x[23]
                 Dict["DN_Pricegroup"] = x[26]
                 Dict["DN_PGDescription"] = x[25]
                 Dict["netvalue"] = x[11]
