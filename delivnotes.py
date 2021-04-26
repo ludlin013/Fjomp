@@ -79,9 +79,7 @@ def pdffile():
             for x in Dict["freight"]:
                 if x.strip() == Dict["DN_Freight"].strip():
                     Dict["freighttype"] = Dict["freight"][x]
-            print(Dict["freighttype"])
-
-            print(Dict["sentfrom"])
+            
             for x in Dict["sentfrom"]:
                 if x == Dict["DN_Office"]:
                     Dict["office"] = Dict["sentfrom"][x]
