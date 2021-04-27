@@ -91,6 +91,7 @@ def ir():
 
                 parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
                 wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+
         if not found:
             error = "No IR With that Number"
         if len(irinfo) > 0:
@@ -250,8 +251,99 @@ def saveir():
 
     sqlq = "UPDATE IR SET IR_custID = '" + ircust + "',IR_Opendate = '" + opendate + "',IR_Recvdate = '" + recvdate + "',IR_Shipdate = '" + shipdate + "',IR_TechID = '" + techid + "',IR_Ccl = '" + ccl + "',IR_Onsite = '" + onsite + "',IR_Notes = '" + note + "',IR_Infreight = '" + infreight + "',IR_Outfreight = '" + outfreight + "',IR_Closed = '" + closed + "',IR_OpenID = '" + openid + "',IR_Office= '" + office + "' WHERE IR_Irno = '"+ irnum +"'"
 
-    print(sqlq)
-
     sql("INSERT",sqlq)
 
     return redirect("/ir?ir="+str(irnum))
+
+
+
+@app.route("/savespare",methods=["GET","POST"])
+def savespare():
+
+    irnumber = request.form["irnumber"]
+    ircustomer = request.form["ircustomer"]
+    parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+    form = request.form
+
+    n = 0
+    item = {}
+    allitems = []
+    for x in form:
+        if x.startswith(str(n)):
+            item[x] = form[x]
+        elif "irnumber" in x or "ircustomer" in x:
+            pass
+        else:
+            if len(item) != 0:
+                allitems.append(item)
+            item = {}
+            n = n + 1
+            if x.startswith(str(n)):
+                item[x] = form[x]
+
+    if len(item) != 0:
+        allitems.append(item)
+
+    date = datetime.date.today()
+    print(form)
+    for x in allitems:
+        number = 0
+        description = ""
+        price = 0
+        qty = 0
+        charge = 2
+        model = ""
+        serial = ""
+        id = 0
+
+        for y in x:
+            if "spareid" in y:
+                id = x[y]
+            if "sparenumber" in y:
+                number = x[y]
+            if "sparedesc" in y:
+                description = x[y]
+            if "spareprice" in y:
+                try:
+                    price = float(x[y])
+                except:
+                    pass
+            if "spareqty" in y:
+                try:
+                    qty = float(x[y])
+                except:
+                    pass
+            if "sparecharge" in y:
+                charge = x[y]
+            if "sparemodel" in y:
+                model = x[y]
+            if "spareserial" in y:
+                serial = x[y]
+
+        sqlq = "UPDATE IRParts SET IRP_CustID = '" + ircustomer + "',IRP_Model = '" + model + "',IRP_Serial = '" + serial + "', IRP_Partno = '" + number + "', IRP_Part = '" + description + "', IRP_Qty = '" + str(qty) + "', IRP_Outprice = '" + str(price) + "', IRP_Chargemode = '" + charge + "' WHERE IRP_ID = '" + id + "' AND IRP_IRno = '" + irnumber + "'"
+        print(sqlq)
+        sql("INSERT",sqlq)
+
+
+    return ('', 204)
+
+
+@app.route("/newspare",methods=["GET","POST"])
+def newspare():
+    model = request.form["model"]
+    serial = request.form["serial"]
+    irn = request.form["irn"]
+
+    sqlq = "INSERT INTO IRParts (IRP_Model, IRP_Serial, IRP_Date, IRP_IRno) VALUES ('" + model + "','" + serial + "','" + str(datetime.date.today())  + "','" + irn + "')"
+    sql("INSERT",sqlq)
+
+    return ('', 204)
+
+@app.route("/remspare",methods=["GET","POST"])
+def remspare():
+
+    sqlq = "DELETE FROM IRParts WHERE IRP_ID = '" + request.form["partid"] + "'"
+
+    sql("INSERT",sqlq)
+
+    return ('', 204)

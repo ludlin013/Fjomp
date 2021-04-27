@@ -118,11 +118,11 @@
         </div>
         <div class="toppagemiddle2-ir">
           <form class="form-ir" name="form-2top-ir">
-            <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text">{% if irinfo[9] %}{{irinfo[9]}} {% endif %}</textarea></div>
+            <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text" spellcheck="false">{% if irinfo[9] %}{{irinfo[9].strip()}} {% endif %}</textarea></div>
           </form>
-            {% for n in wo %}
-              <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
-            {% endfor %}
+          {% for n in wo %}
+          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
+          {% endfor %}
         </div>
       </div>
       <div class="middlepage-ir">
@@ -192,12 +192,11 @@
 
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
-            <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" type="text" >{{n[8]}}</textarea></div>
+          <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" type="text" >{{n[8]}}</textarea></div>
           {% endfor %}
         </div>
       </div>
 
-      <script src="./static/irjs.js"></script>
 
 
       <div class="bottompage-ir">
@@ -214,29 +213,34 @@
                 <th class="thserial2">Serial</th>
               </tr>
             </thead>
-            <tbody class="tbody-ir irparttable">
-              {% for n in parts %}
-              <tr class="row-ir" onclick="" id="list2-ir">
-                <td class="thpart-ir "><input class="irpartno" type="text" value="{{n[4].strip()}}"></td>
-                <td class="thdesc-ir"><input class="irpartde" type="text" value="{{n[5].strip()}}"></td>
-                <td class="thprice-ir"><input class="irpartpr" type="text" value="{{n[8]}}"></td>
-                <td class="thqty-ir"><input class="irpartqt" type="text" value="{{n[6]}}"></td>
-                <td class="thcharge2-ir">
-                  <select class="irchargedrop irpartch" name="">
-                    <option value="" selected hidden></option>
-                    {% for x in charge %}
-                    <option value="{{x[0]}}" {% if x[0] == n[9]+1 and n[9] != 0 %} selected {% endif %}>{{x[1].strip()}}</option>
-                    {% endfor %}
-                  </select></td>
-                  <td class="thmodel2-ir"><input class="irpartmo" type="text" value="{{n[2].strip()}}"></td>
-                  <td class="thserial2"><input class="irpartse" type="text" value="{{n[3].strip()}}"></td>
-                </tr>
-                {% endfor %}
-              </tbody>
+            <form id="sparepartform" name="sparepartform">
+              <input type="hidden" name="irnumber" value="{{irnumber}}">
+              <input type="hidden" name="ircustomer" value="{{customer[0].strip()}}">
+              <tbody class="tbody-ir irparttable">
+                {% for n in parts %}
+                <input type="hidden" name="{{parts.index(n)}}spareid" value="{{n[15]}}">
+                <tr class="row-ir" onclick="selectspare('{{n[15]}}')" id="list2-ir{{n[15]}}">
+                  <td class="thpart-ir "><input class="irpartno" type="text" name="{{parts.index(n)}}sparenumber" {%if n[4] %} value="{{n[4].strip()}}" {% endif %}></td>
+                  <td class="thdesc-ir"><input class="irpartde" type="text" name="{{parts.index(n)}}sparedesc" {%if n[5] %} value="{{n[5].strip()}}" {% endif %}></td>
+                  <td class="thprice-ir"><input class="irpartpr" type="text" name="{{parts.index(n)}}spareprice" {%if n[8] %} value="{{n[8]}}" {% endif %}></td>
+                  <td class="thqty-ir"><input class="irpartqt" type="text" name="{{parts.index(n)}}spareqty" {%if n[6] %} value="{{n[6]}}" {% endif %}></td>
+                  <td class="thcharge2-ir">
+                    <select class="irchargedrop irpartch" name="{{parts.index(n)}}sparecharge">
+                      <option value="" selected hidden></option>
+                      {% for x in charge %}
+                      <option value="{{x[0]}}" {%if n[9] %} {% if x[0] == n[9] and n[9] != 0 %} selected {% endif %} {% endif %}>{%if n[1] %} {{x[1].strip()}} {% endif %}</option>
+                      {% endfor %}
+                    </select></td>
+                    <td class="thmodel2-ir"><input readonly class="irpartmo" type="text" name="{{parts.index(n)}}sparemodel" {%if n[2] %} value="{{n[2].strip()}}" {% endif %}></td>
+                    <td class="thserial2"><input readonly onclick="this.select()" class="irpartse" type="text" name="{{parts.index(n)}}spareserial" {%if n[3] %} value="{{n[3].strip()}}" {% endif %}></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </form>
             </table>
             <div class="addremirpart">
-              <div class="ir-add"><a href=""><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
-              <div class="ir-rem"><a href=""><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
+              <div class="ir-add" ><a id="ir-add"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
+              <div class="ir-rem"><a id="ir-rem"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
             </div>
           </div>
           <div class="bottommiddle-ir">
@@ -321,6 +325,7 @@
   <input id="saveirloc" name="saveirloc" value="">
 </form>
 </body>
+<script src="./static/irjs.js"></script>
 <script src="/static/mobile.js"></script>
 <script src="/static/saveir.js"></script>
 <script>

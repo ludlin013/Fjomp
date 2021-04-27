@@ -22,11 +22,19 @@ function changerepact(idd){
   for (x of allrepact){
     x.style.display = "none";
   }
+
   for (x of document.getElementsByClassName(idd)){
     x.style.display = "flex"
-}
-  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.borderLeft = "4px solid #fff"
-  console.log(document.getElementById(idd.replace("repact","type")).parentElement.parentElement);
+  }
+
+  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.border = "4px solid #fff"
+  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.background = "#fff"
+
+  var serial = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[7].childNodes[0].value;
+  var model = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].options[document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].selectedIndex].text
+  var ir = document.getElementById('irirn').value;
+
+  document.getElementById('ir-add').onclick = function(){ newspare(model + "%" + serial + "%" + ir) };
 }
 
 changerepact('0repact')
@@ -49,4 +57,43 @@ function setday(id){
   var date = y + "-"+m+"-"+d
   id.value = date;
   window.getSelection().removeAllRanges()
+}
+
+function newspare(arg){
+  console.log(arg);
+
+  var fd = new FormData();
+
+  var model = arg.split("%")[0];
+  var serial = arg.split("%")[1];
+  var irn = arg.split("%")[2];
+
+  fd.append("model",model);
+  fd.append("serial",serial);
+  fd.append("irn",irn);
+
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/newspare",true);
+  xhttp.send(fd);
+  location.reload();
+}
+
+function selectspare(arg){
+
+  document.getElementById('ir-rem').onclick = function(){ removespare(arg) };
+}
+
+function removespare(arg){
+  console.log(arg);
+
+  var fd = new FormData();
+
+  fd.append("partid",arg);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/remspare",true);
+  xhttp.send(fd);
+
+  document.getElementById("list2-ir" + arg).style.display = "none";
 }

@@ -23,8 +23,19 @@ function saveir(){
 
   var xhttp = new XMLHttpRequest();
 
-  xhttp.open("POST","/saveir",true);
-  const fd = new FormData(document.getElementById('irsaveform'))
-  xhttp.send(fd)
+  const sparedata = new FormData(document.getElementById('sparepartform'));
+  console.log(sparedata.keys());
+  xhttp.open("POST","/savespare",true);
+  xhttp.send(sparedata);
+  setTimeout(formir(), 1000);
+
+
+
   //document.getElementById('irsaveform').submit()
+}
+function formir(){
+var xhttp = new XMLHttpRequest();
+xhttp.open("POST","/saveir",true);
+const fd = new FormData(document.getElementById('irsaveform'));
+xhttp.send(fd);
 }

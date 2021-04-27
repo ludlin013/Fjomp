@@ -94,7 +94,7 @@ def customers():
                     type.sort()
                     vend.sort()
                     model.sort()
-                    charge.sort() 
+                    charge.sort()
 
 
                     if sort == "cat":
@@ -108,9 +108,9 @@ def customers():
                     elif sort == "serial":
                         units.sort(key = lambda x:x[4])
                     elif sort == "install":
-                        units.sort(key = lambda x:x[6])
+                        units.sort(key = lambda x:x[6],reverse = True)
                     elif sort == "warranty":
-                        units.sort(key = lambda x:x[7])
+                        units.sort(key = lambda x:x[7],reverse = True)
                     elif sort == "charge":
                         units.sort(key = lambda x:x[8])
                     elif sort == "replace":
