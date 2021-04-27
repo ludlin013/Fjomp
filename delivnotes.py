@@ -44,6 +44,7 @@ def pdffile():
 
     delivnote = None
     delivnote = request.args.get("dn")
+    forcount = 0
     Dict = {}
     total = 0
 
@@ -79,7 +80,7 @@ def pdffile():
             for x in Dict["freight"]:
                 if x.strip() == Dict["DN_Freight"].strip():
                     Dict["freighttype"] = Dict["freight"][x]
-            
+
             for x in Dict["sentfrom"]:
                 if x == Dict["DN_Office"]:
                     Dict["office"] = Dict["sentfrom"][x]
@@ -95,7 +96,7 @@ def pdffile():
             Dict["zip"] = ""
             Dict["city"] = ""
 
-    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote)
+    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount)
 
 
 @app.route("/delivnotes", methods=["GET","POST"])

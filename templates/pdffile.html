@@ -9,7 +9,7 @@
     padding:10px;
     display: flex;
     flex-direction: column;
-    padding-bottom: 20px;
+    margin-bottom: 100px;
   }
   .header{
     display: flex;
@@ -86,7 +86,7 @@
 
   .itembox{
     border: 1px black solid;
-    min-height: 500px;
+    min-height: 450px;
     font-size: 12px;
   }
   .itemheader{
@@ -165,8 +165,9 @@
     border-top: 1px solid black;
     width: 100%;
     position: fixed;
-    bottom: 0;
+    bottom: 10;
     background: rgb(255,255,255);
+    height: 70px;
   }
 
   .column{
@@ -183,13 +184,19 @@
     border: none;
   }
 
+  @Page{
+    margin-bottom: 50px;
+  }
+
+
+
 </style>
 <body onload="docPrint()">
   <div class="wrapper">
     <div class="header">
       <div class="headerleft">
-        <img src="static/pictures/ekablogo.png" height="75px">
-        <p style="font-size:20px;"><b>Deliverynote #: {{delivnote}}</b></p>
+        <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
+        <p style="font-size:20px; margin-top:90px;"><b>Deliverynote #: {{delivnote}}</b></p>
         <div class="textnotes"><p><b>Text/Notes</b></p></div>
       </div>
       <div class="headerright">
@@ -247,18 +254,20 @@
           <div class="Nocharge"><b>No charge</b></div>
         </div>
         {% for x in sqlq%}
-        <div class="itemrow">
-          <div class="Partnum">{{x[6].strip()}}</div>
-          <div class="Part">{{x[6].strip()}}</div>
-          <div class="Qty">{{x[8]}}</div>
-          <div class="Price">{{x[9]}}</div>
-          <div class="Disc">{{x[10]}}</div>
-          <div class="Netvalue">{{x[11]}}</div>
-          <div class="Total">{{x[12]}}</div>
-          <div class="Backord">{% if x[18] != 0%}✔{% endif %}</div>
-          <div class="Nocharge">{% if x[13] != 0%}✔{% endif %}</div>
-        </div>
+        {% if sqlq.index(x) == 20 %}<div class="itembox" style="margin-top:-300px;height:600px;">{% endif %}
+          <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: always"{% endif %}>
+            <div class="Partnum">{{x[6].strip()}}</div>
+            <div class="Part">{{x[6].strip()}}</div>
+            <div class="Qty">{{x[8]}}</div>
+            <div class="Price">{{x[9]}}</div>
+            <div class="Disc">{{x[10]}}</div>
+            <div class="Netvalue">{{x[11]}}</div>
+            <div class="Total">{{x[12]}}</div>
+            <div class="Backord">{% if x[18] != 0%}✔{% endif %}</div>
+            <div class="Nocharge">{% if x[13] != 0%}✔{% endif %}</div>
+          </div>
         {% endfor %}
+        </table>
       </div>
       <div class="totalvalue">
         <div class="righttotalvalue"><p><b>Total value: </b></p><div class="dynamicprice"><p>{{total}} <b>kr</b></p></div></div>
