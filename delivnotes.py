@@ -74,6 +74,9 @@ def pdffile():
             Dict["offer"] = x[27]
             Dict["finaloffer"] = x[28]
 
+            if x[7].strip() != "":
+                forcount+=1
+
 
             sqlq.append(x)
 
