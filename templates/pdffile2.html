@@ -1,0 +1,248 @@
+<html>
+<head></head>
+<style>
+  body{
+    font-family: arial;
+  }
+  .wrapper{
+    height: 1000px;
+    padding:10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+  }
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+  }
+
+  .headerleft{
+    height: 200px;
+  }
+
+  .toprightheader{
+    width: 400px;
+    border: 1px black solid;
+    display:flex;
+    flex-direction: row;
+  }
+
+  .bottomrightheader{
+    width: 400px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+  }
+
+  .toprightleftheader{
+    width: 30%;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+  }
+
+  .toprightrightheader{
+    width:70%;
+    font-size: 14px;
+  }
+
+  .bottomrightstatic{
+    text-align: right;
+  }
+
+  .bottomrightleft{
+    padding: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+    font-size: 14px;
+  }
+
+  .bottomrightright{
+    padding: 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .textnotes{
+    display: flex;
+    align-items: flex-end;
+    height: 280px;
+  }
+
+  .textbox{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px black solid;
+    height: 100px;
+    padding: 5px;
+  }
+
+  .itembox{
+    border: 1px black solid;
+    min-height: 450px;
+    font-size: 12px;
+  }
+  .itemheader{
+    border-bottom: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .itemrow{
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+  }
+
+  .righttotalvalue{
+    width: 30%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .totalvalue{
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .dynamicprice{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    width: 100px;
+  }
+
+  .contactinfo{
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    border-top: 1px solid black;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: rgb(255,255,255);
+    height: 70px;
+  }
+
+  .column{
+    width: 400px;
+  }
+
+  .betedig{
+    margin: 0px;
+    resize: none;
+    width: 600px;
+    height: 100px;
+    font-family: arial;
+    font-size: 14px;
+    border: none;
+  }
+
+  @Page{
+    margin-bottom: 50px;
+  }
+
+  @media print {
+    html, body {
+        height: 99%;
+    }
+    @page {size: landscape}
+}
+
+</style>
+<body onload="docPrint()">
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerleft">
+        <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
+        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b></p>
+        <div class="textnotes"><p><b>Text/Notes</b></p></div>
+      </div>
+      <div class="headerright">
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Restaurang:</b></p>
+            <p><b>Adress:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>ZIP / City:</b></p>
+            <p><b>Cust. Ref:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>{{Dict["storenum"]}}</p>
+            <p>{{Dict["storename"]}}</p>
+            <p>{{Dict["street"]}}</p>
+            <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
+            <p>{{Dict["referens"]}}</p>
+          </div>
+        </div>
+        <div class="bottomrightheader">
+          <div class="bottomrightleft">
+            <div class="bottomrightstatic">
+              <p><b>Date: </b></p>
+              <p><b>Office: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>&nbsp{{Dict["date"]}}</p>
+              <p>&nbsp{{Dict["office"]}}</p>
+            </div>
+          </div>
+          <div class="bottomrightright">
+            <div class="bottomrightstatic">
+              <p><b>Our ref: </b></p>
+              <p><b>Shipping: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>&nbsp{{Dict["DN_Sign"]}}</p>
+              <p>&nbsp{{Dict["freighttype"]}}</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
+      <div class="itembox">
+      </div>
+      <div class="contactinfo">
+        <div class="column">
+          <p>Ekab Systemservice AB</p>
+          <p>Molijns väg 8</p>
+          <p>589 41 Linköping</p>
+        </div>
+        <div class="column">
+          <p>Email / Web:</p>
+          <p>info@ekabss.com</p>
+          <p>www.ekabss.com</p>
+        </div>
+        <div class="column">
+          <p>Phone:</p>
+          <p>Nat. 013-369340</p>
+          <p>Int. +46 13 369340</p>
+        </div>
+        <div class="column">
+          <p>Org.no / VAT:</p>
+          <p>556549-5305</p>
+        </div>
+      </div>
+  </div>
+  <script>
+    function docPrint(){
+      window.print()
+      setTimeout("closePrintView()", 1000);
+    }
+    function closePrintView() {
+      document.location.href = 'delivnotes';
+    }
+  </script>
+</body>
+</html>
