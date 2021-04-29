@@ -126,7 +126,7 @@ margin-left: 20px;
 
 .middlepage-customers div{
   width: 25%;
-  background: rgb(80,80,80);
+  background: #222;
   text-align:center;
   padding: 5px;
   border-right: 1px solid;
@@ -166,7 +166,7 @@ td input[type=date]{
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
   max-width: 1180px;
-  max-height: 300px;
+  max-height: 400px;
   overflow-y: scroll;
 }
 
