@@ -256,6 +256,19 @@ def saveir():
     return redirect("/ir?ir="+str(irnum))
 
 
+@app.route("/remunit",methods=["GET","POST"])
+def remunit():
+
+    lastir = request.cookies.get("lastir")
+
+    sqlq = "DELETE FROM WO WHERE WO_ID = '" + request.form["unitid"] + "'"
+
+    sql("INSERT",sqlq)
+    #print(sqlq)
+
+    return redirect("/ir?ir="+str(lastir))
+
+
 
 @app.route("/savespare",methods=["GET","POST"])
 def savespare():

@@ -140,7 +140,8 @@
             </thead>
             <tbody class="whatabody-ir">
               {% for n in wo %}
-              <tr class="row-ir" onclick="changerepact('{{wo.index(n)}}repact')">
+              <input type="hidden" name="irwoid" id="{{wo.index(n)}}id" value="{{n[18]}}">
+              <tr class="row-ir" onclick="changerepact('{{wo.index(n)}}repact')" id="{{n[18]}}id">
                 <td class="thtype-ir">
                   <select class="irtypedrop" name="" id="{{wo.index(n)}}type">
                     <option value="" selected hidden></option>
@@ -186,7 +187,7 @@
           </table>
           <div class="addremirpart">
             <div class="button-delivnote"><a href="/newunit/{{irinfo[0]}}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
-            <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
+            <div class="button-delivnote"><a id="irunitremove" ><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
           </div>
         </div>
 

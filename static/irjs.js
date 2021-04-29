@@ -18,7 +18,7 @@ function update(inf){
 }
 
 function changerepact(idd){
-  console.log(idd);
+  console.log(document.getElementById(idd.replace("repact","id")).value);
   for (x of allrepact){
     x.style.display = "none";
   }
@@ -35,9 +35,26 @@ function changerepact(idd){
   var ir = document.getElementById('irirn').value;
 
   document.getElementById('ir-add').onclick = function(){ newspare(model + "%" + serial + "%" + ir) };
+  document.getElementById('irunitremove').onclick = function(){removeunit(document.getElementById(idd.replace("repact","id")).value)};
 }
 
 changerepact('0repact')
+
+
+function removeunit(arg){
+  console.log(arg);
+
+  var fd = new FormData();
+
+  fd.append("unitid",arg);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/remunit",true);
+  xhttp.send(fd);
+
+  document.getElementById(arg+"id").style.display = "none";
+}
+
 
 var active = false;
 

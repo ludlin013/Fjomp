@@ -173,7 +173,9 @@ def login():
             auth = False
             if request.form['username'] in authusr:
                 auth = True
-            createcsv()
+
+                ################################
+                #createcsv()
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"

@@ -123,9 +123,9 @@ def delivnotes():
     numbers.sort()
 
     min = numbers[0]
-    max = numbers[len(numbers) - 1]
+    maxad = numbers[len(numbers) - 1]
     previous = min
-    next = max
+    next = maxad
     lastdn = request.cookies.get("lastdn")
 
 
@@ -141,7 +141,7 @@ def delivnotes():
     total = 0
     delivnote = request.args.get("dn")
     if delivnote == None and lastdn == None:
-        return redirect("/delivnotes?dn=" + str(max))
+        return redirect("/delivnotes?dn=" + str(maxad))
     elif delivnote == None:
         return redirect("/delivnotes?dn=" + str(lastdn))
 
@@ -150,9 +150,9 @@ def delivnotes():
 
         print(delivnote)
 
-        if int(delivnote) < max:
+        if int(delivnote) < maxad:
             next = int(delivnote) + 1
-            while next not in numbers and next < max:
+            while next not in numbers and next < maxad:
                 next += 1
 
         if int(delivnote) > min:
@@ -205,11 +205,30 @@ def delivnotes():
             notFound = "Delivery note not found"
 
     mailbody = ""
+    nolen = []
+    namelen = []
+    for x in sqlq:
+        nolen.append(len(x[5].strip()))
+        namelen.append(len(x[6].strip()))
+
+
     for x in sqlq:
         mailno = x[5].strip()
         mailname = x[6].strip()
         mailqty = str(x[8]).strip()
-        print([mailno],[mailname],[mailqty])
-        mailbody += mailno+"\r\t"+mailname+mailqty+"%0D%0A"
+
+        fspace = "%09"
+        sspace = "%09"
+
+        print(len(mailno))
+
+        if max(nolen) >= 10 and len(mailno) <= 10:
+            fspace += "%09"
+        if max(namelen) >= 10 and len(mailname) <= 10:
+            sspace += "%09"
+
+        mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D%0A"
+
+        #print(mailbody)
     #return mailbody
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=max,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
