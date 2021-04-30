@@ -135,6 +135,18 @@ input,select{
   background:#c00;
 }
 
+.middlepage-customers div{
+  border-color: #222
+}
+
+.headactive{
+  background:rgb(80,80,80) !important
+}
+
+.middlepage-customers div:hover{
+  background:rgb(50,50,50)
+}
+
 .settingthemeswitchwrap{
   background: #282828;
   border:1px solid rgb(60,60,60)

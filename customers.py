@@ -44,13 +44,20 @@ def customers():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
     table = request.cookies.get('custtable')
+    lastid = request.cookies.get('custid')
+
     if table == None:
         table = "units"
 
     cust = request.args.get("customer")
 
+    if cust == None:
+        return redirect("/customers?customer=" + str(lastid))
+
     units = []
     customers = []
+    wo = []
+    delivnote = []
 
     cat = []
     type = []
@@ -79,7 +86,11 @@ def customers():
                 sort = request.cookies.get("custsort")
 
                 if table == "irhistory":
-                    pass
+                    wo = sql("SELECT","SELECT * FROM WO WHERE LOWER(WO_CustID) = LOWER('" + cust.strip() + "')")
+                    wo.sort(key = lambda x:x[1],reverse=True)
+                elif table == "deliverynotes":
+                    delivnote = sql("SELECT","SELECT * FROM DelivNotes WHERE LOWER(DN_CustID) = LOWER('" + cust.strip() + "')")
+                    delivnote.sort(key = lambda x:x[1],reverse=True)
 
                 else:
                     # Units #
@@ -130,4 +141,4 @@ def customers():
 
 
 
-    return render_template("customers.html",theme=theme,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)

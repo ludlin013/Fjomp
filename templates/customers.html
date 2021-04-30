@@ -47,6 +47,9 @@
       <div class="leftpage-customers">
         <form class="form-customers">
           <label for="search" class="searchlabel-customers">Search for:</label>
+          <script>
+            document.cookie = "custid = {{customer[0].strip()}}"
+          </script>
           <div class="formitem-customers"><label class="cust-customers noselect">Cust. #:</label><input value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers noselect">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
           <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
           <div class="formitem-customers"><label class="address-customers noselect">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="address-customers"></div>
@@ -71,10 +74,10 @@
     <div class="">
 
       <div class="middlepage-customers">
-        <div class="buttonunits-customers noselect" onclick="document.cookie = 'custtable = units';location.reload()">Units</div>
-        <div class="buttonir-customers noselect" onclick="document.cookie = 'custtable = irhistory';location.reload()">IR-History</div>
-        <div class="buttondelivery-customers noselect" onclick="document.cookie = 'custtable = deliverynotes';location.reload()">Delivery Notes</div>
-        <div class="buttonswapouts-customers noselect" onclick="document.cookie = 'custtable = swapouts';location.reload()">Swapouts</div>
+        <div id="unithead" class="buttonunits-customers noselect" onclick="document.cookie = 'custtable = units';location.reload()">Units</div>
+        <div id="irhead" class="buttonir-customers noselect" onclick="document.cookie = 'custtable = irhistory';location.reload()">IR-History</div>
+        <div id="delivhead" class="buttondelivery-customers noselect" onclick="document.cookie = 'custtable = deliverynotes';location.reload()">Delivery Notes</div>
+        <div id="swaphead" class="buttonswapouts-customers noselect" onclick="document.cookie = 'custtable = swapouts';location.reload()">Swapouts</div>
       </div>
       <div class="customers-tablewrap">
         <div class="searchflik">
@@ -82,6 +85,9 @@
         </div>
 
         {% if table == "units" or table == None%}
+        <script>
+          document.getElementById('unithead').classList.add("headactive")
+        </script>
         <div class="tabell-customers">
           <table class="list-units">
             <thead>
@@ -156,8 +162,14 @@
             </tbody>
           </table>
         </div>
+        <div class="">
+          knappar o mög här
+        </div>
         {% endif %}
         {% if table == "irhistory" %}
+        <script>
+          document.getElementById('irhead').classList.add("headactive")
+        </script>
         <div class="tabell-customers">
           <table class="list-irhistory">
             <thead>
@@ -171,76 +183,24 @@
               </tr>
             </thead>
             <tbody class="whatabody-customers">
-              <tr class="row-Customers" onclick="">
-                <td class="thdatei-customers"><input></td>
-                <td class="thiri-customers"><input></td>
-                <td class="thmodeli-customers"><input></td>
-                <td class="thseriali-customers"><input></td>
-                <td class="thproblemi-customers"><input></td>
-                <td class="thactioni-customers"><input></td>
+              {% for x in wo %}
+              <tr class="row-Customers" ondblclick="window.location.href = '/ir?ir={{x[1]}}'">
+                <td class="thdatei-customers"><input type="date" value="{{x[13].date()}}"></td>
+                <td class="thiri-customers"><input value="{{x[1]}}"></td>
+                <td class="thmodeli-customers"><input value="{{x[5].strip()}}"></td>
+                <td class="thseriali-customers"><input value="{{x[6].strip()}}"></td>
+                <td class="thproblemi-customers"><input value="{{x[7].strip()}}"></td>
+                <td class="thactioni-customers"><input value="{{x[8].strip()}}"></td>
               </tr>
-              <tr class="row-Customers" onclick="">
-                <td class="thdate-Customers"><input></td>
-                <td class="thnote-Customers"><input></td>
-                <td class="thpart-Customers"><input></td>
-                <td class="thdesc-Customers"><input></td>
-                <td class="thqty-Customers">PEN</td>
-                <td class="thprice-customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
         {% endif %}
         {% if table == "deliverynotes" %}
+        <script>
+          document.getElementById('delivhead').classList.add("headactive")
+        </script>
         <div class="tabell-customers">
           <table class="list-deliverynotes">
             <thead>
@@ -255,77 +215,25 @@
               </tr>
             </thead>
             <tbody class="whatabody-customers">
-              <tr class="row-Customers" onclick="">
-                <td class="thdated-Customers"><input></td>
-                <td class="thnoted-Customers"><input></td>
-                <td class="thpartd-Customers"><input></td>
-                <td class="thdescd-Customers"><input></td>
-                <td class="thqtyd-Customers"><input></td>
-                <td class="thpriced-customers"><input></td>
-                <td class="thtotald-Customers"><input></td>
+              {% for x in delivnote %}
+              <tr class="row-Customers" ondblclick="window.location.href = '/delivnotes?dn={{x[1]}}'">
+                <td class="thdated-Customers"><input type="date" value="{{x[4].date()}}"></td>
+                <td class="thnoted-Customers"><input value="{{x[1]}}"></td>
+                <td class="thpartd-Customers"><input value="{{x[5].strip()}}"></td>
+                <td class="thdescd-Customers"><input value="{{x[6].strip()}}"></td>
+                <td class="thqtyd-Customers"><input value="{{x[8]}}"></td>
+                <td class="thpriced-customers"><input value="{{x[9]}}"></td>
+                <td class="thtotald-Customers"><input value="{{x[12]}}"></td>
               </tr>
-              <tr class="row-Customers" onclick="">
-                <td class="thdate-Customers"><input></td>
-                <td class="thnote-Customers"><input></td>
-                <td class="thpart-Customers"><input></td>
-                <td class="thdesc-Customers"><input></td>
-                <td class="thqty-Customers">PEN</td>
-                <td class="thprice-customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
         {% endif %}
         {% if table == "swapouts" %}
+        <script>
+          document.getElementById('swaphead').classList.add("headactive")
+        </script>
         <div class="tabell-customers">
           <table class="list-swapouts">
             <thead>
