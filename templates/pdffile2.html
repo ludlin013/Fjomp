@@ -198,6 +198,31 @@
     font-size: 12px;
   }
 
+  .itemboxrightheader{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    padding-bottom: 0px;
+  }
+
+  .spare_artnr{
+    width: 125px;
+  }
+  .spare_article{
+    width: 200px;
+  }
+  .spare_qty{
+    width: 50px;
+  }
+  .spare_debit{
+    width:50px;
+  }
+
+  .p_margin{
+    margin:0px;
+  }
+
   @Page{
     margin-bottom: 50px;
     margin: 0mm;
@@ -274,6 +299,12 @@
       </div>
       <div class="itembox">
         <div class="itemboxright" style="width: 450px; margin-left: 565px;">
+          <div class="itemboxrightheader">
+            <div class="spare_artnr"><p class="p_margin">Art. nr</p></div>
+            <div class="spare_article"><p class="p_margin">Artikel</p></div>
+            <div class="spare_qty"><p class="p_margin">Antal</p></div>
+            <div class="spare_debit"><p class="p_margin">Debitering</p></div>
+          </div>
       </div>
       <div class="contactinfo">
         <div class="column">
