@@ -5,7 +5,6 @@
     font-family: arial;
   }
   .wrapper{
-    height: 1000px;
     padding:10px;
     display: flex;
     flex-direction: column;
@@ -18,38 +17,52 @@
   }
 
   .headerleft{
+    display: flex;
+    flex-direction: row;
     height: 200px;
   }
 
   .toprightheader{
-    width: 400px;
+    height: 80px;
+    width: 600px;
     border: 1px black solid;
     display:flex;
     flex-direction: row;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   .bottomrightheader{
-    width: 400px;
+    width: 600px;
     border: 1px black solid;
     display: flex;
     flex-direction: row;
     margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
   }
 
   .toprightleftheader{
-    width: 30%;
     text-align: right;
     padding-right: 20px;
     font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    width: 50%
   }
 
   .toprightrightheader{
-    width:70%;
     font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    width: 50%
   }
 
   .bottomrightstatic{
-    text-align: right;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
   }
 
   .bottomrightleft{
@@ -70,12 +83,6 @@
     font-size: 14px;
   }
 
-  .textnotes{
-    display: flex;
-    align-items: flex-end;
-    height: 280px;
-  }
-
   .textbox{
     margin-top: 5px;
     margin-bottom: 5px;
@@ -86,6 +93,13 @@
 
   .itembox{
     border: 1px black solid;
+    border-radius: 5px;
+    min-height: 450px;
+    font-size: 12px;
+  }
+
+  .itemboxright{
+    border-left: 1px black solid;
     min-height: 450px;
     font-size: 12px;
   }
@@ -127,7 +141,6 @@
     display: flex;
     justify-content: space-between;
     font-size: 10px;
-    border-top: 1px solid black;
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -139,18 +152,55 @@
     width: 400px;
   }
 
-  .betedig{
+  .textarea{
     margin: 0px;
     resize: none;
-    width: 600px;
-    height: 100px;
     font-family: arial;
     font-size: 14px;
     border: none;
   }
 
+  .static{
+    margin-top: -10px;
+  }
+
+  .dynamic{
+    margin-top: -10px;
+  }
+
+  .textheader{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .manifacture{
+    width: 75px;
+    font-size: 12px;
+  }
+
+  .modelse{
+    width: 100px;
+    font-size: 12px;
+  }
+
+  .workerr{
+    width: 250px;
+    font-size: 12px;
+  }
+
+  .debit{
+    width: 25px;
+    font-size: 12px;
+  }
+
+  .spareparts{
+    margin-left: 320px;
+    font-size: 12px;
+  }
+
   @Page{
     margin-bottom: 50px;
+    margin: 0mm;
   }
 
   @media print {
@@ -166,52 +216,64 @@
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
-        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b></p>
-        <div class="textnotes"><p><b>Text/Notes</b></p></div>
+        <p style="font-size:20px; margin-top:80px;"><b>Arbetsorder:</b></p>
       </div>
       <div class="headerright">
         <div class="toprightheader">
           <div class="toprightleftheader">
-            <p><b>Restaurang:</b></p>
-            <p><b>Adress:</b></p>
-            <p><b>Address:</b></p>
-            <p><b>ZIP / City:</b></p>
-            <p><b>Cust. Ref:</b></p>
+            <div class="static">
+              <p><b>Restaurang:</b></p>
+              <p><b>Adress:</b></p>
+            </div>
+            <div class="dynamic">
+              <p>Dynamic</p>
+              <p>Dynamic</p>
+            </div>
           </div>
           <div class="toprightrightheader">
-            <p>{{Dict["storenum"]}}</p>
-            <p>{{Dict["storename"]}}</p>
-            <p>{{Dict["street"]}}</p>
-            <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
-            <p>{{Dict["referens"]}}</p>
+            <div class="static">
+              <p><b>Ank. datum:&nbsp</b></p>
+              <p><b>Return datum:&nbsp</b></p>
+              <p><b>Utfört av:&nbsp</b></p>
+            </div>
+            <div class="dynamic">
+              <p>Dynamic</p>
+              <p>Dynamic</p>
+              <p>Dynamic</p>
+            </div>
           </div>
         </div>
         <div class="bottomrightheader">
           <div class="bottomrightleft">
             <div class="bottomrightstatic">
-              <p><b>Date: </b></p>
-              <p><b>Office: </b></p>
-            </div>
-            <div class="bottomrightdynamic">
-              <p>&nbsp{{Dict["date"]}}</p>
-              <p>&nbsp{{Dict["office"]}}</p>
-            </div>
-          </div>
-          <div class="bottomrightright">
-            <div class="bottomrightstatic">
-              <p><b>Our ref: </b></p>
-              <p><b>Shipping: </b></p>
-            </div>
-            <div class="bottomrightdynamic">
-              <p>&nbsp{{Dict["DN_Sign"]}}</p>
-              <p>&nbsp{{Dict["freighttype"]}}</p>
+              <div style="margin-top: -20px;"><p><b>Anm: </b></p></div>
+              <div><textarea class="textarea" style="width: 590px; height: 50px; margin-left: -2px;">Bulle och saft ingen ketchup saft saft saft saft saft saft asft ast asft asft saft</textarea></div>
             </div>
           </div>
         </div>
         </div>
       </div>
-      <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
+      <div class="textheader">
+        <div class="manifacture">
+          <p><b>Fabrikat</b></p>
+        </div>
+        <div class="modelse">
+          <p style="margin:2px;"><b>Modell</b></p>
+          <p style="margin:2px;"><b>Serienr</b></p>
+        </div>
+        <div class="workerr">
+          <p style="margin:2px;"><b>Anmält fel</b></p>
+          <p style="margin:2px;"><b>Utfört arbete</b></p>
+        </div>
+        <div class="debit">
+          <p><b>Debitering</b></p>
+        </div>
+        <div class="spareparts">
+          <p><b>Reservdelar</b></p>
+        </div>
+      </div>
       <div class="itembox">
+        <div class="itemboxright" style="width: 450px; margin-left: 565px;">
       </div>
       <div class="contactinfo">
         <div class="column">

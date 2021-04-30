@@ -5,7 +5,6 @@
     font-family: arial;
   }
   .wrapper{
-    height: 1000px;
     padding:10px;
     display: flex;
     flex-direction: column;
@@ -26,6 +25,7 @@
     border: 1px black solid;
     display:flex;
     flex-direction: row;
+    border-radius: 5px;
   }
 
   .bottomrightheader{
@@ -34,6 +34,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 5px;
+    border-radius: 5px;
   }
 
   .toprightleftheader{
@@ -82,18 +83,21 @@
     border: 1px black solid;
     height: 100px;
     padding: 5px;
+    border-radius: 5px;
   }
 
   .itembox{
     border: 1px black solid;
     min-height: 450px;
     font-size: 12px;
+    border-radius: 5px;
   }
   .itemheader{
     border-bottom: 1px black solid;
     display: flex;
     flex-direction: row;
     align-items: center;
+
   }
 
   .itemrow{
@@ -193,6 +197,7 @@
     html, body {
         height: 99%;
     }
+    @page {size: portrait}
 }
 
 </style>
@@ -260,7 +265,7 @@
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
-        <div class="itembox" style="margin-top:300px; min-height:750px;">
+        <div class="itembox" style="margin-top:300px; min-height:660px;">
           <div class="itemheader">
             <div class="Partnum"><b>Part #</b></div>
             <div class="Part"><b>Part</b></div>
