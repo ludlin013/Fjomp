@@ -129,8 +129,8 @@ margin-left: 20px;
   background: #222;
   text-align:center;
   padding: 5px;
-  border-right: 1px solid;
   cursor: pointer;
+  transition-duration: .1s
 }
 
 .middlepage-customers div:nth-last-child(1){
@@ -212,6 +212,35 @@ td input[type=date]{
 .thserialu-customers,
 .thserialu-customers input{
   width:140px
+}
+
+.thdates-customers,
+.thdates-customers input,
+.thrdates-customers,
+.thrdates-customers input{
+  width:130px
+}
+
+.threfs-customers,
+.threfs-customers input{
+  width:80px
+}
+
+.thparts-customers,
+.thparts-customers input{
+  width:80px
+}
+
+.thserialss-customers,
+.thserialss-customers input,
+.thserialrs-customers,
+.thserialrs-customers input{
+  width:160px
+}
+
+.thstatuss-customers,
+.thstatuss-customers input{
+  width:170px
 }
 
 @media only screen and (max-width: 1000px){

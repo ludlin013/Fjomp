@@ -58,6 +58,8 @@ def customers():
     customers = []
     wo = []
     delivnote = []
+    swap = []
+    swapstatusdict = {0:"Ingen åtgärd",2:"Skickad till kund",3:"Returnerad",4:"RMA till leverantör",5:"Åter från RMA",6:"Väntar på låneenhet",7:"Kallager",9:"Avslutad"}
 
     cat = []
     type = []
@@ -88,9 +90,16 @@ def customers():
                 if table == "irhistory":
                     wo = sql("SELECT","SELECT * FROM WO WHERE LOWER(WO_CustID) = LOWER('" + cust.strip() + "')")
                     wo.sort(key = lambda x:x[1],reverse=True)
+
                 elif table == "deliverynotes":
                     delivnote = sql("SELECT","SELECT * FROM DelivNotes WHERE LOWER(DN_CustID) = LOWER('" + cust.strip() + "')")
                     delivnote.sort(key = lambda x:x[1],reverse=True)
+
+                elif table == "swapouts":
+
+                    swap = sql("SELECT","SELECT * FROM Swap WHERE LOWER(SWP_CustID) = LOWER('" + cust.strip() + "')")
+                    swap.sort(key = lambda x:x[1],reverse=True)
+
 
                 else:
                     # Units #
@@ -128,10 +137,6 @@ def customers():
                         units.sort(key = lambda x:x[9])
                     else:
                         units.sort(key = lambda x:x[1])
-
-                    for x in units:
-                        print(x[2])
-
                 break
 
             elif cust.strip().lower() in x[0].strip().lower() or cust.strip().lower() in x[2].strip().lower() or cust.strip().lower() in x[9].strip().lower():
@@ -141,4 +146,4 @@ def customers():
 
 
 
-    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)

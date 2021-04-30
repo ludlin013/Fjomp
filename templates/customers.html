@@ -174,12 +174,12 @@
           <table class="list-irhistory">
             <thead>
               <tr class="header-customers" id="header-customers">
-                <th class="thdatei-customers">Date</th>
-                <th class="thiri-customers">IR #</th>
-                <th class="thmodeli-customers">Model</th>
-                <th class="thseriali-customers">Serial #</th>
-                <th class="thproblemi-customers">Problem</th>
-                <th class="thactioni-customers">Action</th>
+                <th onclick="document.cookie = 'custsort = date';location.reload()" class="thdatei-customers">Date</th>
+                <th onclick="document.cookie = 'custsort = number';location.reload()" class="thiri-customers">IR #</th>
+                <th onclick="document.cookie = 'custsort = model';location.reload()" class="thmodeli-customers">Model</th>
+                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="thseriali-customers">Serial #</th>
+                <th onclick="document.cookie = 'custsort = problem';location.reload()" class="thproblemi-customers">Problem</th>
+                <th onclick="document.cookie = 'custsort = action';location.reload()" class="thactioni-customers">Action</th>
               </tr>
             </thead>
             <tbody class="whatabody-customers">
@@ -249,73 +249,18 @@
               </tr>
             </thead>
             <tbody class="whatabody-customers">
+              {% for x in swap %}
               <tr class="row-Customers" onclick="">
-                <td class="thdates-customers"><input></td>
-                <td class="threfs-customers"><input></td>
-                <td class="thparts-customers"><input></td>
-                <td class="thdescs-customers"><input></td>
-                <td class="thserialss-customers"><input></td>
-                <td class="thserialrs-customers"><input></td>
-                <td class="thrdates-customers"><input></td>
-                <td class="thstatuss-customers"><input></td>
+                <td class="thdates-customers"><input type="date" value="{{x[3]}}"></td>
+                <td class="threfs-customers"><input value="{{x[1]}}"></td>
+                <td class="thparts-customers"><input value="{{x[4]}}"></td>
+                <td class="thdescs-customers"><input value="{{x[5]}}"></td>
+                <td class="thserialss-customers"><input value="{{x[9]}}"></td>
+                <td class="thserialrs-customers"><input value="{{x[6]}}"></td>
+                <td class="thrdates-customers"><input type="date" value="{{x[11]}}"></td>
+                <td class="thstatuss-customers"><input value="{{x[12]}}: {{swapstatusdict[x[12]]}}"></td>
               </tr>
-              <tr class="row-Customers" onclick="">
-                <td class="thdate-Customers"><input></td>
-                <td class="thnote-Customers"><input></td>
-                <td class="thpart-Customers"><input></td>
-                <td class="thdesc-Customers"><input></td>
-                <td class="thqty-Customers">PEN</td>
-                <td class="thprice-customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
-              <tr class="row-customers" onclick="">
-                <td class="thdate-Customers">Pen</td>
-                <td class="thnote-Customers">Pen</td>
-                <td class="thpart-Customers">Pen</td>
-                <td class="thdesc-Customers">Pen</td>
-                <td class="thprice-Customers">Pen</td>
-                <td class="thtotal-Customers">Pen</td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
