@@ -116,22 +116,27 @@
 
   .Qty{
     width: 40px;
+    text-align: right;
   }
 
   .Price{
     width: 75px;
+    text-align: right;
   }
 
   .Disc{
     width: 40px;
+    text-align: right;
   }
 
   .Netvalue{
     width: 75px;
+    text-align: right;
   }
 
   .Total{
     width: 75px;
+    text-align: right;
   }
 
   .Backord{
@@ -152,6 +157,10 @@
   .totalvalue{
     display: flex;
     justify-content: flex-end;
+  }
+
+  .textaligncenter{
+    text-align: center;
   }
 
   .dynamicprice{
@@ -260,8 +269,8 @@
           <div class="Disc"><b>Disc.</b></div>
           <div class="Netvalue"><b>Netvalue</b></div>
           <div class="Total"><b>Total</b></div>
-          <div class="Backord"><b>Back ord.</b></div>
-          <div class="Nocharge"><b>No charge</b></div>
+          <div class="Backord textaligncenter"><b>Back ord.</b></div>
+          <div class="Nocharge textaligncenter"><b>No charge</b></div>
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
@@ -274,20 +283,20 @@
             <div class="Disc"><b>Disc.</b></div>
             <div class="Netvalue"><b>Netvalue</b></div>
             <div class="Total"><b>Total</b></div>
-            <div class="Backord"><b>Back ord.</b></div>
-            <div class="Nocharge"><b>No charge</b></div>
+            <div class="Backord textaligncenter"><b>Back ord.</b></div>
+            <div class="Nocharge textaligncenter"><b>No charge</b></div>
           </div>
           {% endif %}
           <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
-            <div class="Partnum">{{x[6].strip()}}</div>
+            <div class="Partnum">{{x[5].strip()}}</div>
             <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
             <div class="Qty">{{x[8]}}</div>
             <div class="Price">{{x[9]}}</div>
             <div class="Disc">{{x[10]}}</div>
             <div class="Netvalue">{{x[11]}}</div>
             <div class="Total">{{x[12]}}</div>
-            <div class="Backord">{% if x[18] != 0%}✔{% endif %}</div>
-            <div class="Nocharge">{% if x[13] != 0%}✔{% endif %}</div>
+            <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
+            <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
           </div>
         {% endfor %}
         </table>
