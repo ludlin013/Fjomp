@@ -109,6 +109,7 @@
   .row{
     display: flex;
     flex-direction: row;
+    margin: 1px;
   }
 
   .itemboxright{
@@ -224,6 +225,7 @@
   .spare_row{
     display: flex;
     flex-direction: row;
+    margin: 1px;
   }
 
   .spare_artnr{
@@ -322,10 +324,10 @@
         <div class="itemboxleft">
           {% for n in wo %}
           <div class="row">
-            <div class="manifacture"><p>{{n[4]}}</p></div>
-            <div class="modelse"><p>{{n[5]}}<br>{{n[6]}}</p></div>
-            <div class="workerr"><p>{{n[7]}}<br>{{n[8]}}</p></div>
-            <div class="debit"><p>{{n[10]}}</p></div>
+            <div class="manifacture"><p class="p_margin">{{n[4]}}</p></div>
+            <div class="modelse"><p class="p_margin">{{n[5]}}<br>{{n[6]}}</p></div>
+            <div class="workerr"><p class="p_margin">{{n[7]}}<br>{{n[8]}}</p></div>
+            <div class="debit"><p class="p_margin">{{n[10]}}</p></div>
           </div>
           {% endfor %}
         </div>
@@ -374,7 +376,7 @@
       setTimeout("closePrintView()", 1000);
     }
     function closePrintView() {
-      document.location.href = 'delivnotes';
+      document.location.href = 'ir';
     }
   </script>
 </body>
