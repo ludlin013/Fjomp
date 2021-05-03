@@ -243,6 +243,21 @@ td input[type=date]{
   width:170px
 }
 
+.unitcontrols{
+  display: flex;
+}
+
+.unitnotes{
+  height:32px;
+  padding:2px;
+  resize: none;
+}
+
+.customersearchbar{
+  padding:2px 4px;
+  border-radius: 2px
+}
+
 @media only screen and (max-width: 1000px){
 
   .toppage-customers{

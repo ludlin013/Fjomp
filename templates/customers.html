@@ -30,7 +30,7 @@
   <div class="mainwrapcustomers">
     <h1 class="noselect">Customers</h1>
     <form class="seek-customers" method="GET" action="" id="custidform">
-      <input name="customer" id="custid" value="">
+      <input name="customer" id="custid" value="" autofocus class="customersearchbar">
       {% if customers !=  []%}
       <div class="irdropblack" onclick="window.location.replace('/customers')">
       </div>
@@ -48,7 +48,7 @@
         <form class="form-customers">
           <label for="search" class="searchlabel-customers">Search for:</label>
           <script>
-            document.cookie = "custid = {{customer[0].strip()}}"
+            document.cookie = "custid = {{customer[0].strip()}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
           </script>
           <div class="formitem-customers"><label class="cust-customers noselect">Cust. #:</label><input value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="cust. #-customers" readonly><label class="ho-customers noselect">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="h.o #-customers"></div>
           <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="name-customers"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="owner-customers"></div>
@@ -162,8 +162,21 @@
             </tbody>
           </table>
         </div>
-        <div class="">
-          knappar o mög här
+        <div class="unitcontrols">
+          <div class="">
+            <a ><img src=""></a>
+            <a ><img src=""></a>
+            <a ><img src=""></a>
+            <a ><img src=""></a>
+          </div>
+          <div class="">
+            <textarea class="unitnotes" name="" value="" rows="2"></textarea>
+          </div>
+          <div class="">
+          <label><input type="radio" name="unitfilter" value="curr">Current Units</label>
+          <label><input type="radio" name="unitfilter" value="hist">Historical Units</label>
+            <label><input type="radio" name="unitfilter" value="both">Both</label>
+          </div>
         </div>
         {% endif %}
         {% if table == "irhistory" %}
