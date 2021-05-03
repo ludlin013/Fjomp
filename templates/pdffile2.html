@@ -96,6 +96,19 @@
     border-radius: 5px;
     min-height: 450px;
     font-size: 12px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .itemboxleft{
+    display: flex;
+    flex-direction: column;
+    width: 58%;
+  }
+
+  .row{
+    display: flex;
+    flex-direction: row;
   }
 
   .itemboxright{
@@ -162,10 +175,12 @@
 
   .static{
     margin-top: -10px;
+    text-align: right;
   }
 
   .dynamic{
     margin-top: -10px;
+    text-align: left;
   }
 
   .textheader{
@@ -179,12 +194,12 @@
   }
 
   .modelse{
-    width: 100px;
+    width: 150px;
     font-size: 12px;
   }
 
   .workerr{
-    width: 250px;
+    width: 300px;
     font-size: 12px;
   }
 
@@ -194,7 +209,7 @@
   }
 
   .spareparts{
-    margin-left: 320px;
+    margin-left: 220px;
     font-size: 12px;
   }
 
@@ -204,6 +219,11 @@
     border-bottom: 1px solid black;
     padding: 5px;
     padding-bottom: 0px;
+  }
+
+  .spare_row{
+    display: flex;
+    flex-direction: row;
   }
 
   .spare_artnr{
@@ -241,18 +261,19 @@
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
-        <p style="font-size:20px; margin-top:80px;"><b>Arbetsorder:</b></p>
+        <p style="font-size:20px; margin-top:80px;"><b>Arbetsorder: {{irnumber}}</b></p>
       </div>
       <div class="headerright">
         <div class="toprightheader">
           <div class="toprightleftheader">
             <div class="static">
-              <p><b>Restaurang:</b></p>
-              <p><b>Adress:</b></p>
+              <p><b>Restaurang:&nbsp</b></p>
+              <p><b>Adress:&nbsp</b></p>
             </div>
             <div class="dynamic">
-              <p>Dynamic</p>
-              <p>Dynamic</p>
+              <p>{{customer[0].strip()}}&nbsp&nbsp&nbsp{{customer[2].strip()}}</p>
+              <p>{{customer[3].strip()}}</p>
+              <p>{{customer[5].strip()}}&nbsp{{customer[6].strip()}}</p>
             </div>
           </div>
           <div class="toprightrightheader">
@@ -262,9 +283,9 @@
               <p><b>Utfört av:&nbsp</b></p>
             </div>
             <div class="dynamic">
-              <p>Dynamic</p>
-              <p>Dynamic</p>
-              <p>Dynamic</p>
+              <p>{{irinfo[3].strftime("%Y-%m-%d")}}</p>
+              <p>{{irinfo[4].strftime("%Y-%m-%d")}}</p>
+              <p>{{irinfo[5]}}</p>
             </div>
           </div>
         </div>
@@ -272,7 +293,7 @@
           <div class="bottomrightleft">
             <div class="bottomrightstatic">
               <div style="margin-top: -20px;"><p><b>Anm: </b></p></div>
-              <div><textarea class="textarea" style="width: 590px; height: 50px; margin-left: -2px;">Bulle och saft ingen ketchup saft saft saft saft saft saft asft ast asft asft saft</textarea></div>
+              <div><textarea class="textarea" style="width: 590px; height: 50px; margin-left: -2px;">{% if irinfo[9] %}{{irinfo[9].strip()}} {% endif %}</textarea></div>
             </div>
           </div>
         </div>
@@ -298,13 +319,32 @@
         </div>
       </div>
       <div class="itembox">
-        <div class="itemboxright" style="width: 450px; margin-left: 565px;">
+        <div class="itemboxleft">
+          {% for n in wo %}
+          <div class="row">
+            <div class="manifacture"><p>{{n[4]}}</p></div>
+            <div class="modelse"><p>{{n[5]}}<br>{{n[6]}}</p></div>
+            <div class="workerr"><p>{{n[7]}}<br>{{n[8]}}</p></div>
+            <div class="debit"><p>{{n[10]}}</p></div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="itemboxright" style="width: 450px;">
           <div class="itemboxrightheader">
             <div class="spare_artnr"><p class="p_margin">Art. nr</p></div>
             <div class="spare_article"><p class="p_margin">Artikel</p></div>
             <div class="spare_qty"><p class="p_margin">Antal</p></div>
             <div class="spare_debit"><p class="p_margin">Debitering</p></div>
           </div>
+          {% for n in parts %}
+          <div class="spare_row">
+            <div class="spare_artnr"><p class="p_margin">{{n[4]}}</p></div>
+            <div class="spare_article"><p class="p_margin">{{n[5]}}</p></div>
+            <div class="spare_qty"><p class="p_margin">{{n[6]}}</p></div>
+            <div class="spare_debit"><p class="p_margin"></p></div>
+          </div>
+          {% endfor %}
+        </div>
       </div>
       <div class="contactinfo">
         <div class="column">
@@ -327,7 +367,7 @@
           <p>556549-5305</p>
         </div>
       </div>
-  </div>
+    </div>
   <script>
     function docPrint(){
       window.print()

@@ -47,8 +47,40 @@ def pdffile2():
     theme,notheme = setTheme()
 
     Dict = {}
+    types = sql("SELECT","SELECT * FROM Modeltype")
+    manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
+    models = sql("SELECT","SELECT * FROM Models")
+    charge = sql("SELECT","SELECT * FROM Chargemode")
+    techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
+    office = sql("SELECT","SELECT * FROM Office")
+    freight = sql("SELECT","SELECT * FROM FreightTypes")
+    irnumber = request.args.get("ir")
 
-    return render_template("pdffile2.html", Dict=Dict)
+    customer = ["","","","","","","","","","","","",""]
+    irinfo = ["","","","","","","","","","","","",""]
+    parts = []
+    wo = []
+    error = None
+    found = False
+    numbers = sql("SELECT","SELECT IR_Irno,IR_Opendate FROM IR")
+
+    for x in numbers:
+        if irnumber == str(x[0]):
+            found = True
+            irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
+            if irinfo[0][0] != None:
+                customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
+                customer = customer[0]
+            else:
+                customer = ["","","","","","","","","","","","",""]
+
+            parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+            wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+
+            if len(irinfo) > 0:
+                irinfo = irinfo[0]
+
+    return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts)
 
 
 @app.route("/ir",methods=["GET","POST"])
@@ -232,13 +264,6 @@ def newunit(a):
     print(sqlq)
     #return "newunit"
     return redirect("/ir?ir="+str(lastir))
-
-@app.route("/irprint/<b>",methods=["GET","POST"])
-def irprint(b):
-    order = b.split("&")[0]
-
-    return render_template("irprint.html",order=order)
-    #return redirect("/ir?ir="+str(lastir))
 
 @app.route("/saveir",methods=["GET","POST"])
 def saveir():
