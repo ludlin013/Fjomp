@@ -86,6 +86,17 @@ input,select{
   background: #555
 }
 
+input,select{
+  background-color: rgb(80,80,80)!important;
+  border:none;
+  margin:0;
+}
+
+td{
+  border:1px solid rgb(20,20,20)!important;
+
+}
+
 .forminput-parts{
   background-color: rgb(80,80,80);
 }

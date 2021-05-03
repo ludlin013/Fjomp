@@ -116,6 +116,10 @@ def customers():
                     model.sort()
                     charge.sort()
 
+                    for x in units:
+                        print([x[1].strip()])
+                    for x in cat:
+                        print([x[0].strip()])
 
                     if sort == "cat":
                         units.sort(key = lambda x:x[1])
