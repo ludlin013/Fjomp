@@ -116,11 +116,6 @@ def customers():
                     model.sort()
                     charge.sort()
 
-                    for x in units:
-                        print([x[1].strip()])
-                    for x in cat:
-                        print([x[0].strip()])
-
                     if sort == "cat":
                         units.sort(key = lambda x:x[1])
                     elif sort == "type":
@@ -140,7 +135,7 @@ def customers():
                     elif sort == "replace":
                         units.sort(key = lambda x:x[9])
                     else:
-                        units.sort(key = lambda x:x[1])
+                        units.sort(key = lambda x:x[6],reverse = True)
                 break
 
             elif cust.strip().lower() in x[0].strip().lower() or cust.strip().lower() in x[2].strip().lower() or cust.strip().lower() in x[9].strip().lower():

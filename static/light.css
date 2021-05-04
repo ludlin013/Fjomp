@@ -74,8 +74,20 @@ input,select{
   border-color: rgb(215,215,215)
 }
 
-.list-parts, .list-delivnotes, .list-part-unitinfo, .list-units{
-  background-color: rgb(245,245,245);
+.list-parts, .list-delivnotes, .list-part-unitinfo, .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
+  background-color: rgb(255,255,255);
+}
+
+.middlepage-customers div{
+  background: #eee
+}
+
+.middlepage-customers div:hover{
+  background:#ddd
+}
+
+.headactive{
+  background:#fff !important
 }
 
 .settingslogout{
@@ -123,6 +135,10 @@ input,select{
 
 table, td, th {
   border-color: rgb(28,28,28);
+}
+
+td {
+  border:1px solid #ddd;
 }
 
 .row-parts:hover{

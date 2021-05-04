@@ -55,7 +55,7 @@ h1{
   position: absolute;
   display: flex;
   flex-direction: column;
-  width:400px;
+  width:500px;
   max-height: 300px;
   overflow-y: scroll;
   padding:0 10px 1px 10px;
@@ -126,7 +126,6 @@ margin-left: 20px;
 
 .middlepage-customers div{
   width: 25%;
-  background: #222;
   text-align:center;
   padding: 5px;
   cursor: pointer;
@@ -243,6 +242,22 @@ td input[type=date]{
   width:170px
 }
 
+.thnoted-customers,
+.thnoted-customers input{
+  width:80px
+}
+
+.thdated-customers,
+.thdated-customers input{
+  width:130px
+}
+
+.thqtyd-customers,
+.thqtyd-customers input{
+  width:172px
+}
+
+
 .unitcontrols{
   display: flex;
 }
@@ -254,8 +269,12 @@ td input[type=date]{
 }
 
 .customersearchbar{
-  padding:2px 4px;
+  padding:5px;
   border-radius: 2px
+}
+
+select{
+  border:none
 }
 
 @media only screen and (max-width: 1000px){

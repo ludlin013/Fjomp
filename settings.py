@@ -50,6 +50,9 @@ def settings():
     techs = sql("SELECT","SELECT * FROM Technicians")
     vendors = sql("SELECT","SELECT * FROM Vendors")
 
+    techs.sort(key = lambda x:x[0])
+    vendors.sort(key = lambda x:x[0])
+
     #print(techs)
 
     if request.method == 'POST':
