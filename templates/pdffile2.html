@@ -323,7 +323,7 @@
       <div class="itembox">
         <div class="itemboxleft">
           {% for n in wo %}
-          <div class="row">
+          <div class="row" style="margin-bottom: {{duplicateFrequencies[n[6].strip()]*14}}px">
             <div class="manifacture"><p class="p_margin">{{n[4]}}</p></div>
             <div class="modelse"><p class="p_margin">{{n[5]}}<br>{{n[6]}}</p></div>
             <div class="workerr"><p class="p_margin">{{n[7]}}<br>{{n[8]}}</p></div>
@@ -332,41 +332,46 @@
           {% endfor %}
         </div>
         <div class="itemboxright" style="width: 450px;">
-          <div class="itemboxrightheader">
+          {% set lastSerial = {'serial': "", 'attempt': 0} %}
+          {% set numberOfItems = [] %}
+          {% for n in parts %}
+          {% if n[3] != lastSerial.serial%}
+          <div class="itemboxrightheader" {% if lastSerial.attempt != 0 %}style="border-top:1px dotted black;"{% endif %}>
             <div class="spare_artnr"><p class="p_margin">Art. nr</p></div>
             <div class="spare_article"><p class="p_margin">Artikel</p></div>
             <div class="spare_qty"><p class="p_margin">Antal</p></div>
             <div class="spare_debit"><p class="p_margin">Debitering</p></div>
           </div>
-          {% for n in parts %}
+          {% endif %}
           <div class="spare_row">
             <div class="spare_artnr"><p class="p_margin">{{n[4]}}</p></div>
             <div class="spare_article"><p class="p_margin">{{n[5]}}</p></div>
             <div class="spare_qty"><p class="p_margin">{{n[6]}}</p></div>
             <div class="spare_debit"><p class="p_margin"></p></div>
           </div>
+          {% if lastSerial.update({'serial': n[3], 'attempt': 1}) %} {% endif %}
           {% endfor %}
         </div>
       </div>
       <div class="contactinfo">
         <div class="column">
-          <p>Ekab Systemservice AB</p>
-          <p>Molijns väg 8</p>
-          <p>589 41 Linköping</p>
+          <p>{{contact[0][2]}}</p>
+          <p>{{contact[1][2]}}</p>
+          <p>{{contact[2][2]}} {{contact[3][2]}}</p>
         </div>
         <div class="column">
           <p>Email / Web:</p>
-          <p>info@ekabss.com</p>
-          <p>www.ekabss.com</p>
+          <p>{{contact[6][2]}}</p>
+          <p>{{contact[7][2]}}</p>
         </div>
         <div class="column">
           <p>Phone:</p>
-          <p>Nat. 013-369340</p>
-          <p>Int. +46 13 369340</p>
+          <p>Nat. {{contact[4][2]}}</p>
+          <p>Int. {{contact[9][2]}}</p>
         </div>
         <div class="column">
           <p>Org.no / VAT:</p>
-          <p>556549-5305</p>
+          <p>{{contact[8][2]}}</p>
         </div>
       </div>
     </div>

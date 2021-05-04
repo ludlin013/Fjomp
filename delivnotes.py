@@ -51,6 +51,7 @@ def pdffile():
     sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
     Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
+    contact = sql("SELECT","SELECT * FROM Parameters")
     sqlq=[]
 
     if len(sqlquery) != 0:
@@ -99,7 +100,7 @@ def pdffile():
             Dict["zip"] = ""
             Dict["city"] = ""
 
-    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount)
+    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount, contact=contact)
 
 
 @app.route("/delivnotes", methods=["GET","POST"])

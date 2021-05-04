@@ -46,6 +46,10 @@ def pdffile2():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
+    lastSerial = None
+    lastSerial2 = []
+    numberOfItems = None
+
     Dict = {}
     types = sql("SELECT","SELECT * FROM Modeltype")
     manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
@@ -54,7 +58,9 @@ def pdffile2():
     techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
     office = sql("SELECT","SELECT * FROM Office")
     freight = sql("SELECT","SELECT * FROM FreightTypes")
+    contact = sql("SELECT","SELECT * FROM Parameters")
     irnumber = request.args.get("ir")
+
 
     customer = ["","","","","","","","","","","","",""]
     irinfo = ["","","","","","","","","","","","",""]
@@ -80,7 +86,15 @@ def pdffile2():
             if len(irinfo) > 0:
                 irinfo = irinfo[0]
 
-    return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts)
+    duplicateFrequencies = {}
+    for x in parts:
+        lastSerial2.append(x[3])
+    for i in lastSerial2:
+        duplicateFrequencies[i.strip()] = lastSerial2.count(i)
+
+    print(duplicateFrequencies["38R03890"])
+
+    return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
 
 
 @app.route("/ir",methods=["GET","POST"])
