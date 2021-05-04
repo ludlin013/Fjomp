@@ -30,7 +30,7 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <div class="delivnote-deliv"><form name="delivnote-form" method="GET" action=""><label>Delivery note #:</label><input name="dn" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
+        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input name="dn" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
         {% if notFound %}
         <p style="color: red;">{{notFound}}</p>
         {% endif %}
@@ -45,38 +45,38 @@
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label>Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}"></div>
-            <div class="formitem-delivnotes"><label>Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}"></div>
-            <div class="formitem-delivnotes"><label>Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly></div>
-            <div class="formitem-delivnotes"><label>Address:</label><input class="forminput-delivnotes" type="text" value="{{Dict["street"]}}" readonly></div>
-            <div class="formitem-delivnotes"><label>ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" type="text" value="{{Dict["city"]}}"></div></div>
+            <div class="formitem-delivnotes"><label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes" type="text" value="{{Dict["street"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label class="noselect">ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" type="text" value="{{Dict["city"]}}"></div></div>
           </form>
         </div>
         <div class="toppageright">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label>Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}"></div>
-            <div class="formitem-delivnotes"><label>Sign:</label>
+            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Sign:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
                 {% for x in Dict["sign"]%}
                 <option value="{{x[0]}}" {% if Dict["DN_Sign"] == x[0]: %}selected{% endif %}>{{x[0]}}</option>
                 {% endfor %}
               </select>
             </div>
-            <div class="formitem-delivnotes"><label>Sent with (Freight type):</label>
+            <div class="formitem-delivnotes"><label class="noselect">Sent with (Freight type):</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
                 {% for x in Dict["freight"]%}
                 <option value="{{Dict["freight"][x]}}" {% if Dict["DN_Freight"].strip() == x.strip(): %}selected{% endif %}>{{Dict["freight"][x]}}</option>
                 {% endfor %}
               </select>
             </div>
-            <div class="formitem-delivnotes"><label>Sent from:</label>
+            <div class="formitem-delivnotes"><label class="noselect">Sent from:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" type="text">
                 {% for x in Dict["sentfrom"]%}
                 <option value="{{Dict["sentfrom"][x]}}" {% if Dict["DN_Office"] == x: %}selected{% endif %}>{{Dict["sentfrom"][x]}}</option>
                 {% endfor %}
               </select>
             </div>
-            <div class="formitem-delivnotes"><label>Price group:</label>
+            <div class="formitem-delivnotes"><label class="noselect">Price group:</label>
               <div>
                 <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
                   {% for x in Dict["pricegroup"]%}
@@ -89,25 +89,25 @@
         </div>
       </div>
       <div class="bottompage-delivnotes">
-        <div class="formitem-delivnotes"><label>Notes:</label></div>
+        <div class="formitem-delivnotes"><label class="noselect">Notes:</label></div>
         <textarea spellcheck="false" class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes">{{Dict["notes"]}}</textarea>
       </div>
       <div>
         <table class="list-delivnotes">
           <thead>
             <tr class="header-delivnotes" id="header-parts">
-              <th class="thpart-delivnotes">Part #</th>
-              <th class="thdesc-delivnotes">Description</th>
-              <th class="thserial-delivnotes">Serial</th>
-              <th class="thQTY-delivnotes">QTY</th>
-              <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes">Pricegroup</th>
-              <th class="thprice-delivnotes">Price</th>
+              <th class="thpart-delivnotes noselect">Part #</th>
+              <th class="thdesc-delivnotes noselect">Description</th>
+              <th class="thserial-delivnotes noselect">Serial</th>
+              <th class="thQTY-delivnotes noselect">QTY</th>
+              <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes noselect">Pricegroup</th>
+              <th class="thprice-delivnotes noselect">Price</th>
 
-              <th class="thdiscount-delivnotes">% Disc.</th>
-              <th class="thnetvalue-delivnotes">Netvalue</th>
-              <th class="thtotal-delivnotes">Total</th>
-              <th class="thnocharge-delivnotes">No charge</th>
-              <th class="thbackorder-delivnotes">Back order</th>
+              <th class="thdiscount-delivnotes noselect">% Disc.</th>
+              <th class="thnetvalue-delivnotes noselect">Netvalue</th>
+              <th class="thtotal-delivnotes noselect">Total</th>
+              <th class="thnocharge-delivnotes noselect">No charge</th>
+              <th class="thbackorder-delivnotes noselect">Back order</th>
             </tr>
           </thead>
           <tbody class="tbody-delivnotes">

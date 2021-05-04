@@ -176,6 +176,7 @@ def delivnotes():
                 Dict["storename"] = x[2].strip()
                 Dict["referens"] = x[3].strip()
                 Dict["date"] = x[4].strftime("%d/%m/%Y")
+                Dict["dateformat"] = x[4]
                 Dict["DN_Sign"] = x[16]
                 Dict["notes"] = x[17].strip()
                 Dict["DN_Freight"] = x[15]
@@ -213,8 +214,8 @@ def delivnotes():
     for x in technames:
         name[x[0].strip()] = x[1].strip() + " " + x[2].strip()
 
-    mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["city"] + "%0D%0D"
-    mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["date"].replace("/","-") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
+    mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["storename"] + "%0D%0D"
+    mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["dateformat"].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
 
 
     for x in sqlq:
