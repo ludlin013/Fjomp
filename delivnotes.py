@@ -148,7 +148,6 @@ def delivnotes():
 
     if delivnote != None:
 
-        print(delivnote)
 
         if int(delivnote) < maxad:
             next = int(delivnote) + 1
@@ -159,14 +158,12 @@ def delivnotes():
             previous = int(delivnote) - 1
             while previous not in numbers and previous > min:
                 previous -= 1
-        print(previous,next)
 
 
         sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
         sqlq=[]
 
 
-        #print(sqlquery)
         if len(sqlquery) != 0:
             for x in sqlquery:
 
@@ -189,7 +186,6 @@ def delivnotes():
                 Dict["DN_Closed"] = x[14]
                 Dict["offer"] = x[27]
                 Dict["finaloffer"] = x[28]
-                #print(x)
 
             z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
             if len(z)!=0:
@@ -211,6 +207,15 @@ def delivnotes():
         nolen.append(len(x[5].strip()))
         namelen.append(len(x[6].strip()))
 
+    technames = sql("SELECT","SELECT Tech_ID, Tech_Firstname, Tech_Lastname FROM Technicians")
+    name = {}
+
+    for x in technames:
+        name[x[0].strip()] = x[1].strip() + " " + x[2].strip()
+
+    mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["city"] + "%0D%0D"
+    mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["date"].replace("/","-") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
+
 
     for x in sqlq:
         mailno = x[5].strip()
@@ -220,15 +225,15 @@ def delivnotes():
         fspace = "%09"
         sspace = "%09"
 
-        print(len(mailno))
 
-        if max(nolen) >= 10 and len(mailno) <= 10:
+        if max(nolen) >= 10 and len(mailno) <= 12:
             fspace += "%09"
-        if max(namelen) >= 10 and len(mailname) <= 10:
+        if max(namelen) >= 10 and len(mailname) <= 13:
             sspace += "%09"
 
-        mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D%0A"
+        mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D"
 
-        #print(mailbody)
-    #return mailbody
+    mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]]
+    print(len(mailbody))
+
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
