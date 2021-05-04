@@ -239,3 +239,9 @@ def delivnotes():
     print(len(mailbody))
 
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+
+@app.route("/savedeliv", methods=["GET","POST"])
+def savedeliv():
+
+
+    return ('', 204)

@@ -45,9 +45,9 @@
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}" id="storeNumber"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}" id="contact"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly id="storeName"></div>
             <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes" type="text" value="{{Dict["street"]}}" readonly></div>
             <div class="formitem-delivnotes"><label class="noselect">ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" type="text" value="{{Dict["city"]}}"></div></div>
           </form>
@@ -162,5 +162,6 @@
       </div>
     </div>
     <script src="/static/mobile.js"></script>
+    <script src="/static/delivery.js"></script>
   </body>
 </html>
