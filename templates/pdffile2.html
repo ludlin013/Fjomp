@@ -18,8 +18,10 @@
 
   .headerleft{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 200px;
+    position: fixed;
+    left: 20;
   }
 
   .toprightheader{
@@ -30,6 +32,8 @@
     flex-direction: row;
     padding: 5px;
     border-radius: 5px;
+    position: fixed;
+    right: 20;
   }
 
   .bottomrightheader{
@@ -41,6 +45,9 @@
     margin-bottom: 5px;
     padding: 5px;
     border-radius: 5px;
+    position: fixed;
+    right: 20;
+    top: 110;
   }
 
   .toprightleftheader{
@@ -89,6 +96,7 @@
     border: 1px black solid;
     height: 100px;
     padding: 5px;
+    margin-top: 200px;
   }
 
   .itembox{
@@ -187,6 +195,7 @@
   .textheader{
     display: flex;
     flex-direction: row;
+    margin-top: 200px;
   }
 
   .manifacture{
@@ -261,9 +270,9 @@
 <body onload="docPrint()">
   <div class="wrapper">
     <div class="header">
-      <div class="headerleft">
-        <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
-        <p style="font-size:20px; margin-top:80px;"><b>Arbetsorder: {{irnumber}}</b></p>
+      <div class="headerleft" style="position: fixed;">
+        <img src="static/pictures/ekablogo.png" height="75px">
+        <p style="font-size:20px;"><b>Arbetsorder: {{irnumber}}</b></p>
       </div>
       <div class="headerright">
         <div class="toprightheader">
@@ -323,8 +332,8 @@
       <div class="itembox">
         <div class="itemboxleft">
           {% for n in wo %}
-          <div class="row" style="margin-bottom: {{duplicateFrequencies[n[6].strip()]*14}}px">
-            <div class="manifacture"><p class="p_margin">{{n[4]}}</p></div>
+          <div class="row" style="margin-bottom: {{duplicateFrequencies[n[6].strip()]*12}}px;">
+            <div class="manifacture"><p class="p_margin">{{n[4]}}{{duplicateFrequencies[n[6].strip()]}}</p></div>
             <div class="modelse"><p class="p_margin">{{n[5]}}<br>{{n[6]}}</p></div>
             <div class="workerr"><p class="p_margin">{{n[7]}}<br>{{n[8]}}</p></div>
             <div class="debit"><p class="p_margin">{{n[10]}}</p></div>
@@ -343,7 +352,33 @@
             <div class="spare_debit"><p class="p_margin">Debitering</p></div>
           </div>
           {% endif %}
-          <div class="spare_row">
+        {% if parts.index(n) == 20 %}
+      </div>
+    </div>
+    <div class="textheader" style="margin-top: 320px;">
+      <div class="manifacture">
+        <p><b>Fabrikat</b></p>
+      </div>
+      <div class="modelse">
+        <p style="margin:2px;"><b>Modell</b></p>
+        <p style="margin:2px;"><b>Serienr</b></p>
+      </div>
+      <div class="workerr">
+        <p style="margin:2px;"><b>Anmält fel</b></p>
+        <p style="margin:2px;"><b>Utfört arbete</b></p>
+      </div>
+      <div class="debit">
+        <p><b>Debitering</b></p>
+      </div>
+      <div class="spareparts">
+        <p><b>Reservdelar</b></p>
+      </div>
+    </div>
+    <div class="itembox" style="page-break-before: always;">
+      <div class="itemboxleft"></div>
+        <div class="itemboxright" style="width: 450px;">
+        {% endif %}
+          <div class="spare_row" {% if parts.index(n) == 20 %}style="page-break-before: always"{% endif %}>
             <div class="spare_artnr"><p class="p_margin">{{n[4]}}</p></div>
             <div class="spare_article"><p class="p_margin">{{n[5]}}</p></div>
             <div class="spare_qty"><p class="p_margin">{{n[6]}}</p></div>
@@ -355,23 +390,23 @@
       </div>
       <div class="contactinfo">
         <div class="column">
-          <p>{{contact[0][2]}}</p>
-          <p>{{contact[1][2]}}</p>
-          <p>{{contact[2][2]}} {{contact[3][2]}}</p>
+          <p style="margin: 2px;">{{contact[0][2]}}</p>
+          <p style="margin: 2px;">{{contact[1][2]}}</p>
+          <p style="margin: 2px;">{{contact[2][2]}} {{contact[3][2]}}</p>
         </div>
         <div class="column">
-          <p>Email / Web:</p>
-          <p>{{contact[6][2]}}</p>
-          <p>{{contact[7][2]}}</p>
+          <p style="margin: 2px;">Email / Web:</p>
+          <p style="margin: 2px;">{{contact[6][2]}}</p>
+          <p style="margin: 2px;">{{contact[7][2]}}</p>
         </div>
         <div class="column">
-          <p>Phone:</p>
-          <p>Nat. {{contact[4][2]}}</p>
-          <p>Int. {{contact[9][2]}}</p>
+          <p style="margin: 2px;">Phone:</p>
+          <p style="margin: 2px;">Nat. {{contact[4][2]}}</p>
+          <p style="margin: 2px;">Int. {{contact[9][2]}}</p>
         </div>
         <div class="column">
-          <p>Org.no / VAT:</p>
-          <p>{{contact[8][2]}}</p>
+          <p style="margin: 2px;">Org.no / VAT:</p>
+          <p style="margin: 2px;">{{contact[8][2]}}</p>
         </div>
       </div>
     </div>
