@@ -24,7 +24,7 @@
           {%if error%}
           <p style="color:red;font-size:12px;padding:4px 2px">{{error}}</p>
           {%endif%}
-          <p class="noselect"><input type="checkbox" id="checkbox" name="check" value="{{request.form.check}}"> Remember username</p>
+          <p class="noselect"><label style="cursor:pointer"><input type="checkbox" id="checkbox" name="check" value="{{request.form.check}}"> Remember username</label></p>
 
         </form>
       </div>
