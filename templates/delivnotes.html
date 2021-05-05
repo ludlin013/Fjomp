@@ -38,8 +38,8 @@
         document.cookie = "lastdn = {{delivnote}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
         </script>
         <div class="formitem-delivnotes offers-delivnotes">
-          <label>Offer</label><input type="checkbox" {% if Dict["offer"] == 1%}checked{% endif %}>
-          <label>Finalized Offer</label><input type="checkbox" {% if Dict["finaloffer"] == 1%}checked{% endif %}>
+          <label>Offer</label><input id="dnoffer" type="checkbox" {% if Dict["offer"] == 1%}checked{% endif %}>
+          <label>Finalized Offer</label><input id="dnfinal" type="checkbox" {% if Dict["finaloffer"] == 1%}checked{% endif %}>
         </div>
       </div>
       <div class="toppage-delivnotes">
@@ -54,23 +54,23 @@
         </div>
         <div class="toppageright">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}" id="dndate"></div>
             <div class="formitem-delivnotes"><label class="noselect">Sign:</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" type="text">
+              <select class="forminput-delivnotes2 selectdelivnotes" id="dnsign" type="text">
                 {% for x in Dict["sign"]%}
                 <option value="{{x[0]}}" {% if Dict["DN_Sign"] == x[0]: %}selected{% endif %}>{{x[0]}}</option>
                 {% endfor %}
               </select>
             </div>
             <div class="formitem-delivnotes"><label class="noselect">Sent with (Freight type):</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" type="text">
+              <select class="forminput-delivnotes2 selectdelivnotes" id="dnfreight" type="text">
                 {% for x in Dict["freight"]%}
-                <option value="{{Dict["freight"][x]}}" {% if Dict["DN_Freight"].strip() == x.strip(): %}selected{% endif %}>{{Dict["freight"][x]}}</option>
+                <option value="{{x}}" {% if Dict["DN_Freight"].strip() == x.strip(): %}selected{% endif %}>{{Dict["freight"][x]}}</option>
                 {% endfor %}
               </select>
             </div>
             <div class="formitem-delivnotes"><label class="noselect">Sent from:</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" type="text">
+              <select class="forminput-delivnotes2 selectdelivnotes" id="dnoffice" type="text">
                 {% for x in Dict["sentfrom"]%}
                 <option value="{{Dict["sentfrom"][x]}}" {% if Dict["DN_Office"] == x: %}selected{% endif %}>{{Dict["sentfrom"][x]}}</option>
                 {% endfor %}
@@ -117,12 +117,12 @@
               <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5].strip()}}"></td>
               <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
               <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
-              <td class="thQTY-delivnotes"><input class="forminput-delivnotes" value="{{x[8]}}"></td>
+              <td class="thQTY-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes"><input class="forminput-delivnotes" value="{{x[26]}}"></td>
-              <td class="thprice-delivnotes"><input class="forminput-delivnotes" value="{{x[9]}}"></td>
+              <td class="thprice-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[9]}}"></td>
               <td class="thdiscount-delivnotes"><input class="forminput-delivnotes" value="{{x[10]}}"></td>
-              <td class="thnetvalue-delivnotes"><input class="forminput-delivnotes" value="{{x[11]}}"></td>
-              <td class="thtotal-delivnotes"><input class="forminput-delivnotes" value="{{x[12]}}"></td>
+              <td class="thnetvalue-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[11]}}"></td>
+              <td class="thtotal-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[12]}}"></td>
               <td class="thnocharge-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
               <td class="thbackorder-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
             </tr>
@@ -137,7 +137,7 @@
           </div>
           <div class="ordersum-delivnote">
             <div><label>Order Total: </label><input class="ordersumnum-delivnote forminput-delivnotes" type="number" value="{{total}}"></div>
-            <div><input type="checkbox" {% if Dict["DN_Closed"] == 1 %}checked{% endif %}><label>Order Shipped</label></div>
+            <div><label><input type="checkbox" {% if Dict["DN_Closed"] == 1 %}checked{% endif %} value="1" id="dnclosed">Order Shipped</label></div>
           </div>
         </div>
         <div class="buttonsbar">

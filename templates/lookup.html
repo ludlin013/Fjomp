@@ -33,7 +33,7 @@
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
           <form class="form-lookup" id="hughe-form" name="form-topleftpage-lookup" method="POST" action="">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"></div>
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input autofocus id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"></div>
             <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" value="{{lookserial}}" onfocus="document.getElementById('lookupnumname').value = ''"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" {% if rbball == "exact" %}checked{% endif %}><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff" {% if rbball == "partoff" %}checked{% endif %}><label>Part off</label></div>
             {% if parts !=  []%}
             <div class="ludropblack" onclick="window.history.back()">
