@@ -132,6 +132,7 @@ def delivnotes():
 
 
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
+    Dict["sign"].sort(key = lambda x:x[0])
     Dict["pricegroup"] = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
     Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))

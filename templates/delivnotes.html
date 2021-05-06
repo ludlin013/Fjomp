@@ -54,7 +54,7 @@
         </div>
         <div class="toppageright">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" type="text" value="{{Dict["date"]}}" id="dndate"></div>
+            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" type="date" value="{{Dict["dateformat"].date()}}" id="dndate"></div>
             <div class="formitem-delivnotes"><label class="noselect">Sign:</label>
               <select class="forminput-delivnotes2 selectdelivnotes" id="dnsign" type="text">
                 {% for x in Dict["sign"]%}
