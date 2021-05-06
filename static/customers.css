@@ -188,6 +188,36 @@ td input[type=date]{
   width: 40px;
 }
 
+.thdatei-customers,
+.thdatei-customers input{
+  width: 130px;
+}
+
+.thiri-customers,
+.thiri-customers input{
+  width: 60px;
+}
+
+.thmodeli-customers,
+.thmodeli-customers input{
+  width: 180px;
+}
+
+.thseriali-customers,
+.thseriali-customers input{
+  width: 130px;
+}
+
+.thproblemi-customers,
+.thproblemi-customers input{
+  width: 280px;
+}
+
+.thactioni-customers,
+.thactioni-customers input{
+  width: 325px;
+}
+
 .thcatu-customers,
 .thcatu-customers input{
   width:50px
