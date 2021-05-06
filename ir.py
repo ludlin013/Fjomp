@@ -81,18 +81,18 @@ def pdffile2():
                 customer = ["","","","","","","","","","","","",""]
 
             parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
-            wo = sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'")
+            wo = list(sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'"))
 
             if len(irinfo) > 0:
                 irinfo = irinfo[0]
 
+
+    parts.sort(key = lambda x:len(x[3]))
     duplicateFrequencies = {}
     for x in parts:
         lastSerial2.append(x[3])
     for i in lastSerial2:
         duplicateFrequencies[i.strip()] = lastSerial2.count(i)
-
-    print(duplicateFrequencies["38R03890"])
 
     return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
 
