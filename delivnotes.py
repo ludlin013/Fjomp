@@ -239,7 +239,6 @@ def delivnotes():
         mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]]
     except:
         pass
-    print(len(mailbody))
 
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 

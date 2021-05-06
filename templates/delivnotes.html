@@ -117,12 +117,12 @@
               <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5].strip()}}"></td>
               <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
               <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
-              <td class="thQTY-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
-              <td class="thpricegroup-delivnotes"><input class="forminput-delivnotes" value="{{x[26]}}"></td>
-              <td class="thprice-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[9]}}"></td>
-              <td class="thdiscount-delivnotes"><input class="forminput-delivnotes" value="{{x[10]}}"></td>
-              <td class="thnetvalue-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[11]}}"></td>
-              <td class="thtotal-delivnotes"><input type="number" class="forminput-delivnotes" value="{{x[12]}}"></td>
+              <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
+              <td class="thpricegroup-delivnotes"><input id="pg{{sqlq.index(x)}}" class="forminput-delivnotes" value="{{x[26]}}"></td>
+              <td class="thprice-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="price{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[9]}}"></td>
+              <td class="thdiscount-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes" value="{{x[10]}}"></td>
+              <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[11]}}"></td>
+              <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[12]}}"></td>
               <td class="thnocharge-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
               <td class="thbackorder-delivnotes"><input class="forminput-delivnotes" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
             </tr>
@@ -136,8 +136,8 @@
             <div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
           </div>
           <div class="ordersum-delivnote">
-            <div><label>Order Total: </label><input class="ordersumnum-delivnote forminput-delivnotes" type="number" value="{{total}}"></div>
-            <div><label><input type="checkbox" {% if Dict["DN_Closed"] == 1 %}checked{% endif %} value="1" id="dnclosed">Order Shipped</label></div>
+            <div><label class="noselect">Order Total: </label><input readonly id="alltotal" class="ordersumnum-delivnote forminput-delivnotes" type="number" value=""></div>
+            <div><label class="noselect"><input id="shipcheck" type="checkbox" {% if Dict["DN_Closed"] == 1 %}checked{% endif %} value="1" id="dnclosed">Order Shipped</label></div>
           </div>
         </div>
         <div class="buttonsbar">
