@@ -132,6 +132,7 @@ def delivnotes():
 
 
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
+    Dict["sign"].sort(key = lambda x:x[0])
     Dict["pricegroup"] = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
     Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
@@ -239,7 +240,6 @@ def delivnotes():
         mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]]
     except:
         pass
-    print(len(mailbody))
 
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 
