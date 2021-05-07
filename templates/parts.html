@@ -46,6 +46,14 @@
               <th class="thLP-parts">LP</th>
               <th class="thQTY-parts">QTY</th>
               <th class="thpr1-parts">Pr. 1</th>
+              <th class="thpr2-parts">Pr. 2</th>
+              <th class="thpr3-parts">Pr. 3</th>
+              <th class="thpr4-parts">Pr. 4</th>
+              <th class="thpr5-parts">Pr. 5</th>
+              <th class="thpr6-parts">Pr. 6</th>
+              <th class="thpr9-parts">Pr. 9</th>
+              <th class="thpartusd-parts">Last used</th>
+              <th class="thpartupd-parts">Last updated</th>
             </tr>
           </thead>
           <tbody class="whatabody">
@@ -56,15 +64,21 @@
               <td class="thLP-parts"><input readonly onclick="this.select()" value="{{x["lp"]}}"></td>
               <td class="thQTY-parts"><input readonly onclick="this.select()" value="{{x["qty"]}}"></td>
               <td class="thpr1-parts"><input readonly onclick="this.select()" value="{{x["price1"]}}"></td>
-              <td class="thpart-parts"><input readonly value="{{x["lastusd"]}}"></td>
-              <td class="thpart-parts"><input readonly value="{{x["lastupd"]}}"></td>
+              <td class="thpr2-parts"><input readonly onclick="this.select()" value="{{x["price2"]}}"></td>
+              <td class="thpr3-parts"><input readonly onclick="this.select()" value="{{x["price3"]}}"></td>
+              <td class="thpr4-parts"><input readonly onclick="this.select()" value="{{x["price4"]}}"></td>
+              <td class="thpr5-parts"><input readonly onclick="this.select()" value="{{x["price5"]}}"></td>
+              <td class="thpr6-parts"><input readonly onclick="this.select()" value="{{x["price6"]}}"></td>
+              <td class="thpr9-parts"><input readonly onclick="this.select()" value="{{x["price9"]}}"></td>
+              <td class="thpartusd-parts"><input readonly value="{{x["lastusd"]}}"></td>
+              <td class="thpartupd-parts"><input readonly value="{{x["lastupd"]}}"></td>
               {% endfor %}
             </tr>
           </tbody>
           <script src="static/partsearch.js"></script>
         </table>
     </div>
-  </div class="buttonsbar">
+  <div class="buttonsbar">
   <a href="parts" class="buttonsbar-item-parts"><img class="buttonbarpic-parts" src="static/pictures/{{theme}}/print-label.png"><p>Label Print</p></a>
   <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
   </div>
