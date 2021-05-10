@@ -54,6 +54,12 @@ def pdffile():
     contact = sql("SELECT","SELECT * FROM Parameters")
     sqlq=[]
 
+    technames = sql("SELECT","SELECT Tech_ID, Tech_Firstname, Tech_Lastname FROM Technicians")
+    name = {}
+
+    for x in technames:
+        name[x[0].strip()] = x[1].strip() + " " + x[2].strip()
+
     if len(sqlquery) != 0:
         for x in sqlquery:
 
@@ -63,7 +69,7 @@ def pdffile():
             Dict["number"] = x[1]
             Dict["storename"] = x[2].strip()
             Dict["referens"] = x[3].strip()
-            Dict["date"] = x[4].strftime("%d/%m/%Y")
+            Dict["date"] = x[4].strftime("%Y-%m-%d")
             Dict["DN_Sign"] = x[16]
             Dict["notes"] = x[17].strip()
             Dict["DN_Freight"] = x[15]
@@ -100,7 +106,7 @@ def pdffile():
             Dict["zip"] = ""
             Dict["city"] = ""
 
-    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount, contact=contact)
+    return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount, contact=contact, name=name)
 
 
 @app.route("/delivnotes", methods=["GET","POST"])
