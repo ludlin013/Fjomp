@@ -64,6 +64,10 @@ function alltotal(){
 
 }
 
+function setpricegroup(row){
+  document.getElementById('price'+row).value = document.getElementById('pg'+row).value;
+}
+
 
 alltotal()
 

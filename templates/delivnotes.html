@@ -118,9 +118,9 @@
               <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
               <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes">
-                <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes" value="{{x[26]}}">
+                <select id="pg{{sqlq.index(x)}}" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" class="forminput-delivnotes" value="{{x[26]}}">
                   {% for y in pricegroups[sqlq.index(x)] %}
-                    <option value="{{y}}">{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
+                    <option value="{{pricegroups[sqlq.index(x)][y]}}">{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
                   {% endfor %}
                 </select>
               </td>

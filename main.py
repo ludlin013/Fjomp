@@ -54,6 +54,8 @@ def setTheme():
     return theme,notheme
 
 def createcsv():
+
+    importsavethis = """
     with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
         parts = f.read().rstrip().split("\n")
 
@@ -135,19 +137,19 @@ def createcsv():
         }
 
         if Dict not in allparts:
-            allparts.append(Dict)
+            allparts.append(Dict)"""
 
-    allparts.sort(key = lambda x:x["artid"])
 
-    sqlparts = sql("SELECT","SELECT * FROM Parts")
+    sqlunits = sql("SELECT","SELECT * FROM Units")
 
     with open("static/units.csv","w") as f:
-        for n in sqlparts:
+        f.write("Unit_CustID;Unit_Cat;Unit_Vendor;Unit_Model;Unit_Serial;Unit_type;Unit_installdate;Unit_Warend;Unit_Chargemode;Unit_Repldate;Unit_Notes;Unit_History;Unit_ID\n")
+        for n in sqlunits:
             for x in n:
                 f.write(str(x).strip()+";")
             f.write("\n")
 
-    return allparts
+    return
 
 
 @app.route("/")
@@ -175,7 +177,7 @@ def login():
                 auth = True
 
                 ################################
-                #createcsv()
+                createcsv()
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"

@@ -92,15 +92,15 @@
           <table class="list-units">
             <thead>
               <tr class="header-customers" id="header-customers">
-                <th onclick="document.cookie = 'custsort = cat';location.reload()" class="thcatu-customers noselect">Cat.</th>
-                <th onclick="document.cookie = 'custsort = type';location.reload()" class="thtypeu-customers noselect">Type</th>
-                <th onclick="document.cookie = 'custsort = vend';location.reload()" class="thvendoru-customers noselect">Vendor</th>
-                <th onclick="document.cookie = 'custsort = model';location.reload()" class="thmodelu-customers noselect">Model</th>
-                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="thserialu-customers noselect">Serial #</th>
-                <th onclick="document.cookie = 'custsort = install';location.reload()" class="thinstu-customers noselect">Installation date</th>
-                <th onclick="document.cookie = 'custsort = warranty';location.reload()" class="thwarrantyu-customers noselect">Warranty ends</th>
-                <th onclick="document.cookie = 'custsort = charge';location.reload()" class="thcontru-customers noselect">Contr. Type</th>
-                <th onclick="document.cookie = 'custsort = replace';location.reload()" class="threplu-customers noselect">Repl. Date</th>
+                <th onclick="document.cookie = 'custsort = cat';location.reload()" class="sortcursor thcatu-customers noselect">Cat.</th>
+                <th onclick="document.cookie = 'custsort = type';location.reload()" class="sortcursor thtypeu-customers noselect">Type</th>
+                <th onclick="document.cookie = 'custsort = vend';location.reload()" class="sortcursor thvendoru-customers noselect">Vendor</th>
+                <th onclick="document.cookie = 'custsort = model';location.reload()" class="sortcursor thmodelu-customers noselect">Model</th>
+                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="sortcursor thserialu-customers noselect">Serial #</th>
+                <th onclick="document.cookie = 'custsort = install';location.reload()" class="sortcursor thinstu-customers noselect">Installation date</th>
+                <th onclick="document.cookie = 'custsort = warranty';location.reload()" class="sortcursor thwarrantyu-customers noselect">Warranty ends</th>
+                <th onclick="document.cookie = 'custsort = charge';location.reload()" class="sortcursor thcontru-customers noselect">Contr. Type</th>
+                <th onclick="document.cookie = 'custsort = replace';location.reload()" class="sortcursor threplu-customers noselect">Repl. Date</th>
               </tr>
             </thead>
             <tbody class="whatabody-customers">
@@ -284,6 +284,9 @@
     <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
     <a href="customers?cs={{customers}}" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
     <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
+    {% if userauth == "true"%}
+    <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
+    {% endif %}
   </div>
 </div>
 <script src="/static/cust.js"></script>

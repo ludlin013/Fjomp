@@ -45,6 +45,8 @@ def customers():
     theme,notheme = setTheme()
     table = request.cookies.get('custtable')
     lastid = request.cookies.get('custid')
+    userauth = request.cookies.get('auth')
+
 
     if table == None:
         table = "units"
@@ -145,4 +147,4 @@ def customers():
 
 
 
-    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)

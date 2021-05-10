@@ -119,6 +119,22 @@ margin-left: 20px;
   margin-left: 10px;
 }
 
+
+#excelaparts{
+  width:30px;
+  margin:5px;
+  padding:5px;
+}
+
+#excelparts{
+  width:30px;
+  transition-duration: .2s;
+}
+
+#excelparts:hover{
+  transform: scale(1.1);
+}
+
 .middlepage-customers{
   display: flex;
   width: 1180px;
@@ -319,6 +335,9 @@ td input[type=date]{
   width:100px
 }
 
+.sortcursor{
+  cursor:cell
+}
 
 
 .unitcontrols{
