@@ -96,51 +96,60 @@ th{
   outline:none;
   margin:0 0 -1px -1px;
   padding:2px;
-  font-size: 12px
+  font-size: 12px;
 }
 
 .thpart-parts{
-  width:156px;
-  padding:0 1px
+  width:150px;
+  padding:0 1px;
+}
+
+.thpartusd-parts, .thpartupd-parts{
+  width:100px;
+  padding:0 1px;
 }
 
 .thpart-parts input{
-  width: 150px
+  width: 150px;
+}
+
+.thpartusd-parts input, .thpartupd-parts input{
+  width: 100px;
 }
 
 .thdesc-parts{
-  width: 206px;
-  padding:0 1px
+  width: 200px;
+  padding:0 1px;
 }
 
 .thdesc-parts input{
-  width:200px
+  width:200px;
 }
 
 .thLP-parts{
-  width:72px;
-  padding:0 1px
+  width:66px;
+  padding:0 1px;
 }
 
 .thLP-parts input{
-  width:66px
+  width:66px;
 }
 
 .thQTY-parts{
-  width:60px;
-  padding:0 1px
+  width:50px;
+  padding:0 1px;
 }
 
 .thQTY-parts input{
-  width:54px
+  width:50px;
 }
 
-.thpr1-parts{
-  width:60px;
-  padding:0 1px
+.thpr1-parts, .thpr2-parts, .thpr3-parts, .thpr4-parts, .thpr5-parts, .thpr6-parts, .thpr9-parts{
+  width:54px;
+  padding:0 1px;
 }
 
-.thpr1-parts input{
+.thpr1-parts input, .thpr2-parts input, .thpr3-parts input, .thpr4-parts input, .thpr5-parts input, .thpr6-parts input, .thpr9-parts input{
   width:54px;
 }
 
