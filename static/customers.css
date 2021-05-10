@@ -274,7 +274,17 @@ td input[type=date]{
 
 .thnoted-customers,
 .thnoted-customers input{
-  width:80px
+  width:70px
+}
+
+.thpartd-customers,
+.thpartd-customers input{
+  width:250px
+}
+
+.thdescd-customers,
+.thdescd-customers input{
+  width:400px
 }
 
 .thdated-customers,
@@ -282,10 +292,33 @@ td input[type=date]{
   width:130px
 }
 
+.thqtyd-customers input{
+  text-align: right;
+}
+
 .thqtyd-customers,
 .thqtyd-customers input{
-  width:172px
+  width:60px
 }
+
+.thpriced-customers input{
+  text-align: right;
+}
+
+.thpriced-customers,
+.thpriced-customers input{
+  width:80px
+}
+
+.thtotald-customers input{
+  text-align: right;
+}
+
+.thtotald-customers,
+.thtotald-customers input{
+  width:100px
+}
+
 
 
 .unitcontrols{
