@@ -170,7 +170,27 @@ def delivnotes():
 
         sqlquery = sql("SELECT", "SELECT * FROM DelivNotes WHERE DN_no ='"+delivnote+"'")
         sqlq=[]
+        pricegroups = []
 
+
+        for x in sqlquery:
+            pgdict = {}
+            pgs = sql("SELECT","SELECT Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts WHERE Part_Partno = '" + x[5] + "'")
+
+            pgdict[1] = pgs[0][0]
+            pgdict[2] = pgs[0][1]
+            pgdict[3] = pgs[0][2]
+            pgdict[4] = pgs[0][3]
+            pgdict[5] = pgs[0][4]
+            pgdict[6] = pgs[0][5]
+            pgdict[7] = pgs[0][6]
+            pgdict[8] = pgs[0][7]
+            pgdict[9] = pgs[0][8]
+
+            pricegroups.append(pgdict)
+
+
+        print(pricegroups)
 
         if len(sqlquery) != 0:
             for x in sqlquery:
@@ -247,7 +267,7 @@ def delivnotes():
     except:
         pass
 
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 
 @app.route("/savedeliv", methods=["GET","POST"])
 def savedeliv():

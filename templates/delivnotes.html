@@ -30,7 +30,7 @@
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
-        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input name="dn" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
+        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input onclick="this.select()" style="text-align:left;width:80px;margin:5px" name="dn" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
         {% if notFound %}
         <p style="color: red;">{{notFound}}</p>
         {% endif %}
@@ -112,13 +112,18 @@
           </thead>
           <tbody class="tbody-delivnotes">
             {% for x in sqlq%}
-
             <tr class="row-delivnotes" onclick="" id="">
               <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5].strip()}}"></td>
               <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
               <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
               <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
-              <td class="thpricegroup-delivnotes"><input id="pg{{sqlq.index(x)}}" class="forminput-delivnotes" value="{{x[26]}}"></td>
+              <td class="thpricegroup-delivnotes">
+                <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes" value="{{x[26]}}">
+                  {% for y in pricegroups[sqlq.index(x)] %}
+                    <option value="{{y}}">{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
+                  {% endfor %}
+                </select>
+              </td>
               <td class="thprice-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="price{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[9]}}"></td>
               <td class="thdiscount-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes" value="{{x[10]}}"></td>
               <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[11]}}"></td>

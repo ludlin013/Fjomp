@@ -45,10 +45,13 @@
   max-width: 90vw
 }
 
+input[type="text"]{
+  outline:none
+}
+
 .field{
   padding: 10px;
   margin:5px;
-  outline:none;
   border-radius: 2px
 }
 
