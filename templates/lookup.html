@@ -41,7 +41,7 @@
             <div class="lucustdrop">
               {% for x in parts %}
               <div onclick="document.getElementById('lookupnumname').value='{{x["name"].strip()}}';document.getElementById('hughe-form').submit()">
-                <p>{{x["name"]}}</p><p>{{x["num"]}}</p>
+                <p style="width:200px;">{{x["num"]}}</p><p>{{x["name"]}}</p>
               </div>
               {% endfor %}
             </div>
