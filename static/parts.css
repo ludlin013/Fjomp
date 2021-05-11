@@ -44,12 +44,8 @@ html{
   margin-left: 7px;
 }
 
-.list-parts{
-  margin-top: 34px;
-}
-
-
-table, td, th {
+table, td, th{
+  padding: 2px;
   white-space: nowrap;
 }
 
@@ -66,101 +62,68 @@ tr{
   cursor: pointer;
 }
 
-.row-parts td{
-  font-size: 10px;
-  overflow: hidden;
-}
-
-table {
+table{
   border-collapse: collapse;
 }
 
-.whatabody{
-  margin-top: -1px;
+td input{
+  padding: 2px 2px;
+  border: none;
+  outline: none;
+}
+
+td input[type=date]{
+  border: none;
+  outline: none;
+}
+
+.list-parts{
   display: block;
-  max-height: 200px;
+  max-width: 1000px;
+  max-height: 400px;
   overflow-y: scroll;
 }
 
-thead{
-  display: block;
-}
-
-th{
-  text-align: left;
-
-}
-
-.row-parts input{
-  border:1px solid #282828;
-  outline:none;
-  margin:0 0 -1px -1px;
-  padding:2px;
-  font-size: 12px;
-}
-
-.thpart-parts{
-  width:150px;
-  padding:0 1px;
-}
-
-.thpartusd-parts, .thpartupd-parts{
-  width:100px;
-  padding:0 1px;
-}
-
+.thpart-parts,
 .thpart-parts input{
   width: 150px;
 }
 
-.thpartusd-parts input, .thpartupd-parts input{
+.thpartusd-parts, .thpartusd-parts input, .thpartupd-parts, .thpartupd-parts input{
   width: 100px;
 }
 
-.thdesc-parts{
-  width: 200px;
-  padding:0 1px;
-}
-
+.thdesc-parts,
 .thdesc-parts input{
-  width:200px;
+  width: 200px;
 }
 
-.thLP-parts{
-  width:66px;
-  padding:0 1px;
-}
-
+.thLP-parts
 .thLP-parts input{
-  width:66px;
+  width: 66px;
 }
 
-.thQTY-parts{
-  width:50px;
-  padding:0 1px;
-}
-
+.thQTY-parts,
 .thQTY-parts input{
-  width:50px;
+  width: 50px;
 }
 
 .thpr1-parts, .thpr2-parts, .thpr3-parts, .thpr4-parts, .thpr5-parts, .thpr6-parts, .thpr9-parts{
-  width:54px;
-  padding:0 1px;
+  width: 54px;
 }
 
 .thpr1-parts input, .thpr2-parts input, .thpr3-parts input, .thpr4-parts input, .thpr5-parts input, .thpr6-parts input, .thpr9-parts input{
-  width:54px;
+  width: 54px;
 }
 
 #excelaparts{
-  width:30px;
-  margin:5px;
-  padding:5px;
+  width: 30px;
+  margin: 5px;
+  padding: 5px;
 }
 
 #excelparts{
-  width:30px;
+  width: 30px;
   transition-duration: .2s;
 }
 
@@ -188,18 +151,18 @@ th{
 }
 
 .partssearch{
-  padding:10px;
-  margin:5px 0;
+  padding: 10px;
+  margin: 5px 0;
   border-radius: 2px;
-  border:none;
-  outline:none;
+  border: none;
+  outline: none;
   cursor: pointer;
 }
 
 @media only screen and (max-width: 700px){
   .tabell-parts{
     max-width: 400px;
-    overflow-x:scroll;
+    overflow-x: scroll;
   }
 
   thead{
