@@ -62,6 +62,10 @@ tr{
   cursor: pointer;
 }
 
+.whatabody{
+  display: block;
+}
+
 table{
   border-collapse: collapse;
 }
@@ -79,41 +83,59 @@ td input[type=date]{
 
 .list-parts{
   display: block;
-  max-width: 1000px;
+  max-width: 1300px;
   max-height: 400px;
   overflow-y: scroll;
 }
 
-.thpart-parts,
+.thpart-parts{
+  width: 170px;
+}
+
 .thpart-parts input{
   width: 150px;
 }
 
-.thpartusd-parts, .thpartusd-parts input, .thpartupd-parts, .thpartupd-parts input{
+.thpartusd-parts, .thpartupd-parts{
   width: 100px;
 }
 
-.thdesc-parts,
+.thpartusd-parts input, .thpartupd-parts input{
+  width: 90px;
+}
+
+.thdesc-parts{
+  width: 250px;
+}
+
 .thdesc-parts input{
-  width: 200px;
+  width: 250px;
 }
 
-.thLP-parts
+.thLP-parts{
+  width: 70px;
+}
+
 .thLP-parts input{
-  width: 66px;
+  width: 60px;
 }
 
-.thQTY-parts,
-.thQTY-parts input{
+.thQTY-parts{
   width: 50px;
 }
 
+.thQTY-parts input{
+  width: 50px;
+  text-align: right;
+}
+
 .thpr1-parts, .thpr2-parts, .thpr3-parts, .thpr4-parts, .thpr5-parts, .thpr6-parts, .thpr9-parts{
-  width: 54px;
+  width: 70px;
 }
 
 .thpr1-parts input, .thpr2-parts input, .thpr3-parts input, .thpr4-parts input, .thpr5-parts input, .thpr6-parts input, .thpr9-parts input{
-  width: 54px;
+  width: 60px;
+  text-align: right;
 }
 
 #excelaparts{
