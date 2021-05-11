@@ -146,7 +146,7 @@ tr th{
 }
 
 
-table, td, th {
+table, td {
   border: 1px solid;
   padding: 2px;
   white-space: nowrap;
