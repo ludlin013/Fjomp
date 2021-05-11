@@ -300,6 +300,11 @@ textarea{
   text-align: right;
 }
 
+th{
+  position: sticky;
+  top: 0;
+}
+
 .irpartse{
   width:80px;
 }

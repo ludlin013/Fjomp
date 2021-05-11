@@ -23,6 +23,7 @@ body{
   justify-content: center;
   transition-duration: .1s;
   white-space: nowrap;
+  z-index: 10;
 }
 
 .navin:hover{

@@ -80,6 +80,12 @@ tr th{
   text-align: center;
 }
 
+th{
+  position: sticky;
+  top: 0;
+  background: rgb(80,80,80);
+}
+
 .thtotal-delivnotes{
   width: 100px;
   text-align: right;
@@ -167,6 +173,7 @@ table {
   max-width: 1280px;
   height: 260px;
   overflow-y: scroll;
+  padding-top:0px;
 }
 
 .button-delivnote{
