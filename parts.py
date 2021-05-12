@@ -85,6 +85,14 @@ def parts():
         Dict["lp"] = str(x[12]).strip()
         Dict["qty"] = str(x[7]).strip()
         Dict["price1"] = str(x[6]).strip()
+        Dict["price2"] = str(x[15]).strip()
+        Dict["price3"] = str(x[16]).strip()
+        Dict["price4"] = str(x[23]).strip()
+        Dict["price5"] = str(x[24]).strip()
+        Dict["price6"] = str(x[25]).strip()
+        Dict["price7"] = str(x[26]).strip()
+        Dict["price8"] = str(x[27]).strip()
+        Dict["price9"] = str(x[28]).strip()
         Dict["inactive"] = str(x[14]).strip()
         Dict["lastusd"] = str(x[9]).strip().split(" ")[0]
         Dict["lastupd"] = str(x[17]).strip().split(" ")[0]
