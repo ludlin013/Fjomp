@@ -105,7 +105,7 @@
             </thead>
             <tbody class="whatabody-customers">
               {% for x in units %}
-              <tr class="row-Customers" onclick="">
+              <tr class="row-Customers {{x[11]}}active" onclick="">
                 <td class="thcatu-customers">
                   <select id="{{units.index(x)}}cat">
                     {% for y in cat %}
@@ -146,7 +146,7 @@
                     {% endif %}
                   </select>
                 </td>
-                <td class="thserialu-customers"><input value="{{x[4].strip()}}"></td>
+                <td class="thserialu-customers"><input value="{{x[11]}}{{x[4].strip()}}"></td>
                 <td class="thinstu-customers"><input type="date" value="{{x[6]}}"></td>
                 <td class="thwarrantyu-customers"><input type="date" value="{{x[7]}}"></td>
                 <td class="thcontru-customers">
@@ -169,12 +169,47 @@
             <a ><img src=""></a>
             <a ><img src=""></a>
           </div>
+          <script>
+          function active(sort){
+            console.log("furry");
+            document.cookie = "custactive = " + sort
+
+            if(sort=="curr"){
+              console.log("curr");
+              for(m of document.getElementsByClassName('0active')){
+                m.style.display = "table-row";
+              }
+              for(n of document.getElementsByClassName('1active')){
+                n.style.display = "none";
+              }
+            }else if(sort=="hist"){
+              console.log("hist");
+                for(m of document.getElementsByClassName('1active')){
+                  m.style.display = "table-row";
+                }
+                for(n of document.getElementsByClassName('0active')){
+                  n.style.display = "none";
+                }
+              }else if(sort=="both"){
+                console.log("both");
+                for(m of document.getElementsByClassName('0active')){
+                  m.style.display = "table-row";
+                }
+                for(n of document.getElementsByClassName('1active')){
+                  n.style.display = "table-row";
+                }
+            }
+          }
+
+          </script>
           <div class="">
-          <label><input type="radio" name="unitfilter" value="curr">Current Units</label>
-          <label><input type="radio" name="unitfilter" value="hist">Historical Units</label>
-            <label><input type="radio" name="unitfilter" value="both">Both</label>
+          <label><input type="radio" name="unitfilter" id="activecurrent" onclick="active('curr')" value="curr">Current Units</label>
+          <label><input type="radio" name="unitfilter" id="activehistory" onclick="active('hist')" value="hist">Historical Units</label>
+          <label><input type="radio" name="unitfilter" id="activeboth" onclick="active('both')" value="both">Both</label>
           </div>
         </div>
+        <script src="/static/customer.js">
+        </script>
         {% endif %}
         {% if table == "irhistory" %}
         <script>
