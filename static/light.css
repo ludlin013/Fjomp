@@ -1,14 +1,14 @@
 body{
-  background-color: rgb(245,245,245)
+  background-color: rgb(230,230,230);
 }
 
 #submit:hover{
-  background: #fff
+  background: #fff;
 }
 
 .selectlang{
   transform: scale(1.25);
-  border:1px outset black
+  border:1px outset black;
 }
 
 .field{
@@ -20,7 +20,7 @@ body{
   border:1px solid #ddd;
   box-shadow: 1px 1px 2px #555;
   color:black;
-  background: #fff
+  background: #fff;
 }
 
 .navitem:hover{
@@ -33,13 +33,13 @@ body{
 }
 
 input,select{
-  background: #fff
+  background: #fff;
 }
 
 
 .navitemin{
   border-top:1px solid #ddd;
-  color:black
+  color:black;
 }
 
 .navitemin:nth-last-child(1){
@@ -53,7 +53,7 @@ input,select{
 }
 
 .active{
-  background:#f6f6f6!important
+  background:#f6f6f6!important;
 }
 
 .settingrow,
@@ -67,11 +67,11 @@ input,select{
 }
 
 .settingdropmenuitem:hover{
-  background: #eee
+  background: #eee;
 }
 
 .headerbox-parts{
-  border-color: rgb(215,215,215)
+  border-color: rgb(215,215,215);
 }
 
 .list-parts, .list-delivnotes, .list-part-unitinfo, .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
@@ -79,15 +79,15 @@ input,select{
 }
 
 .middlepage-customers div{
-  background: #eee
+  background: #eee;
 }
 
 .middlepage-customers div:hover{
-  background:#ddd
+  background:#ddd;
 }
 
 .headactive{
-  background:#fff !important
+  background:#fff !important;
 }
 
 .settingslogout{
@@ -100,7 +100,7 @@ input,select{
 
 .settingthemeswitchwrap{
   background: white;
-  border:1px solid rgb(230,230,230)
+  border:1px solid rgb(230,230,230);
 }
 
 .settingthemeswitchwrap img{
@@ -108,7 +108,7 @@ input,select{
 }
 
 .settingsthemep{
-  color:black
+  color:black;
 }
 
 #settingsthemeselect{
@@ -134,7 +134,8 @@ input,select{
 }
 
 table, td, th {
-  border-color: rgb(28,28,28);
+  border-color: rgb(0,0,0);
+  background: rgb(240,240,240);
 }
 
 td {
@@ -150,16 +151,16 @@ td {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(60,60,60);
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(60,60,60);
   transition-duration: .2s
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #999;
+  background: #444;
 }
 
 .hamham div{

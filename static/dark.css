@@ -202,16 +202,16 @@ table, td, th {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(60,60,60);
+  background: #888;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(60,60,60);
   transition-duration: .2s
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #999;
+  background: #444;
 }
 
 .settingstechmain input,
