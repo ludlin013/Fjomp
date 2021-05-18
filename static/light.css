@@ -34,6 +34,7 @@ body{
 
 input,select{
   background: #fff;
+  border: none;
 }
 
 
@@ -140,6 +141,11 @@ table, td, th {
 
 td {
   border:1px solid #ddd;
+}
+
+.whatabody-lookup tbody{
+  background: #fff;
+  border: none;
 }
 
 .row-parts:hover{

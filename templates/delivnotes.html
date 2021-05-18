@@ -113,12 +113,12 @@
           <tbody class="tbody-delivnotes">
             {% for x in sqlq%}
             <tr class="row-delivnotes" onclick="" id="">
-              <td class="thpart-delivnotes"><input class="forminput-delivnotes" class="" value="{{x[5].strip()}}"></td>
+              <td class="thpart-delivnotes"><input class="forminput-delivnotes" value="{{x[5].strip()}}"></td>
               <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
               <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
               <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes">
-                <select id="pg{{sqlq.index(x)}}" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" class="forminput-delivnotes" value="{{x[26]}}">
+                <select id="pg{{sqlq.index(x)}}" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" value="{{x[26]}}">
                   {% for y in pricegroups[sqlq.index(x)] %}
                     <option value="{{pricegroups[sqlq.index(x)][y]}}">{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
                   {% endfor %}
