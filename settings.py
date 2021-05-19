@@ -70,11 +70,15 @@ def settings():
             sqltechs.append((x[0],x[1].strip(),x[2].strip(),str(x[4]),str(x[5])))
 
         print("=====================")
-        for x in range(len(techid)-1):
+        print(range(len(techid)))
+        for x in range(len(techid)):
+            print(x)
             updtechs.append((techid[x],techfirst[x],techlast[x],techoffice[x],techtech[x]))
 
         deleteuser = [list(set(sqltechs) - set(updtechs))]
         newuser = [list(set(updtechs) - set(sqltechs))]
+        #print(sqltechs[12])
+        print(updtechs)
 
         for x in newuser[0]:
             if x[0] == "" or x[1] == "" or x[2] == "" or x[3] == "" or x[4] == "":

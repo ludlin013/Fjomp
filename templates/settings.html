@@ -130,8 +130,8 @@
         <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
         <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
         <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect techoffice" type="checkbox" name="office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
-        <input class="settingsthemep noselect techtech" type="checkbox" name="tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techoffice" value="1" type="checkbox" name="office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techtech" value="1" type="checkbox" name="tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
         <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
       {% endfor %}
@@ -144,7 +144,7 @@
           <div class="settingstechcancel" onclick="window.location.reload()">
             Cancel
           </div>
-          <input type="submit" form="techuserform" value="Save">
+          <div onclick="submitTechs()">Submit</div>
         </div>
     </div>
 </div>
@@ -261,6 +261,14 @@
       var inputlast = document.createElement("input");
       var inputoffice = document.createElement("input");
       var inputtech = document.createElement("input");
+      inputoffice.setAttribute("type", "checkbox");
+      inputtech.setAttribute("type", "checkbox");
+      inputoffice.checked = 1;
+      inputtech.checked = 1;
+      inputoffice.value = 1;
+      inputtech.value = 1;
+
+      //console.log(inputtech.value);
 
       inputid.name = "id";
       inputfirst.name ="firstname";
@@ -269,8 +277,8 @@
       inputtech.name ="tech";
 
       inputid.maxLength = "3";
-      inputoffice.maxLength = "1";
-      inputtech.maxLength = "1";
+      //inputoffice.maxLength = "1";
+      //inputtech.maxLength = "1";
 
       usera.classList.add("settingadmintech");
       inputid.classList.add("settingsthemep","noselect","techid");
@@ -290,6 +298,23 @@
 
       parent.appendChild(usera);
       inputid.focus();
+    }
+
+    function submitTechs(){
+      for (x of document.getElementsByName('tech')){
+        if (x.checked == false){
+          x.value = 0
+          x.checked = true
+        }
+      }
+
+      for (x of document.getElementsByName('office')){
+        if (x.checked == false){
+          x.value = 0
+          x.checked = true
+        }
+      }
+      document.getElementById('techuserform').submit()
     }
 
     function show(cat){
