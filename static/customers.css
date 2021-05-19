@@ -11,7 +11,6 @@ h1{
 .toppage-customers{
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 20px;
 }
 
 .leftpage-customers{
@@ -100,6 +99,11 @@ h1{
 .owner-customers{
   margin-left: 10px;
   width: 65px;
+}
+
+.custunitcontrol{
+  width:20px;
+  padding:5px
 }
 
 .phone-customers, .opendate-customers, .instdate-customers, .closeddate-customers{
@@ -194,7 +198,7 @@ td input[type=date]{
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
   max-width: 1180px;
-  max-height: 400px;
+  height: 400px;
   overflow-y: scroll;
 }
 
@@ -255,6 +259,16 @@ td input[type=date]{
 .thtypeu-customers,
 .thtypeu-customers input{
   width:60px
+}
+
+.custstep{
+  width:40px;
+  height:43px;
+  padding:10px  5px
+}
+
+#custcontrolspace{
+  width:40px
 }
 
 .thvendoru-customers,
@@ -355,6 +369,7 @@ td input[type=date]{
 
 .unitcontrols{
   display: flex;
+  align-items: center;
 }
 
 .unitnotes{

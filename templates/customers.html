@@ -87,25 +87,27 @@
         {% if table == "units" or table == None%}
         <script>
           document.getElementById('unithead').classList.add("headactive")
+          console.log(document.cookie);
         </script>
         <div class="tabell-customers">
           <table class="list-units">
             <thead>
               <tr class="header-customers" id="header-customers">
-                <th onclick="document.cookie = 'custsort = cat';location.reload()" class="sortcursor thcatu-customers noselect">Cat.</th>
-                <th onclick="document.cookie = 'custsort = type';location.reload()" class="sortcursor thtypeu-customers noselect">Type</th>
-                <th onclick="document.cookie = 'custsort = vend';location.reload()" class="sortcursor thvendoru-customers noselect">Vendor</th>
-                <th onclick="document.cookie = 'custsort = model';location.reload()" class="sortcursor thmodelu-customers noselect">Model</th>
-                <th onclick="document.cookie = 'custsort = serial';location.reload()" class="sortcursor thserialu-customers noselect">Serial #</th>
-                <th onclick="document.cookie = 'custsort = install';location.reload()" class="sortcursor thinstu-customers noselect">Installation date</th>
-                <th onclick="document.cookie = 'custsort = warranty';location.reload()" class="sortcursor thwarrantyu-customers noselect">Warranty ends</th>
-                <th onclick="document.cookie = 'custsort = charge';location.reload()" class="sortcursor thcontru-customers noselect">Contr. Type</th>
-                <th onclick="document.cookie = 'custsort = replace';location.reload()" class="sortcursor threplu-customers noselect">Repl. Date</th>
+                <th onclick="if(document.cookie.includes('custsort=cat')){document.cookie = 'custsort = revcat';}else{document.cookie = 'custsort = cat';}location.reload()" class="sortcursor thcatu-customers noselect">Cat.</th>
+                <th onclick="if(document.cookie.includes('custsort=type')){document.cookie = 'custsort = revtype';}else{document.cookie = 'custsort = type';}location.reload()" class="sortcursor thtypeu-customers noselect">Type</th>
+                <th onclick="if(document.cookie.includes('custsort=vend')){document.cookie = 'custsort = revvend';}else{document.cookie = 'custsort = vend';}location.reload()" class="sortcursor thvendoru-customers noselect">Vendor</th>
+                <th onclick="if(document.cookie.includes('custsort=model')){document.cookie = 'custsort = revmodel';}else{document.cookie = 'custsort = model';}location.reload()" class="sortcursor thmodelu-customers noselect">Model</th>
+                <th onclick="if(document.cookie.includes('custsort=serial')){document.cookie = 'custsort = revserial';}else{document.cookie = 'custsort = serial';}location.reload()" class="sortcursor thserialu-customers noselect">Serial #</th>
+                <th onclick="if(document.cookie.includes('custsort=install')){document.cookie = 'custsort = revinstall';}else{document.cookie = 'custsort = install';}location.reload()" class="sortcursor thinstu-customers noselect">Installation date</th>
+                <th onclick="if(document.cookie.includes('custsort=warranty')){document.cookie = 'custsort = revwarranty';}else{document.cookie = 'custsort = warranty';}location.reload()" class="sortcursor thwarrantyu-customers noselect">Warranty ends</th>
+                <th onclick="if(document.cookie.includes('custsort=charge')){document.cookie = 'custsort = revcharge';}else{document.cookie = 'custsort = charge';}location.reload()" class="sortcursor thcontru-customers noselect">Contr. Type</th>
+                <th onclick="if(document.cookie.includes('custsort=replace')){document.cookie = 'custsort = revreplace';}else{document.cookie = 'custsort = replace';}location.reload()" class="sortcursor threplu-customers noselect">Repl. Date</th>
               </tr>
             </thead>
             <tbody class="whatabody-customers">
               {% for x in units %}
               <tr class="row-Customers {{x[11]}}active" onclick="">
+                <input type="hidden" name="" id="{{units.index(x)}}id" value="{{x[12]}}">
                 <td class="thcatu-customers">
                   <select id="{{units.index(x)}}cat">
                     {% for y in cat %}
@@ -146,7 +148,7 @@
                     {% endif %}
                   </select>
                 </td>
-                <td class="thserialu-customers"><input value="{{x[11]}}{{x[4].strip()}}"></td>
+                <td class="thserialu-customers"><input value="{{x[4].strip()}}"></td>
                 <td class="thinstu-customers"><input type="date" value="{{x[6]}}"></td>
                 <td class="thwarrantyu-customers"><input type="date" value="{{x[7]}}"></td>
                 <td class="thcontru-customers">
@@ -164,8 +166,8 @@
         </div>
         <div class="unitcontrols">
           <div class="">
-            <a ><img src=""></a>
-            <a ><img src=""></a>
+            <a ><img class="custunitcontrol" src="/static/pictures/{{theme}}/add.png"></a>
+            <a ><img class="custunitcontrol" src="/static/pictures/{{theme}}/remove.png"></a>
             <a ><img src=""></a>
             <a ><img src=""></a>
           </div>
@@ -210,6 +212,17 @@
         </div>
         <script src="/static/customer.js">
         </script>
+        <form class="" action="" method="post">
+          <p>Category<input type="text" placeholder="Category" name="category" value=""></p>
+          <p>Type<input type="text" placeholder="Type" name="type" value=""></p>
+          <p>Vendor<input type="text" placeholder="Vendor" name="vendor" value=""></p>
+          <p>Model<input type="text" placeholder="Model" name="model" value=""></p>
+          <p>Serial<input type="text" placeholder="Serial" name="serial" value=""></p>
+          <p>Install Date<input type="date" placeholder="Install" name="install" value=""></p>
+          <p>Warranty<input type="date" placeholder="Warranty" name="warranty" value=""></p>
+          <p>Charge mode<input type="text" placeholder="Charge" name="charge" value=""></p>
+          <p>Replace date<input type="date" placeholder="Replace" name="replace" value=""></p>
+        </form>
         {% endif %}
         {% if table == "irhistory" %}
         <script>
@@ -314,6 +327,11 @@
     </div>
   </div>
   <div class="buttonsbar">
+    <a href="/customers?customer={{mincust}}"><img class="noselect custstep" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
+    <a href="/customers?customer={{previous}}"><img class="noselect custstep" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
+    <a href="/customers?customer={{next}}"><img class="noselect custstep" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
+    <a href="/customers?customer={{maxcust}}"><img class="noselect custstep" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+    <a id="custcontrolspace"></a>
     <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>
     <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
     <a href="customers" class="buttonsbar-item-customers"><img class="buttonbarpic-customers" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>

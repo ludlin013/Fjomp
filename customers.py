@@ -120,22 +120,40 @@ def customers():
 
                     if sort == "cat":
                         units.sort(key = lambda x:x[1])
+                    elif sort == "revcat":
+                        units.sort(key = lambda x:x[1],reverse = True)
                     elif sort == "type":
                         units.sort(key = lambda x:x[5])
+                    elif sort == "revtype":
+                        units.sort(key = lambda x:x[5], reverse = True)
                     elif sort == "vend":
                         units.sort(key = lambda x:x[2])
+                    elif sort == "revvend":
+                        units.sort(key = lambda x:x[2], reverse = True)
                     elif sort == "model":
                         units.sort(key = lambda x:x[3])
+                    elif sort == "revmodel":
+                        units.sort(key = lambda x:x[3], reverse = True)
                     elif sort == "serial":
                         units.sort(key = lambda x:x[4])
+                    elif sort == "revserial":
+                        units.sort(key = lambda x:x[4],reverse = True)
                     elif sort == "install":
                         units.sort(key = lambda x:x[6],reverse = True)
+                    elif sort == "revinstall":
+                        units.sort(key = lambda x:x[6])
                     elif sort == "warranty":
                         units.sort(key = lambda x:x[7],reverse = True)
+                    elif sort == "revwarranty":
+                        units.sort(key = lambda x:x[7])
                     elif sort == "charge":
                         units.sort(key = lambda x:x[8])
+                    elif sort == "revcharge":
+                        units.sort(key = lambda x:x[8], reverse = True)
                     elif sort == "replace":
                         units.sort(key = lambda x:x[9])
+                    elif sort == "revreplace":
+                        units.sort(key = lambda x:x[9], reverse = True)
                     else:
                         units.sort(key = lambda x:x[6],reverse = True)
                 break
@@ -143,8 +161,30 @@ def customers():
             elif cust.strip().lower() in x[0].strip().lower() or cust.strip().lower() in x[2].strip().lower() or cust.strip().lower() in x[9].strip().lower():
                 customers.append(x)
 
+        allcustget = sql("SELECT","SELECT Cust_CustID FROM Customers")
+
+        allcustget.sort(key = lambda x:x[0])
+
+        maxcust = ""
+        mincust = ""
+        next = ""
+        previous = ""
+        end = False
+
+        for x in allcustget:
+            if end:
+                next = x[0]
+                break
+            if cust.strip().lower() == x[0].strip().lower():
+                print(x[0])
+                end = True
+            if not end:
+                previous = x[0]
+
+
+        mincust = allcustget[0][0].strip()
+        maxcust = allcustget[-1][0].strip()
 
 
 
-
-    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
