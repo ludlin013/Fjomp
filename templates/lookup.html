@@ -9,7 +9,23 @@
   <link rel="stylesheet" href="static/{{theme}}.css">
   <link rel="icon" href="./static/pictures/icon.ico">
 </head>
-<body>
+<body onload="cookieController()">
+  <script>
+  function cookieController(){
+    if ({{controll_variable}} == 0) {
+      document.forms['form-topleftpage-lookup'].submit()
+    }
+}
+  if ("{{looknumname}}" != ""){
+      document.cookie = "lastlooknumname = {{looknumname}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+  }
+
+  if("{{lookserial}}" != ""){
+      document.cookie = "lastserial = {{lookserial}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+  }
+
+  document.cookie = "rbball = {{rbball}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+  </script>
   <div class="mobilehead" style="display:none;z-index:100000;">
     <div class="hamham" onclick="hamburger()" >
       <div id="hamtop" style="left:15px"></div>
@@ -33,8 +49,8 @@
       <div class="topleftpage-lookup">
         <div class="inputrutor-lookup">
           <form class="form-lookup" id="hughe-form" name="form-topleftpage-lookup" method="POST" action="">
-            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input autofocus id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" onfocus="document.getElementById('lookupserial').value = ''"></div>
-            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" value="{{lookserial}}" onfocus="document.getElementById('lookupnumname').value = ''"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" {% if rbball == "exact" %}checked{% endif %}><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff" {% if rbball == "partoff" %}checked{% endif %}><label>Part off</label></div>
+            <div class="formitem-lookup"><label class="inputpart">Enter Part # or Part Name:</label><input id="lookupnumname" class="forminput-lookup" type="text" name="lookupnumname" value="{{looknumname}}" oninput="document.getElementById('lookupserial').value = ''; document.cookie = 'lastserial = ; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'"></div>
+            <div class="formitem-lookup"><label class="inputserial">Or Enter Serial #:</label><input id="lookupserial" class="forminput-lookup" type="text" name="lookupserial" value="{{lookserial}}" oninput="document.getElementById('lookupnumname').value = ''; document.cookie = 'lastlooknumname = ; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'"><input class="forminput-lookup" name="radiobuttons-lookup" id="radioexact" type="radio" value="exact" {% if rbball == "exact" %}checked{% endif %}><label>Exact</label><input class="forminput-swapout" name="radiobuttons-lookup" id="radiopartoff" type="radio" value="partoff" {% if rbball == "partoff" %}checked{% endif %}><label>Part off</label></div>
             {% if parts !=  []%}
             <div class="ludropblack" onclick="window.history.back()">
             </div>
@@ -85,7 +101,7 @@
             var unihis_var = getCookie("unihis_checked")
 
 
-            console.log(dn_var);
+
             if (dn_var == ""){
               dn_var = "true"
             }
