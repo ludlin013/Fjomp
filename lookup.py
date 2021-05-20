@@ -62,6 +62,9 @@ def lookup():
     btwdate1 = datetime(2010, 1, 1).date()
     btwdate2 = current_date
 
+    numnamecookie = request.cookies.get("lastlooknumname")
+    serialcookie = request.cookies.get("lastserial")
+
     print([btwdate1])
     print([btwdate2])
     lookupdata = []
@@ -84,14 +87,14 @@ def lookup():
         btwdate1 = datetime.strptime(request.form["btwdate1"], '%Y-%m-%d').date()
         btwdate2 = datetime.strptime(request.form["btwdate2"], '%Y-%m-%d').date()
 
-        if looknumname == "":
+        if len(numnamecookie) > 0 and looknumname == "":
             try:
-                looknumname = request.cookies.get("lastlooknumname")
+                looknumname = numnamecookie
             except:
                 pass
-        elif lookserial == "":
+        elif len(serialcookie) > 0 and lookserial == "":
             try:
-                lookserial = request.cookies.get("lastserial")
+                lookserial = serialcookie
             except:
                 pass
 
