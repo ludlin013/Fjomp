@@ -157,16 +157,16 @@ td {
 }
 
 ::-webkit-scrollbar-track {
-  background: #888;
+  background: #ddd;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgb(60,60,60);
+  background: #999;
   transition-duration: .2s
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: #888;
 }
 
 .hamham div{
