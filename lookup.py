@@ -52,6 +52,7 @@ def lookup():
     controll_variable = 0
     current_date = datetime.now().date()
     date = datetime(1900,1,1).date()
+    startDate = datetime(2010, 1, 1).date()
     rbball = "exact"
     if request.cookies.get("rbball") != "":
         try:
@@ -59,8 +60,24 @@ def lookup():
         except:
             pass
 
-    btwdate1 = datetime(2010, 1, 1).date()
-    btwdate2 = current_date
+    lastbtwdate1 = request.cookies.get("lastbtwdate1")
+    lastbtwdate2 = request.cookies.get("lastbtwdate2")
+
+    print(lastbtwdate1)
+    if lastbtwdate1 != None:
+        if len(lastbtwdate1) > 0:
+            btwdate1 = lastbtwdate1
+    else:
+        btwdate1 = datetime(2010, 1, 1).date()
+
+    if lastbtwdate2 != None:
+        if len(lastbtwdate2) > 0:
+            btwdate2 = lastbtwdate2
+    else:
+        btwdate2 = current_date
+
+    numnamecookie = request.cookies.get("lastlooknumname")
+    serialcookie = request.cookies.get("lastserial")
 
     print([btwdate1])
     print([btwdate2])
@@ -84,14 +101,14 @@ def lookup():
         btwdate1 = datetime.strptime(request.form["btwdate1"], '%Y-%m-%d').date()
         btwdate2 = datetime.strptime(request.form["btwdate2"], '%Y-%m-%d').date()
 
-        if looknumname == "":
+        if len(numnamecookie) > 0 and looknumname == "":
             try:
-                looknumname = request.cookies.get("lastlooknumname")
+                looknumname = numnamecookie
             except:
                 pass
-        elif lookserial == "":
+        elif len(serialcookie) > 0 and lookserial == "":
             try:
-                lookserial = request.cookies.get("lastserial")
+                lookserial = serialcookie
             except:
                 pass
 
@@ -366,4 +383,4 @@ def lookup():
         lookupdata.sort(key = lambda x:x["date_check"], reverse=True)
 
 
-    return render_template("lookup.html",theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball, parts=parts, part=part, controll_variable=controll_variable)
+    return render_template("lookup.html",theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball, parts=parts, part=part, controll_variable=controll_variable, startDate=startDate, current_date=current_date)
