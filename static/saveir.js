@@ -20,7 +20,7 @@ function saveir(){
       document.getElementById("save"+x.id).value = x.value;
     }
   }
-
+/*
   var xhttp = new XMLHttpRequest();
 
   const sparedata = new FormData(document.getElementById('sparepartform'));
@@ -28,14 +28,32 @@ function saveir(){
   xhttp.open("POST","/savespare",true);
   xhttp.send(sparedata);
   setTimeout(formir(), 1000);
+  unitsave()
 
-
-
-  //document.getElementById('irsaveform').submit()
+*/
 }
 function formir(){
 var xhttp = new XMLHttpRequest();
 xhttp.open("POST","/saveir",true);
 const fd = new FormData(document.getElementById('irsaveform'));
 xhttp.send(fd);
+}
+
+function unitsave(){
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('irunitform'))
+  xhttp.open("POST","/unitsave",true);
+  console.log(fd.keys());
+  xhttp.send(fd);
+
+}
+
+function saveall(){
+  saveir()
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('allform'))
+  xhttp.open("POST","/irsaveall",true);
+  console.log(fd.keys());
+  xhttp.send(fd);
+
 }

@@ -414,3 +414,13 @@ def remspare():
     sql("INSERT",sqlq)
 
     return ('', 204)
+
+@app.route("/irsaveall",methods=["GET","POST"])
+def unitsave():
+
+    print(request.form)
+
+    for x in request.form:
+        print(x,"///",request.form[x])
+
+    return ('', 204)
