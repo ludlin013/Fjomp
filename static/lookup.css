@@ -8,6 +8,10 @@ h1{
   margin-bottom: 30px;
 }
 
+.resetdatesclass :hover{
+  cursor: pointer;
+}
+
 .forminput-lookup{
   padding: 5px;
   border: none;

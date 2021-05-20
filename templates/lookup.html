@@ -24,7 +24,15 @@
       document.cookie = "lastserial = {{lookserial}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
   }
 
+  document.cookie = 'lastbtwdate1 = {{btwdate1}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'
+  document.cookie = 'lastbtwdate2 = {{btwdate2}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'
+
   document.cookie = "rbball = {{rbball}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+
+  function resetDates(){
+    document.getElementById('btwdate1').value = "{{startDate}}"
+    document.getElementById('btwdate2').value = "{{current_date}}"
+  }
   </script>
   <div class="mobilehead" style="display:none;z-index:100000;">
     <div class="hamham" onclick="hamburger()" >
@@ -62,7 +70,7 @@
               {% endfor %}
             </div>
             {% endif %}
-            <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input class="forminput-lookup" type="date" name="btwdate1" value="{{btwdate1}}"><label style="padding: 0 5px;">-</label><input class="forminput-lookup" type="date" name="btwdate2" value="{{btwdate2}}"></div>
+            <div class="formitem-lookup"><label class="inputdate">Between Dates:</label><input id="btwdate1" class="forminput-lookup" type="date" name="btwdate1" value="{{btwdate1}}"><label style="padding: 0 5px;">-</label><input id="btwdate2" class="forminput-lookup" type="date" name="btwdate2" value="{{btwdate2}}"><div title="Reset dates" class="resetdatesclass" onclick="resetDates()" style="margin-left:10px;"><img alt="Reset dates" width="20px" src="static/pictures/{{theme}}/undo.png"></div></div>
         </div>
       </div>
       <div class="middlepage-lookup">
