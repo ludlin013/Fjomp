@@ -52,7 +52,9 @@ table, td, th{
 
 tr{
   table-layout: fixed;
-  width: 100%;
+}
+
+thead{
 }
 
 th{
@@ -89,13 +91,13 @@ td input[type=date]{
 
 .list-parts{
   display: block;
-  max-width: 1300px;
+  max-width: 1360px;
   max-height: 400px;
   overflow-y: scroll;
 }
 
 .thpart1-parts{
-  width: 156px;
+  width: 150px;
 }
 
 .thpart-parts input{
@@ -103,15 +105,15 @@ td input[type=date]{
 }
 
 .thpartusd1-parts, .thpartupd1-parts{
-  width: 110px;
+  width: 70px;
 }
 
 .thpartusd-parts input, .thpartupd-parts input{
-  width: 110px;
+  width: 90px;
 }
 
 .thdesc1-parts{
-  width: 256px;
+  width: 275px;
 }
 
 .thdesc-parts input{
@@ -119,7 +121,7 @@ td input[type=date]{
 }
 
 .thLP1-parts{
-  width: 60px;
+  width: 50px;
 }
 
 .thLP-parts input{
@@ -127,20 +129,20 @@ td input[type=date]{
 }
 
 .thQTY1-parts{
-  width: 60px;
+  width: 30px;
 }
 
 .thQTY-parts input{
-  width: 50px;
+  width: 30px;
   text-align: right;
 }
 
 .thpr11-parts, .thpr21-parts, .thpr31-parts, .thpr41-parts, .thpr51-parts, .thpr61-parts, .thpr91-parts{
-  width: 65px;
+  width: 75px;
 }
 
 .thpr1-parts input, .thpr2-parts input, .thpr3-parts input, .thpr4-parts input, .thpr5-parts input, .thpr6-parts input, .thpr9-parts input{
-  width: 60px;
+  width: 70px;
   text-align: right;
 }
 
