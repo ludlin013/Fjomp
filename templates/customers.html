@@ -166,7 +166,7 @@
         </div>
         <div class="unitcontrols">
           <div class="">
-            <a ><img class="custunitcontrol" src="/static/pictures/{{theme}}/add.png"></a>
+            <a onclick="showAddUnits()"><img class="custunitcontrol" src="/static/pictures/{{theme}}/add.png"></a>
             <a ><img class="custunitcontrol" src="/static/pictures/{{theme}}/remove.png"></a>
             <a ><img src=""></a>
             <a ><img src=""></a>
@@ -212,17 +212,30 @@
         </div>
         <script src="/static/customer.js">
         </script>
-        <form class="" action="" method="post">
-          <p>Category<input type="text" placeholder="Category" name="category" value=""></p>
-          <p>Type<input type="text" placeholder="Type" name="type" value=""></p>
-          <p>Vendor<input type="text" placeholder="Vendor" name="vendor" value=""></p>
-          <p>Model<input type="text" placeholder="Model" name="model" value=""></p>
-          <p>Serial<input type="text" placeholder="Serial" name="serial" value=""></p>
-          <p>Install Date<input type="date" placeholder="Install" name="install" value=""></p>
-          <p>Warranty<input type="date" placeholder="Warranty" name="warranty" value=""></p>
-          <p>Charge mode<input type="text" placeholder="Charge" name="charge" value=""></p>
-          <p>Replace date<input type="date" placeholder="Replace" name="replace" value=""></p>
+
+        <script>
+        function showAddUnits(){
+          document.getElementById("customer-add-unit").style.display = "flex";
+          document.getElementById("customer-add-unit-backdrop").style.display = "block";
+        }
+
+        function hideAddUnits(){
+          document.getElementById("customer-add-unit-backdrop").style.display = "none";
+          document.getElementById("customer-add-unit").style.display = "none";
+        }
+        </script>
+        <form id="customer-add-unit" class="customer-add-unit" action="" method="post">
+          <div class="customer-add-unit-row"><p>Category</p><input type="text" placeholder="Category" name="category" value=""></div>
+          <div class="customer-add-unit-row"><p>Type</p><input type="text" placeholder="Type" name="type" value=""></div>
+          <div class="customer-add-unit-row"><p>Vendor</p><input type="text" placeholder="Vendor" name="vendor" value=""></div>
+          <div class="customer-add-unit-row"><p>Model</p><input type="text" placeholder="Model" name="model" value=""></div>
+          <div class="customer-add-unit-row"><p>Serial</p><input type="text" placeholder="Serial" name="serial" value=""></div>
+          <div class="customer-add-unit-row"><p>Install Date</p><input type="date" placeholder="Install" name="install" value=""></div>
+          <div class="customer-add-unit-row"><p>Warranty</p><input type="date" placeholder="Warranty" name="warranty" value=""></div>
+          <div class="customer-add-unit-row"><p>Charge mode</p><input type="text" placeholder="Charge" name="charge" value=""></div>
+          <div class="customer-add-unit-row"><p>Replace date</p><input type="date" placeholder="Replace" name="replace" value=""></div>
         </form>
+        <div onclick="hideAddUnits()" id="customer-add-unit-backdrop" class="customer-add-unit-backdrop"></div>
         {% endif %}
         {% if table == "irhistory" %}
         <script>
