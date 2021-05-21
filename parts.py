@@ -49,6 +49,8 @@ def parts():
     theme,notheme = setTheme()
 
     allparts = []
+    pricegroups = dict(sql("SELECT", "SELECT pg_no, pg_Descript FROM Pricegroups"))
+    pricegroupnum = []
     sqlq = []
     partn = ""
     partd = ""
@@ -61,6 +63,10 @@ def parts():
         controll_variable = 1
         partn = request.form["part-parts"]
         partd = request.form["description-parts"]
+
+        for x in pricegroups:
+            pricegroupnum.append(str(x))
+
         try:
             parta = request.form.getlist("active-parts")[0]
         except:
@@ -107,4 +113,4 @@ def parts():
 
     allparts.sort(key = lambda x:x["artid"])
 
-    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn, controll_variable=controll_variable)
+    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn, controll_variable=controll_variable, pricegroups=pricegroups, pricegroupnum=pricegroupnum)

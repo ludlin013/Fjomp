@@ -44,50 +44,44 @@ function cookieController(){
         <div id="formitem-parts" class="formitem-parts noselect"><label>Only active parts:<input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked></label></div>
         <input class="partssearch" type="submit" name="partsubmit" value="Search">
       </form>
-      <div class="tabell-parts">
-        <table class="list-parts">
-          <thead>
-            <tr class="header-parts" id="header-parts">
-              <th class="thpart1-parts">Part #</th>
-              <th class="thdesc1-parts">Description</th>
-              <th class="thLP1-parts">LP</th>
-              <th class="thQTY1-parts">QTY</th>
-              <th class="thpr11-parts">McD</th>
-              <th class="thpr21-parts">JW</th>
-              <th class="thpr31-parts">Sibylla</th>
-              <th class="thpr41-parts">Slutkund</th>
-              <th class="thpr51-parts">COOP</th>
-              <th class="thpr61-parts">DN</th>
-              <th class="thpr91-parts">Lidl</th>
-              <th class="thpartusd1-parts">Last used</th>
-              <th class="thpartupd1-parts">Last updated</th>
-            </tr>
-          </thead>
-          <tbody class="whatabody">
-            {% for x in allparts%}
-            <tr class="row-parts" onclick="" id="{{x["artid"]}}%{{x["name"]}}%{{x["inactive"]}}">
-              <td class="thpart-parts"><input readonly value="{{x["artid"]}}"></td>
-              <td class="thdesc-parts"><input readonly onclick="this.select()" value="{{x["name"]}}"></td>
-              <td class="thLP-parts"><input readonly onclick="this.select()" value="{{x["lp"]}}"></td>
-              <td class="thQTY-parts"><input readonly onclick="this.select()" value="{{x["qty"]}}"></td>
-              <td class="thpr1-parts"><input readonly onclick="this.select()" value="{{x["price1"]}}"></td>
-              <td class="thpr2-parts"><input readonly onclick="this.select()" value="{{x["price2"]}}"></td>
-              <td class="thpr3-parts"><input readonly onclick="this.select()" value="{{x["price3"]}}"></td>
-              <td class="thpr4-parts"><input readonly onclick="this.select()" value="{{x["price4"]}}"></td>
-              <td class="thpr5-parts"><input readonly onclick="this.select()" value="{{x["price5"]}}"></td>
-              <td class="thpr6-parts"><input readonly onclick="this.select()" value="{{x["price6"]}}"></td>
-              <td class="thpr9-parts"><input readonly onclick="this.select()" value="{{x["price9"]}}"></td>
-              <td class="thpartusd-parts"><input readonly value="{{x["lastusd"]}}"></td>
-              <td class="thpartupd-parts"><input readonly value="{{x["lastupd"]}}"></td>
-              {% endfor %}
-            </tr>
-          </tbody>
-          <script src="static/partsearch.js"></script>
-        </table>
     </div>
-  <div class="buttonsbar">
-  <a href="parts" class="buttonsbar-item-parts"><img class="buttonbarpic-parts" src="static/pictures/{{theme}}/print-label.png"><p>Label Print</p></a>
+    <div class="tabell-parts">
+      <table class="list-parts">
+        <thead>
+          <tr>
+            <th class="parts-partnr">Part #</th>
+            <th class="parts-desc">Description</th>
+            <th class="parts-lp">LP</th>
+            <th class="parts-qty">QTY</th>
+            {% for x in pricegroups %}
+            <th class="parts-pr{{x}}">{{pricegroups[x]}}</th>
+            {% endfor %}
+            <th class="parts-lastused">Last used</th>
+            <th class="parts-lastupdated">Last updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for x in allparts %}
+          <tr>
+            <td class="parts-partnr"><p class="tabell-text">{{x["artid"]}}</p></td>
+            <td class="parts-desc"><p class="tabell-text">{{x["name"]}}</p></td>
+            <td class="parts-lp"><p class="tabell-text">{{x["lp"]}}</p></td>
+            <td class="parts-qty"><p class="tabell-text">{{x["qty"]}}</p></td>
+            {% for z in pricegroupnum %}
+            <td class="parts-pr{{z}}"><p class="tabell-text align-right">{{x["price"+z]}}</p></td>
+            {% endfor %}
+            <td class="parts-lastused"><p class="tabell-text">{{x["lastusd"]}}</p></td>
+            <td class="parts-lastupdated"><p class="tabell-text">{{x["lastupd"]}}</p></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <script src="static/partsearch.js"></script>
+      </table>
+    </div>
+    <div class="buttonsbar">
+      <a href="parts" class="buttonsbar-item-parts"><img class="buttonbarpic-parts" src="static/pictures/{{theme}}/print-label.png"><p>Label Print</p></a>
+    </div>
+    <script src="/static/mobile.js"></script>
   </div>
-  <script src="/static/mobile.js"></script>
 </body>
 </html>
