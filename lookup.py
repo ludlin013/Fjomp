@@ -54,14 +54,11 @@ def lookup():
     date = datetime(1900,1,1).date()
     startDate = datetime(2010, 1, 1).date()
     rbball = "exact"
-    if request.cookies.get("rbball") != "":
-        try:
-            rbball = request.cookies.get("rbball")
-        except:
-            pass
-
-    lastbtwdate1 = request.cookies.get("lastbtwdate1")
-    lastbtwdate2 = request.cookies.get("lastbtwdate2")
+    try:
+        lastbtwdate1 = request.cookies.get("lastbtwdate1")
+        lastbtwdate2 = request.cookies.get("lastbtwdate2")
+    except:
+        pass
 
     print(lastbtwdate1)
     if lastbtwdate1 != None:
@@ -76,8 +73,11 @@ def lookup():
     else:
         btwdate2 = current_date
 
-    numnamecookie = request.cookies.get("lastlooknumname")
-    serialcookie = request.cookies.get("lastserial")
+    try:
+        numnamecookie = request.cookies.get("lastlooknumname")
+        serialcookie = request.cookies.get("lastserial")
+    except:
+        pass
 
     print([btwdate1])
     print([btwdate2])
@@ -97,20 +97,26 @@ def lookup():
         controll_variable = 1
         looknumname = request.form["lookupnumname"]
         lookserial = request.form["lookupserial"]
-        rbball = request.form["radiobuttons-lookup"]
+        if request.cookies.get("rbball") != "" and request.cookies.get("rbball") != None:
+            try:
+                rbball = request.cookies.get("rbball")
+            except:
+                pass
         btwdate1 = datetime.strptime(request.form["btwdate1"], '%Y-%m-%d').date()
         btwdate2 = datetime.strptime(request.form["btwdate2"], '%Y-%m-%d').date()
 
-        if len(numnamecookie) > 0 and looknumname == "":
-            try:
-                looknumname = numnamecookie
-            except:
-                pass
-        elif len(serialcookie) > 0 and lookserial == "":
-            try:
-                lookserial = serialcookie
-            except:
-                pass
+        if numnamecookie != None:
+            if len(numnamecookie) > 0 and looknumname == "":
+                try:
+                    looknumname = numnamecookie
+                except:
+                    pass
+            elif len(serialcookie) > 0 and lookserial == "":
+                try:
+                    lookserial = serialcookie
+                except:
+                    pass
+
 
 
 
