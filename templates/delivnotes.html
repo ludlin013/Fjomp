@@ -113,6 +113,7 @@
           <tbody class="tbody-delivnotes">
             {% for x in sqlq%}
             <tr class="row-delivnotes" onclick="" id="">
+<<<<<<< HEAD
               <input type="hidden" name="id{{sqlq.index(x)}}" id="id{{sqlq.index(x)}}" class="forminput-delivnotes3" value="{{x[24]}}">
               <td class="thpart-delivnotes"><input class="forminput-delivnotes3" id="num{{sqlq.index(x)}}" class="" value="{{x[5].strip()}}"></td>
               <td class="thdesc-delivnotes"><input class="forminput-delivnotes3" id="nam{{sqlq.index(x)}}" value="{{x[6].strip()}}"></td>
@@ -120,6 +121,14 @@
               <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes">
                 <select id="pg{{sqlq.index(x)}}" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" class="forminput-delivnotes3" value="{{x[26]}}">
+=======
+              <td class="thpart-delivnotes"><input class="forminput-delivnotes" value="{{x[5].strip()}}"></td>
+              <td class="thdesc-delivnotes"><input class="forminput-delivnotes" value="{{x[6].strip()}}"></td>
+              <td class="thserial-delivnotes"><input class="forminput-delivnotes" value="{{x[7].strip()}}"></td>
+              <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes" value="{{x[8]}}"></td>
+              <td class="thpricegroup-delivnotes">
+                <select id="pg{{sqlq.index(x)}}" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" value="{{x[26]}}">
+>>>>>>> ed6f6a8e38194543d3ea4a59a86aedc12d7ee58d
                   {% for y in pricegroups[sqlq.index(x)] %}
                     <option value="{{y}}: {{pricegroups[sqlq.index(x)][y]}}" {% if y == x[26] %} selected {% endif %}>{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
                   {% endfor %}

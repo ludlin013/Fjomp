@@ -82,7 +82,7 @@ margin: 0;
 }
 
 th.thnetvalue-delivnotes, th.thtotal-delivnotes{
-  text-align: left;
+  text-align: center;
 }
 
 tr th{
@@ -139,9 +139,18 @@ th{
   text-align: left;
 }
 
+<<<<<<< HEAD
 .thpricegroup-delivnotes select{
   width: 120px;
   text-align: left;
+=======
+.thpricegroup-delivnotes{
+  width: 120px;
+}
+
+.thpricegroup-delivnotes select{
+  width: 120px;
+>>>>>>> ed6f6a8e38194543d3ea4a59a86aedc12d7ee58d
 }
 
 .thprice-delivnotes input{
@@ -162,7 +171,6 @@ th{
 
 
 table, td {
-  border: 1px solid;
   padding: 2px;
   white-space: nowrap;
 }

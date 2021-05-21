@@ -202,7 +202,7 @@ table, td, th {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(60,60,60);
+  background: rgb(40,40,40);
 }
 
 ::-webkit-scrollbar-thumb {

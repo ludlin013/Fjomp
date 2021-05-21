@@ -9,7 +9,14 @@
   <link rel="stylesheet" href="static/{{theme}}.css">
   <link rel="icon" href="./static/pictures/icon.ico">
 </head>
-<body>
+<script>
+function cookieController(){
+  if ({{controll_variable}} == 0) {
+    document.forms['partform'].submit()
+  }
+}
+</script>
+<body onload="cookieController()">
   <div class="mobilehead" style="display:none;z-index:100000;">
     <div class="hamham" onclick="hamburger()" >
       <div id="hamtop" style="left:15px"></div>
@@ -30,10 +37,10 @@
   <div class="mainwrapparts">
     <h1 class="noselect">Parts</h1>
     <div class="toppage-parts">
-      <form class="form-parts" action="" method="POST">
+      <form class="form-parts" name="partform" action="" method="POST">
         <label for="search" class="searchlabel-parts noselect">Search for:</label>
-        <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input onkeyup="" class="forminput-parts" type="text" name="part-parts" autofocus value="{{par}}"></div>
-        <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input onkeyup="" class="forminput-parts" type="text" name="description-parts" value="{{des}}"></div>
+        <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input id="partinput" onkeyup="" class="forminput-parts" type="text" name="part-parts" value="{{par}}" onchange="document.cookie = 'lastpar = '+document.getElementById('partinput').value+'; path=/;'"></div>
+        <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input id="descinput" onkeyup="" class="forminput-parts" type="text" name="description-parts" value="{{des}}" onchange="document.cookie = 'lastdes = '+document.getElementById('descinput').value+'; path=/;'"></div>
         <div id="formitem-parts" class="formitem-parts noselect"><label>Only active parts:<input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked></label></div>
         <input class="partssearch" type="submit" name="partsubmit" value="Search">
       </form>
@@ -45,13 +52,13 @@
               <th class="thdesc1-parts">Description</th>
               <th class="thLP1-parts">LP</th>
               <th class="thQTY1-parts">QTY</th>
-              <th class="thpr11-parts">Pr. 1</th>
-              <th class="thpr21-parts">Pr. 2</th>
-              <th class="thpr31-parts">Pr. 3</th>
-              <th class="thpr41-parts">Pr. 4</th>
-              <th class="thpr51-parts">Pr. 5</th>
-              <th class="thpr61-parts">Pr. 6</th>
-              <th class="thpr91-parts">Pr. 9</th>
+              <th class="thpr11-parts">McD</th>
+              <th class="thpr21-parts">JW</th>
+              <th class="thpr31-parts">Sibylla</th>
+              <th class="thpr41-parts">Slutkund</th>
+              <th class="thpr51-parts">COOP</th>
+              <th class="thpr61-parts">DN</th>
+              <th class="thpr91-parts">Lidl</th>
               <th class="thpartusd1-parts">Last used</th>
               <th class="thpartupd1-parts">Last updated</th>
             </tr>

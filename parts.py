@@ -53,8 +53,12 @@ def parts():
     partn = ""
     partd = ""
     parta = None
+    controll_variable = 0
+    cookiepartn = request.cookies.get("lastpar")
+    cookiepartd = request.cookies.get("lastdes")
 
     if request.method == 'POST':
+        controll_variable = 1
         partn = request.form["part-parts"]
         partd = request.form["description-parts"]
         try:
@@ -62,18 +66,20 @@ def parts():
         except:
             parta = ""
 
+        if cookiepartn != None:
+            partn = cookiepartn
+
+        if cookiepartd != None:
+            partd = cookiepartd
+
 
         sqlquery = "SELECT * FROM Parts"
         sqlq=[]
 
-        for x in sql("SELECT", sqlquery):
-        #    print(x[0],x[1],x[14])
-            if partn.lower() in x[0].lower() and partd.lower() in x[1].lower():
-                sqlq.append(x)
-
-        #print(sqlq)
-
-
+        if partn != "" or partd != "":
+            for x in sql("SELECT", sqlquery):
+                if partn.lower() in x[0].lower() and partd.lower() in x[1].lower():
+                    sqlq.append(x)
 
 
     for x in sqlq:
@@ -101,4 +107,4 @@ def parts():
 
     allparts.sort(key = lambda x:x["artid"])
 
-    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn)
+    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn, controll_variable=controll_variable)
