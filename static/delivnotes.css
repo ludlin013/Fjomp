@@ -24,7 +24,8 @@
   margin-top:5px;
 }
 
-.forminput-delivnotes{
+.forminput-delivnotes,
+.forminput-delivnotes3{
   padding:5px;
   width: 250px;
 }
@@ -50,9 +51,17 @@
   margin-right: 5px;
 }
 
-  input[type=submit]{
-    display: none;
-  }
+input[type=submit]{
+  display: none;
+}
+
+input[type=checkbox]{
+  margin:5px
+}
+
+label{
+  cursor:pointer;
+}
 
 #inputnum{
   width: 200px;
@@ -130,8 +139,8 @@ th{
   text-align: left;
 }
 
-.thpricegroup-delivnotes input{
-  width: 80px;
+.thpricegroup-delivnotes select{
+  width: 120px;
   text-align: left;
 }
 
@@ -203,10 +212,6 @@ table {
   margin-left: 30px;
   width: 400px;
   justify-content: space-between;
-}
-
-#shipcheck{
-  width:20px
 }
 
 input[type="number"]{

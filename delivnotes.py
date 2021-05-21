@@ -174,23 +174,22 @@ def delivnotes():
 
 
         for x in sqlquery:
-            pgdict = {}
-            pgs = sql("SELECT","SELECT Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts WHERE Part_Partno = '" + x[5] + "'")
+            if x != None:
+                pgdict = {}
+                pgs = sql("SELECT","SELECT Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts WHERE Part_Partno = '" + x[5] + "'")
 
-            pgdict[1] = pgs[0][0]
-            pgdict[2] = pgs[0][1]
-            pgdict[3] = pgs[0][2]
-            pgdict[4] = pgs[0][3]
-            pgdict[5] = pgs[0][4]
-            pgdict[6] = pgs[0][5]
-            pgdict[7] = pgs[0][6]
-            pgdict[8] = pgs[0][7]
-            pgdict[9] = pgs[0][8]
+                pgdict[1] = pgs[0][0]
+                pgdict[2] = pgs[0][1]
+                pgdict[3] = pgs[0][2]
+                pgdict[4] = pgs[0][3]
+                pgdict[5] = pgs[0][4]
+                pgdict[6] = pgs[0][5]
+                pgdict[7] = pgs[0][6]
+                pgdict[8] = pgs[0][7]
+                pgdict[9] = pgs[0][8]
 
-            pricegroups.append(pgdict)
+                pricegroups.append(pgdict)
 
-
-        print(pricegroups)
 
         if len(sqlquery) != 0:
             for x in sqlquery:
@@ -245,7 +244,6 @@ def delivnotes():
     mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["storename"] + "%0D%0D"
     mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["dateformat"].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
 
-
     for x in sqlq:
         mailno = x[5].strip()
         mailname = x[6].strip()
@@ -253,7 +251,6 @@ def delivnotes():
 
         fspace = "%09"
         sspace = "%09"
-
 
         if max(nolen) >= 10 and len(mailno) <= 12:
             fspace += "%09"
@@ -269,8 +266,39 @@ def delivnotes():
 
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
 
+
 @app.route("/savedeliv", methods=["GET","POST"])
 def savedeliv():
 
+    offices = sql("SELECT","SELECT OF_No, OF_Name FROM Office")
+    office = {}
+
+    for x in offices:
+        office[x[1].strip()] = x[0]
+
+
+    pricegroups = sql("SELECT","SELECT pg_no, pg_Descript FROM Pricegroups")
+    pricegroup = {}
+
+    for x in pricegroups:
+        pricegroup[str(x[0])] = x[1].strip()
+
+    def setTrue(tf):
+        if tf == "true":
+            return "1"
+        return "0"
+
+    for x in range((len(request.form)-13)//12):
+        q = request.form["storeNum"] + ", " + str(request.form["noteNum"]) + ", " + request.form["storeName"] + ", " + request.form["contact"] + ", " + request.form["date"] + ", " + request.form["num"+str(x)] + ", " + request.form["nam"+str(x)] + ", " + request.form["ser"+str(x)] + ", " + str(request.form["qty"+str(x)]) + ", " + str(request.form["price"+str(x)]) + ", " + request.form["dc"+str(x)] + ", " + str(request.form["net"+str(x)]) + ", " + str(request.form["tot"+str(x)]) + ", " + setTrue(request.form["noc"+str(x)]) + ", " + setTrue(request.form["close"]) + ", " + str(request.form["freight"]) + ", " + request.form["sign"] + ", " + request.form["notes"] + ", " + setTrue(request.form["bao"+str(x)]) + ",1900-01-01 ,0," + str(office[request.form["office"].strip()]) + "," + request.form["id"+str(x)] + ", " + pricegroup[request.form["pg"+str(x)].split(": ")[0]] + ", " + request.form["pg"+str(x)].split(": ")[0] + ", " + setTrue(request.form["offer"]) + ", " + setTrue(request.form["final"])
+        print(q)
+
 
     return ('', 204)
+
+
+@app.route("/newdelunit", methods=["GET","POST"])
+def newdelunit():
+    sql("INSERT","INSERT INTO DeliveryNotes (DN_no,DN_Pricegroup)")
+
+
+    return redirect()

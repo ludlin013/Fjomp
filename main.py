@@ -141,6 +141,7 @@ def createcsv():
 
 
     sqlunits = sql("SELECT","SELECT * FROM Units")
+    sqlunits.sort(key = lambda x:x[0])
 
     with open("static/units.csv","w") as f:
         f.write("Unit_CustID;Unit_Cat;Unit_Vendor;Unit_Model;Unit_Serial;Unit_type;Unit_installdate;Unit_Warend;Unit_Chargemode;Unit_Repldate;Unit_Notes;Unit_History;Unit_ID\n")

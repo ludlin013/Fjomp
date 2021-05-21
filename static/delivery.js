@@ -16,19 +16,38 @@ function savedel(){
   var final = document.getElementById('dnfinal').checked;
 
 
-  console.log(noteNum);
-  console.log(storeNum);
-  console.log(storeName);
-  console.log(contact);
-  console.log(date);
-  console.log(close);
-  console.log(freight);
-  console.log(sign);
-  console.log(notes);
-  console.log(office);
-  console.log(pg);
-  console.log(offer);
-  console.log(final);
+  var fd = new FormData();
+
+   fd.append("noteNum",noteNum);
+   fd.append("storeNum",storeNum);
+   fd.append("storeName",storeName);
+   fd.append("contact",contact);
+   fd.append("date",date);
+   fd.append("close",close);
+   fd.append("freight",freight);
+   fd.append("sign",sign);
+   fd.append("notes",notes);
+   fd.append("office",office);
+   fd.append("pg",pg);
+   fd.append("offer",offer);
+   fd.append("final",final);
+
+
+  var all = document.getElementsByClassName('forminput-delivnotes3');
+
+  console.log(all.length);
+  for (x of all){
+    if(x.type === "checkbox" ){
+      fd.append(x.id,x.checked)
+    }else{
+      fd.append(x.id,x.value)
+    }
+  }
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/savedeliv",true);
+  xhttp.send(fd);
+  alert("Delivery note saved!")
 }
 
 
@@ -65,7 +84,7 @@ function alltotal(){
 }
 
 function setpricegroup(row){
-  document.getElementById('price'+row).value = document.getElementById('pg'+row).value;
+  document.getElementById('price'+row).value = document.getElementById('pg'+row).value.split(" ")[1];
 }
 
 
