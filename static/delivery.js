@@ -90,4 +90,51 @@ function setpricegroup(row){
 
 alltotal()
 
+
+function newunit(){
+
+  const fd = new FormData();
+  var noteNum = document.getElementById('delivnote-number').value;
+  var pg = document.getElementById('inputnum').value;
+
+  fd.append("notenum",noteNum)
+  fd.append("pg",pg)
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/newdelunit",true);
+  xhttp.send(fd);
+
+  setTimeout(function(){ location.reload() }, 400);
+}
+
+function remdelunit(id){
+  const fd = new FormData();
+
+  fd.append("id",id)
+
+  document.getElementById(id).remove();
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/remdelunit",true);
+  xhttp.send(fd);
+}
+
+function setday(id){
+  var y = new Date().getFullYear();
+  var m = "0" + (new Date().getMonth()+1);
+  var d = "0" + new Date().getDate();
+
+  if (m.length>2){
+    m = m.substring(1)
+  }
+
+  if (d.length>2){
+    d = d.substring(1)
+  }
+
+  var date = y + "-"+m+"-"+d
+  document.getElementById(id).value = date;
+  window.getSelection().removeAllRanges()
+}
+
 //savedel()

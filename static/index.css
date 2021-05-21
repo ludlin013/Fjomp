@@ -86,6 +86,25 @@ body{
   transition-duration: .1s
 }
 
+#navlogo{
+  position: fixed;
+  top:-20px;
+  left:-5px;
+  overflow: hidden;
+  width:100vw;
+  max-width: 58.75px;
+  transition-duration: .1s;
+}
+
+#navlogoimg{
+  width:200px
+}
+
+.navin:hover #navlogo{
+  max-width: 200px;
+  transition-duration: .25s;
+}
+
 @media only screen and (max-width: 600px){
   body{
     padding-top:30px;

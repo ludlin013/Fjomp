@@ -62,28 +62,29 @@ def pdffile():
 
     if len(sqlquery) != 0:
         for x in sqlquery:
-
-            total += x[12]
-
-            Dict["storenum"] = x[0].strip()
+            total = total + x[12]
             Dict["number"] = x[1]
-            Dict["storename"] = x[2].strip()
-            Dict["referens"] = x[3].strip()
-            Dict["date"] = x[4].strftime("%Y-%m-%d")
-            Dict["DN_Sign"] = x[16]
-            Dict["notes"] = x[17].strip()
-            Dict["DN_Freight"] = x[15]
-            Dict["DN_Office"] = x[23]
-            Dict["DN_Pricegroup"] = x[26]
-            Dict["DN_PGDescription"] = x[25]
-            Dict["netvalue"] = x[11]
-            Dict["DN_Closed"] = x[14]
-            Dict["offer"] = x[27]
-            Dict["finaloffer"] = x[28]
 
-            if x[7].strip() != "":
-                forcount+=1
+            try:
+                Dict["storenum"] = x[0].strip()
+                Dict["storename"] = x[2].strip()
+                Dict["referens"] = x[3].strip()
+                Dict["date"] = x[4].strftime("%Y-%m-%d")
+                Dict["DN_Sign"] = x[16]
+                Dict["notes"] = x[17].strip()
+                Dict["DN_Freight"] = x[15]
+                Dict["DN_Office"] = x[23]
+                Dict["DN_Pricegroup"] = x[26]
+                Dict["DN_PGDescription"] = x[25]
+                Dict["netvalue"] = x[11]
+                Dict["DN_Closed"] = x[14]
+                Dict["offer"] = x[27]
+                Dict["finaloffer"] = x[28]
 
+                if x[7].strip() != "":
+                    forcount+=1
+            except:
+                pass
 
             sqlq.append(x)
 
@@ -175,55 +176,86 @@ def delivnotes():
 
         for x in sqlquery:
             if x != None:
-                pgdict = {}
-                pgs = sql("SELECT","SELECT Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts WHERE Part_Partno = '" + x[5] + "'")
+                try:
+                    pgdict = {}
+                    pgs = sql("SELECT","SELECT Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts WHERE Part_Partno = '" + x[5] + "'")
 
-                pgdict[1] = pgs[0][0]
-                pgdict[2] = pgs[0][1]
-                pgdict[3] = pgs[0][2]
-                pgdict[4] = pgs[0][3]
-                pgdict[5] = pgs[0][4]
-                pgdict[6] = pgs[0][5]
-                pgdict[7] = pgs[0][6]
-                pgdict[8] = pgs[0][7]
-                pgdict[9] = pgs[0][8]
+                    pgdict[1] = pgs[0][0]
+                    pgdict[2] = pgs[0][1]
+                    pgdict[3] = pgs[0][2]
+                    pgdict[4] = pgs[0][3]
+                    pgdict[5] = pgs[0][4]
+                    pgdict[6] = pgs[0][5]
+                    pgdict[7] = pgs[0][6]
+                    pgdict[8] = pgs[0][7]
+                    pgdict[9] = pgs[0][8]
 
-                pricegroups.append(pgdict)
-
+                    pricegroups.append(pgdict)
+                except:
+                    pricegroups.append({x[26]:""})
 
         if len(sqlquery) != 0:
             for x in sqlquery:
 
-                total += x[12]
+                if x[5] == None:
+                    x[5] = ""
+                if x[6] == None:
+                    x[6] = ""
+                if x[7] == None:
+                    x[7] = ""
+                if x[10] == None:
+                    x[10] = 0
+                if x[8] == None:
+                    x[8] = 0
+                if x[11] == None:
+                    x[11] = 0
+                if x[9] == None:
+                    x[9] = 0
+                if x[12] == None:
+                    x[12] = 0
+
+
+
 
                 sqlq.append(x)
 
-                Dict["storenum"] = x[0].strip()
                 Dict["number"] = x[1]
-                Dict["storename"] = x[2].strip()
-                Dict["referens"] = x[3].strip()
-                Dict["date"] = x[4].strftime("%d/%m/%Y")
-                Dict["dateformat"] = x[4]
-                Dict["DN_Sign"] = x[16]
-                Dict["notes"] = x[17].strip()
-                Dict["DN_Freight"] = x[15]
-                Dict["DN_Office"] = x[23]
                 Dict["DN_Pricegroup"] = x[26]
-                Dict["DN_PGDescription"] = x[25]
-                Dict["netvalue"] = x[11]
-                Dict["DN_Closed"] = x[14]
-                Dict["offer"] = x[27]
-                Dict["finaloffer"] = x[28]
+                Dict["dateformat"] = datetime.now()
 
-            z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
-            if len(z)!=0:
-                Dict["street"] = z[0][3].strip()
-                Dict["zip"] = z[0][5].strip()
-                Dict["city"] = z[0][6].strip()
-            else:
-                Dict["street"] = ""
-                Dict["zip"] = ""
-                Dict["city"] = ""
+                try:
+                    Dict["storenum"] = x[0].strip()
+                    Dict["storename"] = x[2].strip()
+                    Dict["referens"] = x[3].strip()
+                    Dict["date"] = x[4].strftime("%d/%m/%Y")
+                    Dict["dateformat"] = x[4]
+                    Dict["DN_Sign"] = x[16]
+                    Dict["notes"] = x[17].strip()
+                    Dict["DN_Freight"] = x[15]
+                    Dict["DN_Office"] = x[23]
+                    Dict["DN_PGDescription"] = x[25]
+                    Dict["netvalue"] = x[11]
+                    Dict["DN_Closed"] = x[14]
+                    Dict["offer"] = x[27]
+                    Dict["finaloffer"] = x[28]
+                except:
+                    pass
+
+            try:
+                z = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+Dict["storenum"]+"'")
+                if len(z)!=0:
+                    Dict["street"] = z[0][3].strip()
+                    Dict["zip"] = z[0][5].strip()
+                    if Dict["referens"] == "":
+                        Dict["referens"] = z[0][9].strip()
+                    Dict["storename"] = z[0][2].strip()
+                    Dict["city"] = z[0][6].strip()
+                else:
+                    Dict["street"] = ""
+                    Dict["zip"] = ""
+                    Dict["city"] = ""
+            except:
+                pass
         else:
 
             notFound = "Delivery note not found"
@@ -232,8 +264,12 @@ def delivnotes():
     nolen = []
     namelen = []
     for x in sqlq:
-        nolen.append(len(x[5].strip()))
-        namelen.append(len(x[6].strip()))
+        try:
+            nolen.append(len(x[5].strip()))
+            namelen.append(len(x[6].strip()))
+        except:
+            nolen.append(1)
+            namelen.append(1)
 
     technames = sql("SELECT","SELECT Tech_ID, Tech_Firstname, Tech_Lastname FROM Technicians")
     name = {}
@@ -241,13 +277,21 @@ def delivnotes():
     for x in technames:
         name[x[0].strip()] = x[1].strip() + " " + x[2].strip()
 
-    mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["storename"] + "%0D%0D"
-    mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["dateformat"].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
+    try:
+        mailbody += "Delivery note # " + str(Dict["number"]) + " Customer: " + Dict["storenum"] + "  " + Dict["storename"] + "%0D%0D"
+        mailbody += "Created by: " + name[Dict["DN_Sign"]] + ", " + Dict["dateformat"].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + Dict["referens"] + "%0D%0D"
+    except:
+        pass
 
     for x in sqlq:
-        mailno = x[5].strip()
-        mailname = x[6].strip()
-        mailqty = str(x[8]).strip()
+        try:
+            mailno = x[5].strip()
+            mailname = x[6].strip()
+            mailqty = str(x[8]).strip()
+        except:
+            mailno = ""
+            mailname = ""
+            mailqty = ""
 
         fspace = "%09"
         sspace = "%09"
@@ -269,7 +313,6 @@ def delivnotes():
 
 @app.route("/savedeliv", methods=["GET","POST"])
 def savedeliv():
-
     offices = sql("SELECT","SELECT OF_No, OF_Name FROM Office")
     office = {}
 
@@ -288,17 +331,71 @@ def savedeliv():
             return "1"
         return "0"
 
+    print(request.form)
     for x in range((len(request.form)-13)//12):
-        q = request.form["storeNum"] + ", " + str(request.form["noteNum"]) + ", " + request.form["storeName"] + ", " + request.form["contact"] + ", " + request.form["date"] + ", " + request.form["num"+str(x)] + ", " + request.form["nam"+str(x)] + ", " + request.form["ser"+str(x)] + ", " + str(request.form["qty"+str(x)]) + ", " + str(request.form["price"+str(x)]) + ", " + request.form["dc"+str(x)] + ", " + str(request.form["net"+str(x)]) + ", " + str(request.form["tot"+str(x)]) + ", " + setTrue(request.form["noc"+str(x)]) + ", " + setTrue(request.form["close"]) + ", " + str(request.form["freight"]) + ", " + request.form["sign"] + ", " + request.form["notes"] + ", " + setTrue(request.form["bao"+str(x)]) + ",1900-01-01 ,0," + str(office[request.form["office"].strip()]) + "," + request.form["id"+str(x)] + ", " + pricegroup[request.form["pg"+str(x)].split(": ")[0]] + ", " + request.form["pg"+str(x)].split(": ")[0] + ", " + setTrue(request.form["offer"]) + ", " + setTrue(request.form["final"])
-        print(q)
 
+        print(request.form["date"])
+
+        q = "UPDATE Delivnotes SET DN_CustID = '" + request.form["storeNum"].upper() + "', DN_no = " + str(request.form["noteNum"]) + ", DN_Name = '" + request.form["storeName"] + "', DN_Contact = '" + request.form["contact"] + "', DN_Date = '" + request.form["date"] + "', DN_Partno = '" + request.form["num"+str(x)] + "', DN_Part = '" + request.form["nam"+str(x)] + "', DN_Serial = '" + request.form["ser"+str(x)] + "', DN_Qty = '" + str(request.form["qty"+str(x)]) + "', DN_Price = '" + str(request.form["price"+str(x)]) + "', DN_Discount = '" + request.form["dc"+str(x)] + "', DN_Net = '" + str(request.form["net"+str(x)]) + "', DN_Total = '" + str(request.form["tot"+str(x)]) + "', DN_Nocharge = '" + setTrue(request.form["noc"+str(x)]) + "', DN_Closed = '" + setTrue(request.form["close"]) + "', DN_Freight = '" +  str(request.form["freight"]) + "', DN_Sign = '" + request.form["sign"] + "', DN_Notes = '" + request.form["notes"] + "', DN_Bodate = '1900-01-01 00:00:00.000', DN_Picklist = 0, DN_Location = '', DN_Projno = 0, DN_Office = '" + str(office[request.form["office"].strip()]) + "', DN_PgDescript = '" + pricegroup[request.form["pg"+str(x)].split(": ")[0]].replace("'","") +  "', DN_Pricegroup = '" + request.form["pg"+str(x)].split(": ")[0] + "', DN_Offer = '" + setTrue(request.form["offer"]) + "', DN_FinalOffer = '" +  setTrue(request.form["final"]) + "' WHERE DN_Id = '" + request.form["id"+str(x)] +"'"
+        print(q)
+        sql("INSERT",q)
 
     return ('', 204)
 
 
 @app.route("/newdelunit", methods=["GET","POST"])
 def newdelunit():
-    sql("INSERT","INSERT INTO DeliveryNotes (DN_no,DN_Pricegroup)")
 
+    print(request.form)
 
-    return redirect()
+    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + request.form["notenum"] + "," + request.form["pg"] + ")")
+
+    return redirect("/delivnotes?dn="+request.form["notenum"])
+
+@app.route("/remdelunit", methods=["GET","POST"])
+def remdelunit():
+
+    print(request.form)
+
+    sql("INSERT","DELETE FROM DelivNotes WHERE DN_Id = +' " + request.form["id"] +  "'")
+
+    #sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + request.form["notenum"] + "," + request.form["pg"] + ")")
+
+    return redirect("/delivnotes?dn="+request.cookies.get('lastdn'))
+
+@app.route("/newdeliverynote/<a>", methods=["GET","POST"])
+def newdeliverynote(a):
+
+    print(a)
+
+    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
+
+    return redirect("/delivnotes?dn="+a)
+
+@app.route("/deletedeliverynote/<a>", methods=["GET","POST"])
+def deletedeliverynote(a):
+
+    print("DELETE FROM DelivNotes WHERE DN_no = '" + a + "'")
+
+    sql("INSERT","DELETE FROM DelivNotes WHERE DN_no = '" + a + "'")
+
+    a = str(int(a)-1)
+
+    return redirect("/delivnotes?dn="+a)
+
+@app.route("/copydelivery/<a>", methods=["GET","POST"])
+def copydelivery(a):
+
+    all = sql("SELECT","SELECT DN_no FROM DelivNotes")
+    print(max(all)[0]+1)
+
+    newnum = max(all)[0]+1
+
+    copyfrom = sql("SELECT","SELECT * FROM DelivNotes WHERE DN_no = '" + a + "'")
+
+    for x in copyfrom:
+        qq = "INSERT INTO DelivNotes (DN_CustID,DN_no,DN_Name,DN_Contact,DN_Date,DN_Partno,DN_Part,DN_Serial,DN_Qty,DN_Price,DN_Discount,DN_Net,DN_Total,DN_Nocharge,DN_Closed,DN_Freight,DN_Sign,DN_Notes,DN_Bo,DN_Office,DN_PgDescript,DN_Pricegroup,DN_Offer,DN_FinalOffer ) VALUES ('" + x[0] + "','" + str(newnum) + "','" + x[2] + "','" + x[3] + "','" + str(x[4]) + "','" + x[5] + "','" + x[6] + "','" + x[7] + "','" + str(x[8]) + "','" + str(x[9]) + "','" + str(x[10]) + "','" + str(x[11]) + "','" + str(x[12]) + "','" + str(x[13]) + "','" + str(x[14]) + "','" + str(x[15]) + "','" + str(x[16]) + "','" + x[17] + "','" + str(x[18]) + "','" + str(x[23]) + "','" + x[25].replace("'","") + "','" + str(x[26]) + "','" + str(x[27]) + "','" + str(x[28]) + "')"
+
+        print(qq)
+        sql("INSERT", qq)
+    return redirect("/delivnotes?dn="+str(newnum))

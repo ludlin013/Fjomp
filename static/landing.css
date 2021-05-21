@@ -10,6 +10,7 @@ body{
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .nav{
@@ -17,7 +18,7 @@ body{
   flex-wrap: wrap;
   width:320px;
   justify-content: center;
-  margin-top:5vh
+  margin-top: 10px
 }
 
 .navitem{
