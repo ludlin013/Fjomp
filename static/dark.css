@@ -30,6 +30,13 @@ input,select{
   background: #222
 }
 
+.active1 input,
+.active1 select,
+.active1 td{
+  background: #400!important
+}
+
+
 .navin{
   border-right: 1px solid #444;
   background-color: rgb(40,40,40)

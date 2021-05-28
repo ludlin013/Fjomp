@@ -197,7 +197,7 @@ td input[type=date]{
 
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
-  max-width: 1180px;
+  max-width: 1200px;
   height: 400px;
   overflow-y: scroll;
 }
@@ -410,6 +410,7 @@ select{
   padding: 5px;
   width: 180px;
 }
+
 
 .customer-add-unit-backdrop{
   display: none;

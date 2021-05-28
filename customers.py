@@ -188,3 +188,13 @@ def customers():
 
 
     return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+
+
+@app.route("/custremunit", methods=["GET","POST"])
+def custremunit():
+
+    print(request.form)
+
+    #sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
+
+    return ("",204)
