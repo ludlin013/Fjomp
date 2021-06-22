@@ -111,7 +111,7 @@
         <p class="settingsthemep noselect">Parameters</p>
       </a>
 
-      <a class="settingadminrow" href="/settings/import">
+      <a class="settingadminrow" href="/import">
         <p class="settingsthemep noselect">Import External Data</p>
       </a>
       {%endif%}
@@ -125,18 +125,21 @@
         <p id="settingstechoffice">Office</p>
         <p id="settingstechtech">Tech</p>
       </div>
-    <form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
+    <form class="settingstechmain" autocomplete="off" action="" id="techuserform">
       {% for tech in techs %}
       <a class="settingadmintech">
-        <input class="settingsthemep noselect techid" readonly maxlength="3" name="id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
-        <input class="settingsthemep noselect techfirst" name="firstname" id="techfirst" value="{{tech[1].strip()}}">
-        <input class="settingsthemep noselect techlast" name="lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect techoffice" value="1" type="checkbox" name="office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
-        <input class="settingsthemep noselect techtech" value="1" type="checkbox" name="tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techid" readonly maxlength="3" name="{{techs.index(tech)}}id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
+        <input class="settingsthemep noselect techfirst" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
+        <input class="settingsthemep noselect techlast" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
+        <input class="settingsthemep noselect techoffice" value="1" type="checkbox" name="{{techs.index(tech)}}office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techtech" value="1" type="checkbox" name="{{techs.index(tech)}}tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
         <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
       {% endfor %}
       </form>
+      <script src="static/settings.js">
+
+      </script>
       <div class="settingstechcontrols">
           <div class="settingstechnew noselect" onclick="technewuser()">
             New User
@@ -145,7 +148,7 @@
           <div class="settingstechcancel" onclick="window.location.reload()">
             Cancel
           </div>
-          <div onclick="submitTechs()">Submit</div>
+          <div onclick="submitTechs()">Save</div>
         </div>
     </div>
 </div>
@@ -164,7 +167,7 @@
     <p id="settingsvendorcontact">Contact</p>
     <p id="settingsvendormail">Mail</p>
   </div>
-<form class="settingstechmain" autocomplete="off" method="POST" action="" id="techuserform">
+<form class="settingstechmain" autocomplete="off" method="POST" action="" id="vendorform">
   {% for vendor in vendors %}
   <a class="settingadmintech">
     <input class="settingsthemep noselect vendorid" name="id" id="vendor{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
@@ -299,23 +302,6 @@
 
       parent.appendChild(usera);
       inputid.focus();
-    }
-
-    function submitTechs(){
-      for (x of document.getElementsByName('tech')){
-        if (x.checked == false){
-          x.value = 0
-          x.checked = true
-        }
-      }
-
-      for (x of document.getElementsByName('office')){
-        if (x.checked == false){
-          x.value = 0
-          x.checked = true
-        }
-      }
-      document.getElementById('techuserform').submit()
     }
 
     function show(cat){

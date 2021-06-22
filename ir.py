@@ -430,21 +430,30 @@ def unitsave():
 
     print(unitsave, sparesave)
 
-    allunits = sql("SELECT","SELECT WO_ID FROM WO")
-    print([allunits[-1]])
+    allunitsql = sql("SELECT","SELECT WO_ID FROM WO")
+    allunitsss = []
+
+    print("units")
+    for x in allunitsql:
+        allunitsss.append(str(x[0]).strip())
 
     for x in range(unitsave):
-        if (request.form[str(x)+"irwoid"]+",") in allunits:
+        print(request.form[str(x)+"irwoid"])
+        if request.form[str(x)+"irwoid"].strip() in allunitsss:
             print("finns redan")
         saveunitq = ""
 
-
     for x in range(sparesave):
-        print(x)
+        print("spare")
+        savespareq = "UPDATE IRParts SET IRP_CustID = '"+request.form["ircustid"]+"', IRP_IRno = '"+request.form["ir"] + "', IRP_Model = '" + request.form[str(x)+"sparemodel"]+"', IRP_Serial = '"+request.form[str(x)+"spareserial"]+"', IRP_Partno = '"+request.form[str(x)+"sparenumber"]+"', IRP_Part = '"+request.form[str(x)+"sparedesc"]+"', IRP_Qty = '"+request.form[str(x)+"spareqty"]+"', IRP_Inprice = '"+"0"+"', IRP_Outprice = '"+request.form[str(x)+"spareprice"]+"', IRP_Chargemode = '"+request.form[str(x)+"sparecharge"]+"', IRP_Date = '"+request.form[str(x)+"saveirredate"]+"', IRP_Unitno = '"+"0"+"', IRP_Wold = '"+"0"+"', IRP_Office = '"+request.form["saveirloc"]+"' WHERE IRP_ID = '"+request.form[str(x)+"spareid"]+"'"
+        print(savespareq)
+        print(sparesave)
+    print(sparesave)
+
 
     saveirq = "UPDATE IR SET IR_custID = '" + request.form["ircustid"] + "', IR_Irno = '" + request.form["ir"] + "', IR_Opendate = '"+request.form["saveiropendate"]+"', IR_Recvdate = '"+request.form["saveirredate"]+"', IR_Shipdate = '"+request.form["saveirshipdate"]+"', IR_TechID = '"+request.form["saveirrepairid"]+"', IR_Notrecv = '"+"0"+"', IR_Ccl = '"+"0"+"', IR_Onsite = '"+"0"+"', IR_Notes = '"+request.form["saveirnotefield"]+"', IR_Infreight = '"+request.form["saveirinfreight"]+"', IR_Outfreight = '"+request.form["saveirrefreight"]+"', IR_Closed = '"+request.form["saveirclosed"]+"', IR_OpenID = '"+request.form["savetechid"]+"', IR_Office = '"+request.form["saveirloc"]+"' WHERE IR_Irno = '"+request.form["saveirirn"]+"'"
 
-    print(saveirq)
+
 
     sql("INSERT",saveirq)
 

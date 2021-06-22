@@ -4,7 +4,10 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+app.config['UPLOAD_FOLDER'] = '/static/uploads'
+
 import customers,parts,delivnotes,ir,swapouts,lookup,settings
+
 
 server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"

@@ -127,3 +127,59 @@ def changepwd():
 
 
     return render_template("changepwd.html",theme=theme,notheme=notheme,error=error)
+
+
+@app.route("/savetechs",methods=["GET","POST"])
+def savetechs():
+
+    print(request.form)
+
+
+    return ('', 204)
+
+
+@app.route("/import",methods=["GET","POST"])
+def importdata():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    success = None
+    if request.method == 'POST':
+        f = request.files['file']
+        print(f)
+        f = f.read().split(b"\n")
+        allparts = []
+        for x in f:
+            dic = {}
+
+            dic["moms"] = x[0:1].decode(errors="ignore")
+            dic["varugrupp"] = x[1:5].decode(errors="ignore")
+            dic["artid"] = x[5:22].decode(errors="ignore")
+            dic["benamn"] = x[22:52].decode(errors="ignore")
+            dic["antal"] = x[52:55].decode(errors="ignore")
+            dic["snittpris"] = x[55:65].decode(errors="ignore")
+            dic["pris1"] = x[65:82].decode(errors="ignore")
+            dic["anm1"] = x[82:92].decode(errors="ignore")
+            dic["anm2"] = x[92:102].decode(errors="ignore")
+            dic["lagerfack"] = x[102:117].decode(errors="ignore")
+            dic["artikeltyp"] = x[117:118].decode(errors="ignore")
+            dic["lagerbest"] = x[118:122].decode(errors="ignore")
+            dic["pris2"] = x[122:139].decode(errors="ignore")
+            dic["pris3"] = x[139:156].decode(errors="ignore")
+            dic["pris4"] = x[156:173].decode(errors="ignore")
+            dic["pris5"] = x[173:190].decode(errors="ignore")
+            dic["pris6"] = x[190:207].decode(errors="ignore")
+            dic["pris7"] = x[207:224].decode(errors="ignore")
+            dic["pris8"] = x[224:241].decode(errors="ignore")
+            dic["pris9"] = x[241:258].decode(errors="ignore")
+
+
+            allparts.append(dic)
+            print(x)
+        print(allparts,len(allparts))
+        success = "File uploaded and imported"
+
+    return render_template("importdata.html",theme=theme,notheme=notheme, success=success)
