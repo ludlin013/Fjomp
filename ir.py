@@ -417,10 +417,35 @@ def remspare():
 
 @app.route("/irsaveall",methods=["GET","POST"])
 def unitsave():
-
-    print(request.form)
-
     for x in request.form:
         print(x,"///",request.form[x])
+
+    unitsave = 0
+    sparesave = 0
+    for x in request.form:
+        if "irwoid" in x:
+            unitsave += 1
+        elif "spareid" in x:
+            sparesave += 1
+
+    print(unitsave, sparesave)
+
+    allunits = sql("SELECT","SELECT WO_ID FROM WO")
+    print([allunits[-1]])
+
+    for x in range(unitsave):
+        if (request.form[str(x)+"irwoid"]+",") in allunits:
+            print("finns redan")
+        saveunitq = ""
+
+
+    for x in range(sparesave):
+        print(x)
+
+    saveirq = "UPDATE IR SET IR_custID = '" + request.form["ircustid"] + "', IR_Irno = '" + request.form["ir"] + "', IR_Opendate = '"+request.form["saveiropendate"]+"', IR_Recvdate = '"+request.form["saveirredate"]+"', IR_Shipdate = '"+request.form["saveirshipdate"]+"', IR_TechID = '"+request.form["saveirrepairid"]+"', IR_Notrecv = '"+"0"+"', IR_Ccl = '"+"0"+"', IR_Onsite = '"+"0"+"', IR_Notes = '"+request.form["saveirnotefield"]+"', IR_Infreight = '"+request.form["saveirinfreight"]+"', IR_Outfreight = '"+request.form["saveirrefreight"]+"', IR_Closed = '"+request.form["saveirclosed"]+"', IR_OpenID = '"+request.form["savetechid"]+"', IR_Office = '"+request.form["saveirloc"]+"' WHERE IR_Irno = '"+request.form["saveirirn"]+"'"
+
+    print(saveirq)
+
+    sql("INSERT",saveirq)
 
     return ('', 204)

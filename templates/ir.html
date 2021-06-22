@@ -27,6 +27,7 @@
     <a class="navitemin noselect" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
     <a class="navitemin noselect" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
     <a class="navitemin noselect" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
   </div>
   <div class="mainwrapir">
     <h1 class="noselect">IR</h1>
@@ -70,7 +71,7 @@
       </div>
       <div class="toppageright-ir">
           <div class="formitem-ir"><label class="noselect">Owner:</label><input class="forminput-ir" type="text" readonly value="{{customer[9].strip()}}"></div>
-          <div class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
+          <div style="margin:3px" class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
       </div>
     </div>
 
@@ -108,7 +109,7 @@
         <div class="toppagemiddle2-ir">
             <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text" spellcheck="false">{% if irinfo[9] %}{{irinfo[9].strip()}} {% endif %}</textarea></div>
           {% for n in wo %}
-          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
+          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea spellcheck="false" class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
           {% endfor %}
         </div>
       </div>
@@ -287,7 +288,6 @@
     <a onclick="saveall()" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
     <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
     <a href="/pdffile2?ir={{irnumber}}" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/printsettup.png"><p>Prt. Setup</p></a>
   </div>
 </div>
 </div>
