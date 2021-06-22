@@ -107,7 +107,7 @@
             </thead>
             <tbody class="whatabody-customers">
               {% for x in units %}
-              <tr class="row-Customers {{x[11]}}active" onclick="">
+              <tr class="row-Customers active{{x[11]}}" id="{{x[12]}}" onclick="">
                 <input type="hidden" name="" id="{{units.index(x)}}id" value="{{x[12]}}">
                 <td class="thcatu-customers">
                   <select id="{{units.index(x)}}cat">
@@ -160,6 +160,7 @@
                   </select>
                 </td>
                 <td class="threplu-customers"><input type="date" value="{{x[9]}}"></td>
+                <td class="threplu-customers"><a style="cursor:pointer" onclick="remunit('{{x[12]}}')"><img src="/static/pictures/{{theme}}/remove.png" height="20px"></a></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -179,33 +180,33 @@
 
             if(sort=="curr"){
               console.log("curr");
-              for(m of document.getElementsByClassName('0active')){
+              for(m of document.getElementsByClassName('active0')){
                 m.style.display = "table-row";
               }
-              for(n of document.getElementsByClassName('1active')){
+              for(n of document.getElementsByClassName('active1')){
                 n.style.display = "none";
               }
             }else if(sort=="hist"){
               console.log("hist");
-                for(m of document.getElementsByClassName('1active')){
+                for(m of document.getElementsByClassName('active1')){
                   m.style.display = "table-row";
                 }
-                for(n of document.getElementsByClassName('0active')){
+                for(n of document.getElementsByClassName('active0')){
                   n.style.display = "none";
                 }
               }else if(sort=="both"){
                 console.log("both");
-                for(m of document.getElementsByClassName('0active')){
+                for(m of document.getElementsByClassName('active0')){
                   m.style.display = "table-row";
                 }
-                for(n of document.getElementsByClassName('1active')){
+                for(n of document.getElementsByClassName('active1')){
                   n.style.display = "table-row";
                 }
             }
           }
 
           </script>
-          <div class="">
+          <div class="noselect">
           <label><input type="radio" name="unitfilter" id="activecurrent" onclick="active('curr')" value="curr">Current Units</label>
           <label><input type="radio" name="unitfilter" id="activehistory" onclick="active('hist')" value="hist">Historical Units</label>
           <label><input type="radio" name="unitfilter" id="activeboth" onclick="active('both')" value="both">Both</label>

@@ -32,8 +32,8 @@ body{
   border-right: 1px solid #eee;
 }
 
-input,select{
-  background: #fff;
+input,select,td{
+  background: #fff!important;
   border: none;
 }
 
@@ -52,6 +52,15 @@ input,select{
 
 .navitemin:hover{
 }
+
+
+
+.active1 input,
+.active1 select,
+.active1 td{
+  background: #f44!important
+}
+
 
 .active{
   background:#f6f6f6!important;
@@ -73,6 +82,15 @@ input,select{
 
 .headerbox-parts{
   border-color: rgb(215,215,215);
+}
+
+.header-customers th{
+  background: #fff!important
+}
+
+.customer-add-unit{
+  background: rgb(200,200,200);
+  border-radius: 20px;
 }
 
 .list-parts, .list-delivnotes, .list-part-unitinfo, .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{

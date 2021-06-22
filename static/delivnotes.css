@@ -59,6 +59,10 @@ input[type=checkbox]{
   margin:5px
 }
 
+.buttonsbar-item-delivnotes{
+
+}
+
 #inputnum{
   width: 200px;
 }
@@ -246,6 +250,8 @@ input[type="number"]{
   align-items: center;
   margin: 10px;
   font-size: 12px;
+  text-decoration: none;
+  cursor: pointer
 }
 
 .buttonbarpic-delivnotes{
