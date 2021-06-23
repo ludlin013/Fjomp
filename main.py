@@ -84,7 +84,7 @@ def createcsv():
         price8 = x[226:226+17].strip()
         price9 = x[243:243+17].strip()
 
-        Dict = {
+        xt = {
         "groupcode" : x[1:1+4].strip(),
         "artid" : x[5:5+17].strip(),
         "name" : x[22:22+30].strip(),
@@ -157,7 +157,7 @@ def createcsv():
 
 @app.route("/importDo",methods=["GET","POST"])
 def importdo():
-
+    print("Importing")
     with open("static/IMPORTPATH.txt") as f:
         with open(f.read()) as g:
             g = g.read().split("\n")
@@ -198,17 +198,23 @@ def importdo():
     for x in dbparts:
         artids.append(x[0].strip())
 
-    nowtime = str(datetime.now())
+    nowtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    importedparts = 0
 
     for x in allparts:
         if x["artid"].strip() in artids:
-            updatepartsq = "UPDATE Parts SET Part_Partno = '"+dic["artid"].strip()+"', Part_Part = '"+dic["benamn"]+"', Part_Vendor = '"+dic["varugrupp"]+"', Part_Inprice = '"+dic["snittpris"]+"', Part_Outprice = '"+dic["pris1"]+"', Part_Stock = '"+dic["antal"]+"', Part_Location = '"+dic["lagerfack"]+"', Part_Price2 = '"+dic["pris2"]+"', Part_Price3 = '"+dic["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+dic["pris4"]+"', Part_Price5 = '"+dic["pris5"]+"', Part_Price6 = '"+dic["pris6"]+"', Part_Price7 = '"+dic["pris7"]+"', Part_Price8 = '"+dic["pris8"]+"', Part_Price9 = '"+dic["pris9"]+"' WHERE Part_Partno = '"+dic["artid"]+"'"
-            print(updatepartsq)
+            updatepartsq = "UPDATE Parts SET Part_Partno = '"+x["artid"].strip()+"', Part_Part = '"+x["benamn"]+"', Part_Vendor = '"+x["varugrupp"]+"', Part_Inprice = '"+x["snittpris"]+"', Part_Outprice = '"+x["pris1"]+"', Part_Stock = '"+x["antal"]+"', Part_Location = '"+x["lagerfack"]+"', Part_Price2 = '"+x["pris2"]+"', Part_Price3 = '"+x["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+x["pris4"]+"', Part_Price5 = '"+x["pris5"]+"', Part_Price6 = '"+x["pris6"]+"', Part_Price7 = '"+x["pris7"]+"', Part_Price8 = '"+x["pris8"]+"', Part_Price9 = '"+x["pris9"]+"' WHERE Part_Partno = '"+x["artid"]+"'"
+            #print(updatepartsq)
+            importedparts += 1
             sql("INSERT",updatepartsq)
         else:
-            pass
+            insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor, Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3, Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+"','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+"')"
+            print(insertpartsq)
+            sql("INSERT",insertpartsq)
+
 
     print(len(allparts))
+    print("New parts:", len(allparts) - importedparts)
     return('',204)
 
 @app.route("/")
