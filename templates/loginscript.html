@@ -20,6 +20,11 @@
 
       if("{{auth}}" == "True"){
         document.cookie = "auth=true;path=/"
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST","/importDo",true);
+        const fd = new FormData();
+        xhttp.send(fd);
       }else{
         document.cookie = "auth=false;path=/"
       }

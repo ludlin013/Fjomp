@@ -283,3 +283,35 @@
 .vendorcur{
   width:90px
 }
+
+.importform{
+  width:300px;
+  display:flex
+}
+
+.importform input{
+  padding:10px
+}
+
+#pathsubmit{
+  border-radius: 4px;
+  padding:8px 10px;
+  border:1px solid white;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.importnow{
+  cursor: pointer;
+  width:300px;
+  height:36px;
+  background: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:10px 0 0 0;
+  border-radius: 4px
+}
+
+.importnowbutton{
+}

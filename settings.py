@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
+import os
 
 server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"
@@ -52,8 +53,6 @@ def settings():
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
-
-    #print(techs)
 
     if request.method == 'POST':
         techid = request.form.getlist('id')
@@ -135,6 +134,7 @@ def savetechs():
     print(request.form)
 
 
+
     return ('', 204)
 
 
@@ -146,40 +146,16 @@ def importdata():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    success = None
+    with open("static/IMPORTPATH.txt") as f:
+        currentPath = f.read()
+
+    fileexist = None
     if request.method == 'POST':
-        f = request.files['file']
-        print(f)
-        f = f.read().split(b"\n")
-        allparts = []
-        for x in f:
-            dic = {}
+        if not os.path.isfile(request.form["path"]):
+            fileexist = "No file in that location"
+        else:
+            with open("static/IMPORTPATH.txt","w") as g:
+                g.write(request.form["path"])
+            return(redirect("/import"))
 
-            dic["moms"] = x[0:1].decode(errors="ignore")
-            dic["varugrupp"] = x[1:5].decode(errors="ignore")
-            dic["artid"] = x[5:22].decode(errors="ignore")
-            dic["benamn"] = x[22:52].decode(errors="ignore")
-            dic["antal"] = x[52:55].decode(errors="ignore")
-            dic["snittpris"] = x[55:65].decode(errors="ignore")
-            dic["pris1"] = x[65:82].decode(errors="ignore")
-            dic["anm1"] = x[82:92].decode(errors="ignore")
-            dic["anm2"] = x[92:102].decode(errors="ignore")
-            dic["lagerfack"] = x[102:117].decode(errors="ignore")
-            dic["artikeltyp"] = x[117:118].decode(errors="ignore")
-            dic["lagerbest"] = x[118:122].decode(errors="ignore")
-            dic["pris2"] = x[122:139].decode(errors="ignore")
-            dic["pris3"] = x[139:156].decode(errors="ignore")
-            dic["pris4"] = x[156:173].decode(errors="ignore")
-            dic["pris5"] = x[173:190].decode(errors="ignore")
-            dic["pris6"] = x[190:207].decode(errors="ignore")
-            dic["pris7"] = x[207:224].decode(errors="ignore")
-            dic["pris8"] = x[224:241].decode(errors="ignore")
-            dic["pris9"] = x[241:258].decode(errors="ignore")
-
-
-            allparts.append(dic)
-            print(x)
-        print(allparts,len(allparts))
-        success = "File uploaded and imported"
-
-    return render_template("importdata.html",theme=theme,notheme=notheme, success=success)
+    return render_template("importdata.html",theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)

@@ -128,6 +128,7 @@
     <form class="settingstechmain" autocomplete="off" action="" id="techuserform">
       {% for tech in techs %}
       <a class="settingadmintech">
+        <input type="hidden" value="{{tech[8]}}" name="{{techs.index(tech)}}tid">
         <input class="settingsthemep noselect techid" readonly maxlength="3" name="{{techs.index(tech)}}id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
         <input class="settingsthemep noselect techfirst" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
         <input class="settingsthemep noselect techlast" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
@@ -169,7 +170,7 @@
   </div>
 <form class="settingstechmain" autocomplete="off" method="POST" action="" id="vendorform">
   {% for vendor in vendors %}
-  <a class="settingadmintech">
+  <a class="settingadminvendor">
     <input class="settingsthemep noselect vendorid" name="id" id="vendor{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
     <input class="settingsthemep noselect vendorname" name="id" id="vendorname" value="{{vendor[1].strip()}}">
     <input class="settingsthemep noselect vendorcur" name="id" id="vendorcur" value="{{vendor[2].strip()}}">
@@ -257,6 +258,9 @@
 
     function technewuser(){
 
+      var num = document.getElementsByClassName("settingadmintech").length
+      console.log(num);
+
       var parent = document.getElementById("techuserform");
 
       var usera = document.createElement("a");
@@ -274,11 +278,11 @@
 
       //console.log(inputtech.value);
 
-      inputid.name = "id";
-      inputfirst.name ="firstname";
-      inputlast.name ="lastname";
-      inputoffice.name ="office";
-      inputtech.name ="tech";
+      inputid.name = num+"id";
+      inputfirst.name = num+"firstname";
+      inputlast.name = num+"lastname";
+      inputoffice.name = num+"office";
+      inputtech.name = num+"tech";
 
       inputid.maxLength = "3";
       //inputoffice.maxLength = "1";

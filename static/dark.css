@@ -15,6 +15,11 @@ body{
   border:1px outset white
 }
 
+
+.inactivepart *{
+  background: #811
+}
+
 .field{
   background-color: rgb(80,80,80);
   border: solid rgb(60,60,60);

@@ -16,6 +16,11 @@ body{
   box-shadow: 1px 1px 2px rgb(20,20,20);
 }
 
+
+.inactivepart *{
+  background: rgba(255,16,16,0.5)!important
+}
+
 .navitem{
   border:1px solid #ddd;
   box-shadow: 1px 1px 2px #555;

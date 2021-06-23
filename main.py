@@ -155,6 +155,61 @@ def createcsv():
 
     return
 
+@app.route("/importDo",methods=["GET","POST"])
+def importdo():
+
+    with open("static/IMPORTPATH.txt") as f:
+        with open(f.read()) as g:
+            g = g.read().split("\n")
+            g.pop(-1)
+
+    allparts = []
+    for x in g:
+        dic = {}
+
+        dic["moms"] = x[0:1].strip()
+        dic["varugrupp"] = x[1:5].strip()
+        dic["artid"] = x[5:22]
+        dic["benamn"] = x[22:52].strip()
+        dic["antal"] = x[52:55].strip()
+        dic["snittpris"] = x[55:65].strip()
+        dic["pris1"] = x[65:82].strip()
+        dic["anm1"] = x[82:92].strip()
+        dic["anm2"] = x[92:102].strip()
+        dic["lagerfack"] = x[102:117].strip()
+        dic["artikeltyp"] = x[117:118].strip()
+        dic["lagerbest"] = x[118:122].strip()
+        dic["pris2"] = x[122:139].strip()
+        dic["pris3"] = x[139:156].strip()
+        dic["pris4"] = x[156:173].strip()
+        dic["pris5"] = x[173:190].strip()
+        dic["pris6"] = x[190:207].strip()
+        dic["pris7"] = x[207:224].strip()
+        dic["pris8"] = x[224:241].strip()
+        dic["pris9"] = x[241:258].strip()
+
+
+        allparts.append(dic)
+
+    dbparts = sql("SELECT","SELECT * FROM Parts")
+
+    artids = []
+
+    for x in dbparts:
+        artids.append(x[0].strip())
+
+    nowtime = str(datetime.now())
+
+    for x in allparts:
+        if x["artid"].strip() in artids:
+            updatepartsq = "UPDATE Parts SET Part_Partno = '"+dic["artid"].strip()+"', Part_Part = '"+dic["benamn"]+"', Part_Vendor = '"+dic["varugrupp"]+"', Part_Inprice = '"+dic["snittpris"]+"', Part_Outprice = '"+dic["pris1"]+"', Part_Stock = '"+dic["antal"]+"', Part_Location = '"+dic["lagerfack"]+"', Part_Price2 = '"+dic["pris2"]+"', Part_Price3 = '"+dic["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+dic["pris4"]+"', Part_Price5 = '"+dic["pris5"]+"', Part_Price6 = '"+dic["pris6"]+"', Part_Price7 = '"+dic["pris7"]+"', Part_Price8 = '"+dic["pris8"]+"', Part_Price9 = '"+dic["pris9"]+"' WHERE Part_Partno = '"+dic["artid"]+"'"
+            print(updatepartsq)
+            sql("INSERT",updatepartsq)
+        else:
+            pass
+
+    print(len(allparts))
+    return('',204)
 
 @app.route("/")
 def main():

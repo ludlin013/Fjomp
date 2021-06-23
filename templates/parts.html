@@ -63,7 +63,7 @@ function cookieController(){
         </thead>
         <tbody>
           {% for x in allparts %}
-          <tr class="row-parts" >
+          <tr class="row-parts {% if x["inactive"] == "1" %}inactivepart{% endif %}" id="inactive%%{{x["inactive"]}}" >
             <td class="parts-partnr"><p class="tabell-text">{{x["artid"]}}</p></td>
             <td class="parts-desc"><p class="tabell-text">{{x["name"]}}</p></td>
             <td class="parts-lp"><p class="tabell-text">{{x["lp"]}}</p></td>
