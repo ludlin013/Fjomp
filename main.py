@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
 import pyodbc
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -58,91 +59,6 @@ def setTheme():
 
 def createcsv():
 
-    importsavethis = """
-    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
-        parts = f.read().rstrip().split("\n")
-
-    with open("static/DB/s_parts.txte","r",encoding="ansi") as f:
-        partse = f.read().strip().split("\n")
-
-    allparts = []
-
-    for x in parts:
-        groupcode = x[1:1+4].strip()
-        artid = x[5:5+17].strip()
-        name = x[22:22+30].strip()
-        qty = x[52:52+3].strip()
-        price1 = x[65:65+17].strip()
-        lp = x[102:102+15].strip()
-        type = x[117:117+1].strip()
-        price2 = x[124:124+17].strip()
-        price3 = x[141:141+17].strip()
-        price4 = x[158:158+17].strip()
-        price5 = x[175:175+17].strip()
-        price6 = x[192:192+17].strip()
-        price7 = x[209:209+17].strip()
-        price8 = x[226:226+17].strip()
-        price9 = x[243:243+17].strip()
-
-        xt = {
-        "groupcode" : x[1:1+4].strip(),
-        "artid" : x[5:5+17].strip(),
-        "name" : x[22:22+30].strip(),
-        "qty" : x[52:52+3].strip(),
-        "price1" : x[65:65+17].strip(),
-        "lp" : x[102:102+15].strip(),
-        "type" : x[117:117+1].strip(),
-        "price2" : x[124:124+17].strip(),
-        "price3" : x[141:141+17].strip(),
-        "price4" : x[158:158+17].strip(),
-        "price5" : x[175:175+17].strip(),
-        "price6" : x[192:192+17].strip(),
-        "price7" : x[209:209+17].strip(),
-        "price8" : x[226:226+17].strip(),
-        "price9" : x[243:243+17].strip()
-        }
-        if Dict not in allparts:
-            allparts.append(Dict)
-
-    for x in partse:
-        groupcode = x[1:1+4].strip()
-        artid = x[5:5+17].strip()
-        name = x[22:22+30].strip()
-        qty = x[52:52+3].strip()
-        price1 = x[65:65+17].strip()
-        lp = x[102:102+15].strip()
-        type = x[117:117+1].strip()
-        price2 = x[124:124+17].strip()
-        price3 = x[141:141+17].strip()
-        price4 = x[158:158+17].strip()
-        price5 = x[175:175+17].strip()
-        price6 = x[192:192+17].strip()
-        price7 = x[209:209+17].strip()
-        price8 = x[226:226+17].strip()
-        price9 = x[243:243+17].strip()
-
-        Dict = {
-        "groupcode" : x[1:1+4].strip(),
-        "artid" : x[5:5+17].strip(),
-        "name" : x[22:22+30].strip(),
-        "qty" : x[52:52+3].strip(),
-        "price1" : x[65:65+17].strip(),
-        "lp" : x[102:102+15].strip(),
-        "type" : x[117:117+1].strip(),
-        "price2" : x[122:122+17].strip(),
-        "price3" : x[139:139+17].strip(),
-        "price4" : x[156:156+17].strip(),
-        "price5" : x[173:173+17].strip(),
-        "price6" : x[190:190+17].strip(),
-        "price7" : x[207:207+17].strip(),
-        "price8" : x[224:224+17].strip(),
-        "price9" : x[241:241+17].strip()
-        }
-
-        if Dict not in allparts:
-            allparts.append(Dict)"""
-
-
     sqlunits = sql("SELECT","SELECT * FROM Units")
     sqlunits.sort(key = lambda x:x[0])
 
@@ -159,9 +75,14 @@ def createcsv():
 def importdo():
     print("Importing")
     with open("static/IMPORTPATH.txt") as f:
-        with open(f.read()) as g:
-            g = g.read().split("\n")
-            g.pop(-1)
+        filepath = f.read()
+        try:
+            with open(filepath) as g:
+                g = g.read().split("\n")
+                g.pop(-1)
+        except:
+            return("",204)
+
 
     allparts = []
     for x in g:
@@ -196,25 +117,37 @@ def importdo():
     artids = []
 
     for x in dbparts:
-        artids.append(x[0].strip())
+        if x[0] != None:
+            artids.append(x[0].strip())
+        else:
+            print(x)
 
     nowtime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     importedparts = 0
 
+    sql("INSERT","UPDATE Parts SET Part_Inactive = '1'")
+
     for x in allparts:
+        if x["artid"] == None:
+            print(x)
+            continue
         if x["artid"].strip() in artids:
-            updatepartsq = "UPDATE Parts SET Part_Partno = '"+x["artid"].strip()+"', Part_Part = '"+x["benamn"]+"', Part_Vendor = '"+x["varugrupp"]+"', Part_Inprice = '"+x["snittpris"]+"', Part_Outprice = '"+x["pris1"]+"', Part_Stock = '"+x["antal"]+"', Part_Location = '"+x["lagerfack"]+"', Part_Price2 = '"+x["pris2"]+"', Part_Price3 = '"+x["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+x["pris4"]+"', Part_Price5 = '"+x["pris5"]+"', Part_Price6 = '"+x["pris6"]+"', Part_Price7 = '"+x["pris7"]+"', Part_Price8 = '"+x["pris8"]+"', Part_Price9 = '"+x["pris9"]+"' WHERE Part_Partno = '"+x["artid"]+"'"
+            updatepartsq = "UPDATE Parts SET Part_Partno = '"+x["artid"].strip()+"', Part_Part = '"+x["benamn"]+"', Part_Vendor = '"+x["varugrupp"]+"', Part_Inprice = '"+x["snittpris"]+"', Part_Outprice = '"+x["pris1"]+"', Part_Stock = '"+x["antal"]+"', Part_Location = '"+x["lagerfack"]+"', Part_Inactive = '0', Part_Price2 = '"+x["pris2"]+"', Part_Price3 = '"+x["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+x["pris4"]+"', Part_Price5 = '"+x["pris5"]+"', Part_Price6 = '"+x["pris6"]+"', Part_Price7 = '"+x["pris7"]+"', Part_Price8 = '"+x["pris8"]+"', Part_Price9 = '"+x["pris9"]+"' WHERE Part_Partno = '"+x["artid"]+"'"
             #print(updatepartsq)
             importedparts += 1
             sql("INSERT",updatepartsq)
         else:
-            insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor, Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3, Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+"','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+"')"
+            print(x)
+            insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor, Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3, Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9, Part_Inactive) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+"','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+"', '0')"
             print(insertpartsq)
-            sql("INSERT",insertpartsq)
+            #sql("INSERT",insertpartsq)
 
+
+    print(os.remove(filepath))
 
     print(len(allparts))
     print("New parts:", len(allparts) - importedparts)
+
     return('',204)
 
 @app.route("/")

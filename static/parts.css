@@ -76,8 +76,9 @@ td{
 .list-parts{
   display: block;
   max-width: 1400px;
-  max-height: 400px;
+  max-height: 560px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .parts-partnr{
