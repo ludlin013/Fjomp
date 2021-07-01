@@ -43,11 +43,34 @@ function remunit(id){
 
   fd.append("id",id)
 
-  document.getElementById(id).remove();
+  var inactive = false;
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST","/custremunit",true);
-  xhttp.send(fd);
+  for (x of document.getElementById(id).classList){
+    if(x.includes("active1")){
+      inactive = true;
+    }
+  }
+
+  if(inactive){
+    fd.append("inactive","true");
+    q = "Are you sure you want to delete this unit completely?"
+  }else{
+    fd.append("inactive","false")
+    q = "Are you sure you to make this unit inactive?"
+  }
+
+  if(confirm(q)){
+    document.getElementById(id).classList.remove("active0");
+    document.getElementById(id).classList.add("active1");
+
+    if(inactive){
+      document.getElementById(id).remove();
+    }
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","/custremunit",true);
+    xhttp.send(fd);
+  }
 }
 
 function removecust(last){
@@ -76,4 +99,5 @@ function savecustomer(){
   console.log(fd.keys());
   xhttp.send(fd);
 
+  alert("Customer saved")
 }

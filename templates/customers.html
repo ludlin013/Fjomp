@@ -167,14 +167,13 @@
         </div>
         <div class="unitcontrols">
           <div class="">
-            <a onclick="showAddUnits()"><img class="custunitcontrol" src="/static/pictures/{{theme}}/add.png"></a>
+            <a onclick="showAddUnits()" style="cursor:pointer"><img class="custunitcontrol" src="/static/pictures/{{theme}}/add.png"></a>
             <!--<a ><img class="custunitcontrol" src="/static/pictures/{{theme}}/remove.png"></a>
             <a ><img src=""></a>
             <a ><img src=""></a>-->
           </div>
           <script>
           function active(sort){
-            console.log("furry");
             document.cookie = "custactive = " + sort
 
             if(sort=="curr"){
@@ -223,7 +222,8 @@
           document.getElementById("customer-add-unit").style.display = "none";
         }
         </script>
-        <form id="customer-add-unit" class="customer-add-unit" action="" method="post">
+        <form id="customer-add-unit" class="customer-add-unit" action="/customernewunit" method="post">
+          <input type="hidden" name="customer" value="{{customer[0].strip()}}">
           <div class="customer-add-unit-row"><p>Category</p><input type="text" placeholder="Category" name="category" value=""></div>
           <div class="customer-add-unit-row"><p>Type</p><input type="text" placeholder="Type" name="type" value=""></div>
           <div class="customer-add-unit-row"><p>Vendor</p><input type="text" placeholder="Vendor" name="vendor" value=""></div>
@@ -233,6 +233,10 @@
           <div class="customer-add-unit-row"><p>Warranty</p><input type="date" placeholder="Warranty" name="warranty" value=""></div>
           <div class="customer-add-unit-row"><p>Charge mode</p><input type="text" placeholder="Charge" name="charge" value=""></div>
           <div class="customer-add-unit-row"><p>Replace date</p><input type="date" placeholder="Replace" name="replace" value=""></div>
+          <div class="customer-add-unit-row">
+            <input type="submit" name="" style="cursor:pointer" value="Add unit">
+            <input type="button" onclick="hideAddUnits()" style="cursor:pointer" name="" value="Cancel">
+          </div>
         </form>
         <div onclick="hideAddUnits()" id="customer-add-unit-backdrop" class="customer-add-unit-backdrop"></div>
         {% endif %}

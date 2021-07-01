@@ -26,6 +26,7 @@ def setTheme():
 def sql(type,sqlquery):
 
     cursor.execute(sqlquery)
+    result = None
 
     if type == "SELECT":
         result = cursor.fetchall()
@@ -211,7 +212,16 @@ def custremunit():
 
     print(request.form)
 
-    #sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
+    inactive = request.form["inactive"]
+
+    if inactive == "false":
+        lq = "UPDATE Units SET Unit_History = '1' WHERE Unit_ID = '"+request.form["id"]+"'"
+    else:
+        lq = "DELETE FROM Units WHERE Unit_ID = '"+request.form["id"]+"'"
+
+
+
+    sql("INSERT",lq)
 
     return ("",204)
 
@@ -235,7 +245,6 @@ def newcustomer():
         if id.lower() in x[0].lower():
             return redirect("/customers")
     if id.lower().startswith("mc"):
-        print("mcd")
         sql("INSERT","INSERT INTO Customers (Cust_CustID, Cust_type) VALUES ('"+id.upper()+"','McD')")
     else:
         sql("INSERT","INSERT INTO Customers (Cust_CustID) VALUES ('"+id.upper()+"')")
@@ -259,3 +268,11 @@ def customersave():
     sql("INSERT",sqlq)
 
     return ("",204)
+
+
+@app.route("/customernewunit", methods=["GET","POST"])
+def customernewunit():
+
+    print(request.form)
+
+    return redirect("/customers?customer="+request.form["customer"])
