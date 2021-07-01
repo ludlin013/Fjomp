@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bake | Settings</title>
+    <title>WEBSTAT | Settings</title>
     <link rel="stylesheet" href="static/index.css">
     <link rel="stylesheet" href="static/settings.css">
     <link rel="stylesheet" href="static/{{theme}}.css">
@@ -81,7 +81,13 @@
 
           </div>
       </div>
+
+
       {% if auth%}
+
+            <div style="text-align:center">
+              {{server}}, {{database}}
+            </div>
       <h1 class="noselect settingsheader">Maintenance</h1>
       <a class="settingadminrow" onclick="show('settingstech')">
         <p class="settingsthemep noselect">Edit Techs</p>

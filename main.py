@@ -9,6 +9,11 @@ app.config['UPLOAD_FOLDER'] = '/static/uploads'
 
 import customers,parts,delivnotes,ir,swapouts,lookup,settings
 
+pro = '''
+server = "10.3.1.67,50404\\WSDATA"
+database = "Winstat"
+username = "sa"
+password = "kamikaze"'''
 
 server = "10.3.1.193,50404\\FJOMP"
 database = "Winstat"

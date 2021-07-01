@@ -277,8 +277,8 @@ td input[type=date]{
 }
 
 .thmodelu-customers,
-.thmodelu-customers input{
-  width:90px
+.thmodelu-customers select{
+  width:220px
 }
 
 .thserialu-customers,
@@ -296,6 +296,17 @@ td input[type=date]{
 .threfs-customers,
 .threfs-customers input{
   width:80px
+}
+
+.threplu-customers,
+.threplu-customers input{
+  width:130px
+}
+
+.custunitremove{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .thparts-customers,
@@ -421,6 +432,39 @@ select{
   top: 0;
   left:0;
   background: rgba(0,0,0,0.7);
+}
+
+.newcustwrap{
+  width:100vw;
+  height:100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:0;
+  left:0;
+  background: rgba(0,0,0,0.3)
+}
+
+.newcustform{
+  background: #222;
+  padding:20px 50px 20px 50px;
+  border-radius: 8px
+}
+
+.newcustform input{
+  padding:10px;
+  margin:5px;
+  border-radius: 4px
+}
+
+.newcustcanc{
+  text-align: center;
+  padding:10px 0;
+  margin:5px;
+  cursor:pointer;
+  background: #333;
+  border-radius: 4px
 }
 
 @media only screen and (max-width: 1000px){

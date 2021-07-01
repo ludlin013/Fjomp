@@ -451,6 +451,8 @@ def unitsave():
         print(sparesave)
         sql("INSERT",savespareq )
 
+    for x in range(unitsave):
+        print()
 
     saveirq = "UPDATE IR SET IR_custID = '" + request.form["ircustid"] + "', IR_Irno = '" + request.form["ir"] + "', IR_Opendate = '"+request.form["saveiropendate"]+"', IR_Recvdate = '"+request.form["saveirredate"]+"', IR_Shipdate = '"+request.form["saveirshipdate"]+"', IR_TechID = '"+request.form["saveirrepairid"]+"', IR_Notrecv = '"+"0"+"', IR_Ccl = '"+"0"+"', IR_Onsite = '"+"0"+"', IR_Notes = '"+request.form["saveirnotefield"]+"', IR_Infreight = '"+request.form["saveirinfreight"]+"', IR_Outfreight = '"+request.form["saveirrefreight"]+"', IR_Closed = '"+request.form["saveirclosed"]+"', IR_OpenID = '"+request.form["savetechid"]+"', IR_Office = '"+request.form["saveirloc"]+"' WHERE IR_Irno = '"+request.form["saveirirn"]+"'"
 

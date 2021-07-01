@@ -92,7 +92,7 @@ def settings():
         return redirect(url_for("settings"))
 
 
-    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors)
+    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():

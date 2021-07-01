@@ -81,6 +81,22 @@ def customers():
             if cust.strip().lower() == x[0].strip().lower():
                 customer = x
                 customers = []
+
+                if not customer[2]:
+                    customer[2] = ""
+                if not customer[3]:
+                    customer[3] = ""
+                if not customer[6]:
+                    customer[6] = ""
+                if not customer[5]:
+                    customer[5] = ""
+                if not customer[10]:
+                    customer[10] = ""
+
+                if not customer[20]:
+                    customer[20] = ""
+                if not customer[19]:
+                    customer[19] = ""
                 customer[21] = str(customer[21])[0:10]
                 customer[22] = str(customer[22])[0:10]
                 customer[24] = str(customer[24])[0:10]
@@ -158,7 +174,7 @@ def customers():
                         units.sort(key = lambda x:x[6],reverse = True)
                 break
 
-            elif cust.strip().lower() in x[0].strip().lower() or cust.strip().lower() in x[2].strip().lower() or cust.strip().lower() in x[9].strip().lower():
+            elif str(cust).strip().lower() in str(x[0]).strip().lower() or str(cust).strip().lower() in str(x[2]).strip().lower() or str(cust).strip().lower() in str(x[9]).strip().lower():
                 customers.append(x)
 
         allcustget = sql("SELECT","SELECT Cust_CustID FROM Customers")
@@ -196,5 +212,50 @@ def custremunit():
     print(request.form)
 
     #sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
+
+    return ("",204)
+
+@app.route("/removecust", methods=["GET","POST"])
+def removecust():
+
+    print(request.form)
+
+    sql("DELETE","DELETE FROM Customers WHERE Cust_CustID = '"+request.form["custid"]+"'")
+
+    return ("",204)
+
+@app.route("/newcustomer", methods=["GET","POST"])
+def newcustomer():
+
+    id = request.form["id"]
+
+    allids = sql("SELECT","SELECT Cust_CustID FROM Customers")
+
+    for x in allids:
+        if id.lower() in x[0].lower():
+            return redirect("/customers")
+    if id.lower().startswith("mc"):
+        print("mcd")
+        sql("INSERT","INSERT INTO Customers (Cust_CustID, Cust_type) VALUES ('"+id.upper()+"','McD')")
+    else:
+        sql("INSERT","INSERT INTO Customers (Cust_CustID) VALUES ('"+id.upper()+"')")
+
+    return redirect("/customers?customer="+id)
+
+
+def truefalse(input):
+    if input == "false":
+        return "0"
+    else:
+        return "1"
+
+
+@app.route("/customersave", methods=["GET","POST"])
+def customersave():
+
+    sqlq = "UPDATE Customers SET Cust_Name = '"+request.form["custname"]+"', Cust_OwnID = '"+request.form["custho"]+"', Cust_street1 = '"+request.form["custadress"]+"', Cust_zip = '"+request.form["custzip"]+"', Cust_city = '"+request.form["custcity"]+"', Cust_phone1 = '"+request.form["custphone"]+"', Cust_invStreet1 = '"+request.form["custname"]+"', Cust_invStreet2 = '"+request.form["custadress"]+"', Cust_invZip = '"+request.form["custzip"]+"', Cust_invCity = '"+request.form["custcity"]+"', Cust_owner = '"+request.form["custowner"]+"', Cust_Opendate = '"+request.form["custopen"]+"', Cust_Installdate ='"+request.form["custinst"]+"', Cust_Closed = '"+request.form["custclose"]+"', Cust_DT = '"+truefalse(request.form["custdt"])+"', Cust_WT = '"+truefalse(request.form["custwt"])+"', Cust_Pricegroup = '"+request.form["custgroup"]+"' WHERE Cust_CustID = '"+request.form["custnr"]+"'"
+
+    print(sqlq)
+    sql("INSERT",sqlq)
 
     return ("",204)
