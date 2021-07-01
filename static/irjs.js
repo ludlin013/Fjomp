@@ -1,9 +1,11 @@
 
 var allrepact = document.getElementsByClassName('irrepact');
+var allirunit = document.getElementsByClassName('irunitselect');
 for (x of allrepact){
   x.style.display = "none";
 }
 allrepact[0].style.display = "flex";
+allirunit[0].style.display = "none";
 
 
 function update(inf){
@@ -23,12 +25,18 @@ function changerepact(idd){
     x.style.display = "none";
   }
 
+  for (x of allirunit){
+    x.style.display = "block";
+  }
+
+  document.getElementById(idd.replace("repact","button")).style.display = "none"
+
   for (x of document.getElementsByClassName(idd)){
     x.style.display = "flex"
   }
 
-  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.border = "4px solid #fff"
-  document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.background = "#fff"
+  //document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.border = "4px solid #fff"
+  //document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.background = "#fff"
 
   var serial = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[7].childNodes[0].value;
   var model = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].options[document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].selectedIndex].text

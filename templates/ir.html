@@ -109,7 +109,7 @@
         <div class="toppagemiddle2-ir">
             <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text" spellcheck="false">{% if irinfo[9] %}{{irinfo[9].strip()}} {% endif %}</textarea></div>
           {% for n in wo %}
-          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea spellcheck="false" class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
+          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea spellcheck="false" name="{{wo.index(n)}}reported" class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
           {% endfor %}
         </div>
       </div>
@@ -162,9 +162,12 @@
                   <select class="irchargedrop" name="{{wo.index(n)}}charge">
                     <option value="" selected hidden></option>
                     {% for x in charge %}
-                    <option value="{{x[0]}}" {% if x[0] == n[12]+1 and n[12] != 0 %} selected {% endif %}>{{x[1]}}</option>
+                    <option value="{{x[0]}}" {% if x[0] == n[12] and n[12] != 0 %} selected {% endif %}>{{x[1]}}</option>
                     {% endfor %}
                   </select>
+                </td>
+                <td class="irunitselect" id="{{wo.index(n)}}button">
+                  <input type="button" name="" value="Select">
                 </td>
               </tr>
               {% endfor %}
@@ -179,7 +182,7 @@
 
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
-          <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" type="text" >{{n[8]}}</textarea></div>
+          <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" name="{{wo.index(n)}}action" type="text" >{{n[8]}}</textarea></div>
           {% endfor %}
         </div>
       </div>
@@ -215,7 +218,7 @@
                       <option value="" selected hidden></option>
                       {% for x in charge %}
 
-                      <option value="{{x[0]}}" {%if n[9] %} {% if x[0] == n[9]+1 and n[9] != 0 %} selected {% endif %} {% endif %}>{%if n[1] %} {{x[1].strip()}} {% endif %}</option>
+                      <option value="{{x[0]}}" {%if n[9] %} {% if x[0] == n[9] and n[9] != 0 %} selected {% endif %} {% endif %}>{%if n[1] %} {{x[1].strip()}} {% endif %}</option>
                       {% endfor %}
                     </select></td>
                     <td class="thmodel2-ir"><input readonly class="irpartmo" type="text" name="{{parts.index(n)}}sparemodel" {%if n[2] %} value="{{n[2].strip()}}" {% endif %}></td>

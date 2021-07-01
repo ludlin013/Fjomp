@@ -442,12 +442,15 @@ def unitsave():
         if request.form[str(x)+"irwoid"].strip() in allunitsss:
             print(str(x) + "irwoid")
             print("finns redan")
-        saveunitq = ""
+            saveunitq = "UPDATE WO SET WO_Custid = '"+request.form["ircustid"]+"', WO_Irno = '"+request.form["ir"]+"', WO_Unitno = '"+str(x+1)+"', WO_Type = '"+request.form[str(x)+"type"]+"', WO_Vendor = '"+request.form[str(x)+"vendor"]+"', WO_Model = '"+request.form[str(x)+"model"].split("%")[3].strip()+"', WO_Serial = '"+request.form[str(x)+"serial"]+"', WO_Problem = '"+request.form[str(x)+"reported"]+"', WO_Action = '"+request.form[str(x)+"action"]+"', WO_Chargemode = '"+request.form[str(x)+"charge"]+"', WO_Recvdate = '"+request.form["saveirredate"]+"', WO_Shipdate = '"+request.form["saveirshipdate"]+"', WO_Techid = '"+request.form["savetechid"]+"' WHERE WO_ID = '"+request.form[str(x)+"irwoid"]+"'"
+            print(saveunitq)
+            sql("INSERT",saveunitq)
+
 
     for x in range(sparesave):
         print("spare")
         savespareq = "UPDATE IRParts SET IRP_CustID = '"+request.form["ircustid"]+"', IRP_IRno = '"+request.form["ir"] + "', IRP_Model = '" + request.form[str(x)+"sparemodel"]+"', IRP_Serial = '"+request.form[str(x)+"spareserial"]+"', IRP_Partno = '"+request.form[str(x)+"sparenumber"]+"', IRP_Part = '"+request.form[str(x)+"sparedesc"]+"', IRP_Qty = '"+request.form[str(x)+"spareqty"]+"', IRP_Inprice = '"+"0"+"', IRP_Outprice = '"+request.form[str(x)+"spareprice"]+"', IRP_Chargemode = '"+request.form[str(x)+"sparecharge"]+"', IRP_Date = '"+request.form["saveirredate"]+"', IRP_Unitno = '"+"0"+"', IRP_Office = '"+request.form["saveirloc"]+"' WHERE IRP_ID = '"+request.form[str(x)+"spareid"]+"'"
-        print(savespareq)
+        print("sparecharge:", request.form[str(x)+"sparecharge"])
         print(sparesave)
         sql("INSERT",savespareq )
 
