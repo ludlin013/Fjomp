@@ -267,3 +267,8 @@ table, td, th {
 .lucustdrop{
   background: #282828;
 }
+
+#statusmsg{
+  background: #222;
+  border-color:#666
+}

@@ -418,7 +418,6 @@ def remspare():
 @app.route("/irsaveall",methods=["GET","POST"])
 def unitsave():
 
-    print(request.form)
 
     unitsave = 0
     sparesave = 0
@@ -428,34 +427,31 @@ def unitsave():
         elif "spareid" in x:
             sparesave += 1
 
-    print(unitsave, sparesave)
 
     allunitsql = sql("SELECT","SELECT WO_ID FROM WO")
     allunitsss = []
 
-    print("units")
     for x in allunitsql:
         allunitsss.append(str(x[0]).strip())
 
     for x in range(unitsave):
-        print(request.form[str(x)+"irwoid"])
         if request.form[str(x)+"irwoid"].strip() in allunitsss:
-            print(str(x) + "irwoid")
-            print("finns redan")
-            saveunitq = "UPDATE WO SET WO_Custid = '"+request.form["ircustid"]+"', WO_Irno = '"+request.form["ir"]+"', WO_Unitno = '"+str(x+1)+"', WO_Type = '"+request.form[str(x)+"type"]+"', WO_Vendor = '"+request.form[str(x)+"vendor"]+"', WO_Model = '"+request.form[str(x)+"model"].split("%")[3].strip()+"', WO_Serial = '"+request.form[str(x)+"serial"]+"', WO_Problem = '"+request.form[str(x)+"reported"]+"', WO_Action = '"+request.form[str(x)+"action"]+"', WO_Chargemode = '"+request.form[str(x)+"charge"]+"', WO_Recvdate = '"+request.form["saveirredate"]+"', WO_Shipdate = '"+request.form["saveirshipdate"]+"', WO_Techid = '"+request.form["savetechid"]+"' WHERE WO_ID = '"+request.form[str(x)+"irwoid"]+"'"
-            print(saveunitq)
-            sql("INSERT",saveunitq)
+            try:
+                saveunitq = "UPDATE WO SET WO_Custid = '"+request.form["ircustid"]+"', WO_Irno = '"+request.form["ir"]+"', WO_Unitno = '"+str(x+1)+"', WO_Type = '"+request.form[str(x)+"type"]+"', WO_Vendor = '"+request.form[str(x)+"vendor"]+"', WO_Model = '"+request.form[str(x)+"model"].split("%")[3].strip()+"', WO_Serial = '"+request.form[str(x)+"serial"]+"', WO_Problem = '"+request.form[str(x)+"reported"]+"', WO_Action = '"+request.form[str(x)+"action"]+"', WO_Chargemode = '"+request.form[str(x)+"charge"]+"', WO_Recvdate = '"+request.form["saveirredate"]+"', WO_Shipdate = '"+request.form["saveirshipdate"]+"', WO_Techid = '"+request.form["savetechid"]+"' WHERE WO_ID = '"+request.form[str(x)+"irwoid"]+"'"
+                sql("INSERT",saveunitq)
+                print("save success")
+            except:
+                saveunitq = "UPDATE WO SET WO_Custid = '"+request.form["ircustid"]+"', WO_Irno = '"+request.form["ir"]+"', WO_Unitno = '"+str(x+1)+"', WO_Type = '"+request.form[str(x)+"type"]+"', WO_Vendor = '"+request.form[str(x)+"vendor"]+"', WO_Model = '"+""+"', WO_Serial = '"+request.form[str(x)+"serial"]+"', WO_Problem = '"+request.form[str(x)+"reported"]+"', WO_Action = '"+request.form[str(x)+"action"]+"', WO_Chargemode = '"+request.form[str(x)+"charge"]+"', WO_Recvdate = '"+request.form["saveirredate"]+"', WO_Shipdate = '"+request.form["saveirshipdate"]+"', WO_Techid = '"+request.form["savetechid"]+"' WHERE WO_ID = '"+request.form[str(x)+"irwoid"]+"'"
+                sql("INSERT",saveunitq)
+                print("save failed")
+                pass
+
 
 
     for x in range(sparesave):
-        print("spare")
         savespareq = "UPDATE IRParts SET IRP_CustID = '"+request.form["ircustid"]+"', IRP_IRno = '"+request.form["ir"] + "', IRP_Model = '" + request.form[str(x)+"sparemodel"]+"', IRP_Serial = '"+request.form[str(x)+"spareserial"]+"', IRP_Partno = '"+request.form[str(x)+"sparenumber"]+"', IRP_Part = '"+request.form[str(x)+"sparedesc"]+"', IRP_Qty = '"+request.form[str(x)+"spareqty"]+"', IRP_Inprice = '"+"0"+"', IRP_Outprice = '"+request.form[str(x)+"spareprice"]+"', IRP_Chargemode = '"+request.form[str(x)+"sparecharge"]+"', IRP_Date = '"+request.form["saveirredate"]+"', IRP_Unitno = '"+"0"+"', IRP_Office = '"+request.form["saveirloc"]+"' WHERE IRP_ID = '"+request.form[str(x)+"spareid"]+"'"
-        print("sparecharge:", request.form[str(x)+"sparecharge"])
-        print(sparesave)
         sql("INSERT",savespareq )
 
-    for x in range(unitsave):
-        print()
 
     saveirq = "UPDATE IR SET IR_custID = '" + request.form["ircustid"] + "', IR_Irno = '" + request.form["ir"] + "', IR_Opendate = '"+request.form["saveiropendate"]+"', IR_Recvdate = '"+request.form["saveirredate"]+"', IR_Shipdate = '"+request.form["saveirshipdate"]+"', IR_TechID = '"+request.form["saveirrepairid"]+"', IR_Notrecv = '"+"0"+"', IR_Ccl = '"+"0"+"', IR_Onsite = '"+"0"+"', IR_Notes = '"+request.form["saveirnotefield"]+"', IR_Infreight = '"+request.form["saveirinfreight"]+"', IR_Outfreight = '"+request.form["saveirrefreight"]+"', IR_Closed = '"+request.form["saveirclosed"]+"', IR_OpenID = '"+request.form["savetechid"]+"', IR_Office = '"+request.form["saveirloc"]+"' WHERE IR_Irno = '"+request.form["saveirirn"]+"'"
 
