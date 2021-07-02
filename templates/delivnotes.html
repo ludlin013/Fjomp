@@ -133,7 +133,7 @@
               <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[12]}}"></td>
               <td class="thnocharge-delivnotes"><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
               <td class="thbackorder-delivnotes"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[28] == 1 %}checked{% endif %}></td>
-              <td><a style="cursor:pointer" onclick="if(confirm('Are you sure you want to delete {{x[6].strip()}}?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
+              <td><a style="cursor:pointer" onclick="if(confirm('Are you sure you want to remove {{x[6].strip()}}?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -165,10 +165,13 @@
           <a onclick="savedel()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p></a>
           <a {% if delivnote %}href="mailto:lager@nisse.se?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}"{% endif %} class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p></a>
           <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>-->
-          <a href="/pdffile?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
+          <a id="printbutton" href="/pdffile?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p></a>
         </div>
         </div>
       </div>
+    </div>
+    <div id="statusmsg">
+      Delivery note saved!
     </div>
     <script src="/static/mobile.js"></script>
     <script src="/static/delivery.js"></script>

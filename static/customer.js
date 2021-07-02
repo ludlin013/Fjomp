@@ -99,5 +99,20 @@ function savecustomer(){
   console.log(fd.keys());
   xhttp.send(fd);
 
-  alert("Customer saved")
+  //alert("Customer saved")
+
+  document.getElementById('statusmsg').style.maxHeight = "50px";
+  document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+  setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+
 }
+
+
+document.addEventListener("keydown", function(e){
+  if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
+     e.preventDefault();
+     savecustomer();
+     console.log("vi sparar");
+}
+}, false);

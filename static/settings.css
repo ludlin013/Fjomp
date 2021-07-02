@@ -42,6 +42,38 @@
   align-self: center;
 }
 
+#settingsparamvar{
+  width:180px
+}
+
+.settingsparamtypin,
+#settingsparamtyp{
+  width:60px
+}
+
+h3{
+  padding:10px 0
+}
+
+.workstation{
+  display: flex;
+  flex-direction: column;
+}
+
+.workstation label{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding:2px;
+  font-size: 14px
+}
+
+.workstation input{
+  padding:10px 5px;
+  width:200px;
+  margin:0 5px
+}
+
 .droplangselectsetting{
   padding:0 ;
   text-align: center;

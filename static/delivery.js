@@ -47,9 +47,25 @@ function savedel(){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/savedeliv",true);
   xhttp.send(fd);
-  alert("Delivery note saved!")
+
+  document.getElementById('statusmsg').style.maxHeight = "50px";
+  document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+  setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+
 }
 
+document.addEventListener("keydown", function(e){
+  if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
+     e.preventDefault();
+     savedel();
+     console.log("vi sparar");
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 80){
+  e.preventDefault();
+  console.log("printar");
+  document.getElementById("printbutton").click();
+}
+}, false);
 
 function priceupdate(row){
   var price = document.getElementById('price'+row).value;

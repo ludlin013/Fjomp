@@ -51,6 +51,8 @@ def settings():
     techs = sql("SELECT","SELECT * FROM Technicians")
     vendors = sql("SELECT","SELECT * FROM Vendors")
 
+    parameters = sql("SELECT","SELECT * FROM Parameters")
+
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
 
@@ -92,7 +94,7 @@ def settings():
         return redirect(url_for("settings"))
 
 
-    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database)
+    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -131,8 +133,48 @@ def changepwd():
 @app.route("/savetechs",methods=["GET","POST"])
 def savetechs():
 
-    print(request.form)
+    n = 0
+    for x in request.form:
+        n = x.replace("tech","").replace("office","")
 
+    n = int(n) + 1
+
+    alltechsql = sql("SELECT","SELECT Tech_ID FROM Technicians")
+    alltech = []
+    newtech = []
+
+    for x in alltechsql :
+        alltech.append(x[0])
+
+    print(n)
+    print(request.form)
+    for x in range(n):
+        try:
+            newtech.append(request.form[str(x)+"id"])
+            if request.form[str(x)+"id"] in alltech:
+                print(x)
+                try:
+                    sqlq = "UPDATE Technicians SET Tech_Firstname = '"+request.form[str(x)+"firstname"]+"', Tech_Lastname = '"+request.form[str(x)+"lastname"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+request.form[str(x)+"tech"]+"' WHERE Tech_nID = '"+request.form[str(x)+"tid"]+"'"
+                    sql("INSERT", sqlq)
+                except:
+                    sqlq = "UPDATE Technicians SET Tech_Firstname = '"+request.form[str(x)+"firstname"]+"', Tech_Lastname = '"+request.form[str(x)+"lastname"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+"0"+"' WHERE Tech_nID = '"+request.form[str(x)+"tid"]+"'"
+                    sql("INSERT", sqlq)
+            else:
+                print(x)
+                sqlq = "INSERT INTO Technicians (Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office, Tech_Tech) VALUES ('"+request.form[str(x)+"id"]+"','"+request.form[str(x)+"firstname"]+"','"+request.form[str(x)+"lastname"]+"','"+request.form[str(x)+"office"]+"','"+request.form[str(x)+"tech"]+"')"
+                print(sqlq)
+                sql("INSERT", sqlq)
+        except:
+            pass
+
+    print(alltech)
+    print(newtech)
+
+    for x in alltech:
+        if x not in newtech:
+            sqlq = "DELETE FROM Technicians WHERE Tech_ID = '"+x+"'"
+            print(sqlq)
+            sql("INSERT",sqlq)
 
 
     return ('', 204)

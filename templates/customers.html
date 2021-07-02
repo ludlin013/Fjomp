@@ -37,7 +37,7 @@
       </div>
       <div class="ircustdrop">
         {% for x in customers %}
-        <div onclick="document.getElementById('custid').value='{{x[0].strip()}}';document.getElementById('custidform').submit()">
+        <div tabindex="0" onclick="document.getElementById('custid').value='{{x[0].strip()}}';document.getElementById('custidform').submit()">
           <p class="custdropnumber">{{x[0]}} {{x[1]}}{{x[2]}} {{x[9]}}</p>
         </div>
         {% endfor %}
@@ -371,6 +371,9 @@
     <a id="excelaparts" href="static/units.csv" download><img id="excelparts" src="static/pictures/excel.png"></a>
     {% endif %}
   </div>
+</div>
+<div id="statusmsg">
+  Customer saved!
 </div>
 <script src="/static/cust.js"></script>
 <script src="/static/mobile.js"></script>

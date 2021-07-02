@@ -277,6 +277,25 @@ input[type="number"]{
 }
 
 
+#statusmsg{
+  border:1px solid;
+  border-top: 0;
+  border-bottom: 0;
+  position: fixed;
+  top:0;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  text-align: center;
+  left:calc(50% - 100px);
+  width:200px;
+  max-height:0;
+  height:100vh;
+  border-radius: 0 0 8px 8px;
+  transition-duration: .2s
+}
+
 @media only screen and (max-width: 1000px){
 
   .buttonsbar-item-delivnotes{

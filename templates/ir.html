@@ -71,7 +71,7 @@
       </div>
       <div class="toppageright-ir">
           <div class="formitem-ir"><label class="noselect">Owner:</label><input class="forminput-ir" type="text" readonly value="{{customer[9].strip()}}"></div>
-          <div style="margin:3px" class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
+          <div style="" class="formitem-ir"><label class="noselect">Phone:</label><input class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
       </div>
     </div>
 
@@ -109,7 +109,7 @@
         <div class="toppagemiddle2-ir">
             <div class="formitem-ir irnotediv"><label class="noselect">Notes:</label><textarea id="irnotefield" class="forminput-ir" type="text" spellcheck="false">{% if irinfo[9] %}{{irinfo[9].strip()}} {% endif %}</textarea></div>
           {% for n in wo %}
-          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea spellcheck="false" name="{{wo.index(n)}}reported" class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
+          <div class="formitem-ir irrepact repdiv {{wo.index(n)}}repact" ><label class="noselect">Reported Problem:</label><textarea tabindex="1" spellcheck="false" name="{{wo.index(n)}}reported" class="forminput-ir reporttextarea" type="text" >{{n[7]}}</textarea></div>
           {% endfor %}
         </div>
       </div>
@@ -182,7 +182,7 @@
 
         <div class="middlemiddlepage-ir">
           {% for n in wo %}
-          <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea class="forminput-ir actiontextarea" name="{{wo.index(n)}}action" type="text" >{{n[8]}}</textarea></div>
+          <div class="formitem-ir irrepact {{wo.index(n)}}repact"><label class="noselect">Action/Repair:</label><textarea tabindex="2" class="forminput-ir actiontextarea" name="{{wo.index(n)}}action" type="text" >{{n[8]}}</textarea></div>
           {% endfor %}
         </div>
       </div>

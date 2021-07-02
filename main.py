@@ -47,6 +47,7 @@ def checklogin(username,password):
             #print("set " + usr[0] + " password to " + password)
             #print("UPDATE Technicians SET Tech_Pwd = '" + password + "' WHERE Tech_ID = '"+ username +"'")
             sql("INSERT","UPDATE Technicians SET Tech_Pwd = '" + password + "' WHERE Tech_ID = '"+ usr[0] +"'")
+            return True
 
         elif username == usr[0].strip() and password == usr[3].strip():
             return True
@@ -86,6 +87,7 @@ def importdo():
                 g = g.read().split("\n")
                 g.pop(-1)
         except:
+            print("No file")
             return("",204)
 
 
@@ -152,7 +154,6 @@ def importdo():
 
     print(len(allparts))
     print("New parts:", len(allparts) - importedparts)
-
     return('',204)
 
 @app.route("/")

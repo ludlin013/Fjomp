@@ -113,7 +113,7 @@
       <a class="settingadminrow" href="/settings/pricegroup">
         <p class="settingsthemep noselect">Edit Pricegroups</p>
       </a>
-      <a class="settingadminrow" href="/settings/parameters">
+      <a class="settingadminrow" onclick="show('settingsparameters')">
         <p class="settingsthemep noselect">Parameters</p>
       </a>
 
@@ -136,9 +136,9 @@
       <a class="settingadmintech">
         <input type="hidden" value="{{tech[8]}}" name="{{techs.index(tech)}}tid">
         <input class="settingsthemep noselect techid" readonly maxlength="3" name="{{techs.index(tech)}}id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
-        <input class="settingsthemep noselect techfirst" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
-        <input class="settingsthemep noselect techlast" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect techoffice" value="1" type="checkbox" name="{{techs.index(tech)}}office" id="techoffice" {% if tech[4] == 1 %} checked {% endif %}>
+        <input class="settingsthemep noselect techfirst" spellcheck="false" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
+        <input class="settingsthemep noselect techlast" spellcheck="false" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
+        <input class="settingsthemep noselect techoffice" value="{{tech[4]}}" type="number" name="{{techs.index(tech)}}office" id="techoffice">
         <input class="settingsthemep noselect techtech" value="1" type="checkbox" name="{{techs.index(tech)}}tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
         <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
       </a>
@@ -155,7 +155,7 @@
           <div class="settingstechcancel" onclick="window.location.reload()">
             Cancel
           </div>
-          <div onclick="submitTechs()">Save</div>
+          <div class="savebutton" onclick="submitTechs()">Save</div>
         </div>
     </div>
 </div>
@@ -176,7 +176,7 @@
   </div>
 <form class="settingstechmain" autocomplete="off" method="POST" action="" id="vendorform">
   {% for vendor in vendors %}
-  <a class="settingadminvendor">
+  <a class="settingadmintech">
     <input class="settingsthemep noselect vendorid" name="id" id="vendor{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
     <input class="settingsthemep noselect vendorname" name="id" id="vendorname" value="{{vendor[1].strip()}}">
     <input class="settingsthemep noselect vendorcur" name="id" id="vendorcur" value="{{vendor[2].strip()}}">
@@ -200,8 +200,48 @@
       <div class="settingstechcancel" onclick="window.location.reload()">
         Cancel
       </div>
-      <input type="submit" form="techuserform" value="Save">
+      <input type="submit" class="savebutton" form="techuserform" value="Save">
     </div>
+</div>
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingsparameters" style="display:none">
+  <h3 class="noselect">Company parameters</h3>
+  <div class="settingstechhead">
+    <p class="noselect" id="settingsparamvar">Variable</p>
+    <p class="noselect" id="settingsparamtyp">Type</p>
+    <p class="noselect" id="settingsparamval">Value</p>
+  </div>
+<form class="settingstechmain" autocomplete="off" action="" id="techuserform">
+  {% for param in parameters %}
+  <a class="settingadmintech">
+    <input type="hidden" value="" name="{{parameters.index(param)}}tid">
+    <input class="settingsthemep noselect " readonly id="" value="{{param[0]}}" name="{{parameters.index(param)}}var">
+    <input class="settingsthemep noselect settingsparamtypin" readonly spellcheck="false" name="" id="" value="{{param[1]}}" name="{{parameters.index(param)}}typ">
+    <input class="settingsthemep noselect " spellcheck="false" name="" id="" value="{{param[2].strip()}}" name="{{parameters.index(param)}}val">
+  </a>
+  {% endfor %}
+  </form>
+  <script src="static/settings.js">
+
+  </script>
+  <div class="settingstechcontrols">
+    <div class="settingstechdiv noselect">
+      <div class="settingstechcancel" onclick="window.location.reload()">
+        Cancel
+      </div>
+      <div class="savebutton" onclick="submitTechs()">Save</div>
+    </div>
+</div>
+
+<div class="workstation noselect">
+  <h3>Workstation parameters</h3>
+  <label>Default mail recipient for delivery note:<input></label>
+  <label>Default mail recipient for IR:<input></label>
+  <label>Default mail recipient for Projects:<input></label>
+  <label>Path for Softone deliv.note export:<input></label>
+  <label>Max length for Softone notes:<input></label>
+  <label>Lead text for delv. notes:<input></label>
 </div>
 </div>
 {%endif%}
@@ -275,11 +315,8 @@
       var inputlast = document.createElement("input");
       var inputoffice = document.createElement("input");
       var inputtech = document.createElement("input");
-      inputoffice.setAttribute("type", "checkbox");
       inputtech.setAttribute("type", "checkbox");
-      inputoffice.checked = 1;
       inputtech.checked = 1;
-      inputoffice.value = 1;
       inputtech.value = 1;
 
       //console.log(inputtech.value);
@@ -326,7 +363,8 @@
 
     }
 
-    show('settingstech')
+    show('settingsparameters')
+
     </script>
   </body>
 </html>

@@ -38,6 +38,8 @@
 }
 
 .formitem-ir{
+  margin:2px;
+  display:flex;
 
 }
 
@@ -240,7 +242,7 @@ textarea{
 
 .tabell-ir table{
   width:640px;
-  height: 109px;
+  height: 150px;
   overflow-y: scroll;
   display:block;
 }
@@ -402,6 +404,7 @@ th{
 #statusmsg{
   border:1px solid;
   border-top: 0;
+  border-bottom: 0;
   position: fixed;
   top:0;
   display:flex;
@@ -411,7 +414,8 @@ th{
   text-align: center;
   left:calc(50% - 100px);
   width:200px;
-  max-height:50px;
+  max-height:0;
   height:100vh;
-  border-radius: 0 0 8px 8px
+  border-radius: 0 0 8px 8px;
+  transition-duration: .2s
 }
