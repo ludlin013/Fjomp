@@ -224,5 +224,6 @@ def savemodels():
 
     for x in range(len(request.form)//6):
         print(request.form[str(x)+"model"])
+        sqlq = "UPDATE "
 
     return ('', 204)
