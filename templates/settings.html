@@ -95,7 +95,7 @@
       <a class="settingadminrow" onclick="show('settingsvendor')">
         <p class="settingsthemep noselect">Edit Vendors</p>
       </a>
-      <a class="settingadminrow" href="/settings/model">
+      <a class="settingadminrow" onclick="show('settingsmodel')">
         <p class="settingsthemep noselect">Edit Models</p>
       </a>
       <a class="settingadminrow" href="/settings/modeltype">
@@ -134,7 +134,7 @@
     <form class="settingstechmain" autocomplete="off" action="" id="techuserform">
       {% for tech in techs %}
       <a class="settingadmintech">
-        <input type="hidden" value="{{tech[8]}}" name="{{techs.index(tech)}}tid">
+        <input type="hidden" value="{{tech[8]}}" name="{{techs.index(tech)}}">
         <input class="settingsthemep noselect techid" readonly maxlength="3" name="{{techs.index(tech)}}id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
         <input class="settingsthemep noselect techfirst" spellcheck="false" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
         <input class="settingsthemep noselect techlast" spellcheck="false" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
@@ -212,13 +212,13 @@
     <p class="noselect" id="settingsparamtyp">Type</p>
     <p class="noselect" id="settingsparamval">Value</p>
   </div>
-<form class="settingstechmain" autocomplete="off" action="" id="techuserform">
+<form class="settingstechmain" autocomplete="off" action="" id="variableform">
   {% for param in parameters %}
   <a class="settingadmintech">
-    <input type="hidden" value="" name="{{parameters.index(param)}}tid">
-    <input class="settingsthemep noselect " readonly id="" value="{{param[0]}}" name="{{parameters.index(param)}}var">
+    <input type="hidden" value="" name="">
+    <input class="settingsthemep noselect " readonly id="" value="{{param[0]}}" name="">
     <input class="settingsthemep noselect settingsparamtypin" readonly spellcheck="false" name="" id="" value="{{param[1]}}" name="{{parameters.index(param)}}typ">
-    <input class="settingsthemep noselect " spellcheck="false" name="" id="" value="{{param[2].strip()}}" name="{{parameters.index(param)}}val">
+    <input class="settingsthemep noselect " spellcheck="false" name="{{param[0]}}" id="" value="{{param[2].strip()}}" name="{{parameters.index(param)}}val">
   </a>
   {% endfor %}
   </form>
@@ -230,7 +230,7 @@
       <div class="settingstechcancel" onclick="window.location.reload()">
         Cancel
       </div>
-      <div class="savebutton" onclick="submitTechs()">Save</div>
+      <div class="savebutton" onclick="savevarform()">Save</div>
     </div>
 </div>
 
@@ -242,6 +242,40 @@
   <label>Path for Softone deliv.note export:<input></label>
   <label>Max length for Softone notes:<input></label>
   <label>Lead text for delv. notes:<input></label>
+</div>
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingsmodel" style="display:none">
+  <h3 class="noselect">Models</h3>
+  <div class="settingstechhead">
+    <p class="noselect modven" id="settingsmodelvendor">Vendor</p>
+    <p class="noselect modmod" id="settingsmodelmodel">Model</p>
+    <p class="noselect modtyp" id="settingsmodeltype">Type</p>
+    <p class="noselect modcat" id="settingsmodelcat">Cat.</p>
+    <p class="noselect modcha" id="settingsmodelcharge">Chargemode</p>
+  </div>
+<form class="settingstechmain" autocomplete="off" action="" id="modelform">
+  {% for model in models %}
+  <a class="settingadmintech">
+    <input type="hidden" value="{{model[5]}}" name="{{models.index(model)}}id">
+    <input class="settingsthemep noselect modven" readonly id="" value="{{model[0]}}" name="{{models.index(model)}}vend">
+    <input class="settingsthemep noselect modmod " readonly spellcheck="false" id="" value="{{model[1]}}" name="{{models.index(model)}}model">
+    <input class="settingsthemep noselect modtyp" spellcheck="false" id="" value="{{model[2].strip()}}" name="{{models.index(model)}}type">
+    <input class="settingsthemep noselect modcat" spellcheck="false" id="" value="{{model[3].strip()}}" name="{{models.index(model)}}cat">
+    <input class="settingsthemep noselect modcha" spellcheck="false" id="" value="{{model[4]}}" name="{{models.index(model)}}cha">
+  </a>
+  {% endfor %}
+  </form>
+  <script src="static/settings.js">
+
+  </script>
+  <div class="settingstechcontrols">
+    <div class="settingstechdiv noselect">
+      <div class="settingstechcancel" onclick="window.location.reload()">
+        Cancel
+      </div>
+      <div class="savebutton" onclick="savemodelform()">Save</div>
+    </div>
 </div>
 </div>
 {%endif%}
@@ -363,7 +397,7 @@
 
     }
 
-    show('settingsparameters')
+    show('settingsmodel')
 
     </script>
   </body>

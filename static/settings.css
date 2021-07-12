@@ -271,7 +271,7 @@ h3{
 
 .settingstechhead p,
 .settingsvendorhead p{
-  padding:0 5px
+  padding:0 3px
 }
 
 #settingstechid{
@@ -346,4 +346,22 @@ h3{
 }
 
 .importnowbutton{
+}
+
+
+.modven{
+  width:70px
+}
+
+.modmod{
+  width:200px
+}
+
+.modtyp,
+.modcat{
+  width:70px;
+}
+
+.modcha{
+  width:110px
 }

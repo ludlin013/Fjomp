@@ -50,7 +50,7 @@ def settings():
 
     techs = sql("SELECT","SELECT * FROM Technicians")
     vendors = sql("SELECT","SELECT * FROM Vendors")
-
+    models = sql("SELECT","SELECT * FROM Models")
     parameters = sql("SELECT","SELECT * FROM Parameters")
 
     techs.sort(key = lambda x:x[0])
@@ -94,7 +94,7 @@ def settings():
         return redirect(url_for("settings"))
 
 
-    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters)
+    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -201,3 +201,28 @@ def importdata():
             return(redirect("/import"))
 
     return render_template("importdata.html",theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)
+
+
+@app.route("/savevariable",methods=["GET","POST"])
+def savevariable():
+
+    print(request.form)
+
+    for x in request.form:
+        #print(x.strip(),":", request.form[x].strip())
+        sqlq = "UPDATE Parameters SET PM_Value = '" + request.form[x].strip() + "' WHERE PM_Name = '"+x.strip()+"'"
+        print(sqlq)
+        sql("INSERT",sqlq)
+
+    return ('', 204)
+
+
+@app.route("/savemodels",methods=["GET","POST"])
+def savemodels():
+
+    print(len(request.form)//6)
+
+    for x in range(len(request.form)//6):
+        print(request.form[str(x)+"model"])
+
+    return ('', 204)
