@@ -337,7 +337,8 @@ def savedeliv():
 
         print(request.form["date"])
 
-        q = "UPDATE Delivnotes SET DN_CustID = '" + request.form["storeNum"].upper() + "', DN_no = " + str(request.form["noteNum"]) + ", DN_Name = '" + request.form["storeName"] + "', DN_Contact = '" + request.form["contact"] + "', DN_Date = '" + request.form["date"] + "', DN_Partno = '" + request.form["num"+str(x)] + "', DN_Part = '" + request.form["nam"+str(x)] + "', DN_Serial = '" + request.form["ser"+str(x)] + "', DN_Qty = '" + str(request.form["qty"+str(x)]) + "', DN_Price = '" + str(request.form["price"+str(x)]) + "', DN_Discount = '" + request.form["dc"+str(x)] + "', DN_Net = '" + str(request.form["net"+str(x)]) + "', DN_Total = '" + str(request.form["tot"+str(x)]) + "', DN_Nocharge = '" + setTrue(request.form["noc"+str(x)]) + "', DN_Closed = '" + setTrue(request.form["close"]) + "', DN_Freight = '" +  str(request.form["freight"]) + "', DN_Sign = '" + request.form["sign"] + "', DN_Notes = '" + request.form["notes"] + "', DN_Bodate = '1900-01-01 00:00:00.000', DN_Picklist = 0, DN_Location = '', DN_Projno = 0, DN_Office = '" + str(office[request.form["office"].strip()]) + "', DN_PgDescript = '" + pricegroup[request.form["pg"+str(x)].split(": ")[0]].replace("'","") +  "', DN_Pricegroup = '" + request.form["pg"+str(x)].split(": ")[0] + "', DN_Offer = '" + setTrue(request.form["offer"]) + "', DN_FinalOffer = '" +  setTrue(request.form["final"]) + "' WHERE DN_Id = '" + request.form["id"+str(x)] +"'"
+        q = "UPDATE Delivnotes SET DN_CustID = '" + request.form["storeNum"].upper() + "', DN_no = " + str(request.form["noteNum"]) + ", DN_Name = '" + request.form["storeName"] + "', DN_Contact = '" + request.form["contact"] + "', DN_Date = '" + request.form["date"] + "', DN_Partno = '" + request.form["num"+str(x)] + "', DN_Part = '" + request.form["nam"+str(x)] + "', DN_Serial = '" + request.form["ser"+str(x)] + "', DN_Qty = '" + str(request.form["qty"+str(x)]) + "', DN_Price = '" + str(request.form["price"+str(x)]) + "', DN_Discount = '" + request.form["dc"+str(x)] + "', DN_Net = '" + str(request.form["net"+str(x)]) + "', DN_Total = '" + str(request.form["tot"+str(x)]) + "', DN_Nocharge = '" + setTrue(request.form["noc"+str(x)]) + "', DN_Bo = '" + setTrue(request.form["bao"+str(x)]) + "', DN_Closed = '" + setTrue(request.form["close"]) + "', DN_Freight = '" +  str(request.form["freight"]) + "', DN_Sign = '" + request.form["sign"] + "', DN_Notes = '" + request.form["notes"] + "', DN_Bodate = '1900-01-01 00:00:00.000', DN_Picklist = 0, DN_Location = '', DN_Projno = 0, DN_Office = '" + str(office[request.form["office"].strip()]) + "', DN_PgDescript = '" + pricegroup[request.form["pg"+str(x)].split(": ")[0]].replace("'","") +  "', DN_Pricegroup = '" + request.form["pg"+str(x)].split(": ")[0] + "', DN_Offer = '" + setTrue(request.form["offer"]) + "', DN_FinalOffer = '" +  setTrue(request.form["final"]) + "' WHERE DN_Id = '" + request.form["id"+str(x)] +"'"
+        #print(request.form)
         print(q)
         sql("INSERT",q)
 
@@ -431,5 +432,19 @@ def delivpartselect():
                 result += x[0].strip() + "\t" + x[1].strip() + "\t" + str(x[2]) + "\t" + str(price) + "\n"
             except: pass
 
+
+    return result
+
+@app.route("/delivstoreselect", methods=["GET","POST"])
+def delivstoreselect():
+
+    s = request.form["search"].lower()
+
+    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact FROM Customers")
+    result = ""
+
+    for x in custs:
+        if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
+            result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
 
     return result

@@ -31,7 +31,7 @@
     </div>
 
     <input type="hidden" id="idOfPart" value="">
-    <div class="partselect" id="partselect" style="display:none">
+      <div class="partselect" id="partselect" style="display:none">
 
     </div>
 
@@ -53,10 +53,14 @@
       <div class="toppage-delivnotes">
         <div class="toppageleft-delivnotes">
           <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}" id="storeNumber"></div>
+            <div class="formitem-delivnotes">
+              <div class="storelist" id="storelist" style="display:none">
+
+              </div>
+              <label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}" id="storeNumber" placeholder="Search..."></div>
             <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}" id="contact"></div>
             <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly id="storeName"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes" type="text" value="{{Dict["street"]}}" readonly></div>
+            <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes" id="storestreet" type="text" value="{{Dict["street"]}}" readonly></div>
             <div class="formitem-delivnotes"><label class="noselect">ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" readonly type="text" value="{{Dict["city"]}}"></div></div>
           </form>
         </div>
@@ -144,7 +148,7 @@
               <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[11]}}"></td>
               <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[12]}}"></td>
               <td class="thnocharge-delivnotes"><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
-              <td class="thbackorder-delivnotes"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[28] == 1 %}checked{% endif %}></td>
+              <td class="thbackorder-delivnotes"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
               <td><a style="cursor:pointer" onclick="if(confirm('Are you sure you want to remove {{x[6].strip()}}?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
           </tr>
             {% endfor %}
@@ -170,7 +174,7 @@
           </div>
           <div class="buttonbarigen">
           <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>-->
-          <a href="/newdeliverynote" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
+          <a href="/newdeliverynote" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png" alt="Ctrl + M"><p>New</p></a>
           <a href="/copydelivery/{{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/copy.png"><p>Copy</p></a>
           <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
           <a href="delivnotes?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>

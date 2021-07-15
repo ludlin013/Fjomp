@@ -64,6 +64,9 @@ document.addEventListener("keydown", function(e){
   e.preventDefault();
   console.log("printar");
   document.getElementById("printbutton").click();
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 77){
+  e.preventDefault();
+  console.log("nytt");
 }
 }, false);
 
@@ -220,15 +223,115 @@ function delivpartselect(id, key, price){
 }
 
 function choosePart(e){
+  var id = document.getElementById("idOfPart").value;
   if(e.key == "Enter" || e.button == 0){
-    var id = document.getElementById("idOfPart").value;
     document.getElementById("num"+id).value = e.srcElement.children[0].textContent;
     document.getElementById("nam"+id).value = e.srcElement.children[1].textContent;
     document.getElementById("price"+id).value = e.srcElement.children[3].textContent;
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
+    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+  }else if(e.key == "Escape"){
+    document.getElementById('partselect').style.display = "none";
+    document.getElementById("num"+document.getElementById("idOfPart").value).focus()
   }
 }
 
+document.getElementById('storeNumber').addEventListener("keydown", getstore);
+
+function getstore(e){
+  if(e.key == "Enter"){
+
+    fd = new FormData();
+
+    fd.append("search", document.getElementById('storeNumber').value)
+
+    const xhttp = new XMLHttpRequest();
+
+
+
+    xhttp.onload = function(){
+      var stores = this.responseText.split("\n");
+      stores.splice(stores.length-1, 1);
+      console.log(stores);
+
+      var parent = document.getElementById('storelist');
+      parent.innerHTML = ""
+
+      if(stores.length > 1){
+        parent.style.display = "flex";
+        for (x of stores){
+          var store = x.split("\t");
+
+          var storeitem = document.createElement("div");
+          storeitem.classList.add("storeitem");
+          storeitem.tabIndex = "0";
+          storeitem.addEventListener('keydown',chooseStore)
+          storeitem.addEventListener('mousedown',chooseStore)
+
+          var id = document.createElement("p");
+          id.classList.add("storeid")
+          var ref = document.createElement("p");
+          ref.classList.add("storeref")
+          var name = document.createElement("p");
+          name.classList.add("storename")
+          var street = document.createElement("p");
+          street.classList.add("storestreet")
+          var zip = document.createElement("p");
+          zip.classList.add("storezip")
+          var city = document.createElement("p");
+          city.classList.add("storecity")
+
+          id.appendChild(document.createTextNode(x.split("\t")[0]));
+          ref.appendChild(document.createTextNode(x.split("\t")[5]));
+          name.appendChild(document.createTextNode(x.split("\t")[1]));
+          street.appendChild(document.createTextNode(x.split("\t")[2]));
+          zip.appendChild(document.createTextNode(x.split("\t")[3]));
+          city.appendChild(document.createTextNode(x.split("\t")[4]));
+
+          storeitem.appendChild(id);
+          storeitem.appendChild(ref);
+          storeitem.appendChild(name);
+          storeitem.appendChild(street);
+          storeitem.appendChild(zip);
+          storeitem.appendChild(city);
+
+          parent.appendChild(storeitem)
+
+        }
+        document.getElementsByClassName('storeitem')[0].focus();
+      }else{
+        store = stores[0].split("\t");
+        console.log(store);
+
+        document.getElementById("storeNumber").value = store[0];
+        document.getElementById("storeName").value = store[1];
+        document.getElementById("storestreet").value = store[2];
+        document.getElementById("City").value = store[3];
+        document.getElementById("ZIP").value = store[4];
+        document.getElementById("contact").value = store[5];
+      }
+    }
+
+    xhttp.open("POST","/delivstoreselect",true);
+    xhttp.send(fd);
+  }
+}
+
+function chooseStore(e){
+  console.log(e.key);
+  if(e.key == "Enter"){
+    document.getElementById('storelist').style.display = "none";
+    document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
+    document.getElementById("contact").value = e.srcElement.children[1].textContent;
+    document.getElementById("storeName").value = e.srcElement.children[2].textContent;
+    document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
+    document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
+    document.getElementById("City").value = e.srcElement.children[5].textContent;
+
+  }else if(e.key == "Escape"){
+    document.getElementById('storelist').style.display = "none";
+  }
+}
 //savedel()
