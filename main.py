@@ -77,6 +77,7 @@ def createcsv():
 
     return
 
+
 @app.route("/importDo",methods=["GET","POST"])
 def importdo():
     print("Importing")
@@ -88,7 +89,7 @@ def importdo():
                 g.pop(-1)
         except:
             print("No file")
-            return("",204)
+            return("No file")
 
 
     allparts = []
@@ -134,6 +135,9 @@ def importdo():
 
     sql("INSERT","UPDATE Parts SET Part_Inactive = '1'")
 
+    total = len(sql("SELECT","SELECT Part_Partno FROM Parts"))
+    newparts = ""
+
     for x in allparts:
         if x["artid"] == None:
             print(x)
@@ -145,16 +149,16 @@ def importdo():
             sql("INSERT",updatepartsq)
         else:
             print(x)
+            newparts+=x['artid'].strip()+"\t"
             insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor, Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3, Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9, Part_Inactive) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+"','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+"', '0')"
             print(insertpartsq)
             #sql("INSERT",insertpartsq)
 
 
     print(os.remove(filepath))
-
-    print(len(allparts))
+    print(newparts)
     print("New parts:", len(allparts) - importedparts)
-    return('',204)
+    return(str(len(allparts))+"%%"+str(len(allparts)-importedparts)+"%%"+str(total-len(allparts))+"%%"+newparts)
 
 @app.route("/")
 def main():

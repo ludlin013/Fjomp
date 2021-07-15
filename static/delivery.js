@@ -35,7 +35,6 @@ function savedel(){
 
   var all = document.getElementsByClassName('forminput-delivnotes3');
 
-  console.log(all.length);
   for (x of all){
     if(x.type === "checkbox" ){
       fd.append(x.id,x.checked)
@@ -59,19 +58,39 @@ document.addEventListener("keydown", function(e){
   if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
      e.preventDefault();
      savedel();
-     console.log("vi sparar");
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 80){
   e.preventDefault();
-  console.log("printar");
-  document.getElementById("printbutton").click();
+  savedel();
+  setTimeout(function(){
+    document.getElementById("printbutton").click();
+  },100)
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 77){
   e.preventDefault();
-  console.log("nytt");
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 81){
+  e.preventDefault();
+  newunit();
+}else if(e.key == "Escape"){
+  document.getElementById('storelist').style.display = "none";
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 46){
+  e.preventDefault();
+  document.getElementById('deletedeliv').click();
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 75){
+  e.preventDefault();
+  if(confirm("Leave page and create new note? Unsaved changes will be lost")){
+    window.location.href = "/newdeliverynote"
+  }
+
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 68){
+  e.preventDefault();
+  if(confirm("Leave page and copy this note? Unsaved changes will be lost")){
+    window.location.href = "/newdeliverynote"
+  }
+
 }
+
 }, false);
 
 function priceupdate(row){
-  console.log(row);
   var price = document.getElementById('price'+row).value;
   var discount = document.getElementById('dc'+row).value;
 
@@ -186,7 +205,6 @@ function delivpartselect(id, key, price){
 
 
       for(x of parts){
-        console.log(x);
         var part = document.createElement("div");
         part.classList.add("partitem");
         part.tabIndex = "0";
@@ -254,7 +272,6 @@ function getstore(e){
     xhttp.onload = function(){
       var stores = this.responseText.split("\n");
       stores.splice(stores.length-1, 1);
-      console.log(stores);
 
       var parent = document.getElementById('storelist');
       parent.innerHTML = ""
@@ -303,7 +320,6 @@ function getstore(e){
         document.getElementsByClassName('storeitem')[0].focus();
       }else{
         store = stores[0].split("\t");
-        console.log(store);
 
         document.getElementById("storeNumber").value = store[0];
         document.getElementById("storeName").value = store[1];
@@ -320,8 +336,8 @@ function getstore(e){
 }
 
 function chooseStore(e){
-  console.log(e.key);
-  if(e.key == "Enter"){
+  console.log(e.button);
+  if(e.key == "Enter" || e.button == 0){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
     document.getElementById("contact").value = e.srcElement.children[1].textContent;
@@ -335,3 +351,14 @@ function chooseStore(e){
   }
 }
 //savedel()
+
+for(x of document.getElementsByClassName('numfoc')){
+
+  if(x.value == ""){
+    x.focus();
+  }
+}
+
+if(document.getElementById("storeNumber").value == ""){
+  document.getElementById("storeNumber").focus()
+}

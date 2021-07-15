@@ -328,7 +328,6 @@ h3{
 #pathsubmit{
   border-radius: 4px;
   padding:8px 10px;
-  border:1px solid white;
   margin-left: 10px;
   cursor: pointer;
 }
@@ -340,9 +339,15 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin:10px 0 0 0;
-  border-radius: 4px
+  border-radius: 4px;
+  border:none;
+  outline:none
 }
+
+#import:focus{
+  border:1px solid #aaa
+}
+
 
 .importnowbutton{
 }

@@ -197,16 +197,17 @@ td {
   border:1px solid #333
 }
 
+
+.storelist{
+  background: #fff
+}
+
 .hamham div{
   background: #222;
 }
 
 .mobilehead{
   background:#fff
-}
-
-.storelist{
-  background: #fff
 }
 
 .ircustdrop{

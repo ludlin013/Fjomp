@@ -419,6 +419,7 @@ def delivpartselect():
 
     allparts = sql("SELECT","SELECT Part_Partno, Part_Part, Part_Stock, Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts")
     result = ""
+    allparts.sort(key=lambda x:x[0])
 
     for x in allparts:
 
@@ -442,9 +443,11 @@ def delivstoreselect():
 
     custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact FROM Customers")
     result = ""
+    custs.sort(key=lambda x:x[0])
 
     for x in custs:
         if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
-            result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
-
+            try:
+                result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
+            except: pass
     return result

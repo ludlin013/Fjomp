@@ -39,19 +39,60 @@
       {% if fileexist %}
       <p>{{fileexist}}</p>
       {% endif %}
-      <div class="importnow">
-        <a class="importnowbutton" onclick="importdata()">
+      <div class="importnow" style="margin-top:10px">
+        <button autofocus id="import" class="importnow" onclick="importdata()">
           Import now
-        </a>
+        </button>
       </div>
+      <p id="info" style="padding:5px 0 0 5px"></p>
+      <p id="imac" style="padding:5px 0 0 5px"></p>
+      <p id="imin" style="padding:5px 0 0 5px"></p>
+      <p id="imne" style="padding:5px 0 0 5px;width:300px"></p>
     </div>
     <script>
-      document.getElementById('pathtext').select();
 
       function importdata(){
         var fd = new FormData();
+        var info = document.getElementById('info');
+        var done = false;
+
+        info.textContent = "Importing."
+
+        setInterval(function(){
+          if(done){
+
+          }
+          else if(info.textContent == "Importing."){
+            info.textContent = "Importing.."
+          }else if(info.textContent == "Importing.."){
+            info.textContent = "Importing..."
+          }else{
+            info.textContent = "Importing."
+          }
+        },600)
 
         var xhttp = new XMLHttpRequest();
+        var partparts = "parts";
+
+        xhttp.onload = function(){
+          done = true;
+          if(this.responseText != "No file"){
+            var c = this.responseText.split("%%");
+            info.textContent = "Import successful";
+            document.getElementById("imac").textContent = "Active: " + c[0];
+            document.getElementById("imin").textContent = "Inactive: " + c[2];
+            if(c[1] == "1"){
+              partparts = "part";
+            }else if(c[1] == "0"){
+              document.getElementById("imne").textContent = "No new parts"
+            }else{
+              document.getElementById("imne").textContent = c[1] +" new "+partparts+": "+ c[3].substring(0,c[3].length-1).replaceAll('\t', ', ');
+            }
+          }else{
+            info.textContent = this.responseText
+          }
+        }
+
         xhttp.open("POST","/importDo",true);
         xhttp.send(fd);
       }
