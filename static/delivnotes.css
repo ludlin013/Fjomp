@@ -18,6 +18,44 @@
   width: 410px;
 }
 
+.partselect{
+  position: fixed;
+  width:700px;
+  padding:10px;
+  z-index: 2000000;
+  max-height:400px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  top:200px;
+  left:calc(50% - 350px);
+  border-radius: 8px
+}
+
+.partselect div{
+  display: flex;
+}
+
+.partitem{
+  padding:10px 5px;
+  border-bottom: 1px solid #ccc
+}
+
+.partnum{
+  width:200px;
+}
+
+.partname{
+  width:300px;
+}
+
+.partprice,
+.partqty{
+  width:100px;
+  text-align: right;
+}
+
+
 .formitem-delivnotes{
   display: flex;
   justify-content: space-between;

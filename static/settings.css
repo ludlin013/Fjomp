@@ -337,7 +337,6 @@ h3{
   cursor: pointer;
   width:300px;
   height:36px;
-  background: #333;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -364,4 +363,8 @@ h3{
 
 .modcha{
   width:110px
+}
+
+#pathtext{
+  border-radius: 4px
 }

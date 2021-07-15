@@ -2,10 +2,10 @@ from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
 
-server = "10.3.1.193,50404\\FJOMP"
-database = "Winstat"
-username = "admin"
-password = "admin"
+server = "10.3.1.7\\WSDATA"
+database = "winstat"
+username = "sa"
+password = "kamikaze"
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
@@ -136,7 +136,7 @@ def delivnotes():
     next = maxad
     lastdn = request.cookies.get("lastdn")
 
-
+    allparts = sql("SELECT","SELECT * FROM Parts")
 
     Dict["sign"] = sql("SELECT", "SELECT Tech_ID FROM Technicians")
     Dict["sign"].sort(key = lambda x:x[0])
@@ -147,6 +147,7 @@ def delivnotes():
     Dict["DN_Sign"] = request.cookies.get("username")
     Dict["DN_Freight"] = ""
     Dict["DN_PGDescription"] = ""
+    Dict["dateformat"] = datetime.now()
     total = 0
     delivnote = request.args.get("dn")
     if delivnote == None and lastdn == None:
@@ -308,7 +309,7 @@ def delivnotes():
     except:
         pass
 
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts)
 
 
 @app.route("/savedeliv", methods=["GET","POST"])
@@ -363,10 +364,20 @@ def remdelunit():
 
     return redirect("/delivnotes?dn="+request.cookies.get('lastdn'))
 
-@app.route("/newdeliverynote/<a>", methods=["GET","POST"])
-def newdeliverynote(a):
+@app.route("/newdeliverynote", methods=["GET","POST"])
+def newdeliverynote():
 
-    print(a)
+
+    all = sql("SELECT","SELECT DN_no FROM DelivNotes")
+    sortedall = []
+    for x in all:
+        sortedall.append(x[0])
+
+    sortedall.sort()
+
+    a = str(sortedall[-1] + 1)
+
+    print(sortedall[-1] + 1)
 
     sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
 
@@ -399,3 +410,26 @@ def copydelivery(a):
         print(qq)
         sql("INSERT", qq)
     return redirect("/delivnotes?dn="+str(newnum))
+
+@app.route("/delivpartselect", methods=["GET","POST"])
+def delivpartselect():
+
+    print(request.form)
+
+    allparts = sql("SELECT","SELECT Part_Partno, Part_Part, Part_Stock, Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts")
+    result = ""
+
+    for x in allparts:
+
+        if request.form["partnum"].lower() in x[0].lower() and request.form["partname"].lower() in x[1].lower() :
+            price = str(x[3])
+            if request.form["pg"] != "1":
+                print(request.form["pg"])
+                price = x[int(request.form["pg"])+2]
+                print(price)
+            try:
+                result += x[0].strip() + "\t" + x[1].strip() + "\t" + str(x[2]) + "\t" + str(price) + "\n"
+            except: pass
+
+
+    return result

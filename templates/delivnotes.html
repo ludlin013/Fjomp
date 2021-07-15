@@ -29,6 +29,12 @@
       <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
       <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
     </div>
+
+    <input type="hidden" id="idOfPart" value="">
+    <div class="partselect" id="partselect" style="display:none">
+
+    </div>
+
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
       <div>
@@ -116,10 +122,10 @@
             {% for x in sqlq%}
             <tr class="row-delivnotes" onclick="" id="{{x[24]}}">
               <input type="hidden" name="id{{sqlq.index(x)}}" id="id{{sqlq.index(x)}}" class="forminput-delivnotes3" value="{{x[24]}}">
-              <td class="thpart-delivnotes"><input class="forminput-delivnotes3" id="num{{sqlq.index(x)}}" class="" value="{{x[5].strip()}}"></td>
-              <td class="thdesc-delivnotes"><input class="forminput-delivnotes3" id="nam{{sqlq.index(x)}}" value="{{x[6].strip()}}"></td>
+              <td class="thpart-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3" id="num{{sqlq.index(x)}}" class="" name="{{x[24]}}" value="{{x[5].strip()}}" onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
+              <td class="thdesc-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3" id="nam{{sqlq.index(x)}}" name="{{x[24]}}" value="{{x[6].strip()}}" onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
               <td class="thserial-delivnotes"><input class="forminput-delivnotes3" id="ser{{sqlq.index(x)}}" value="{{x[7].strip()}}"></td>
-              <td class="thQTY-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
+              <td class="thQTY-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes">
                 <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes3" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" value="{{x[26]}}">
                   {% for y in pricegroups[sqlq.index(x)] %}
@@ -128,13 +134,19 @@
                 </select>
               </td>
               <td class="thprice-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="price{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[9]}}"></td>
+              <script>
+              if (document.getElementById('price{{sqlq.index(x)}}').value == '0.00'){
+                    document.getElementById('price{{sqlq.index(x)}}').value = document.getElementById('pg{{sqlq.index(x)}}').options[document.getElementById('pg{{sqlq.index(x)}}').selectedIndex].value.split(": ")[1];
+                    priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()
+              }
+              </script>
               <td class="thdiscount-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes3" value="{{x[10]}}"></td>
               <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[11]}}"></td>
               <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[12]}}"></td>
               <td class="thnocharge-delivnotes"><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
               <td class="thbackorder-delivnotes"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[28] == 1 %}checked{% endif %}></td>
               <td><a style="cursor:pointer" onclick="if(confirm('Are you sure you want to remove {{x[6].strip()}}?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
-            </tr>
+          </tr>
             {% endfor %}
           </tbody>
           <script src="static/partsearch.js"></script>
@@ -158,7 +170,7 @@
           </div>
           <div class="buttonbarigen">
           <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>-->
-          <a href="/newdeliverynote/{{max+1}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
+          <a href="/newdeliverynote" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
           <a href="/copydelivery/{{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/copy.png"><p>Copy</p></a>
           <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
           <a href="delivnotes?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>
@@ -173,7 +185,7 @@
     <div id="statusmsg">
       Delivery note saved!
     </div>
-    <script src="/static/mobile.js"></script>
     <script src="/static/delivery.js"></script>
+    <script src="/static/mobile.js"></script>
   </body>
 </html>

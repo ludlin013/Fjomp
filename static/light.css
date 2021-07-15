@@ -192,6 +192,11 @@ td {
   background: #888;
 }
 
+.partselect{
+  background: #fff;
+  border:1px solid #333
+}
+
 .hamham div{
   background: #222;
 }
@@ -207,4 +212,12 @@ td {
 
 .lucustdrop{
   background: #fff;
+}
+
+.importnow{
+  background: #fff;
+}
+
+.buttonsbar-item-delivnotes{
+  color:black
 }
