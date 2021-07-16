@@ -246,6 +246,28 @@ def savepg():
 
     for x in range(count):
         sqlq = "UPDATE Pricegroups SET pg_no = '"+request.form[str(x)+"no"]+"', pg_Descript = '"+request.form[str(x)+"name"].replace("'","''")+"' WHERE pg_ID = '"+request.form[str(x)+"id"]+"'"
+        print(sqlq)
         sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/newpg",methods=["GET","POST"])
+def newpg():
+
+    sql("INSERT", "INSERT INTO Pricegroups (pg_no, pg_Descript) VALUES ('','NEWPG')")
+
+    newid = sql("SELECT","SELECT * FROM Pricegroups")
+
+    for x in newid:
+        if x[1] == "NEWPG":
+            newid = str(x[2])
+            break
+
+    return newid
+
+@app.route("/rempg",methods=["GET","POST"])
+def rempg():
+
+    sql("INSERT", "DELETE FROM Pricegroups WHERE pg_ID = '"+request.form["id"]+"'")
 
     return ('', 204)

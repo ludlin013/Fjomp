@@ -24,6 +24,10 @@ body{
   background: #222 !important
 }
 
+.row-parts:hover * {
+  background: #222 !important
+}
+
 
 .storelist{
   background: #222
@@ -256,6 +260,16 @@ table, td, th {
 }
 
 #pgsave:hover{
+  padding:9px 26px;
+  border:1px solid #888;
+}
+
+#pgnew{
+  background: #333;
+
+}
+
+#pgnew:hover{
   padding:9px 26px;
   border:1px solid #888;
 }

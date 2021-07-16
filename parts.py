@@ -84,7 +84,6 @@ def parts():
 
         if partn != "" or partd != "":
             for x in sql("SELECT", sqlquery):
-                print(x[0],x[1])
                 if partn.lower() in x[0].lower() and partd.lower() in x[1].lower():
                     sqlq.append(x)
 

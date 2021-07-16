@@ -240,6 +240,43 @@
             <input type="button" onclick="hideAddUnits()" style="cursor:pointer" name="" value="Cancel">
           </div>
         </form>
+
+        <form id="customer-edit-unit" class="customer-add-unit" action="/customernewunit" method="post" style="display:none">
+          <input type="hidden" name="customer" value="{{customer[0].strip()}}">
+          <input type="hidden" name="remove" value="0" id="removeid">
+          <div class="customer-add-unit-row"><p>Vendor</p>
+            <select class="custaddvend" name="custvendor" id="unitaddvend" onkeydown="return (event.keyCode!=13);">
+              <option value="" selected></option>
+              {% for x in vend %}
+                <option value="{{x[0].strip()}}">{{x[1].strip()}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="customer-add-unit-row"><p>Model</p>
+            <select class="custaddvend" name="custmod" id="addmodel" onchange="document.getElementById('unitaddvend').value = this.value.split('%')[1]" onkeydown="return (event.keyCode!=13);">
+              <option value="" selected></option>
+              {% for x in model %}
+                <option value="{{x[1].strip()}}%{{x[0].strip()}}">{{x[1].strip()}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="customer-add-unit-row"><p>Serial</p><input id="addserial" onkeydown="return (event.keyCode!=13);" type="text" placeholder="" name="serial" value=""></div>
+          <div class="customer-add-unit-row"><p>Install Date</p><input id="adddate" onchange="warrantycalc()" type="date" placeholder="" name="install" value="" onkeydown="return (event.keyCode!=13);"></div>
+          <div class="customer-add-unit-row"><p>Charge mode</p>
+            <select class="custaddvend" name="custcharge" id="addcharge" oninput="warrantycalc()" onkeydown="return (event.keyCode!=13);">
+              {% for x in charge %}
+                <option value="{{x[0]}}">{{x[0]}}: {{x[1].strip()}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="customer-add-unit-row"><p>Warranty</p><input type="date" id="addwarranty" placeholder="" name="warranty" value="" tabindex="-1" readonly onkeydown="return (event.keyCode!=13);"></div>
+          <!--<div class="customer-add-unit-row"><p>Replace date</p><input type="date" placeholder="" name="replace" value=""></div>
+-->
+          <div class="customer-add-unit-row">
+            <input type="submit" name="" style="cursor:pointer" value="Add unit">
+            <input type="button" onclick="hideAddUnits()" style="cursor:pointer" name="" value="Cancel">
+          </div>
+        </form>
         <div onclick="hideAddUnits()" id="customer-add-unit-backdrop" class="customer-add-unit-backdrop"></div>
         {% endif %}
 

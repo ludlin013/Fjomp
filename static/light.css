@@ -34,6 +34,10 @@ body{
   background: rgba(255,16,16,0.5)!important
 }
 
+.row-parts:hover * {
+  background: #ccc !important
+}
+
 #pgsave{
   background: #fff;
 
@@ -44,6 +48,20 @@ body{
   border:1px solid #aaa;
 }
 
+.pgremove{
+  border-top:1px solid rgb(230,230,230);
+  border-left:1px solid rgb(230,230,230)
+}
+
+#pgnew{
+  background: #fff;
+
+}
+
+#pgnew:hover{
+  padding:9px 26px;
+  border:1px solid #aaa;
+}
 
 .navitem{
   border:1px solid #ddd;

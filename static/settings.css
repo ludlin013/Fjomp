@@ -192,6 +192,20 @@ h3{
 
 .pgbuttons{
   display:flex;
+  justify-content: space-between;
+}
+
+.pgremove{
+  border:none;
+  outline:none;
+  background:#fff;
+  width:37px;
+  height:37px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  cursor:pointer;
+
 }
 
 .settingstechmain input{
@@ -204,7 +218,8 @@ h3{
   width:50px
 }
 
-#pgsave{
+#pgsave,
+#pgnew{
   border:none;
   outline:none;
   margin:5px;

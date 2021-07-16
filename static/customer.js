@@ -46,18 +46,18 @@ function editunit(id){
   var warend = document.getElementById(id).children[5].children[0].value;
   var charge = document.getElementById(id).children[6].children[0].value;
 
-  document.getElementById('unitaddvend').value = vendor;
-  document.getElementById('addmodel').value = model;
-  document.getElementById('addserial').value = serial;
-  document.getElementById('adddate').value = install;
-  document.getElementById('addcharge').value = charge;
-  document.getElementById('addwarranty').value = warend;
+  document.getElementById('uniteditvend').value = vendor;
+  document.getElementById('editmodel').value = model;
+  document.getElementById('editserial').value = serial;
+  document.getElementById('editdate').value = install;
+  document.getElementById('editcharge').value = charge;
+  document.getElementById('editwarranty').value = warend;
   document.getElementById('removeid').value = id;
 
   console.log(warend);
   console.log(charge);
-  
-  showAddUnits();
+
+  showeditUnits();
 }
 
 function remunit(id){
