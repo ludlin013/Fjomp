@@ -208,9 +208,7 @@ td input[type=date]{
   flex-direction: row;
 }
 
-.buttonsbar p{
-  color:black!important
-}
+
 .buttonsbar-item-customers{
   display: flex;
   flex-direction: column;

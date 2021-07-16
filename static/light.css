@@ -34,6 +34,11 @@ body{
   background: rgba(255,16,16,0.5)!important
 }
 
+.buttonsbar p{
+  color:black!important
+}
+
+
 .row-parts:hover * {
   background: #ccc !important
 }
@@ -49,6 +54,7 @@ body{
 }
 
 .pgremove{
+  background:#fff;
   border-top:1px solid rgb(230,230,230);
   border-left:1px solid rgb(230,230,230)
 }

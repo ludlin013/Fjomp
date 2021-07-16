@@ -15,6 +15,17 @@ body{
   border:1px outset white
 }
 
+.buttonsbar p{
+  color:white!important
+}
+
+.pgremove{
+  background:rgb(80,80,80);
+  border-top:1px solid #282828;
+  border-left:1px solid #282828
+}
+
+
 .partselect{
   background: #222;
   border:1px solid #333
