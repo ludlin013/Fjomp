@@ -131,7 +131,7 @@ def customers():
                     cat.sort()
                     type.sort()
                     vend.sort()
-                    model.sort()
+                    model.sort(key=lambda x:x[1])
                     charge.sort()
 
                     if sort == "cat":
@@ -273,5 +273,14 @@ def customersave():
 def customernewunit():
 
     print(request.form)
+
+    if request.form["remove"] == "0":
+        sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["custvendor"]+"','"+request.form["custmod"].split("%")[0]+"','"+request.form["serial"]+"','"+request.form["install"]+"','"+request.form["warranty"]+"', '"+request.form["custcharge"]+"', '0')"
+    else:
+        sqlq = "UPDATE Units SET Unit_Vendor = '"+request.form["custvendor"]+"', Unit_Model = '"+request.form["custmod"].split("%")[0]+"', Unit_Serial = '"+request.form["serial"]+"', Unit_installdate = '"+request.form["install"]+"', Unit_Warend = '"+request.form["warranty"]+"', Unit_Chargemode = '"+request.form["custcharge"]+"' WHERE Unit_ID = '"+request.form["remove"]+"'"
+
+    print(sqlq)
+    sql("INSERT",sqlq)
+
 
     return redirect("/customers?customer="+request.form["customer"])

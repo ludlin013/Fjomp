@@ -208,6 +208,9 @@ td input[type=date]{
   flex-direction: row;
 }
 
+.buttonsbar p{
+  color:black!important
+}
 .buttonsbar-item-customers{
   display: flex;
   flex-direction: column;
@@ -412,7 +415,7 @@ select{
   position: absolute;
   top: 0;
   z-index: 100;
-  margin: 200px;
+  margin-left: calc(50% - 500px);
   margin-top: 425px;
   padding:10px;
   background: rgb(40,40,40);

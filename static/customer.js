@@ -38,6 +38,28 @@ if(!document.cookie.includes("custactive")){
   }
 }
 
+function editunit(id){
+  var vendor = document.getElementById(id).children[1].children[0].value;
+  var model = document.getElementById(id).children[2].children[0].options[document.getElementById(id).children[2].children[0].selectedIndex].text + "%" + document.getElementById(id).children[1].children[0].value;
+  var serial = document.getElementById(id).children[3].children[0].value;
+  var install = document.getElementById(id).children[4].children[0].value;
+  var warend = document.getElementById(id).children[5].children[0].value;
+  var charge = document.getElementById(id).children[6].children[0].value;
+
+  document.getElementById('unitaddvend').value = vendor;
+  document.getElementById('addmodel').value = model;
+  document.getElementById('addserial').value = serial;
+  document.getElementById('adddate').value = install;
+  document.getElementById('addcharge').value = charge;
+  document.getElementById('addwarranty').value = warend;
+  document.getElementById('removeid').value = id;
+
+  console.log(warend);
+  console.log(charge);
+  
+  showAddUnits();
+}
+
 function remunit(id){
   const fd = new FormData();
 
@@ -106,6 +128,53 @@ function savecustomer(){
 
   setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
 
+}
+
+function warrantycalc(){
+
+  var days = {}
+
+  days["1"] = 0;
+  days["2"] = 0;
+  days["3"] = 365-1;
+  days["4"] = 0;
+  days["5"] = (365*2) - 1;
+  days["6"] = 0;
+  days["7"] = 0;
+  days["8"] = (364*3) - 1;
+  days["10"] = 0;
+  days["11"] = 90;
+  days["12"] = 365/2;
+  days["9"] = (364*5) - 1;
+
+
+  var date = document.getElementById('adddate').value.split("-");
+  var time = document.getElementById('addcharge').value;
+
+  datt = new Date(date[0],date[1]-1,date[2])
+
+  if(days[time] != 0){
+    datt.setDate(datt.getDate() + days[time])
+
+    console.log(datt);
+    var dd = datt.getDate();
+    var mm = datt.getMonth() + 1;
+    var yy = datt.getFullYear();
+
+    if(dd.toString().length == 1){
+      dd = "0"+dd;
+    }
+    if(mm.toString().length == 1){
+      mm = "0"+mm;
+    }
+
+
+    document.getElementById('addwarranty').value = yy + "-" + mm + "-" + dd;
+
+  }else{
+    document.getElementById('addwarranty').value = 1900 + "-" + "01" + "-" + "01";
+
+  }
 }
 
 
