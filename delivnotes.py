@@ -405,8 +405,11 @@ def copydelivery(a):
 
     copyfrom = sql("SELECT","SELECT * FROM DelivNotes WHERE DN_no = '" + a + "'")
 
+    date = str(datetime.now().date())
+
     for x in copyfrom:
-        qq = "INSERT INTO DelivNotes (DN_CustID,DN_no,DN_Name,DN_Contact,DN_Date,DN_Partno,DN_Part,DN_Serial,DN_Qty,DN_Price,DN_Discount,DN_Net,DN_Total,DN_Nocharge,DN_Closed,DN_Freight,DN_Sign,DN_Notes,DN_Bo,DN_Office,DN_PgDescript,DN_Pricegroup,DN_Offer,DN_FinalOffer ) VALUES ('" + x[0] + "','" + str(newnum) + "','" + x[2] + "','" + x[3] + "','" + str(x[4]) + "','" + x[5] + "','" + x[6] + "','" + x[7] + "','" + str(x[8]) + "','" + str(x[9]) + "','" + str(x[10]) + "','" + str(x[11]) + "','" + str(x[12]) + "','" + str(x[13]) + "','" + str(x[14]) + "','" + str(x[15]) + "','" + str(x[16]) + "','" + x[17] + "','" + str(x[18]) + "','" + str(x[23]) + "','" + x[25].replace("'","") + "','" + str(x[26]) + "','" + str(x[27]) + "','" + str(x[28]) + "')"
+        qq = "INSERT INTO DelivNotes (DN_no,DN_Date,DN_Partno,DN_Part,DN_Qty,DN_Price,DN_Discount,DN_Net,DN_Total,DN_Nocharge,DN_Freight,DN_Bo,DN_Office,DN_PgDescript,DN_Pricegroup,DN_Offer,DN_FinalOffer ) VALUES ('" + str(newnum) + "','" + date + "','" + x[5].strip() + "','" + x[6].strip() + "','" + str(x[8]) + "','" + str(x[9]) + "','" + str(x[10]) + "','" + str(x[11]) + "','" + str(x[12]) + "','" + str(x[13]) + "','" + x[15] + "','" + str(x[18]) + "','" + str(x[23]) + "','" + x[25].replace("'","") + "','" + str(x[26]) + "','" + "0" + "','" + "0" + "')"
+
 
         print(qq)
         sql("INSERT", qq)
