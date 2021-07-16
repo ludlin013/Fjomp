@@ -190,6 +190,10 @@ h3{
   overflow: hidden;
 }
 
+.pgbuttons{
+  display:flex;
+}
+
 .settingstechmain input{
   border:none;
   padding:10px 0 10px 5px;
@@ -198,6 +202,15 @@ h3{
 
 .techid{
   width:50px
+}
+
+#pgsave{
+  border:none;
+  outline:none;
+  margin:5px;
+  padding:10px 27px;
+  cursor: pointer;
+  border-radius: 4px
 }
 
 
@@ -348,6 +361,9 @@ h3{
   border:1px solid #aaa
 }
 
+.pgno{
+  width:80px
+}
 
 .importnowbutton{
 }

@@ -123,11 +123,10 @@ def customers():
                 else:
                     # Units #
                     units = sql("SELECT","SELECT * FROM Units WHERE LOWER(Unit_CustID) = LOWER('" + cust.strip() + "')")
-                    cat = sql("SELECT","SELECT * FROM SystemCat")
-                    type = sql("SELECT","SELECT * FROM Modeltype")
-                    vend = sql("SELECT","SELECT Vend_Code FROM Vendors")
+                    vend = sql("SELECT","SELECT Vend_Code, Vend_Name FROM Vendors")
                     model = sql("SELECT","SELECT * FROM Models")
                     charge = sql("SELECT","SELECT * FROM Chargemode")
+
 
                     cat.sort()
                     type.sort()

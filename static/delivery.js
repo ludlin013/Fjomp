@@ -86,6 +86,9 @@ document.addEventListener("keydown", function(e){
     window.location.href = "/newdeliverynote"
   }
 
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 90){
+  e.preventDefault();
+  location.reload();
 }
 
 }, false);

@@ -98,9 +98,6 @@
       <a class="settingadminrow" onclick="show('settingsmodel')">
         <p class="settingsthemep noselect">Edit Models</p>
       </a>
-      <a class="settingadminrow" href="/settings/modeltype">
-        <p class="settingsthemep noselect">Edit Model Types</p>
-      </a>
       <a class="settingadminrow" href="/settings/freight">
         <p class="settingsthemep noselect">Edit Freight Types</p>
       </a>
@@ -110,7 +107,7 @@
       <a class="settingadminrow" href="/settings/office">
         <p class="settingsthemep noselect">Edit Offices</p>
       </a>
-      <a class="settingadminrow" href="/settings/pricegroup">
+      <a class="settingadminrow" onclick="show('settingpg')">
         <p class="settingsthemep noselect">Edit Pricegroups</p>
       </a>
       <a class="settingadminrow" onclick="show('settingsparameters')">
@@ -246,23 +243,19 @@
 </div>
 
 <div class="settingstechwrap settingscategories" id="settingsmodel" style="display:none">
-  <h3 class="noselect">Models</h3>
+  <h3 class="noselect">Models<button onclick="newmodel()">New model</button></h3>
   <div class="settingstechhead">
     <p class="noselect modven" id="settingsmodelvendor">Vendor</p>
     <p class="noselect modmod" id="settingsmodelmodel">Model</p>
-    <p class="noselect modtyp" id="settingsmodeltype">Type</p>
-    <p class="noselect modcat" id="settingsmodelcat">Cat.</p>
     <p class="noselect modcha" id="settingsmodelcharge">Chargemode</p>
   </div>
 <form class="settingstechmain" autocomplete="off" action="" id="modelform">
   {% for model in models %}
   <a class="settingadmintech">
     <input type="hidden" value="{{model[5]}}" name="{{models.index(model)}}id">
-    <input class="settingsthemep noselect modven" readonly id="" value="{{model[0]}}" name="{{models.index(model)}}vend">
-    <input class="settingsthemep noselect modmod " readonly spellcheck="false" id="" value="{{model[1]}}" name="{{models.index(model)}}model">
-    <input class="settingsthemep noselect modtyp" spellcheck="false" id="" value="{{model[2].strip()}}" name="{{models.index(model)}}type">
-    <input class="settingsthemep noselect modcat" spellcheck="false" id="" value="{{model[3].strip()}}" name="{{models.index(model)}}cat">
-    <input class="settingsthemep noselect modcha" spellcheck="false" id="" value="{{model[4]}}" name="{{models.index(model)}}cha">
+    <input class="settingsthemep noselect modven" id="{{models.index(model)}}" readonly value="{{model[0]}}" name="{{models.index(model)}}vend">
+    <input class="settingsthemep noselect modmod " readonly spellcheck="false" value="{{model[1]}}" name="{{models.index(model)}}model">
+    <input class="settingsthemep noselect modcha" spellcheck="false" value="{{model[4]}}" name="{{models.index(model)}}cha">
   </a>
   {% endfor %}
   </form>
@@ -277,6 +270,28 @@
       <div class="savebutton" onclick="savemodelform()">Save</div>
     </div>
 </div>
+</div>
+
+<div class="settingstechwrap" id="settingpg">
+  <h3 class="noselect">Pricegroups</h3>
+  <div class="settingstechhead">
+    <p class="noselect pgno">Pg no.</p>
+    <p class="noselect pgname">Pg name</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="pgform">
+    {% for x in pgs %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[2]}}" name="{{pgs.index(x)}}id">
+      <input class="settingspg noselect pgno" readonly spellcheck="false" value="{{x[0]}}" name="{{pgs.index(x)}}no">
+      <input class="settingspg noselect pgname" spellcheck="false" value="{{x[1].strip()}}" name="{{pgs.index(x)}}name">
+    </a>
+    {% endfor %}
+  </form>
+  <div class="pgbuttons">
+    <button type="button" id="pgsave" onclick="savepg()">Save</button>
+  </div>
+
+
 </div>
 {%endif%}
 

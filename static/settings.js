@@ -33,3 +33,24 @@ function savemodelform(){
   const fd = new FormData(document.getElementById('modelform'));
   xhttp.send(fd);
 }
+
+function newmodel(){
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/newmodel",true);
+  xhttp.send();
+
+}
+
+function savepg(){
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('pgform'));
+
+  xhttp.onload = function(){
+    document.getElementById('pgsave').textContent = "Saved!"
+  }
+
+  xhttp.open("POST","/savepg",true);
+  xhttp.send(fd);
+
+}

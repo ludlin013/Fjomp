@@ -391,6 +391,11 @@ td input[type=date]{
   resize: none;
 }
 
+.custaddvend{
+  width: 190px;
+  padding: 5px 10px;
+}
+
 .customersearchbar{
   padding:5px;
   border-radius: 2px

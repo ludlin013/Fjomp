@@ -52,6 +52,7 @@ def settings():
     vendors = sql("SELECT","SELECT * FROM Vendors")
     models = sql("SELECT","SELECT * FROM Models")
     parameters = sql("SELECT","SELECT * FROM Parameters")
+    pgs = sql("SELECT", "SELECT * FROM Pricegroups")
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
@@ -94,7 +95,7 @@ def settings():
         return redirect(url_for("settings"))
 
 
-    return render_template("settings.html",theme=theme,notheme=notheme,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
+    return render_template("settings.html",theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -221,9 +222,30 @@ def savevariable():
 def savemodels():
 
     print(len(request.form)//6)
+    print(request.form)
 
     for x in range(len(request.form)//6):
         print(request.form[str(x)+"model"])
-        sqlq = "UPDATE "
+        sqlq = "UPDATE Models SET Mod_Vendor = '"+request.form[str(x)+"vend"].strip()+"', Mod_Model = '"+request.form[str(x)+"model"].strip()+"', Mod_Unittype = '"+request.form[str(x)+"type"].strip()+"', Mod_Cat = '"+request.form[str(x)+"cat"].strip()+"', ModChargemode = '"+request.form[str(x)+"cha"]+"' WHERE Mod_ID = '"+request.form[str(x)+"id"]+"'"
+        print(sqlq)
+
+    return ('', 204)
+
+@app.route("/newmodel",methods=["GET","POST"])
+def newmodel():
+
+    print("newmodel")
+
+    return ('', 204)
+
+@app.route("/savepg",methods=["GET","POST"])
+def savepg():
+
+    count = len(request.form)//3
+    print(count)
+
+    for x in range(count):
+        sqlq = "UPDATE Pricegroups SET pg_no = '"+request.form[str(x)+"no"]+"', pg_Descript = '"+request.form[str(x)+"name"].replace("'","''")+"' WHERE pg_ID = '"+request.form[str(x)+"id"]+"'"
+        sql("INSERT", sqlq)
 
     return ('', 204)

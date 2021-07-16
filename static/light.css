@@ -16,10 +16,34 @@ body{
   box-shadow: 1px 1px 2px rgb(20,20,20);
 }
 
+.row-Customers:nth-child(2n) *{
+  /*background: #ddd !important*/
+}
+
+.row-Customers:hover *{
+  background: #ccc !important
+}
+
+.settingstechmain input,
+.settingstechcontrols input{
+  border-left:1px solid rgb(230,230,230);
+  border-top:1px solid rgb(230,230,230);
+}
 
 .inactivepart *{
   background: rgba(255,16,16,0.5)!important
 }
+
+#pgsave{
+  background: #fff;
+
+}
+
+#pgsave:hover{
+  padding:9px 26px;
+  border:1px solid #aaa;
+}
+
 
 .navitem{
   border:1px solid #ddd;

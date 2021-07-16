@@ -20,6 +20,10 @@ body{
   border:1px solid #333
 }
 
+.row-Customers:hover *{
+  background: #222 !important
+}
+
 
 .storelist{
   background: #222
@@ -238,8 +242,22 @@ table, td, th {
 .settingstechmain input,
 .settingstechcontrols input{
   background:rgb(20,20,20);
-  border-top:1px solid #282828;
   border-left:1px solid #282828;
+  border-top:1px solid #282828;
+}
+
+.settingspg{
+  border-left:1px solid #282828
+}
+
+#pgsave{
+  background: #333;
+
+}
+
+#pgsave:hover{
+  padding:9px 26px;
+  border:1px solid #888;
 }
 
 .settingadmintech:nth-last-child(2){
