@@ -284,3 +284,15 @@ def customernewunit():
 
 
     return redirect("/customers?customer="+request.form["customer"])
+
+
+@app.route("/unitedit", methods=["GET","POST"])
+def unitedit():
+
+    print(request.form)
+
+    sqlq = "UPDATE Units SET Unit_Vendor = '"+request.form["vendor"]+"', Unit_Model = '"+request.form["model"]+"', Unit_serial = '"+request.form["serial"]+"', Unit_installdate = '"+request.form["install"]+"', Unit_Warend = '"+request.form["warend"]+"', Unit_Chargemode = '"+request.form["charge"]+"', Unit_Repldate = '"+request.form["replace"]+"' WHERE Unit_ID = '"+request.form["id"]+"'"
+    print(sqlq)
+    sql("INSERT",sqlq)
+
+    return ("",204)
