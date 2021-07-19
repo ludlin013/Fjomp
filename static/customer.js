@@ -53,7 +53,7 @@ function editunit(id){
   const fd = new FormData();
 
   fd.append("id",id)
-  fd.append("vendor",model)
+  fd.append("vendor",vendor)
   fd.append("model",model)
   fd.append("serial",serial)
   fd.append("install",install)
