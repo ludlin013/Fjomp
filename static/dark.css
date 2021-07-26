@@ -265,22 +265,29 @@ table, td, th {
   border-left:1px solid #282828
 }
 
-#pgsave{
+.set{
   background: #333;
 
 }
 
-#pgsave:hover{
+.tetech{
+  background: rgb(80,80,80);
+  border-left: 1px solid #282828;
+  border-top: 1px solid #282828;
+}
+}
+
+.set:hover{
   padding:9px 26px;
   border:1px solid #888;
 }
 
-#pgnew{
+.set{
   background: #333;
 
 }
 
-#pgnew:hover{
+.set:hover{
   padding:9px 26px;
   border:1px solid #888;
 }

@@ -3,10 +3,10 @@ from __main__ import *
 import pyodbc
 import datetime
 
-server = "10.3.1.54,50404\\FJOMP"
-database = "Winstat"
-username = "admin"
-password = "admin"
+server = "P2019\\WSData"
+database = "winstat"
+username = "sa"
+password = "kamikaze"
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password

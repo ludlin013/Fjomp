@@ -214,12 +214,7 @@ h3{
   outline:none;
 }
 
-.techid{
-  width:50px
-}
-
-#pgsave,
-#pgnew{
+.set{
   border:none;
   outline:none;
   margin:5px;
@@ -228,35 +223,21 @@ h3{
   border-radius: 4px
 }
 
-
-
-.techfirst
-,.techlast{
-  width:150px
+.teid,
+.teoffice,
+.tetech {
+  width: 60px
 }
 
-.techoffice
-,.techtech{
-  width:50px
+.tefirst,
+.telast {
+  width:100px
 }
 
-.techremove{
-  width:50px;
+.tetech {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-}
-
-.techremove img{
-  transition-duration: .1s;
-  width:25px;
-  height:25px;
-  transform: rotate(45deg);
-}
-
-.techremove:hover img{
-
 }
 
 .settingstechcontrols{
@@ -320,6 +301,18 @@ h3{
   padding:100px
 }
 
+.cpvar {
+  width:110px
+}
+
+.cptyp {
+  width:120px
+}
+
+.cpval {
+  width:240px
+}
+
 #settingsvendorid{
   width:46px
 }
@@ -345,7 +338,7 @@ h3{
 }
 
 .importform{
-  width:300px;
+  width:400px;
   display:flex
 }
 
@@ -362,7 +355,7 @@ h3{
 
 .importnow{
   cursor: pointer;
-  width:300px;
+  width:400px;
   height:36px;
   display: flex;
   align-items: center;
@@ -402,5 +395,6 @@ h3{
 }
 
 #pathtext{
+  width:300px;
   border-radius: 4px
 }

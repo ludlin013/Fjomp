@@ -9,15 +9,10 @@ app.config['UPLOAD_FOLDER'] = '/static/uploads'
 
 import customers,parts,delivnotes,ir,swapouts,lookup,settings
 
-server = "p2019,50404\\WSData"
+server = "P2019\\WSData"
 database = "winstat"
 username = "sa"
 password = "kamikaze"
-
-server = "10.3.1.54,50404\\FJOMP"
-database = "Winstat"
-username = "admin"
-password = "admin"
 
 
 cnxn = pyodbc.connect(

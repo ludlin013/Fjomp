@@ -98,13 +98,13 @@
       <a class="settingadminrow" onclick="show('settingsmodel')">
         <p class="settingsthemep noselect">Edit Models</p>
       </a>
-      <a class="settingadminrow" href="/settings/freight">
+      <a class="settingadminrow" onclick="show('settingsfreight')">
         <p class="settingsthemep noselect">Edit Freight Types</p>
       </a>
-      <a class="settingadminrow" href="/settings/chargemode">
+      <a class="settingadminrow" onclick="show('settingscharge')">
         <p class="settingsthemep noselect">Edit Chargemode</p>
       </a>
-      <a class="settingadminrow" href="/settings/office">
+      <a class="settingadminrow" onclick="show('settingsoffice')">
         <p class="settingsthemep noselect">Edit Offices</p>
       </a>
       <a class="settingadminrow" onclick="show('settingpg')">
@@ -120,116 +120,31 @@
       {%endif%}
     </div>
     {% if auth%}
-    <div class="settingstechwrap settingscategories" id="settingstech" style="display:none">
-      <div class="settingstechhead">
-        <p id="settingstechid">ID</p>
-        <p id="settingstechfirst">Firstname</p>
-        <p id="settingstechlast">Last</p>
-        <p id="settingstechoffice">Office</p>
-        <p id="settingstechtech">Tech</p>
-      </div>
-    <form class="settingstechmain" autocomplete="off" action="" id="techuserform">
-      {% for tech in techs %}
-      <a class="settingadmintech">
-        <input type="hidden" value="{{tech[8]}}" name="{{techs.index(tech)}}">
-        <input class="settingsthemep noselect techid" readonly maxlength="3" name="{{techs.index(tech)}}id" id="{{tech[0].strip()}}" value="{{tech[0].strip()}}">
-        <input class="settingsthemep noselect techfirst" spellcheck="false" name="{{techs.index(tech)}}firstname" id="techfirst" value="{{tech[1].strip()}}">
-        <input class="settingsthemep noselect techlast" spellcheck="false" name="{{techs.index(tech)}}lastname" id="techlast" value="{{tech[2].strip()}}">
-        <input class="settingsthemep noselect techoffice" value="{{tech[4]}}" type="number" name="{{techs.index(tech)}}office" id="techoffice">
-        <input class="settingsthemep noselect techtech" value="1" type="checkbox" name="{{techs.index(tech)}}tech" id="techtech" {% if tech[5] == 1 %} checked {% endif %}>
-        <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{tech[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
-      </a>
-      {% endfor %}
-      </form>
-      <script src="static/settings.js">
 
-      </script>
-      <div class="settingstechcontrols">
-          <div class="settingstechnew noselect" onclick="technewuser()">
-            New User
-          </div>
-        <div class="settingstechdiv noselect">
-          <div class="settingstechcancel" onclick="window.location.reload()">
-            Cancel
-          </div>
-          <div class="savebutton" onclick="submitTechs()">Save</div>
-        </div>
-    </div>
-</div>
+    <script src="static/settings.js">
 
-<div class="settingsvendorwrap settingscategories" id="settingsvendor" style="display:none">
-  <div class="settingsvendorhead">
-    <p id="settingsvendorid">ID</p>
-    <p id="settingsvendorname">Name</p>
-    <p id="settingsvendorcurrency">Currency</p>
-    <p id="settingsvendoraddress1">Address 1</p>
-    <p id="settingsvendoraddress2">Address 2</p>
-    <p id="settingsvendoraddress3">Address 3</p>
-    <p id="settingsvendorzip">ZIP</p>
-    <p id="settingsvendorcountry">Country</p>
-    <p id="settingsvendorphone">Phone</p>
-    <p id="settingsvendorcontact">Contact</p>
-    <p id="settingsvendormail">Mail</p>
-  </div>
-<form class="settingstechmain" autocomplete="off" method="POST" action="" id="vendorform">
-  {% for vendor in vendors %}
-  <a class="settingadmintech">
-    <input class="settingsthemep noselect vendorid" name="id" id="vendor{{vendor[0].strip()}}" value="{{vendor[0].strip()}}">
-    <input class="settingsthemep noselect vendorname" name="id" id="vendorname" value="{{vendor[1].strip()}}">
-    <input class="settingsthemep noselect vendorcur" name="id" id="vendorcur" value="{{vendor[2].strip()}}">
-    <input class="settingsthemep noselect vendoradd1" name="id" id="vendoradd1" value="{{vendor[3].strip()}}">
-    <input class="settingsthemep noselect vendoradd2" name="id" id="vendoradd2" value="{{vendor[4].strip()}}">
-    <input class="settingsthemep noselect vendoradd3" name="id" id="vendoradd3" value="{{vendor[5].strip()}}">
-    <input class="settingsthemep noselect vendorzip" name="id" id="vendorzip" value="{{vendor[6].strip()}}">
-    <input class="settingsthemep noselect vendorcountry" name="id" id="vendorcountry" value="{{vendor[7].strip()}}">
-    <input class="settingsthemep noselect vendorphone" name="id" id="vendorphone" value="{{vendor[8].strip()}}">
-    <input class="settingsthemep noselect vendorcontact" name="id" id="vendorcontact" value="{{vendor[10].strip()}}">
-    <input class="settingsthemep noselect vendormail" name="id" id="vendormail" value="{{vendor[11].strip()}}">
-    <div class="settingsthemep noselect techremove" id="techrem" onclick="remtech('{{vendor[0].strip()}}')"><img class="noselect" src="static/pictures/{{theme}}/add.png"></div>
-  </a>
-  {% endfor %}
-  </form>
-  <div class="settingstechcontrols">
-      <div class="settingstechnew noselect" onclick="technewuser()">
-        New User
-      </div>
-    <div class="settingstechdiv noselect">
-      <div class="settingstechcancel" onclick="window.location.reload()">
-        Cancel
-      </div>
-      <input type="submit" class="savebutton" form="techuserform" value="Save">
-    </div>
-</div>
-</div>
+    </script>
 
 <div class="settingstechwrap settingscategories" id="settingsparameters" style="display:none">
   <h3 class="noselect">Company parameters</h3>
   <div class="settingstechhead">
-    <p class="noselect" id="settingsparamvar">Variable</p>
-    <p class="noselect" id="settingsparamtyp">Type</p>
-    <p class="noselect" id="settingsparamval">Value</p>
+    <p class="noselect cpvar">Variable</p>
+    <p class="noselect cptyp">Type</p>
+    <p class="noselect cpval">Value</p>
   </div>
-<form class="settingstechmain" autocomplete="off" action="" id="variableform">
-  {% for param in parameters %}
-  <a class="settingadmintech">
-    <input type="hidden" value="" name="">
-    <input class="settingsthemep noselect " readonly id="" value="{{param[0]}}" name="">
-    <input class="settingsthemep noselect settingsparamtypin" readonly spellcheck="false" name="" id="" value="{{param[1]}}" name="{{parameters.index(param)}}typ">
-    <input class="settingsthemep noselect " spellcheck="false" name="{{param[0]}}" id="" value="{{param[2].strip()}}" name="{{parameters.index(param)}}val">
-  </a>
-  {% endfor %}
+  <form class="settingstechmain" action="javascript:" id="cpform">
+    {% for x in parameters %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[3]}}">
+      <input readonly class="settingspg noselect cpvar" spellcheck="false" value="{{x[0].strip()}}">
+      <input readonly class="settingspg noselect cptyp" spellcheck="false" value="{{x[1].strip()}}">
+      <input class="settingspg noselect cpval" spellcheck="false" value="{{x[2].strip()}}" name="{{x[0].strip()}}">
+    </a>
+    {% endfor %}
   </form>
-  <script src="static/settings.js">
-
-  </script>
-  <div class="settingstechcontrols">
-    <div class="settingstechdiv noselect">
-      <div class="settingstechcancel" onclick="window.location.reload()">
-        Cancel
-      </div>
-      <div class="savebutton" onclick="savevarform()">Save</div>
-    </div>
-</div>
+  <div class="pgbuttons">
+    <button type="button" class="set noselect" id="cpsave" onclick="savecp()">Save</button>
+  </div>
 
 <div class="workstation noselect">
   <h3>Workstation parameters</h3>
@@ -242,37 +157,7 @@
 </div>
 </div>
 
-<div class="settingstechwrap settingscategories" id="settingsmodel" style="display:none">
-  <h3 class="noselect">Models<button onclick="newmodel()">New model</button></h3>
-  <div class="settingstechhead">
-    <p class="noselect modven" id="settingsmodelvendor">Vendor</p>
-    <p class="noselect modmod" id="settingsmodelmodel">Model</p>
-    <p class="noselect modcha" id="settingsmodelcharge">Chargemode</p>
-  </div>
-<form class="settingstechmain" autocomplete="off" action="" id="modelform">
-  {% for model in models %}
-  <a class="settingadmintech">
-    <input type="hidden" value="{{model[5]}}" name="{{models.index(model)}}id">
-    <input class="settingsthemep noselect modven" id="{{models.index(model)}}" readonly value="{{model[0]}}" name="{{models.index(model)}}vend">
-    <input class="settingsthemep noselect modmod " readonly spellcheck="false" value="{{model[1]}}" name="{{models.index(model)}}model">
-    <input class="settingsthemep noselect modcha" spellcheck="false" value="{{model[4]}}" name="{{models.index(model)}}cha">
-  </a>
-  {% endfor %}
-  </form>
-  <script src="static/settings.js">
-
-  </script>
-  <div class="settingstechcontrols">
-    <div class="settingstechdiv noselect">
-      <div class="settingstechcancel" onclick="window.location.reload()">
-        Cancel
-      </div>
-      <div class="savebutton" onclick="savemodelform()">Save</div>
-    </div>
-</div>
-</div>
-
-<div class="settingstechwrap settingscategories" id="settingpg">
+<div class="settingstechwrap settingscategories" id="settingpg" style="display:none">
   <h3 class="noselect">Pricegroups</h3>
   <div class="settingstechhead">
     <p class="noselect pgno">Pg no.</p>
@@ -289,8 +174,40 @@
     {% endfor %}
   </form>
   <div class="pgbuttons">
-    <button type="button" id="pgsave" onclick="savepg()">Save</button>
-    <button type="button" id="pgnew" onclick="newpg()">New</button>
+    <button type="button" class="set noselect"  id="pgsave" onclick="savepg()">Save</button>
+    <button type="button" class="set noselect" id="pgnew" onclick="newpg()">New</button>
+  </div>
+
+
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingstech" style="display:">
+  <h3 class="noselect">Technicians</h3>
+  <div class="settingstechhead">
+    <p class="noselect teid">ID</p>
+    <p class="noselect tefirst">First name</p>
+    <p class="noselect telast">Last name</p>
+    <p class="noselect teoffice">Office</p>
+    <p class="noselect" style="width:60px">Tech</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="teform">
+    {% for x in techs %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[8]}}" name="{{techs.index(x)}}id">
+      <input class="settingspg noselect teid" maxlength="3" spellcheck="false" value="{{x[0].strip()}}" name="{{techs.index(x)}}ids">
+      <input class="settingspg noselect tefirst" spellcheck="false" value="{{x[1].strip()}}" name="{{techs.index(x)}}first">
+      <input class="settingspg noselect telast" spellcheck="false" value="{{x[2].strip()}}" name="{{techs.index(x)}}last">
+      <input class="settingspg noselect teoffice" spellcheck="false" value="{{x[4]}}" name="{{techs.index(x)}}office">
+      <label class="settingspg noselect tetech">
+        <input class="techcheck" type="checkbox" spellcheck="false" value="{{x[5]}}" {% if x[5] == 1 %} checked {% endif %} name="{{techs.index(x)}}tech">
+      </label>
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remtech('{{x[8]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+    </a>
+    {% endfor %}
+  </form>
+  <div class="pgbuttons">
+    <button type="button" class="set noselect" id="tesave" onclick="savete()">Save</button>
+    <button type="button" class="set noselect" id="tenew" onclick="newte()">New</button>
   </div>
 
 
@@ -345,62 +262,6 @@
           location.reload();
         }
       }
-
-    function remtech(id){
-      document.getElementById(id).parentElement.style.maxHeight = "0";
-      setTimeout(function(){
-        document.getElementById(id).parentElement.remove();
-      },250);
-    }
-
-    function technewuser(){
-
-      var num = document.getElementsByClassName("settingadmintech").length
-      console.log(num);
-
-      var parent = document.getElementById("techuserform");
-
-      var usera = document.createElement("a");
-      var inputid = document.createElement("input");
-      var inputfirst = document.createElement("input");
-      var inputlast = document.createElement("input");
-      var inputoffice = document.createElement("input");
-      var inputtech = document.createElement("input");
-      inputtech.setAttribute("type", "checkbox");
-      inputtech.checked = 1;
-      inputtech.value = 1;
-
-      //console.log(inputtech.value);
-
-      inputid.name = num+"id";
-      inputfirst.name = num+"firstname";
-      inputlast.name = num+"lastname";
-      inputoffice.name = num+"office";
-      inputtech.name = num+"tech";
-
-      inputid.maxLength = "3";
-      //inputoffice.maxLength = "1";
-      //inputtech.maxLength = "1";
-
-      usera.classList.add("settingadmintech");
-      inputid.classList.add("settingsthemep","noselect","techid");
-      inputfirst.classList.add("settingsthemep","noselect","techfirst");
-      inputlast.classList.add("settingsthemep","noselect","techlast");
-      inputoffice.classList.add("settingsthemep","noselect","techoffice");
-      inputtech.classList.add("settingsthemep","noselect","techtech");
-
-
-
-
-      usera.appendChild(inputid);
-      usera.appendChild(inputfirst);
-      usera.appendChild(inputlast);
-      usera.appendChild(inputoffice);
-      usera.appendChild(inputtech);
-
-      parent.appendChild(usera);
-      inputid.focus();
-    }
 
     function show(cat){
       var all = document.getElementsByClassName('settingscategories');

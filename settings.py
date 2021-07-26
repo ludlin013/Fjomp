@@ -3,10 +3,10 @@ from __main__ import *
 import pyodbc
 import os
 
-server = "10.3.1.54,50404\\FJOMP"
-database = "Winstat"
-username = "admin"
-password = "admin"
+server = "P2019\\WSData"
+database = "winstat"
+username = "sa"
+password = "kamikaze"
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
@@ -131,55 +131,6 @@ def changepwd():
     return render_template("changepwd.html",theme=theme,notheme=notheme,error=error)
 
 
-@app.route("/savetechs",methods=["GET","POST"])
-def savetechs():
-
-    n = 0
-    for x in request.form:
-        n = x.replace("tech","").replace("office","")
-
-    n = int(n) + 1
-
-    alltechsql = sql("SELECT","SELECT Tech_ID FROM Technicians")
-    alltech = []
-    newtech = []
-
-    for x in alltechsql :
-        alltech.append(x[0])
-
-    print(n)
-    print(request.form)
-    for x in range(n):
-        try:
-            newtech.append(request.form[str(x)+"id"])
-            if request.form[str(x)+"id"] in alltech:
-                print(x)
-                try:
-                    sqlq = "UPDATE Technicians SET Tech_Firstname = '"+request.form[str(x)+"firstname"]+"', Tech_Lastname = '"+request.form[str(x)+"lastname"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+request.form[str(x)+"tech"]+"' WHERE Tech_nID = '"+request.form[str(x)+"tid"]+"'"
-                    sql("INSERT", sqlq)
-                except:
-                    sqlq = "UPDATE Technicians SET Tech_Firstname = '"+request.form[str(x)+"firstname"]+"', Tech_Lastname = '"+request.form[str(x)+"lastname"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+"0"+"' WHERE Tech_nID = '"+request.form[str(x)+"tid"]+"'"
-                    sql("INSERT", sqlq)
-            else:
-                print(x)
-                sqlq = "INSERT INTO Technicians (Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office, Tech_Tech) VALUES ('"+request.form[str(x)+"id"]+"','"+request.form[str(x)+"firstname"]+"','"+request.form[str(x)+"lastname"]+"','"+request.form[str(x)+"office"]+"','"+request.form[str(x)+"tech"]+"')"
-                print(sqlq)
-                sql("INSERT", sqlq)
-        except:
-            pass
-
-    print(alltech)
-    print(newtech)
-
-    for x in alltech:
-        if x not in newtech:
-            sqlq = "DELETE FROM Technicians WHERE Tech_ID = '"+x+"'"
-            print(sqlq)
-            sql("INSERT",sqlq)
-
-
-    return ('', 204)
-
 
 @app.route("/import",methods=["GET","POST"])
 def importdata():
@@ -204,15 +155,15 @@ def importdata():
     return render_template("importdata.html",theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)
 
 
-@app.route("/savevariable",methods=["GET","POST"])
+@app.route("/savecp",methods=["GET","POST"])
 def savevariable():
 
     print(request.form)
 
     for x in request.form:
-        #print(x.strip(),":", request.form[x].strip())
+        #print(x)
         sqlq = "UPDATE Parameters SET PM_Value = '" + request.form[x].strip() + "' WHERE PM_Name = '"+x.strip()+"'"
-        print(sqlq)
+        #print(sqlq)
         sql("INSERT",sqlq)
 
     return ('', 204)
@@ -269,5 +220,40 @@ def newpg():
 def rempg():
 
     sql("INSERT", "DELETE FROM Pricegroups WHERE pg_ID = '"+request.form["id"]+"'")
+
+    return ('', 204)
+
+
+@app.route("/savete",methods=["GET","POST"])
+def savete():
+
+    count = len(request.form)//6
+
+    for x in range(count):
+        sqlq = "UPDATE Technicians SET Tech_ID = '"+request.form[str(x)+"ids"].upper()+"', Tech_Firstname = '"+request.form[str(x)+"first"]+"', Tech_Lastname = '"+request.form[str(x)+"last"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+request.form[str(x)+"tech"]+"' WHERE Tech_nID = '"+request.form[str(x)+"id"]+"'"
+        print(sqlq)
+        sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/newte",methods=["GET","POST"])
+def newte():
+
+    sql("INSERT", "INSERT INTO Technicians (Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office, Tech_Tech, Tech_Pwd) VALUES (' ','NEWTE',' ','1','1','')")
+
+    newid = sql("SELECT","SELECT * FROM Technicians")
+
+    for x in newid:
+        print(x)
+        if x[1].strip() == "NEWTE":
+            newid = str(x[8])
+            break
+
+    return newid
+
+@app.route("/remte",methods=["GET","POST"])
+def remte():
+
+    sql("INSERT", "DELETE FROM Technicians WHERE Tech_nID = '"+request.form["id"]+"'")
 
     return ('', 204)
