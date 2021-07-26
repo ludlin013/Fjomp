@@ -126,9 +126,9 @@
                     {% endif %}
                   </select>
                 </td>
-                <td class="thserialu-customers"><input value="{{x[4].strip()}}"></td>
-                <td class="thinstu-customers"><input type="date" value="{{x[6]}}"></td>
-                <td class="thwarrantyu-customers"><input type="date" value="{{x[7]}}"></td>
+                <td class="thserialu-customers"><input  value="{{x[4].strip()}}"></td>
+                <td class="thinstu-customers"><input  type="date" value="{{x[6]}}"></td>
+                <td class="thwarrantyu-customers"><input  type="date" value="{{x[7]}}"></td>
                 <td class="thcontru-customers">
                   <select>
                     {% for y in charge %}
@@ -136,9 +136,9 @@
                     {% endfor %}
                   </select>
                 </td>
-                <td class="threplu-customers"><input type="date" value="{{x[9]}}"></td>
+                <td class="threplu-customers"><input  type="date" value="{{x[9]}}"></td>
                 {% if userauth == "true" %}
-                <td class="threplu-customers"><a class="custunitremove" style="cursor:pointer" onclick="editunit('{{x[12]}}')"><img src="/static/pictures/{{theme}}/edit.png" height="18px"></a></td>
+                <td class="threplu-customers"><a class="custunitremove" style="cursor:pointer" onclick="editunit('{{x[12]}}')"><img id="{{x[12]}}img" src="/static/pictures/{{theme}}/save.png" height="18px"></a></td>
                 <td class="threplu-customers"><a class="custunitremove" style="cursor:pointer" onclick="remunit('{{x[12]}}')"><img src="/static/pictures/{{theme}}/remove.png" height="18px"></a></td>
                 {% endif %}
               </tr>

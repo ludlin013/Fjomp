@@ -254,7 +254,7 @@ def savepg():
 @app.route("/newpg",methods=["GET","POST"])
 def newpg():
 
-    sql("INSERT", "INSERT INTO Pricegroups (pg_no, pg_Descript) VALUES ('','NEWPG')")
+    sql("INSERT", "INSERT INTO Pricegroups (pg_no, pg_Descript) VALUES ('','')")
 
     newid = sql("SELECT","SELECT * FROM Pricegroups")
 

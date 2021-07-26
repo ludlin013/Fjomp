@@ -39,25 +39,42 @@ if(!document.cookie.includes("custactive")){
 }
 
 function editunit(id){
+
   var vendor = document.getElementById(id).children[1].children[0].value;
-  var model = document.getElementById(id).children[2].children[0].options[document.getElementById(id).children[2].children[0].selectedIndex].text + "%" + document.getElementById(id).children[1].children[0].value;
+  var model = document.getElementById(id).children[2].children[0].options[document.getElementById(id).children[2].children[0].selectedIndex].text;
   var serial = document.getElementById(id).children[3].children[0].value;
   var install = document.getElementById(id).children[4].children[0].value;
   var warend = document.getElementById(id).children[5].children[0].value;
   var charge = document.getElementById(id).children[6].children[0].value;
+  var replace = document.getElementById(id).children[7].children[0].value;
 
-  document.getElementById('uniteditvend').value = vendor;
-  document.getElementById('editmodel').value = model;
-  document.getElementById('editserial').value = serial;
-  document.getElementById('editdate').value = install;
-  document.getElementById('editcharge').value = charge;
-  document.getElementById('editwarranty').value = warend;
-  document.getElementById('removeid').value = id;
+  console.log(replace);
 
-  console.log(warend);
-  console.log(charge);
+  const fd = new FormData();
 
-  showeditUnits();
+  fd.append("id",id)
+  fd.append("vendor",vendor)
+  fd.append("model",model)
+  fd.append("serial",serial)
+  fd.append("install",install)
+  fd.append("warend",warend)
+  fd.append("charge",charge)
+  fd.append("replace",replace)
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    document.getElementById(id+'img').style.filter = "invert()";
+
+    setTimeout(function(){
+      document.getElementById(id+'img').style.filter = "";
+    },2000)
+  }
+
+  xhttp.open("POST","/unitedit",true);
+  xhttp.send(fd);
+
+
 }
 
 function remunit(id){
