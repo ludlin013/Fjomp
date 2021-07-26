@@ -26,6 +26,10 @@
   cursor:pointer;
 }
 
+::placeholder{
+  color:#aaa!important
+}
+
 .settingadminrow p{
   transition-duration: .2s
 }

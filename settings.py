@@ -57,45 +57,26 @@ def settings():
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
 
-    if request.method == 'POST':
-        techid = request.form.getlist('id')
-        techfirst = request.form.getlist('firstname')
-        techlast = request.form.getlist('lastname')
-        techoffice = request.form.getlist('office')
-        techtech = request.form.getlist('tech')
-        print(techoffice)
-        print(techtech)
-        sqltechs = []
-        updtechs = []
+    mail = ["","",""]
 
-        for x in techs:
-            sqltechs.append((x[0],x[1].strip(),x[2].strip(),str(x[4]),str(x[5])))
-
-        print("=====================")
-        print(range(len(techid)))
-        for x in range(len(techid)):
-            print(x)
-            updtechs.append((techid[x],techfirst[x],techlast[x],techoffice[x],techtech[x]))
-
-        deleteuser = [list(set(sqltechs) - set(updtechs))]
-        newuser = [list(set(updtechs) - set(sqltechs))]
-        #print(sqltechs[12])
-        print(updtechs)
-
-        for x in newuser[0]:
-            if x[0] == "" or x[1] == "" or x[2] == "" or x[3] == "" or x[4] == "":
-                pass
-            else:
-                sql("INSERT","INSERT INTO Technicians (Tech_ID,Tech_Firstname,Tech_Lastname,Tech_Office,Tech_Tech) VALUES ('" + x[0].upper()+"','"+ x[1]+"','"+ x[2]+"','"+ x[3]+"','"+ x[4]+"')")
-
-        for x in deleteuser[0]:
-            #print("DELETE FROM Technicians WHERE Tech_ID = '" + x[0] +"'")
-            sql("INSERT","DELETE FROM Technicians WHERE Tech_ID = '" + x[0] +"'")
-
-        return redirect(url_for("settings"))
+    if not request.cookies.get("delivmail") or request.cookies.get("delivmail") == "":
+        mail[0] = "nisse@ekabss.com"
+    else:
+        mail[0] = request.cookies.get("delivmail")
 
 
-    return render_template("settings.html",theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
+    if not request.cookies.get("irmail") or request.cookies.get("irmail") == "":
+        mail[1] = "nisse@ekabss.com"
+    else:
+        mail[1] = request.cookies.get("irmail")
+
+    if not request.cookies.get("projmail") or request.cookies.get("projmail") == "":
+        mail[2] = "nisse@ekabss.com"
+    else:
+        mail[2] = request.cookies.get("projmail")
+
+
+    return render_template("settings.html",mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():

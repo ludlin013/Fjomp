@@ -125,7 +125,7 @@
 
     </script>
 
-<div class="settingstechwrap settingscategories" id="settingsparameters" style="display:none">
+<div class="settingstechwrap settingscategories" id="settingsparameters" style="display:">
   <h3 class="noselect">Company parameters</h3>
   <div class="settingstechhead">
     <p class="noselect cpvar">Variable</p>
@@ -148,9 +148,9 @@
 
 <div class="workstation noselect">
   <h3>Workstation parameters</h3>
-  <label>Default mail recipient for delivery note:<input></label>
-  <label>Default mail recipient for IR:<input></label>
-  <label>Default mail recipient for Projects:<input></label>
+  <label>Default mail recipient for delivery note:<input placeholder="nisse@ekabss.com" oninput="document.cookie = 'delivmail = ' + this.value+'; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'" value="{{mail[0]}}"></label>
+  <label>Default mail recipient for IR:<input placeholder="nisse@ekabss.com" oninput="document.cookie = 'irmail = ' + this.value+'; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'" value="{{mail[1]}}"></label>
+  <label>Default mail recipient for Projects:<input placeholder="nisse@ekabss.com" oninput="document.cookie = 'projmail = ' + this.value+'; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;'" value="{{mail[2]}}"></label>
   <label>Path for Softone deliv.note export:<input></label>
   <label>Max length for Softone notes:<input></label>
   <label>Lead text for delv. notes:<input></label>
@@ -181,7 +181,7 @@
 
 </div>
 
-<div class="settingstechwrap settingscategories" id="settingstech" style="display:">
+<div class="settingstechwrap settingscategories" id="settingstech" style="display:none">
   <h3 class="noselect">Technicians</h3>
   <div class="settingstechhead">
     <p class="noselect teid">ID</p>
