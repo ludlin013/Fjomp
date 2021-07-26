@@ -9,16 +9,17 @@ app.config['UPLOAD_FOLDER'] = '/static/uploads'
 
 import customers,parts,delivnotes,ir,swapouts,lookup,settings
 
-pro = '''
-server = "10.3.1.67,50404\\WSDATA"
-database = "Winstat"
+server = "p2019,50404\\WSData"
+database = "winstat"
 username = "sa"
-password = "kamikaze"'''
+password = "kamikaze"
 
-server = "10.3.1.193,50404\\FJOMP"
+server = "10.3.1.54,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"
+
+print('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password)
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password

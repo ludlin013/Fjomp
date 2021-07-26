@@ -2,10 +2,10 @@ from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
 
-server = "10.3.1.7\\WSDATA"
-database = "winstat"
-username = "sa"
-password = "kamikaze"
+server = "10.3.1.54,50404\\FJOMP"
+database = "Winstat"
+username = "admin"
+password = "admin"
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password

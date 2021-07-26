@@ -2,7 +2,7 @@ from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
 
-server = "10.3.1.193,50404\\FJOMP"
+server = "10.3.1.54,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"

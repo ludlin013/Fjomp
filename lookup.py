@@ -4,7 +4,7 @@ import pyodbc
 import datetime
 from datetime import datetime
 
-server = "10.3.1.193,50404\\FJOMP"
+server = "10.3.1.54,50404\\FJOMP"
 database = "Winstat"
 username = "admin"
 password = "admin"
