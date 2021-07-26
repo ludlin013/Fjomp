@@ -2,10 +2,10 @@ from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
 
-server = "10.3.1.54,50404\\FJOMP"
-database = "Winstat"
-username = "admin"
-password = "admin"
+server = "10.3.1.7\\WSData"
+database = "winstat"
+username = "sa"
+password = "kamikaze"
 
 cnxn = pyodbc.connect(
     'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
@@ -449,8 +449,10 @@ def delivstoreselect():
     custs.sort(key=lambda x:x[0])
 
     for x in custs:
-        if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
-            try:
-                result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
-            except: pass
+        try:
+            if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
+                try:
+                    result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
+                except: pass
+        except: pass
     return result
