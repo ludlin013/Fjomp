@@ -459,3 +459,28 @@ def unitsave():
     sql("INSERT",saveirq)
 
     return ('', 204)
+
+
+@app.route("/irpartselect", methods=["GET","POST"])
+def irpartselect():
+
+    print(request.form)
+
+    allparts = sql("SELECT","SELECT Part_Partno, Part_Part, Part_Stock, Part_Outprice, Part_Price2, Part_Price3, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9 FROM Parts")
+    result = ""
+    allparts.sort(key=lambda x:x[0])
+
+    for x in allparts:
+
+        if request.form["partnum"].lower() in x[0].lower() and request.form["partname"].lower() in x[1].lower() :
+            price = str(x[3])
+            if request.form["pg"] != "1":
+                print(request.form["pg"])
+                price = x[int(request.form["pg"])+2]
+                print(price)
+            try:
+                result += x[0].strip() + "\t" + x[1].strip() + "\t" + str(x[2]) + "\t" + str(price) + "\n"
+            except: pass
+
+
+    return result

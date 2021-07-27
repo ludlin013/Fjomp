@@ -29,6 +29,11 @@
     <a class="navitemin noselect" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
   </div>
+
+  <input type="hidden" id="idOfPart" value="">
+  <div class="partselect" id="partselect" style="display:none">
+  </div>
+
   <div class="mainwrapir">
     <h1 class="noselect">IR</h1>
     <div class="toppage-ir">
@@ -209,10 +214,10 @@
                 {% for n in parts %}
                 <input type="hidden" name="{{parts.index(n)}}spareid" value="{{n[15]}}">
                 <tr class="row-ir" onclick="selectspare('{{n[15]}}')" id="list2-ir{{n[15]}}">
-                  <td class="thpart-ir "><input class="irpartno" type="text" name="{{parts.index(n)}}sparenumber" {%if n[4] %} value="{{n[4].strip()}}" {% endif %}></td>
-                  <td class="thdesc-ir"><input class="irpartde" type="text" name="{{parts.index(n)}}sparedesc" {%if n[5] %} value="{{n[5].strip()}}" {% endif %}></td>
-                  <td class="thprice-ir"><input class="irpartpr" type="text" name="{{parts.index(n)}}spareprice" {%if n[8] %} value="{{n[8]}}" {% endif %}></td>
-                  <td class="thqty-ir"><input class="irpartqt" type="text" name="{{parts.index(n)}}spareqty" {%if n[6] %} value="{{n[6]}}" {% endif %}></td>
+                  <td class="thpart-ir "><input class="irpartno" type="text" id="{{parts.index(n)}}num" name="{{parts.index(n)}}sparenumber" {%if n[4] %} value="{{n[4].strip()}}" {% endif %} onkeydown="irpartselect({{parts.index(n)}},event,'1')"></td>
+                  <td class="thdesc-ir"><input class="irpartde" type="text" id="{{parts.index(n)}}nam" name="{{parts.index(n)}}sparedesc" {%if n[5] %} value="{{n[5].strip()}}" {% endif %} onkeydown="irpartselect({{parts.index(n)}},event,'1')"></td>
+                  <td class="thprice-ir"><input class="irpartpr" type="text" id="price{{parts.index(n)}}" name="{{parts.index(n)}}spareprice" {%if n[8] %} value="{{n[8]}}" {% endif %}></td>
+                  <td class="thqty-ir"><input class="irpartqt" type="number" id="qty{{parts.index(n)}}" name="{{parts.index(n)}}spareqty" {%if n[6] %} value="{{n[6]}}" {% endif %}></td>
                   <td class="thcharge2-ir">
                     <select class="irchargedrop irpartch" name="{{parts.index(n)}}sparecharge">
                       <option value="" selected hidden></option>

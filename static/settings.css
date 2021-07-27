@@ -239,6 +239,7 @@ h3{
 }
 
 .tetech {
+  cursor: pointer;  
   display: flex;
   justify-content: center;
   align-items: center;

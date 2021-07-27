@@ -197,9 +197,13 @@ td input[type=date]{
 
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
-  max-width: 1200px;
+  max-width: 1180px;
   height: 400px;
   overflow-y: scroll;
+}
+
+.tabell-customers {
+  width:1180px
 }
 
 .buttonsbar{

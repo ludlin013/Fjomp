@@ -327,8 +327,8 @@ function getstore(e){
         document.getElementById("storeNumber").value = store[0];
         document.getElementById("storeName").value = store[1];
         document.getElementById("storestreet").value = store[2];
-        document.getElementById("City").value = store[3];
-        document.getElementById("ZIP").value = store[4];
+        document.getElementById("ZIP").value = store[3];
+        document.getElementById("City").value = store[4];
         document.getElementById("contact").value = store[5];
       }
     }
@@ -346,8 +346,8 @@ function chooseStore(e){
     document.getElementById("contact").value = e.srcElement.children[1].textContent;
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
-    document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
     document.getElementById("City").value = e.srcElement.children[5].textContent;
+    document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
 
   }else if(e.key == "Escape"){
     document.getElementById('storelist').style.display = "none";

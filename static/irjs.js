@@ -122,3 +122,82 @@ function removespare(arg){
 
   document.getElementById("list2-ir" + arg).style.display = "none";
 }
+
+function irpartselect(id, key, price){
+  if(key.key == "Enter"){
+    var partnum = document.getElementById(id+"num").value;
+    var partname = document.getElementById(id+"nam").value;
+
+    document.getElementById('idOfPart').value = id;
+
+    fd = new FormData();
+
+    fd.append("partnum", partnum)
+    fd.append("partname", partname)
+    fd.append("pg", price)
+
+    const xhttp = new XMLHttpRequest();
+
+
+
+    xhttp.onload = function() {
+      document.getElementById('partselect').style.display = "flex";
+
+      var parent = document.getElementById('partselect');
+
+      parent.innerHTML = "";
+
+      var parts = this.responseText.split("\n");
+      parts.splice(parts.length-1, 1)
+
+
+      for(x of parts){
+        var part = document.createElement("div");
+        part.classList.add("partitem");
+        part.tabIndex = "0";
+        part.addEventListener('keydown',choosePart)
+        part.addEventListener('mousedown',choosePart)
+
+        var num = document.createElement("p");
+        num.classList.add("partnum")
+        var name = document.createElement("p");
+        name.classList.add("partname")
+        var price = document.createElement("p");
+        price.classList.add("partprice")
+        var qty = document.createElement("p");
+        qty.classList.add("partqty")
+
+        num.appendChild(document.createTextNode(x.split("\t")[0]));
+        name.appendChild(document.createTextNode(x.split("\t")[1]));
+        price.appendChild(document.createTextNode(x.split("\t")[2]));
+        qty.appendChild(document.createTextNode(x.split("\t")[3]));
+
+        part.appendChild(num);
+        part.appendChild(name);
+        part.appendChild(price);
+        part.appendChild(qty);
+
+        parent.appendChild(part);
+      }
+      document.getElementsByClassName('partitem')[0].focus();
+    }
+
+    xhttp.open("POST","/delivpartselect",true);
+    xhttp.send(fd);
+  }
+}
+
+function choosePart(e){
+  var id = document.getElementById("idOfPart").value;
+  if(e.key == "Enter" || e.button == 0){
+    document.getElementById(id+"num").value = e.srcElement.children[0].textContent;
+    document.getElementById(id+"nam").value = e.srcElement.children[1].textContent;
+    document.getElementById("price"+id).value = e.srcElement.children[3].textContent;
+    document.getElementById("qty"+id).value = "1.00";
+    document.getElementById('partselect').style.display = "none";
+    document.getElementById("price"+document.getElementById("idOfPart").value).focus()
+  }else if(e.key == "Escape"){
+    document.getElementById('partselect').style.display = "none";
+    document.getElementById(document.getElementById("idOfPart").value + "num").focus()
+  }
+}

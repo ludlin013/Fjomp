@@ -135,6 +135,9 @@ def delivnotes():
     previous = min
     next = maxad
     lastdn = request.cookies.get("lastdn")
+    mailadr = request.cookies.get("delivmail")
+
+    print(mailadr)
 
     allparts = sql("SELECT","SELECT * FROM Parts")
 
@@ -309,7 +312,7 @@ def delivnotes():
     except:
         pass
 
-    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts)
+    return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts, mailadr=mailadr)
 
 
 @app.route("/savedeliv", methods=["GET","POST"])
