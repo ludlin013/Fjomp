@@ -101,7 +101,10 @@ function newspare(arg){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/newspare",true);
   xhttp.send(fd);
-  location.reload();
+
+  setTimeout(function(){
+    location.reload();
+  },500);
 }
 
 function selectspare(arg){
