@@ -16,8 +16,16 @@
   width:100%;
 }
 
+.nameaddr {
+  width:220px
+}
+
 .form-ir{
   margin:10px;
+}
+
+.toppageleft2-ir{
+  padding-right: 10px
 }
 
 .iridform{
@@ -40,7 +48,7 @@
 .formitem-ir{
   margin:2px;
   display:flex;
-
+  justify-content: space-between;
 }
 
 ::-webkit-outer-spin-button, ::-webkit-inner-spin-button {
@@ -146,7 +154,7 @@ textarea{
 }
 
 .repdiv{
-  margin-left: 60px;
+  margin-left: 75px;
 }
 
 .reporttextarea{
@@ -212,6 +220,7 @@ textarea{
 
 .toppagemiddle2-ir{
   display:flex;
+  padding-top: 20px
 }
 
 #partserialir{
@@ -271,6 +280,7 @@ textarea{
 
 .bottommiddle-ir{
   display:flex;
+  padding-left: 10px;
   flex-direction: column;
 }
 

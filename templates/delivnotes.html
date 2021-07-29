@@ -295,7 +295,8 @@
 
             xhttp.onload = function(){
               location.reload();
-              {% if delivnote %} window.location.href='mailto:{{mailadr}}?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}' {% endif %}
+              window.location.href = "/deliverymail/{{delivnote}}"
+              //window.location.href='mailto:{{mailadr}}?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}'
             }
 
             xhttp.open("POST","/savedeliv",true);

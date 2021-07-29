@@ -140,7 +140,7 @@ def delivnotes():
     print(mailadr)
 
     if not mailadr or mailadr == "":
-        mailadr = "nisse@ekabss.com" 
+        mailadr = "nisse@ekabss.com"
 
     allparts = sql("SELECT","SELECT * FROM Parts")
 
@@ -470,3 +470,67 @@ def setpricegroup():
     result = str(prices[0][int(pgid) - 1])
 
     return result
+
+
+@app.route("/deliverymail/<num>", methods=["GET","POST"])
+def deliverymail(num):
+
+    mailadr = request.cookies.get("delivmail")
+
+    print(mailadr)
+
+    if not mailadr or mailadr == "":
+        mailadr = "nisse@ekabss.com"
+
+    note = sql("SELECT","SELECT * FROM DelivNotes WHERE DN_no = '"+num+"'")
+    store = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '"+note[0][0]+"'")[0]
+    freight = dict(sql("SELECT","SELECT Freight_ID, Freight_Description FROM FreightTypes"))
+
+    print(freight)
+
+    print(note)
+    print(store)
+
+    nolen = []
+    namelen = []
+    mailbody = " "
+    for x in note:
+        try:
+            nolen.append(len(x[5].strip()))
+            namelen.append(len(x[6].strip()))
+        except:
+            nolen.append(1)
+            namelen.append(1)
+
+    try:
+        mailbody += "Delivery note # " + num + " Customer: " + note[0][0] + "  " + store[2] + "%0D%0D"
+        mailbody += "Created by: " + note[0][16] + ", " + note[0][4].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + note[0][3] + "%0D%0D"
+    except:
+        pass
+
+    for x in note:
+        try:
+            mailno = x[5].strip()
+            mailname = x[6].strip()
+            mailqty = str(x[8]).strip()
+        except:
+            mailno = ""
+            mailname = ""
+            mailqty = ""
+
+        fspace = "%09"
+        sspace = "%09"
+
+        if max(nolen) >= 10 and len(mailno) <= 12:
+            fspace += "%09"
+        if max(namelen) >= 10 and len(mailname) <= 13:
+            sspace += "%09"
+
+        mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D"
+
+
+    mailbody += "%0DFrakt: " + freight[note[0][15].strip()+"  "]
+
+
+
+    return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, deliverynote=num, store=store, note=note)

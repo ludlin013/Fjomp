@@ -70,8 +70,8 @@
 
       </div>
       <div class="toppageright2-ir">
-          <div class="formitem-ir"><label class="noselect">Name:</label><input readonly class="forminput-ir" type="text" value="{{customer[2].strip()}}"></div>
-          <div class="formitem-ir"><label class="noselect">Address:</label><input readonly class="forminput-ir" type="text" value="{{customer[3].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Name:</label><input readonly class="forminput-ir nameaddr" type="text" value="{{customer[2].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Address:</label><input readonly class="forminput-ir nameaddr" type="text" value="{{customer[3].strip()}}"></div>
           <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input readonly id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input readonly id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
       </div>
       <div class="toppageright-ir">
@@ -81,10 +81,10 @@
     </div>
 
     <div class="toppage2-ir">
-      <div class="2toppageleft-ir">
+      <div class="toppageleft2-ir">
           <div class="formitem-ir"><label class="noselect">Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
           <div class="formitem-ir"><label class="noselect">Sign.:</label>
-            <select class="forminput-ir" id="techid" style="width: 210px;" type="text" name="sign-ir" >
+            <select class="forminput-ir" id="techid" style="width: 168px;" type="text" name="sign-ir" >
               <option value="{{user}}" selected hidden>{{user}}</option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
@@ -97,14 +97,14 @@
             <input ondblclick="setday(irredate)" type="date"  id="irredate" {% if irinfo[3]%} value="{{irinfo[3].strftime("%Y-%m-%d")}}" {% endif %}>
           </div>
           <div class="formitem-ir"><label class="noselect">Sent with (freight type):</label>
-            <select class="forminput-ir" id="irinfreight" style="width: 210px;" type="text" name="sent-ir">
+            <select class="forminput-ir" id="irinfreight" style="width: 168px;" type="text" name="sent-ir">
               <option value="2" selected hidden>POSTEN 16:00</option>
               {% for x in freight %}
               <option value="{{x[0]}}" {% if irinfo[10] == x[0] %}selected{% endif %}>{{x[1]}}</option>
               {% endfor %}
             </select></div>
             <div class="formitem-ir"><label class="noselect">Repair Location:</label>
-              <select class="forminput-ir" id="irloc" style="width: 210px;" type="text" name="repairlocation-ir">
+              <select class="forminput-ir" id="irloc" style="width: 168px;" type="text" name="repairlocation-ir">
                 {% for x in office %}
                 <option value="{{x[0]}}">{{x[1]}}</option>
                 {% endfor %}
@@ -227,7 +227,7 @@
                       {% endfor %}
                     </select></td>
                     <td class="thmodel2-ir"><input readonly class="irpartmo" type="text" name="{{parts.index(n)}}sparemodel" {%if n[2] %} value="{{n[2].strip()}}" {% endif %}></td>
-                    <td class="thserial2"><input readonly onclick="this.select()" class="irpartse" type="text" name="{{parts.index(n)}}spareserial" {%if n[3] %} value="{{n[3].strip()}}" {% endif %}></td>
+                    <td class="thserial2"><input onclick="this.select()" class="irpartse" type="text" name="{{parts.index(n)}}spareserial" {%if n[3] %} value="{{n[3].strip()}}" {% endif %}></td>
                   </tr>
                   {% endfor %}
                 </tbody>
@@ -239,14 +239,14 @@
           </div>
           <div class="bottommiddle-ir">
               <div class="formitem-ir"><label class="noselect">Repaired by:</label>
-                <select class="forminput-ir" id="irrepairid" style="width: 210px;" type="text" name="repairby-ir">
+                <select class="forminput-ir" id="irrepairid" style="width: 168px;" type="text" name="repairby-ir">
                   <option value="" selected hidden></option>
                   {% for x in techs %}
                   <option value="{{x[0]}}" {% if x[0] == irinfo[5] %} selected {% endif %}>{{x[0]}}</option>
                   {% endfor %}
                 </select></div>
                 <div class="formitem-ir"><label class="noselect">Return freight:</label>
-                  <select class="forminput-ir" id="irrefreight" style="width: 210px;" type="text" name="returnfreight-ir">
+                  <select class="forminput-ir" id="irrefreight" style="width: 168px;" type="text" name="returnfreight-ir">
                     {% for x in freight %}
                     <option value="{{x[0]}}" {% if irinfo[11] == x[0] %}selected{% endif %}>{{x[1]}}</option>
                     {% endfor %}

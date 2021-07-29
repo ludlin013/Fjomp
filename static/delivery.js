@@ -391,7 +391,14 @@ function getstore(e){
         document.getElementById("storestreet").value = store[2];
         document.getElementById("ZIP").value = store[3];
         document.getElementById("City").value = store[4];
-        document.getElementById("contact").value = store[5];
+
+        if(document.getElementById("contact").value == ""){
+          console.log(document.getElementById("contact").value);
+          document.getElementById("contact").value = e.srcElement.children[1].textContent;
+        }else{
+          console.log(document.getElementById("contact").value);
+        }
+        
         document.getElementById("inputnum").value = store[6];
       }
     }
@@ -405,7 +412,14 @@ function chooseStore(e){
   if(e.key == "Enter" || e.button == 0){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
-    document.getElementById("contact").value = e.srcElement.children[1].textContent;
+
+    if(document.getElementById("contact").value == ""){
+      console.log(document.getElementById("contact").value);
+      document.getElementById("contact").value = e.srcElement.children[1].textContent;
+    }else{
+      console.log(document.getElementById("contact").value);
+    }
+
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
     document.getElementById("City").value = e.srcElement.children[5].textContent;
