@@ -215,7 +215,7 @@
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
-        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b></p>
+        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b><br>Ekab Copy!</p>
         <div class="textnotes"><p><b>Text/Notes</b></p></div>
       </div>
       <div class="headerright">
@@ -326,10 +326,115 @@
         </div>
       </div>
   </div>
+  <div style="page-break-before:always;"></div>
+
+
+
+  <div class="wrapper">
+    <div class="header" style="margin-bottom:14px">
+      <div class="headerleft">
+        <div class="textnotes"><p><b>Text/Notes</b></p></div>
+      </div>
+      <div class="headerright">
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Cust. ID:</b></p>
+            <p><b>Cust. Name:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>ZIP / City:</b></p>
+            <p><b>Cust. Ref:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>{{Dict["storenum"]}}</p>
+            <p>{{Dict["storename"]}}</p>
+            <p>{{Dict["street"]}}</p>
+            <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
+            <p>{{Dict["referens"]}}</p>
+          </div>
+        </div>
+        <div class="bottomrightheader">
+          <div class="bottomrightleft">
+            <div class="bottomrightstatic">
+              <p><b>Date: </b></p>
+              <p><b>Office: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>&nbsp{{Dict["date"]}}</p>
+              <p>&nbsp{{Dict["office"]}}</p>
+            </div>
+          </div>
+          <div class="bottomrightright">
+            <div class="bottomrightstatic">
+              <p><b>Our ref: </b></p>
+              <p><b>Shipping: </b></p>
+            </div>
+            <div class="bottomrightdynamic">
+              <p>&nbsp{{name[Dict["DN_Sign"]]}}</p>
+              <p>&nbsp{{Dict["freighttype"]}}</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
+      <div class="itembox">
+        <div class="itemheader">
+          <div class="Partnum"><b>Part #</b></div>
+          <div class="Part"><b>Part</b></div>
+          <div class="Qty"><b>Qty</b></div>
+          <div class="Backord textaligncenter"><b>Back ord.</b></div>
+          <div class="Nocharge textaligncenter"><b>No charge</b></div>
+        </div>
+        {% for x in sqlq%}
+        {% if sqlq.index(x) == 22-forcount %}</div>
+        <div class="itembox" style="margin-top:300px; min-height:660px;">
+          <div class="itemheader">
+            <div class="Partnum"><b>Part #</b></div>
+            <div class="Part"><b>Part</b></div>
+            <div class="Qty"><b>Qty</b></div>
+            <div class="Backord textaligncenter"><b>Back ord.</b></div>
+            <div class="Nocharge textaligncenter"><b>No charge</b></div>
+          </div>
+          {% endif %}
+          <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
+            <div class="Partnum">{{x[5].strip()}}</div>
+            <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
+            <div class="Qty">{{x[8]}}</div>
+            <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
+            <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
+          </div>
+        {% endfor %}
+        </table>
+      </div>
+      <div class="totalvalue">
+        <div class="righttotalvalue"><p><b>Total value: </b></p><div class="dynamicprice"><p>{{total}} <b>kr</b></p></div></div>
+      </div>
+      <div class="contactinfo">
+        <div class="column">
+          <p>{{contact[0][2]}}</p>
+          <p>{{contact[1][2]}}</p>
+          <p>{{contact[2][2]}} {{contact[3][2]}}</p>
+        </div>
+        <div class="column">
+          <p>Email / Web:</p>
+          <p>{{contact[6][2]}}</p>
+          <p>{{contact[7][2]}}</p>
+        </div>
+        <div class="column">
+          <p>Phone:</p>
+          <p>Nat. {{contact[4][2]}}</p>
+          <p>Int. {{contact[9][2]}}</p>
+        </div>
+        <div class="column">
+          <p>Org.no / VAT:</p>
+          <p>{{contact[8][2]}}</p>
+        </div>
+      </div>
+  </div>
   <script>
     function docPrint(){
       window.print()
-      setTimeout("closePrintView()", 1000);
+      //setTimeout("closePrintView()", 1000);
     }
     function closePrintView() {
       document.location.href = 'delivnotes';

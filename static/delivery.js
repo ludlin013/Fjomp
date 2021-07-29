@@ -330,6 +330,7 @@ function getstore(e){
         document.getElementById("ZIP").value = store[3];
         document.getElementById("City").value = store[4];
         document.getElementById("contact").value = store[5];
+        document.getElementById("inputnum").value = store[6];
       }
     }
 
@@ -339,7 +340,6 @@ function getstore(e){
 }
 
 function chooseStore(e){
-  console.log(e.button);
   if(e.key == "Enter" || e.button == 0){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;

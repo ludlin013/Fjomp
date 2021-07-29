@@ -447,7 +447,7 @@ def delivstoreselect():
 
     s = request.form["search"].lower()
 
-    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact FROM Customers")
+    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact, Cust_Pricegroup FROM Customers")
     result = ""
     custs.sort(key=lambda x:x[0])
 
@@ -455,7 +455,7 @@ def delivstoreselect():
         try:
             if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
                 try:
-                    result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\n"
+                    result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
                 except: pass
         except: pass
     return result
