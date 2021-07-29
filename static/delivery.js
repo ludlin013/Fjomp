@@ -446,6 +446,9 @@ function selectpg(pgid, row){
   xhttp.onload = function(){
 
     document.getElementById('price'+row).value = this.responseText;
+    priceupdate(row);
+    totalupdate(row);
+    alltotal()
   }
 
   xhttp.open("POST","/setpricegroup",true);

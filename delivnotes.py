@@ -137,6 +137,10 @@ def delivnotes():
     lastdn = request.cookies.get("lastdn")
     mailadr = request.cookies.get("delivmail")
 
+    print(mailadr)
+
+    if not mailadr or mailadr == "":
+        mailadr = "nisse@ekabss.com" 
 
     allparts = sql("SELECT","SELECT * FROM Parts")
 
