@@ -119,6 +119,11 @@
     text-align: right;
   }
 
+  .Qty2{
+    width: 60px;
+    text-align: right;
+  }
+
   .Price{
     width: 75px;
     text-align: right;
@@ -126,6 +131,11 @@
 
   .Disc{
     width: 40px;
+    text-align: right;
+  }
+
+  .Disc2{
+    width: 100px;
     text-align: right;
   }
 
@@ -141,6 +151,11 @@
 
   .Backord{
     width: 40px;
+  }
+
+  .Backord2{
+    text-align: right;
+    width: 180px;
   }
 
   .Nocharge{
@@ -198,6 +213,15 @@
     border: none;
   }
 
+  .ekabcopy{
+    position: absolute;
+    margin:130px 0 0 60px;
+    font-size: 20px;
+    color:lightgrey;
+    font-weight: bolder;
+    text-align: center
+  }
+
   @Page{
     margin-bottom: 50px;
   }
@@ -212,10 +236,11 @@
 </style>
 <body onload="docPrint()">
   <div class="wrapper">
+    <p class="ekabcopy">Ekab Copy!</p>
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
-        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b><br>Ekab Copy!</p>
+        <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b></p>
         <div class="textnotes"><p><b>Text/Notes</b></p></div>
       </div>
       <div class="headerright">
@@ -270,7 +295,7 @@
           <div class="Netvalue"><b>Netvalue</b></div>
           <div class="Total"><b>Total</b></div>
           <div class="Backord textaligncenter"><b>Back ord.</b></div>
-          <div class="Nocharge textaligncenter"><b>No charge</b></div>
+          <div class="Nocharge textaligncenter"><b>No chrg</b></div>
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
@@ -284,7 +309,7 @@
             <div class="Netvalue"><b>Netvalue</b></div>
             <div class="Total"><b>Total</b></div>
             <div class="Backord textaligncenter"><b>Back ord.</b></div>
-            <div class="Nocharge textaligncenter"><b>No charge</b></div>
+            <div class="Nocharge textaligncenter"><b>No chrg</b></div>
           </div>
           {% endif %}
           <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
@@ -381,9 +406,10 @@
         <div class="itemheader">
           <div class="Partnum"><b>Part #</b></div>
           <div class="Part"><b>Part</b></div>
-          <div class="Qty"><b>Qty</b></div>
-          <div class="Backord textaligncenter"><b>Back ord.</b></div>
-          <div class="Nocharge textaligncenter"><b>No charge</b></div>
+          <div class="Qty2"><b>Qty</b></div>
+          <div class="Disc2"><b>Disc.</b></div>
+          <div class="Backord2"><b>Back ord.</b></div>
+          <div class="Nocharge textaligncenter"><b>No chrg</b></div>
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
@@ -391,16 +417,18 @@
           <div class="itemheader">
             <div class="Partnum"><b>Part #</b></div>
             <div class="Part"><b>Part</b></div>
-            <div class="Qty"><b>Qty</b></div>
-            <div class="Backord textaligncenter"><b>Back ord.</b></div>
-            <div class="Nocharge textaligncenter"><b>No charge</b></div>
+            <div class="Qty2"><b>Qty</b></div>
+            <div class="Disc2"><b>Disc.</b></div>
+            <div class="Backord2"><b>Back ord.</b></div>
+            <div class="Nocharge textaligncenter"><b>No chrg</b></div>
           </div>
           {% endif %}
           <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
             <div class="Partnum">{{x[5].strip()}}</div>
             <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
-            <div class="Qty">{{x[8]}}</div>
-            <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
+            <div class="Qty2">{{x[8]}}</div>
+            <div class="Disc2">{% if x[10] != 0 %}{{x[10]}}{% endif %}</div>
+            <div class="Backord2">{% if x[18] != 0%}✔{% endif %}</div>
             <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
           </div>
         {% endfor %}
