@@ -365,3 +365,27 @@ for(x of document.getElementsByClassName('numfoc')){
 if(document.getElementById("storeNumber").value == ""){
   document.getElementById("storeNumber").focus()
 }
+
+
+
+
+
+function selectpg(pgid, row){
+
+  var part = document.getElementById('num'+row).value;
+
+  const fd = new FormData();
+
+  fd.append("pgid",pgid)
+  fd.append("part",part)
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+
+    document.getElementById('price'+row).value = this.responseText;
+  }
+
+  xhttp.open("POST","/setpricegroup",true);
+  xhttp.send(fd);
+}

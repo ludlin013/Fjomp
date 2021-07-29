@@ -114,7 +114,6 @@
               <th class="thQTY-delivnotes noselect">QTY</th>
               <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes noselect">Pricegroup</th>
               <th class="thprice-delivnotes noselect">Price</th>
-
               <th class="thdiscount-delivnotes noselect">% Disc.</th>
               <th class="thnetvalue-delivnotes noselect">Netvalue</th>
               <th class="thtotal-delivnotes noselect">Total</th>
@@ -131,9 +130,9 @@
               <td class="thserial-delivnotes"><input class="forminput-delivnotes3" id="ser{{sqlq.index(x)}}" value="{{x[7].strip()}}"></td>
               <td class="thQTY-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
               <td class="thpricegroup-delivnotes">
-                <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes3" onchange="setpricegroup({{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" value="{{x[26]}}">
-                  {% for y in pricegroups[sqlq.index(x)] %}
-                    <option value="{{y}}: {{pricegroups[sqlq.index(x)][y]}}" {% if y == x[26] %} selected {% endif %}>{{y}}: {{pricegroups[sqlq.index(x)][y]}}</option>
+                <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes3" onchange="selectpg(this.value, {{sqlq.index(x)}});priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" value="{{x[26]}}">
+                  {% for y in Dict["pricegroup"] %}
+                    <option value="{{y}}" {% if y == x[26] %} selected {% endif %}>{{y}}: {{Dict["pricegroup"][y]}}</option>
                   {% endfor %}
                 </select>
               </td>
@@ -153,7 +152,6 @@
           </tr>
             {% endfor %}
           </tbody>
-          <script src="static/partsearch.js"></script>
         </table>
         <div class="controllpanel-delivnote">
           <div class="buttons-delivnote">
