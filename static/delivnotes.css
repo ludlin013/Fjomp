@@ -105,9 +105,13 @@
   margin-top:5px;
 }
 
-.forminput-delivnotes,
-.forminput-delivnotes3{
+.forminput-delivnotes{
   padding:5px;
+  width: 250px;
+}
+
+forminput-delivnotes3{
+  padding:2px 5px;
   width: 250px;
 }
 
@@ -252,7 +256,7 @@ th{
 
 
 table, td {
-  padding: 2px;
+  padding:0 2px;
   white-space: nowrap;
 }
 
