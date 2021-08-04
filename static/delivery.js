@@ -278,7 +278,7 @@ function delivpartselect(id, key, price){
         part.classList.add("partitem");
         part.tabIndex = "0";
         part.addEventListener('keydown',choosePart)
-        part.addEventListener('mousedown',choosePart)
+        part.onclick = function(){clickpart(this)}
 
         var num = document.createElement("p");
         num.classList.add("partnum")
@@ -311,7 +311,7 @@ function delivpartselect(id, key, price){
 
 function choosePart(e){
   var id = document.getElementById("idOfPart").value;
-  if(e.key == "Enter" || e.button == 0){
+  if(e.key == "Enter"){
     document.getElementById("num"+id).value = e.srcElement.children[0].textContent;
     document.getElementById("nam"+id).value = e.srcElement.children[1].textContent;
     document.getElementById("price"+id).value = e.srcElement.children[3].textContent;
@@ -323,6 +323,19 @@ function choosePart(e){
     document.getElementById('partselect').style.display = "none";
     document.getElementById("num"+document.getElementById("idOfPart").value).focus()
   }
+}
+
+function clickpart(c){
+  var id = document.getElementById("idOfPart").value;
+
+    document.getElementById("num"+id).value = c.children[0].textContent;
+    document.getElementById("nam"+id).value = c.children[1].textContent;
+    document.getElementById("price"+id).value = c.children[3].textContent;
+    document.getElementById("qty"+id).value = "1.00";
+    priceupdate(id);totalupdate(id);alltotal();
+    document.getElementById('partselect').style.display = "none";
+    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+
 }
 
 document.getElementById('storeNumber').addEventListener("keydown", getstore);
