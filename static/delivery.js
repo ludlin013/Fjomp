@@ -350,7 +350,7 @@ function getstore(e){
           storeitem.classList.add("storeitem");
           storeitem.tabIndex = "0";
           storeitem.addEventListener('keydown',chooseStore)
-          storeitem.addEventListener('mousedown',chooseStore)
+          storeitem.onclick = function(){clickstore(this)};
 
           var id = document.createElement("p");
           id.classList.add("storeid")
@@ -392,14 +392,25 @@ function getstore(e){
         document.getElementById("ZIP").value = store[3];
         document.getElementById("City").value = store[4];
 
-        if(document.getElementById("contact").value == ""){
-          console.log(document.getElementById("contact").value);
-          document.getElementById("contact").value = e.srcElement.children[1].textContent;
-        }else{
-          console.log(document.getElementById("contact").value);
-        }
-        
+        document.getElementById("contact").value = store[5];
+
+
         document.getElementById("inputnum").value = store[6];
+
+        const fd = new FormData();
+
+        fd.append("store",store[0])
+        fd.append("contact",store[5])
+        fd.append("noteid",document.getElementById("delivnote-number").value)
+        fd.append("name",store[1])
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST","/savestore",true);
+        xhttp.send(fd);
+
+        for(x of document.getElementsByClassName('numfoc')){
+          x.focus()
+        }
       }
     }
 
@@ -409,27 +420,68 @@ function getstore(e){
 }
 
 function chooseStore(e){
-  if(e.key == "Enter" || e.button == 0){
+  if(e.key == "Enter"){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
 
-    if(document.getElementById("contact").value == ""){
-      console.log(document.getElementById("contact").value);
-      document.getElementById("contact").value = e.srcElement.children[1].textContent;
-    }else{
-      console.log(document.getElementById("contact").value);
-    }
+    document.getElementById("contact").value = e.srcElement.children[1].textContent;
+
 
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
     document.getElementById("City").value = e.srcElement.children[5].textContent;
     document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
 
+    const fd = new FormData();
+
+    fd.append("store",e.srcElement.children[0].textContent)
+    fd.append("contact",e.srcElement.children[1].textContent)
+    fd.append("noteid",document.getElementById("delivnote-number").value)
+    fd.append("name",e.srcElement.children[2].textContent)
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","/savestore",true);
+    xhttp.send(fd);
+
+    for(x of document.getElementsByClassName('numfoc')){
+      x.focus()
+    }
+
   }else if(e.key == "Escape"){
     document.getElementById('storelist').style.display = "none";
   }
+
+
 }
-//savedel()
+
+function clickstore(chosen){
+  document.getElementById('storelist').style.display = "none";
+  document.getElementById("storeNumber").value = chosen.children[0].textContent;
+
+
+  document.getElementById("contact").value = chosen.children[1].textContent;
+
+
+  document.getElementById("storeName").value = chosen.children[2].textContent;
+  document.getElementById("storestreet").value = chosen.children[3].textContent;
+  document.getElementById("City").value = chosen.children[5].textContent;
+  document.getElementById("ZIP").value = chosen.children[4].textContent;
+
+  const fd = new FormData();
+
+  fd.append("store",chosen.children[0].textContent)
+  fd.append("contact",chosen.children[1].textContent)
+  fd.append("noteid",document.getElementById("delivnote-number").value)
+  fd.append("name",chosen.children[2].textContent)
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST","/savestore",true);
+  xhttp.send(fd);
+
+  for(x of document.getElementsByClassName('numfoc')){
+    x.focus()
+  }
+}
 
 for(x of document.getElementsByClassName('numfoc')){
 

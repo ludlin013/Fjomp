@@ -356,7 +356,7 @@ th{
 }
 
 .addremirpart a {
-  padding:10px 10px;
+  padding:5px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -365,6 +365,10 @@ th{
 .addremirpart img{
   width: 20px;
   height: 20px;
+}
+
+#{
+  cursor:pointer;
 }
 
 #irerror{
