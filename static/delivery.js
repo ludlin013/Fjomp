@@ -208,6 +208,8 @@ function newunit(){
   xhttp.open("POST","/newdelunit",true);
   xhttp.send(fd);
 
+  savedel()
+
   setTimeout(function(){ location.reload() }, 400);
 }
 
