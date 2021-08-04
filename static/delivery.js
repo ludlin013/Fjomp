@@ -1,4 +1,65 @@
 
+function savedelprint(note){
+  var noteNum = document.getElementById('delivnote-number').value;
+  var storeNum = document.getElementById('storeNumber').value;
+  var storeName = document.getElementById('storeName').value;
+  var contact = document.getElementById('contact').value;
+  var date = document.getElementById('dndate').value;
+
+  var close = document.getElementById('dnclosed').checked;
+  var freight = document.getElementById('dnfreight').value;
+  var sign = document.getElementById('dnsign').value;
+  var notes = document.getElementById('textarea-delivnotes').value;
+  var office = document.getElementById('dnoffice').value;
+  var pg = document.getElementById('inputnum').value;
+  var offer = document.getElementById('dnoffer').checked;
+  var final = document.getElementById('dnfinal').checked;
+
+
+  var fd = new FormData();
+
+   fd.append("noteNum",noteNum);
+   fd.append("storeNum",storeNum);
+   fd.append("storeName",storeName);
+   fd.append("contact",contact);
+   fd.append("date",date);
+   fd.append("close",close);
+   fd.append("freight",freight);
+   fd.append("sign",sign);
+   fd.append("notes",notes);
+   fd.append("office",office);
+   fd.append("pg",pg);
+   fd.append("offer",offer);
+   fd.append("final",final);
+
+
+  var all = document.getElementsByClassName('forminput-delivnotes3');
+
+  for (x of all){
+    if(x.type === "checkbox" ){
+      fd.append(x.id,x.checked)
+    }else{
+      fd.append(x.id,x.value)
+    }
+  }
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    window.location.href= '/pdffile?dn=' + note
+  }
+
+  xhttp.open("POST","/savedeliv",true);
+  xhttp.send(fd);
+
+  document.getElementById('statusmsg').style.maxHeight = "50px";
+  document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+  setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+
+}
+
+
 function savedeldir(){
   var noteNum = document.getElementById('delivnote-number').value;
   var storeNum = document.getElementById('storeNumber').value;
