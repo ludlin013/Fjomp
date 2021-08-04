@@ -205,12 +205,14 @@ function newunit(){
   fd.append("pg",pg)
 
   var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    savedeldir()
+  }
+
   xhttp.open("POST","/newdelunit",true);
   xhttp.send(fd);
 
-  savedel()
-
-  setTimeout(function(){ location.reload() }, 400);
 }
 
 function remdelunit(id){
