@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBSTAT | Import</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/settings.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+
+  <style>
+    .bugform input,
+    .bugarea {
+      padding: 5px;
+      border-radius: 2px
+    }
+
+    .bugarea{
+      margin:5px 0 0 0
+    }
+
+    .bugform div{
+      margin: 10px
+    }
+
+  </style>
+</head>
+<body>
+  <div class="mobilehead" style="display:none;z-index:100000;">
+    <div class="hamham" onclick="hamburger()" >
+      <div id="hamtop" style="left:15px"></div>
+      <div id="hammid" ></div>
+      <div id="hambot" style="left:15px"></div>
+    </div>
+    <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+  </div>
+  <div class="navin">
+    <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin active" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
+  </div>
+  <div class="mainwrapsettings">
+    <h1 class="noselect settingsheader">Report bug</h1>
+
+    <form class="bugform" action="" method="post" enctype = "multipart/form-data">
+
+    <div class="">
+      <label>Title:
+        <input autofocus type="text" required name="title" value="">
+      </label>
+    </div>
+
+    <div class="descdiv">
+      <label>Description:
+      </label>
+        <textarea class="bugarea" name="desc" rows="8" cols="80"></textarea>
+    </div>
+
+
+    <div class="">
+      <label>Screenshot:
+        <input type="file" name="sc" style="cursor:pointer">
+      </label>
+    </div>
+
+
+    <div class="">
+      <input type="submit" name="title" style="cursor:pointer;font-size:14px" value="Submit bug report">
+    </div>
+
+  </form>
+  </div>
+</body>
+</html>

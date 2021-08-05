@@ -136,6 +136,31 @@ def importdata():
 
     return render_template("importdata.html",theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)
 
+app.config['UPLOAD_FOLDER'] = "./static/bugs/"
+
+@app.route("/bugreport",methods=["GET","POST"])
+def bugreport():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    if request.method == 'POST':
+        os.mkdir("./static/bugs/"+request.form["title"])
+        with open("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".txt","w") as g:
+            g.write(request.form["desc"])
+
+        f = request.files['sc']
+        print([f.filename])
+        if f.filename != "":
+            if "png" in f.filename or "jpeg" in f.filename or "jpg" in f.filename or "tif" in f.filename or "gif" in f.filename or "":
+                f.save("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".png")
+
+
+    return render_template("bugreport.html",theme=theme,notheme=notheme)
+
+
 
 @app.route("/savecp",methods=["GET","POST"])
 def savevariable():

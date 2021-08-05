@@ -382,6 +382,11 @@ h3{
   width:80px
 }
 
+.descdiv label{
+  display: flex;
+  flex-direction: row;
+}
+
 
 .importnowbutton{
 }
