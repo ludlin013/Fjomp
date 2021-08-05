@@ -168,9 +168,25 @@ def viewreport():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    
+    bugs = os.listdir("static/bugs")
+    bugdict = {}
 
-    return render_template("viewreport.html",theme=theme,notheme=notheme)
+    for x in bugs:
+        if x == "!klara":
+            bugs.remove(x)
+
+    for x in bugs:
+        with open("static/bugs/"+x+"/"+x+".txt") as f:
+            bugdict[x] = f.read()
+
+    return render_template("viewreport.html",theme=theme,notheme=notheme, bugs=bugs, bugdict=bugdict)
+
+@app.route("/reportdone",methods=["GET","POST"])
+def reportdone():
+
+    os.rename("static/bugs/"+request.form["report"], "static/bugs/!klara/"+request.form["report"])
+
+    return ("",204)
 
 
 
