@@ -20,6 +20,10 @@ body{
   /*background: #ddd !important*/
 }
 
+.newlinesc{
+  background: #eee
+}
+
 .row-Customers:hover *{
   background: #ccc !important
 }

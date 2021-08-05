@@ -160,6 +160,18 @@ def bugreport():
 
     return render_template("bugreport.html",theme=theme,notheme=notheme)
 
+@app.route("/viewreport",methods=["GET","POST"])
+def viewreport():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    
+
+    return render_template("viewreport.html",theme=theme,notheme=notheme)
+
 
 
 @app.route("/savecp",methods=["GET","POST"])

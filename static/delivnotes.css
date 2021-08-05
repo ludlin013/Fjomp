@@ -327,7 +327,6 @@ input[type="number"]{
   margin-top: -35px;
   padding:5px;
   border-radius: 5px;
-  background: #333;
   transition-duration: .1s
 }
 
