@@ -189,6 +189,7 @@ document.addEventListener("keydown", function(e){
   },100)
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 77){
   e.preventDefault();
+  savedelmail();
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 81){
   e.preventDefault();
   newunit();
