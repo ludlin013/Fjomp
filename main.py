@@ -176,7 +176,7 @@ def login():
             with open("static/authuser.csv","r",encoding="utf-8") as f:
                 authusr = f.read().strip().split("\n")
             auth = False
-            if request.form['username'] in authusr:
+            if request.form['username'].upper() in authusr:
                 auth = True
 
                 ################################

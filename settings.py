@@ -149,7 +149,7 @@ def bugreport():
     if request.method == 'POST':
         os.mkdir("./static/bugs/"+request.form["title"])
         with open("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".txt","w") as g:
-            g.write(request.form["desc"])
+            g.write(request.form["desc"] + "\n\nSubmitted by: " +request.cookies["username"])
 
         f = request.files['sc']
         print([f.filename])
