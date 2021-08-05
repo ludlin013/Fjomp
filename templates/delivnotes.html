@@ -216,7 +216,9 @@
                 document.getElementById('contact').addEventListener("keydown", function(e){
                   if (e.keyCode == 13) {
                      e.preventDefault();
-                     document.getElementById('textarea-delivnotes').focus();
+                     for(x of document.getElementsByClassName('numfoc')){
+                       x.focus()
+                     }
                 }}, false);
               </script>
           </tr>

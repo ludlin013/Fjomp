@@ -53,6 +53,7 @@ def settings():
     models = sql("SELECT","SELECT * FROM Models")
     parameters = sql("SELECT","SELECT * FROM Parameters")
     pgs = sql("SELECT", "SELECT * FROM Pricegroups")
+    office = sql("SELECT", "SELECT * FROM Office")
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
@@ -76,7 +77,7 @@ def settings():
         mail[2] = request.cookies.get("projmail")
 
 
-    return render_template("settings.html",mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models)
+    return render_template("settings.html",mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():

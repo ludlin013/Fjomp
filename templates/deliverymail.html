@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="static/{{theme}}.css">
     <link rel="icon" href="./static/pictures/icon.ico">
       <script>
-        window.location.href='mailto:{{mailadr}}?subject=Delivery note # {{delivnote}}  Customer: {{note[0][0]}}  {{store[2]}}&body={{mailbody}}'
+        window.location.href='mailto:{{mailadr}}?subject=Dn # {{delivnote}}, C: {{note[0][0].strip()}} {{store[2].strip()}}&body={{mailbody}}'
         window.location.href='/delivnotes'
       </script>
 </head>

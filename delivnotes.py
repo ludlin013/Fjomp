@@ -528,7 +528,7 @@ def deliverymail(num):
             namelen.append(1)
 
     try:
-        mailbody += "Delivery note # " + num + " Customer: " + note[0][0] + "  " + store[2] + "%0D%0D"
+        mailbody += "Delivery note # " + num + " Customer: " + note[0][0].strip() + " " + store[2] + "%0D%0D"
         mailbody += "Created by: " + note[0][16] + ", " + note[0][4].strftime("%Y-%m-%d") +"%0D" + "Customer ref: " + note[0][3] + "%0D%0D"
     except:
         pass
@@ -558,4 +558,4 @@ def deliverymail(num):
 
 
 
-    return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, deliverynote=num, store=store, note=note)
+    return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, delivnote=num, store=store, note=note)

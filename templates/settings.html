@@ -125,7 +125,7 @@
 
     </script>
 
-<div class="settingstechwrap settingscategories" id="settingsparameters" style="display:">
+<div class="settingstechwrap settingscategories" id="settingsparameters" style="display:none">
   <h3 class="noselect">Company parameters</h3>
   <div class="settingstechhead">
     <p class="noselect cpvar">Variable</p>
@@ -176,6 +176,30 @@
   <div class="pgbuttons">
     <button type="button" class="set noselect"  id="pgsave" onclick="savepg()">Save</button>
     <button type="button" class="set noselect" id="pgnew" onclick="newpg()">New</button>
+  </div>
+
+
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingsoffice" style="display:">
+  <h3 class="noselect">Offices</h3>
+  <div class="settingstechhead">
+    <p class="noselect ofno">Office #</p>
+    <p class="noselect ofname">Office Name</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="ofform">
+    {% for x in office %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[5]}}" name="{{office.index(x)}}id">
+      <input class="settingspg noselect ofno" spellcheck="false" value="{{x[0]}}" name="{{office.index(x)}}no">
+      <input class="settingspg noselect ofname" spellcheck="false" value="{{x[1].strip()}}" name="{{office.index(x)}}name">
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to delete office {{x[1].strip().replace("\'","\\'")}}?')){remof('{{x[2]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+    </a>
+    {% endfor %}
+  </form>
+  <div class="pgbuttons">
+    <button type="button" class="set noselect"  id="ofsave" onclick="saveof()">Save</button>
+    <button type="button" class="set noselect" id="ofnew" onclick="newof()">New</button>
   </div>
 
 

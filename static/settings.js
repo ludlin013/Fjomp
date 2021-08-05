@@ -42,19 +42,6 @@ function newmodel(){
 
 }
 
-function savepg(){
-  var xhttp = new XMLHttpRequest();
-  const fd = new FormData(document.getElementById('pgform'));
-
-  xhttp.onload = function(){
-    document.getElementById('pgsave').textContent = "Saved!"
-  }
-
-  xhttp.open("POST","/savepg",true);
-  xhttp.send(fd);
-
-}
-
 function savecp(){
   var xhttp = new XMLHttpRequest();
   const fd = new FormData(document.getElementById('cpform'));
@@ -64,6 +51,19 @@ function savecp(){
   }
 
   xhttp.open("POST","/savecp",true);
+  xhttp.send(fd);
+
+}
+
+function savepg(){
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('pgform'));
+
+  xhttp.onload = function(){
+    document.getElementById('pgsave').textContent = "Saved!"
+  }
+
+  xhttp.open("POST","/savepg",true);
   xhttp.send(fd);
 
 }
@@ -128,6 +128,8 @@ function rempg(id){
     }
     //document.getElementById(id+'id').parentElement.remove();
   }
+
+
 
   xhttp.open("POST","/rempg",true);
   xhttp.send(fd);
@@ -265,6 +267,87 @@ function remtech(id){
   }
 
   xhttp.open("POST","/remte",true);
+  xhttp.send(fd);
+
+}
+
+function saveof(){
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('ofform'));
+
+  xhttp.onload = function(){
+    document.getElementById('ofsave').textContent = "Saved!"
+  }
+
+  xhttp.open("POST","/saveof",true);
+  xhttp.send(fd);
+
+}
+
+function newof(){
+  var no = document.getElementById("ofform").children[document.getElementById("ofform").children.length - 1].children[0].name.substring(0,1);
+  no = parseInt(no)+1
+
+  var parent = document.getElementById('ofform');
+  var row = document.createElement("a");
+  row.classList.add("settingadmintech");
+
+  var id = document.createElement("input");
+  id.name = no + "id";
+  id.type = "hidden";
+  var number = document.createElement("input");
+  number.classList.add("settingsof");
+  number.classList.add("noselect");
+  number.classList.add("ofno");
+  number.spellcheck = "false";
+  number.name = no + "no";
+  var name = document.createElement("input");
+  name.classList.add("settingsof");
+  name.classList.add("noselect");
+  name.classList.add("ofname");
+  name.spellcheck = "false";
+  name.name = no + "name";
+
+  row.appendChild(id);
+  row.appendChild(number);
+  row.appendChild(name);
+
+  parent.appendChild(row)
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    console.log(this.responseText);
+    id.value = this.responseText;
+  }
+
+  xhttp.open("POST","/newof",true);
+  xhttp.send();
+
+
+}
+
+function remof(id){
+
+  var fd = new FormData();
+
+  fd.append("id",id)
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+
+    for(x of document.getElementsByClassName('settingadmintech')){
+      if (x.children[0].value == id){
+        x.remove();
+      }
+    }
+    //document.getElementById(id+'id').parentElement.remove();
+  }
+
+
+
+  xhttp.open("POST","/remof",true);
   xhttp.send(fd);
 
 }

@@ -522,9 +522,9 @@ function chooseStore(e){
     xhttp.open("POST","/savestore",true);
     xhttp.send(fd);
 
-    for(x of document.getElementsByClassName('numfoc')){
-      x.focus()
-    }
+
+
+    document.getElementById('contact').focus()
 
   } else if(e.key == "Escape"){
     document.getElementById('storelist').style.display = "none";
@@ -585,9 +585,8 @@ function clickstore(chosen){
   xhttp.open("POST","/savestore",true);
   xhttp.send(fd);
 
-  for(x of document.getElementsByClassName('numfoc')){
-    x.focus()
-  }
+  document.getElementById('contact').focus()
+
 }
 
 for(x of document.getElementsByClassName('numfoc')){

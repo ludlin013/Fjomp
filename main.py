@@ -44,7 +44,7 @@ def checklogin(username,password):
             sql("INSERT","UPDATE Technicians SET Tech_Pwd = '" + password + "' WHERE Tech_ID = '"+ usr[0] +"'")
             return True
 
-        elif username == usr[0].strip() and password == usr[3].strip():
+        elif username.lower() == usr[0].strip().lower() and password == usr[3].strip():
             return True
     return False
 
@@ -184,7 +184,7 @@ def login():
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"
-    usr = request.cookies.get('username')
+    usr = request.cookies.get('username').upper()
     theme,notheme = setTheme()
 
     return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)

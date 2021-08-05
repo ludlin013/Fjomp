@@ -239,7 +239,7 @@ h3{
 }
 
 .tetech {
-  cursor: pointer;  
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -377,6 +377,11 @@ h3{
 .pgno{
   width:80px
 }
+
+.ofno{
+  width:80px
+}
+
 
 .importnowbutton{
 }
