@@ -107,6 +107,15 @@ def pdffile():
             Dict["zip"] = ""
             Dict["city"] = ""
 
+    for x in sqlq:
+        x[9] = str(x[9]).replace(".",",")
+        x[11] = str(x[11]).replace(".",",")
+        x[12] = str(x[12]).replace(".",",")
+
+    total = f"{total:,}"
+    total = str(total).replace(","," ").replace(".",",")
+
+
     return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount, contact=contact, name=name)
 
 

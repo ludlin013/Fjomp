@@ -498,6 +498,7 @@ function getstore(e){
 }
 
 function chooseStore(e){
+  console.log(e.keyCode);
   if(e.key == "Enter"){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
@@ -525,8 +526,36 @@ function chooseStore(e){
       x.focus()
     }
 
-  }else if(e.key == "Escape"){
+  } else if(e.key == "Escape"){
     document.getElementById('storelist').style.display = "none";
+  } else if(e.keyCode == "40"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = false;
+    for(x of document.getElementsByClassName('storeitem')){
+      if(stop == true){
+        break
+      }
+      if (x == me){
+        stop = true;
+      }
+
+    }
+
+    x.focus()
+  } else if(e.keyCode == "38"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = me;
+    for(x of document.getElementsByClassName('storeitem')){
+      if (x == me){
+        break
+      }
+      stop = x;
+
+    }
+
+    stop.focus()
   }
 
 

@@ -162,7 +162,7 @@
                 document.getElementById('ser{{sqlq.index(x)}}').addEventListener("keydown", function(e){
                   if (e.keyCode == 13) {
                      e.preventDefault();
-                     document.getElementById('qty{{sqlq.index(x)}}').focus();
+                     document.getElementById('qty{{sqlq.index(x)}}').select();
                 }}, false);
 
                 document.getElementById('qty{{sqlq.index(x)}}').addEventListener("keydown", function(e){
@@ -211,6 +211,12 @@
                   if (e.keyCode == 13) {
                      e.preventDefault();
                      document.getElementById('num{{sqlq.index(x)+1}}').focus();
+                }}, false);
+
+                document.getElementById('contact').addEventListener("keydown", function(e){
+                  if (e.keyCode == 13) {
+                     e.preventDefault();
+                     document.getElementById('textarea-delivnotes').focus();
                 }}, false);
               </script>
           </tr>
