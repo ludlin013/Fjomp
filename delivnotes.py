@@ -556,6 +556,6 @@ def deliverymail(num):
 
     mailbody += "%0DFrakt: " + freight[note[0][15].strip()+"  "]
 
-
+    mailbody = mailbody.replace("\"","")
 
     return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, delivnote=num, store=store, note=note)
