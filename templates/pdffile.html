@@ -454,7 +454,9 @@
       </div>
   </div>
   <script>
+
     function docPrint(){
+      document.title = "Offert {{delivnote}} {{Dict['storenum']}} "
       window.print()
       setTimeout("closePrintView()", 1000);
     }
