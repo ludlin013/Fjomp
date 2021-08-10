@@ -34,6 +34,7 @@ def sql(type,sqlquery):
         result = None
 
     return result
+    
 @app.route("/pdffile", methods=["GET", "POST"])
 def pdffile():
     if "loggedin" in request.cookies:
