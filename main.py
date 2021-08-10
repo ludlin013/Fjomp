@@ -184,7 +184,7 @@ def login():
             return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
         else:
             error = "Invalid username or password"
-    usr = request.cookies.get('username').upper()
+    usr = request.cookies.get('username')
     theme,notheme = setTheme()
 
     return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)
