@@ -182,8 +182,8 @@ document.addEventListener("keydown", function(e){
      e.preventDefault();
      savedeldir();
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 80){
-  e.preventDefault();
   savedel();
+  e.preventDefault();
   setTimeout(function(){
     document.getElementById("printbutton").click();
   },100)
@@ -648,3 +648,6 @@ function selectpg(pgid, row){
   xhttp.open("POST","/setpricegroup",true);
   xhttp.send(fd);
 }
+
+
+document.getElementById('gotonum').select()
