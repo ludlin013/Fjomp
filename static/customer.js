@@ -200,9 +200,8 @@ document.addEventListener("keydown", function(e){
      e.preventDefault();
      savecustomer();
      console.log("vi sparar");
-} else if (e.keyCode == 114) {
-   e.preventDefault();
-   document.getElementById('custid').focus();
-   console.log("vi söker på nåt");
+}else if(e.keyCode == 115){
+  e.preventDefault();
+  document.getElementById('custid').select()
 }
 }, false);

@@ -37,8 +37,12 @@
 
     <div class="mainwrapdelivnotes">
       <h1 class="noselect">Delivery Notes</h1>
+      <form class="" action="javascript:window.location.href = '/delivnotes?dn='+document.getElementById('gotonum').value">
+      <label>Go to # <input autofocus id="gotonum" type="number" value="{{delivnote}}" style="padding:5px" placeholder="Search" onclick="this.select()"/></label>
+      <input type="hidden">
+    </form>
       <div>
-        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input onclick="this.select()" style="text-align:left;width:80px;margin:5px" name="dn" id="delivnote-number" class="forminput-delivnotes" type="number" value="{{delivnote}}" autofocus><input type="submit"></form></div>
+        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input readonly style="text-align:left;width:80px;margin:5px" name="dn" id="delivnote-number" class="forminput-delivnotes" value="{{delivnote}}" ><input type="submit"></form></div>
         {% if notFound %}
           <p style="color: red;">{{notFound}}</p>
         {% endif %}

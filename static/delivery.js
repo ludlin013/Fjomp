@@ -213,6 +213,9 @@ document.addEventListener("keydown", function(e){
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 90){
   e.preventDefault();
   location.reload();
+}else if(e.keyCode == 115){
+  e.preventDefault();
+  document.getElementById('gotonum').select()
 }
 
 }, false);
@@ -278,15 +281,33 @@ function newunit(){
 }
 
 function remdelunit(id){
-  const fd = new FormData();
 
-  fd.append("id",id)
+  if (document.getElementsByClassName('row-delivnotes').length == 1){
 
-  document.getElementById(id).remove();
+    if(confirm("Are you sure? This will delete the delivery note completely")){
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST","/remdelunit",true);
-  xhttp.send(fd);
+      const fd = new FormData();
+
+      fd.append("id",id)
+
+      document.getElementById(id).remove();
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST","/remdelunit",true);
+      xhttp.send(fd);
+
+    }
+  }else{
+    const fd = new FormData();
+
+    fd.append("id",id)
+
+    document.getElementById(id).remove();
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","/remdelunit",true);
+    xhttp.send(fd);
+  }
 }
 
 function setday(id){
@@ -380,7 +401,7 @@ function choosePart(e){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).focus()
   }else if(e.key == "Escape"){
     document.getElementById('partselect').style.display = "none";
     document.getElementById("num"+document.getElementById("idOfPart").value).focus()
@@ -396,7 +417,7 @@ function clickpart(c){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).focus()
 
 }
 

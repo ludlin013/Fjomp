@@ -68,5 +68,8 @@ document.addEventListener("keydown", function(e){
      e.preventDefault();
      saveall();
      console.log("vi sparar");
+}else if(e.keyCode == 115){
+  e.preventDefault();
+  document.getElementById('irirn').select()
 }
 }, false);
