@@ -38,6 +38,24 @@ if(!document.cookie.includes("custactive")){
   }
 }
 
+function setday(id){
+  var y = new Date().getFullYear();
+  var m = "0" + (new Date().getMonth()+1);
+  var d = "0" + new Date().getDate();
+
+  if (m.length>2){
+    m = m.substring(1)
+  }
+
+  if (d.length>2){
+    d = d.substring(1)
+  }
+
+  var date = y + "-"+m+"-"+d
+  document.getElementById(id).value = date;
+  window.getSelection().removeAllRanges()
+}
+
 function editunit(id){
 
   var vendor = document.getElementById(id).children[1].children[0].value;

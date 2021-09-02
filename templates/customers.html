@@ -196,7 +196,7 @@
         function showAddUnits(){
           document.getElementById("customer-add-unit").style.display = "flex";
           document.getElementById("customer-add-unit-backdrop").style.display = "block";
-          document.getElementById('unitaddvend').focus();
+          document.getElementById('addmodel').focus();
         }
 
         function hideAddUnits(){
@@ -216,15 +216,15 @@
             </select>
           </div>
           <div class="customer-add-unit-row"><p>Model</p>
-            <select class="custaddvend" name="custmod" id="addmodel" onchange="document.getElementById('unitaddvend').value = this.value.split('%')[1]" onkeydown="return (event.keyCode!=13);">
+            <select class="custaddvend" name="custmod" id="addmodel" onchange="document.getElementById('unitaddvend').value = this.value.split('%')[1];document.getElementById('addcharge').value = this.value.split('%')[2]" onkeydown="return (event.keyCode!=13);">
               <option value="" selected></option>
               {% for x in model %}
-                <option value="{{x[1].strip()}}%{{x[0].strip()}}">{{x[1].strip()}}</option>
+                <option value="{{x[1].strip()}}%{{x[0].strip()}}%{{x[4]}}">{{x[1].strip()}}</option>
               {% endfor %}
             </select>
           </div>
           <div class="customer-add-unit-row"><p>Serial</p><input id="addserial" onkeydown="return (event.keyCode!=13);" type="text" placeholder="" name="serial" value=""></div>
-          <div class="customer-add-unit-row"><p>Install Date</p><input id="adddate" onchange="warrantycalc()" type="date" placeholder="" name="install" value="" onkeydown="return (event.keyCode!=13);"></div>
+          <div class="customer-add-unit-row"><p>Install Date</p><input id="adddate" ondblclick="setday('adddate');warrantycalc()" onchange="warrantycalc()" type="date" placeholder="" name="install" value="" onkeydown="return (event.keyCode!=13);"></div>
           <div class="customer-add-unit-row"><p>Charge mode</p>
             <select class="custaddvend" name="custcharge" id="addcharge" oninput="warrantycalc()" onkeydown="return (event.keyCode!=13);">
               {% for x in charge %}
