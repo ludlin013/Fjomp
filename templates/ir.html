@@ -36,10 +36,15 @@
 
   <div class="mainwrapir">
     <h1 class="noselect">IR</h1>
+      <label>Go to # <input id="gotoir" type="number" value="{{irnumber}}" style="padding:5px" placeholder="Search" onclick="this.select()"/></label>
+
     <div class="toppage-ir">
+
       <div class="toppageleft-ir">
+
         <div class="ircustid">
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
+
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" value="{{irnumber}}"></div>
             <input type="submit" style="display:none">
           {% if error  %}
           <p id="irerror" class="noselect">{{error}}</p>

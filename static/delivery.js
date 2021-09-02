@@ -1,3 +1,8 @@
+for (x of document.cookie.split(";")){
+  if (x.includes("delivfocused")){
+    document.getElementById(x.replace("delivfocused=","").trim()).focus()
+  }
+}
 
 function savedelprint(note){
   var noteNum = document.getElementById('delivnote-number').value;
@@ -108,6 +113,7 @@ function savedeldir(){
 
   xhttp.onload = function(){
     location.reload()
+    document.cookie = "delivfocused=" + document.activeElement.id + ";path=/";
   }
 
   xhttp.open("POST","/savedeliv",true);
@@ -401,7 +407,7 @@ function choosePart(e){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("qty"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).select()
   }else if(e.key == "Escape"){
     document.getElementById('partselect').style.display = "none";
     document.getElementById("num"+document.getElementById("idOfPart").value).focus()
@@ -417,7 +423,7 @@ function clickpart(c){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("qty"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).select()
 
 }
 
@@ -464,6 +470,9 @@ function getstore(e){
           zip.classList.add("storezip")
           var city = document.createElement("p");
           city.classList.add("storecity")
+          var pg = document.createElement("p");
+          pg.classList.add("storepg")
+
 
           id.appendChild(document.createTextNode(x.split("\t")[0]));
           ref.appendChild(document.createTextNode(x.split("\t")[5]));
@@ -471,6 +480,7 @@ function getstore(e){
           street.appendChild(document.createTextNode(x.split("\t")[2]));
           zip.appendChild(document.createTextNode(x.split("\t")[3]));
           city.appendChild(document.createTextNode(x.split("\t")[4]));
+          pg.appendChild(document.createTextNode(x.split("\t")[6]));
 
           storeitem.appendChild(id);
           storeitem.appendChild(ref);
@@ -478,6 +488,7 @@ function getstore(e){
           storeitem.appendChild(street);
           storeitem.appendChild(zip);
           storeitem.appendChild(city);
+          storeitem.appendChild(pg);
 
           parent.appendChild(storeitem)
 
@@ -527,11 +538,12 @@ function chooseStore(e){
 
     document.getElementById("contact").value = e.srcElement.children[1].textContent;
 
-
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
     document.getElementById("City").value = e.srcElement.children[5].textContent;
     document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
+
+    document.getElementById("inputnum").value = e.srcElement.children[6].textContent;
 
     const fd = new FormData();
 
@@ -596,6 +608,8 @@ function clickstore(chosen){
   document.getElementById("City").value = chosen.children[5].textContent;
   document.getElementById("ZIP").value = chosen.children[4].textContent;
 
+  document.getElementById("inputnum").value = chosen.children[6].textContent;
+
   const fd = new FormData();
 
   fd.append("store",chosen.children[0].textContent)
@@ -648,6 +662,3 @@ function selectpg(pgid, row){
   xhttp.open("POST","/setpricegroup",true);
   xhttp.send(fd);
 }
-
-
-document.getElementById('gotonum').select()

@@ -1,3 +1,8 @@
+document.getElementById('gotoir').addEventListener("keydown", function(e){
+  if(e.keyCode == 13){
+    window.location.href = '/ir?ir='+document.getElementById('gotoir').value
+  }
+}, false);
 
 var allrepact = document.getElementsByClassName('irrepact');
 var allirunit = document.getElementsByClassName('irunitselect');
@@ -6,6 +11,8 @@ for (x of allrepact){
 }
 allrepact[0].style.display = "flex";
 allirunit[0].style.display = "none";
+
+
 
 
 function update(inf){
