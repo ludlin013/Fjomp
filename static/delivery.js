@@ -1,5 +1,3 @@
-
-/*
 for (x of document.cookie.split(";")){
   if (x.includes("delivfocused")){
     try{
@@ -9,7 +7,7 @@ for (x of document.cookie.split(";")){
   }
 }
 }
-*/
+
 function savedelprint(note){
   var noteNum = document.getElementById('delivnote-number').value;
   var storeNum = document.getElementById('storeNumber').value;
