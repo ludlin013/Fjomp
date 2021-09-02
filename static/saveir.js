@@ -63,6 +63,28 @@ function saveall(){
 
 }
 
+
+function savenewunit(id){
+  saveir()
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('allform'))
+  xhttp.open("POST","/irsaveall",true);
+  console.log(fd.keys());
+  xhttp.send(fd);
+
+
+
+  xhttp.onload = function(){
+    window.location.href= '/newunit/' + id
+  }
+
+  document.getElementById('statusmsg').style.maxHeight = "50px";
+  document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+  setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+
+}
+
 document.addEventListener("keydown", function(e){
   if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
      e.preventDefault();
