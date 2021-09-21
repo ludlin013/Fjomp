@@ -1,3 +1,12 @@
+for (x of document.cookie.split(";")){
+  if (x.includes("delivfocused")){
+    try{
+    document.getElementById(x.replace("delivfocused=","").trim()).focus()
+  } catch(error){
+    console.log("Focus failed");
+  }
+}
+}
 
 function savedelprint(note){
   var noteNum = document.getElementById('delivnote-number').value;
@@ -108,6 +117,7 @@ function savedeldir(){
 
   xhttp.onload = function(){
     location.reload()
+    document.cookie = "delivfocused=" + document.activeElement.id + ";path=/";
   }
 
   xhttp.open("POST","/savedeliv",true);
@@ -182,8 +192,8 @@ document.addEventListener("keydown", function(e){
      e.preventDefault();
      savedeldir();
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 80){
-  e.preventDefault();
   savedel();
+  e.preventDefault();
   setTimeout(function(){
     document.getElementById("printbutton").click();
   },100)
@@ -213,6 +223,9 @@ document.addEventListener("keydown", function(e){
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 90){
   e.preventDefault();
   location.reload();
+}else if(e.keyCode == 115){
+  e.preventDefault();
+  document.getElementById('gotonum').select()
 }
 
 }, false);
@@ -278,15 +291,33 @@ function newunit(){
 }
 
 function remdelunit(id){
-  const fd = new FormData();
 
-  fd.append("id",id)
+  if (document.getElementsByClassName('row-delivnotes').length == 1){
 
-  document.getElementById(id).remove();
+    if(confirm("Are you sure? This will delete the delivery note completely")){
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST","/remdelunit",true);
-  xhttp.send(fd);
+      const fd = new FormData();
+
+      fd.append("id",id)
+
+      document.getElementById(id).remove();
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("POST","/remdelunit",true);
+      xhttp.send(fd);
+
+    }
+  }else{
+    const fd = new FormData();
+
+    fd.append("id",id)
+
+    document.getElementById(id).remove();
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","/remdelunit",true);
+    xhttp.send(fd);
+  }
 }
 
 function setday(id){
@@ -380,10 +411,38 @@ function choosePart(e){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).select()
   }else if(e.key == "Escape"){
     document.getElementById('partselect').style.display = "none";
     document.getElementById("num"+document.getElementById("idOfPart").value).focus()
+  }else if(e.keyCode == "40"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = false;
+    for(x of document.getElementsByClassName('partitem')){
+      if(stop == true){
+        break
+      }
+      if (x == me){
+        stop = true;
+      }
+
+    }
+
+    x.focus()
+  } else if(e.keyCode == "38"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = me;
+    for(x of document.getElementsByClassName('partitem')){
+      if (x == me){
+        break
+      }
+      stop = x;
+
+    }
+
+    stop.focus()
   }
 }
 
@@ -396,7 +455,7 @@ function clickpart(c){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("ser"+document.getElementById("idOfPart").value).focus()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).select()
 
 }
 
@@ -516,7 +575,6 @@ function chooseStore(e){
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;
 
     document.getElementById("contact").value = e.srcElement.children[1].textContent;
-
 
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;

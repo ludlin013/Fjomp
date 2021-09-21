@@ -146,7 +146,10 @@ def ir():
                 irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
                 if irinfo[0][0] != None:
                     customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
-                    customer = customer[0]
+                    try:
+                        customer = customer[0]
+                    except:
+                        customer = ["","","","","","","","","","","","",""]
                 else:
                     customer = ["","","","","","","","","","","","",""]
 

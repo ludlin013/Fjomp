@@ -236,7 +236,12 @@
 </style>
 <body onload="docPrint()">
   <div class="wrapper">
+    {% if Dict["offer"] == 0 %}
     <p class="ekabcopy">Ekab Copy!</p>
+    {% endif %}
+    {% if Dict["offer"] == 1 %}
+    <p class="ekabcopy">Offert</p>
+    {% endif %}
     <div class="header">
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">

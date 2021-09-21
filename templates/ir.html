@@ -36,10 +36,15 @@
 
   <div class="mainwrapir">
     <h1 class="noselect">IR</h1>
+      <label>Go to # <input id="gotoir" type="number" value="{{irnumber}}" style="padding:5px" placeholder="Search" onclick="this.select()"/></label>
+
     <div class="toppage-ir">
+
       <div class="toppageleft-ir">
+
         <div class="ircustid">
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" autofocus value="{{irnumber}}"></div>
+
+            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" value="{{irnumber}}"></div>
             <input type="submit" style="display:none">
           {% if error  %}
           <p id="irerror" class="noselect">{{error}}</p>
@@ -180,7 +185,7 @@
             </tbody>
           </table>
           <div class="addremirpart">
-            <div class="button-delivnote"><a href="/newunit/{{irinfo[0]}}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
+            <div class="button-delivnote"><a onclick="savenewunit('{{irinfo[0]}}')"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"></a></div>
             <div class="button-delivnote"><a id="irunitremove" ><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>
           </div>
         </div>
@@ -289,7 +294,7 @@
     </div>
   </div>
   <div class="ircontrolbuttons">
-    <a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>
+    <!--<a href="delivnotes" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>-->
     <a href="/newir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png"><p>New</p></a>
     <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/delir'}" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p></a>
     <a href="/ir" class="buttonsbar-item-ir"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p></a>

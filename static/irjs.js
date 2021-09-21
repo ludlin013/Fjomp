@@ -1,3 +1,8 @@
+document.getElementById('gotoir').addEventListener("keydown", function(e){
+  if(e.keyCode == 13){
+    window.location.href = '/ir?ir='+document.getElementById('gotoir').value
+  }
+}, false);
 
 var allrepact = document.getElementsByClassName('irrepact');
 var allirunit = document.getElementsByClassName('irunitselect');
@@ -6,6 +11,8 @@ for (x of allrepact){
 }
 allrepact[0].style.display = "flex";
 allirunit[0].style.display = "none";
+
+
 
 
 function update(inf){
@@ -85,26 +92,43 @@ function setday(id){
 }
 
 function newspare(arg){
-  console.log(arg);
-
-  var fd = new FormData();
-
-  var model = arg.split("%")[0];
-  var serial = arg.split("%")[1];
-  var irn = arg.split("%")[2];
-
-  fd.append("model",model);
-  fd.append("serial",serial);
-  fd.append("irn",irn);
-
-
+  saveir()
   var xhttp = new XMLHttpRequest();
-  xhttp.open("POST","/newspare",true);
+  const fd = new FormData(document.getElementById('allform'))
+  xhttp.open("POST","/irsaveall",true);
+  console.log(fd.keys());
   xhttp.send(fd);
 
-  setTimeout(function(){
-    location.reload();
-  },500);
+
+
+  xhttp.onload = function(){
+    var fd = new FormData();
+
+    var model = arg.split("%")[0];
+    var serial = arg.split("%")[1];
+    var irn = arg.split("%")[2];
+
+    fd.append("model",model);
+    fd.append("serial",serial);
+    fd.append("irn",irn);
+
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST","/newspare",true);
+    xhttp.send(fd);
+
+    setTimeout(function(){
+      location.reload();
+    },500);
+  }
+
+  document.getElementById('statusmsg').style.maxHeight = "50px";
+  document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+  setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+
+
+
 }
 
 function selectspare(arg){
@@ -202,5 +226,33 @@ function choosePart(e){
   }else if(e.key == "Escape"){
     document.getElementById('partselect').style.display = "none";
     document.getElementById(document.getElementById("idOfPart").value + "num").focus()
+  }else if(e.keyCode == "40"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = false;
+    for(x of document.getElementsByClassName('partitem')){
+      if(stop == true){
+        break
+      }
+      if (x == me){
+        stop = true;
+      }
+
+    }
+
+    x.focus()
+  } else if(e.keyCode == "38"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = me;
+    for(x of document.getElementsByClassName('partitem')){
+      if (x == me){
+        break
+      }
+      stop = x;
+
+    }
+
+    stop.focus()
   }
 }

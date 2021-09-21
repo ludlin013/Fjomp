@@ -34,7 +34,7 @@ def sql(type,sqlquery):
         result = None
 
     return result
-    
+
 @app.route("/pdffile", methods=["GET", "POST"])
 def pdffile():
     if "loggedin" in request.cookies:
@@ -324,6 +324,13 @@ def delivnotes():
         mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]]
     except:
         pass
+
+    sqlq.sort(key = lambda x:x[24])
+
+    print(sqlq)
+
+    for x in sqlq:
+        print(x[24])
 
     return render_template("delivnotes.html",theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts, mailadr=mailadr)
 

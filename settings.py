@@ -2,6 +2,8 @@ from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
 import os
+import smtplib
+from email.message import EmailMessage
 
 server = "P2019\\WSData"
 database = "winstat"
@@ -150,6 +152,17 @@ def bugreport():
         os.mkdir("./static/bugs/"+request.form["title"])
         with open("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".txt","w") as g:
             g.write(request.form["desc"] + "\n\nSubmitted by: " +request.cookies["username"])
+
+        msg = EmailMessage()
+        msg.set_content(request.form["desc"])
+        msg['Subject'] = request.form["title"]
+        msg['From'] = 'ludviglinde3@gmail.com'
+        msg['To'] = 'ludviglinde3@gmail.com'
+
+        s = smtplib.SMTP_SSL('smtp.gmail.com',465)
+        s.login('ludviglinde3@gmail.com', 'rumckokuykqmxxnm')
+        s.send_message(msg)
+        s.quit()
 
         f = request.files['sc']
         print([f.filename])
