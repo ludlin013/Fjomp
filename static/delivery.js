@@ -443,6 +443,8 @@ function getstore(e){
           zip.classList.add("storezip")
           var city = document.createElement("p");
           city.classList.add("storecity")
+          var pg = document.createElement("p");
+          pg.classList.add("storepg")
 
           id.appendChild(document.createTextNode(x.split("\t")[0]));
           ref.appendChild(document.createTextNode(x.split("\t")[5]));
@@ -450,6 +452,7 @@ function getstore(e){
           street.appendChild(document.createTextNode(x.split("\t")[2]));
           zip.appendChild(document.createTextNode(x.split("\t")[3]));
           city.appendChild(document.createTextNode(x.split("\t")[4]));
+          pg.appendChild(document.createTextNode(x.split("\t")[6]));
 
           storeitem.appendChild(id);
           storeitem.appendChild(ref);
@@ -457,6 +460,7 @@ function getstore(e){
           storeitem.appendChild(street);
           storeitem.appendChild(zip);
           storeitem.appendChild(city);
+          storeitem.appendChild(pg);
 
           parent.appendChild(storeitem)
 
@@ -475,6 +479,13 @@ function getstore(e){
 
 
         document.getElementById("inputnum").value = store[6];
+
+        for (x of document.getElementsByClassName('forminput-delivnotes3')){
+          if(x.id.includes("pg")){
+            x.value = store[6];
+          }
+
+        }
 
         const fd = new FormData();
 
@@ -511,6 +522,15 @@ function chooseStore(e){
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
     document.getElementById("City").value = e.srcElement.children[5].textContent;
     document.getElementById("ZIP").value = e.srcElement.children[4].textContent;
+
+    document.getElementById("inputnum").value = e.srcElement.children[6].textContent;
+
+    for (x of document.getElementsByClassName('forminput-delivnotes3')){
+      if(x.id.includes("pg")){
+        x.value = e.srcElement.children[6].textContent;
+      }
+
+    }
 
     const fd = new FormData();
 
@@ -574,6 +594,15 @@ function clickstore(chosen){
   document.getElementById("storestreet").value = chosen.children[3].textContent;
   document.getElementById("City").value = chosen.children[5].textContent;
   document.getElementById("ZIP").value = chosen.children[4].textContent;
+
+  document.getElementById("inputnum").value = chosen.srcElement.children[6].textContent;
+
+  for (x of document.getElementsByClassName('forminput-delivnotes3')){
+    if(x.id.includes("pg")){
+      x.value = e.srcElement.children[6].textContent;
+    }
+
+  }
 
   const fd = new FormData();
 
