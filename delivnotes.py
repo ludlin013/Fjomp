@@ -160,7 +160,7 @@ def delivnotes():
     Dict["sentfrom"] = dict(sql("SELECT", "SELECT OF_No, OF_Name FROM Office"))
     Dict["freight"] = dict(sql("SELECT", "SELECT Freight_ID, Freight_Description FROM FreightTypes"))
 
-    Dict["DN_Sign"] = request.cookies.get("username")
+    Dict["DN_Sign"] = request.cookies.get("username").upper()
     Dict["DN_Freight"] = ""
     Dict["DN_PGDescription"] = ""
     Dict["dateformat"] = datetime.now()
@@ -399,9 +399,9 @@ def newdeliverynote():
 
     a = str(sortedall[-1] + 1)
 
-    print(sortedall[-1] + 1)
+    print(request.cookies.get("username").strip())
 
-    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup) VALUES (" + a + ", 1 )")
+    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup,DN_Sign) VALUES (" + a + ", 1, '"+ request.cookies.get("username").strip() +"' )")
 
     return redirect("/delivnotes?dn="+a)
 
