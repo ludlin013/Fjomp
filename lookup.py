@@ -76,6 +76,8 @@ def lookup():
     try:
         numnamecookie = request.cookies.get("lastlooknumname")
         serialcookie = request.cookies.get("lastserial")
+        if not serialcookie:
+            serialcookie = ""
     except:
         pass
 
