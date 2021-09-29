@@ -189,6 +189,8 @@ def login():
 
     patches = os.listdir("static/bugs/!klara")
 
+    patches.sort(key=lambda fn: os.path.getmtime(os.path.join("static/bugs/!klara", fn)))
+
     return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme,patches=patches)
 
 @app.route("/landing")
