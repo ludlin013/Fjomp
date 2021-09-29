@@ -187,7 +187,9 @@ def login():
     usr = request.cookies.get('username')
     theme,notheme = setTheme()
 
-    return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme)
+    patches = os.listdir("static/bugs/!klara")
+
+    return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme,patches=patches)
 
 @app.route("/landing")
 def landing():

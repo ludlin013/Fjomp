@@ -27,6 +27,13 @@
           {%endif%}
 
         </form>
+        <h2 style="margin-top:20px">Patched reports</h2>
+        <ul>
+
+        {% for x in patches%}
+          <li>{{x}}</li>
+        {% endfor %}
+      </ul>
       </div>
     </div>
     <div class="theme" onclick="document.cookie = 'theme = {{notheme}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;';location.reload()">
