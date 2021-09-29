@@ -19,7 +19,7 @@
         </div>
         <form class="loginform" action="" method="post" autocomplete="off">
           <input class="field" autocapitalize="off" type="text" id="usernameinput" name="username" value="{{request.form.username}}" placeholder="Username" autofocus>
-          <input class="field" autocapitalize="off" type="text" style="text-security:disc; -webkit-text-security:disc;" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
+          <input class="field" autocapitalize="off" type="password" id="pwin" name="password" value="{{request.form.password }}" placeholder="Password">
           <p class="noselect"><label style="cursor:pointer"><input type="checkbox" id="checkbox" name="check" value="{{request.form.check}}"> Remember username</label></p>
           <input class="field" type="submit" id="submit" name="submit" value="Log in">
           {%if error%}
