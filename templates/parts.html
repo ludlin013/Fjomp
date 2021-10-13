@@ -40,8 +40,8 @@ function cookieController(){
     <div class="toppage-parts">
       <form class="form-parts" name="partform" action="" method="POST">
         <label for="search" class="searchlabel-parts noselect">Search for:</label>
-        <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input id="partinput" onkeyup="" class="forminput-parts" type="text" name="part-parts" value="{{par}}" autofocus onchange="document.cookie = 'lastpar = '+document.getElementById('partinput').value+'; path=/;'"></div>
-        <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input id="descinput" onkeyup="" class="forminput-parts" type="text" name="description-parts" value="{{des}}" onchange="document.cookie = 'lastdes = '+document.getElementById('descinput').value+'; path=/;'"></div>
+        <div class="formitem-parts noselect"><label for="part-parts">Part #:</label><input id="partinput" onkeyup="" class="forminput-parts" type="text" name="part-parts" value="" autofocus onchange="document.cookie = 'lastpar = '+document.getElementById('partinput').value+'; path=/;'"></div>
+        <div class="formitem-parts noselect"><label for="description-parts">Description:</label><input id="descinput" onkeyup="" class="forminput-parts" type="text" name="description-parts" value="" onchange="document.cookie = 'lastdes = '+document.getElementById('descinput').value+'; path=/;'"></div>
         <div id="formitem-parts" class="formitem-parts noselect"><label>Only active parts:<input onclick="search()" id="forminput-parts" type="checkbox" name="active-parts" checked></label></div>
         <input class="partssearch" type="submit" name="partsubmit" value="Search">
       </form>

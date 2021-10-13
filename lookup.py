@@ -178,7 +178,11 @@ def lookup():
         allcust = sql("SELECT", "SELECT Cust_CustID,Cust_Name FROM Customers")
         cust = {}
         for x in allcust:
-            cust[x[0].strip()] = x[1].strip()
+            print(x)
+            try:
+                cust[x[0].strip()] = x[1].strip()
+            except AttributeError:
+                cust[x[0].strip()] = ""
 
 
         if looknumname != "":
