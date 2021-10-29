@@ -150,11 +150,11 @@ def bugreport():
 
     if request.method == 'POST':
         os.mkdir("./static/bugs/"+request.form["title"].replace("/","-"))
-        with open("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".txt","w") as g:
+        with open("./static/bugs/"+request.form["title"].replace("/","-")+"/"+request.form["title"].replace("/","-")+".txt","w") as g:
             g.write(request.form["desc"] + "\n\nSubmitted by: " +request.cookies["username"])
 
         msg = EmailMessage()
-        msg.set_content(request.form["desc"])
+        msg.set_content(request.form["desc"] + "\n\nSubmitted by: " +request.cookies["username"])
         msg['Subject'] = request.form["title"]
         msg['From'] = 'ludviglinde3@gmail.com'
         msg['To'] = 'ludviglinde3@gmail.com'
