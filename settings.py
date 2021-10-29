@@ -149,7 +149,7 @@ def bugreport():
     theme,notheme = setTheme()
 
     if request.method == 'POST':
-        os.mkdir("./static/bugs/'"+request.form["title"]+"'")
+        os.mkdir("./static/bugs/"+request.form["title"].replace("/","-"))
         with open("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".txt","w") as g:
             g.write(request.form["desc"] + "\n\nSubmitted by: " +request.cookies["username"])
 
