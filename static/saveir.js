@@ -95,3 +95,9 @@ document.addEventListener("keydown", function(e){
   document.getElementById('irirn').select()
 }
 }, false);
+
+//document.getElementById("ircusn").addEventListener("keydown", function(e){
+//  if (e.keyCode == 13) {
+//     console.log("vi sparar");
+//}
+//}, false);

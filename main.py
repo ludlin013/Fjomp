@@ -202,4 +202,41 @@ def landing():
     theme,notheme = setTheme()
     return render_template("landing.html",theme=theme,notheme=notheme)
 
+@app.route("/lvl3status")
+def lvl3status():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+
+    users = sql("SELECT", "SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office FROM Technicians WHERE Tech_Tech = '1'")
+
+    return render_template("status.html",theme=theme,notheme=notheme, users=users, usrstatus=usrstatus)
+
+@app.route("/updateusers",methods=["GET","POST"])
+def updateusers():
+
+    users = dict(sql("SELECT", "SELECT Tech_ID, Tech_Office FROM Technicians WHERE Tech_Tech = '1'"))
+
+    print(users)
+
+    return(users,200)
+
+@app.route("/changestatus",methods=["GET","POST"])
+def changestatus():
+
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0] + 1
+
+    if usrstatus > 2:
+        usrstatus = 0;
+
+    sql("INSERT", "UPDATE Technicians SET Tech_Office = '"+ str(usrstatus) +"' WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")
+
+    return(sd[usrstatus],200)
+
 app.run(host="0.0.0.0",port="80")

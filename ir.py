@@ -93,6 +93,12 @@ def pdffile2():
         lastSerial2.append(x[3])
     for i in lastSerial2:
         duplicateFrequencies[i.strip()] = lastSerial2.count(i)
+    if len(duplicateFrequencies) == 0:
+        for x in wo:
+            duplicateFrequencies[x[6].strip()] = 2
+    print("parts", parts)
+    print("lastserial", lastSerial2)
+    print(duplicateFrequencies)
 
     return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
 
@@ -243,7 +249,11 @@ def ir():
                 customers.append(Dict)
                 customer[0] = custid
 
-    return render_template("ir.html",theme=theme,notheme=notheme,customers=customers,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+
+    return render_template("ir.html",usrstatus=usrstatus,theme=theme,notheme=notheme,customers=customers,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/newir",methods=["GET","POST"])
 def newir():
@@ -487,3 +497,35 @@ def irpartselect():
 
 
     return result
+
+@app.route("/irstoreselect", methods=["GET","POST"])
+def irstoreselect():
+
+    s = request.form["search"].lower()
+
+    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact, Cust_Pricegroup FROM Customers")
+    result = ""
+    custs.sort(key=lambda x:x[0])
+
+    for x in custs:
+        try:
+            if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
+                try:
+                    result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
+                except: pass
+        except: pass
+    return result
+
+@app.route("/irsavestore", methods=["GET","POST"])
+def irsavestore():
+
+    num = request.form["store"].upper()
+    id = request.form["noteid"]
+    contact = request.form["contact"]
+    name = request.form["name"]
+
+    sqlq = "UPDATE IR SET IR_custID = '"+num+"'"
+    print(sqlq)
+    sql("INSERT",sqlq)
+
+    return ('', 204)

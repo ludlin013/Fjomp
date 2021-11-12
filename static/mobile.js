@@ -44,3 +44,17 @@ function hamburger(){
     x = true
   }
 }
+
+document.getElementById('userstatuscolor').onclick = function(){
+
+  const fd = new FormData();
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    document.getElementById('userstatuscolor').style.background = xhttp.responseText;
+  }
+
+  xhttp.open("POST","/changestatus",true);
+  xhttp.send(fd);
+
+}

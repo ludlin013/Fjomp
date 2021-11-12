@@ -46,6 +46,10 @@ def parts():
     if request.cookies["auth"] == "true":
         authenticated = True
 
+
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+
     theme,notheme = setTheme()
 
     allparts = []
@@ -113,4 +117,4 @@ def parts():
 
     allparts.sort(key = lambda x:x["artid"])
 
-    return render_template("parts.html",theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn, controll_variable=controll_variable, pricegroups=pricegroups, pricegroupnum=pricegroupnum)
+    return render_template("parts.html",usrstatus=usrstatus,theme=theme,notheme=notheme,allparts=allparts,auth=authenticated,des=partd,par=partn, controll_variable=controll_variable, pricegroups=pricegroups, pricegroupnum=pricegroupnum)

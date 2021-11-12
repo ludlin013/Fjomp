@@ -20,14 +20,15 @@
     <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
   </div>
   <div class="navin">
-    <a class="navitemin noselect" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
-    <a class="navitemin noselect" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
-    <a class="navitemin noselect" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
-    <a class="navitemin active noselect" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
-    <a class="navitemin noselect" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
-    <a class="navitemin noselect" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
-    <a class="navitemin noselect" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin active" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
     <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
+    <div id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ></div><a id="l3" href="/lvl3status">L3</a><input type="hidden" id="usrstat" value=""></div>
   </div>
 
   <input type="hidden" id="idOfPart" value="">
@@ -52,18 +53,11 @@
           <script>
           document.cookie = "lastir = {{irnumber}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
           </script>
-            <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="ircusn" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
-            {% if customers !=  []%}
-            <div class="irdropblack" onclick="window.location.replace('/ir')">
-            </div>
-            <div class="ircustdrop">
-              {% for x in customers %}
-              <div onclick="document.getElementById('ircusn').value='{{x["id"].strip()}}';document.getElementById('custform').submit()">
-                <p class="custdropnumber">{{x["id"]}}</p><p>{{x["type"]}} {{x["name"]}}</p>
-              </div>
-              {% endfor %}
-            </div>
-            {% endif %}
+          <div class="storelist" id="storelist" style="display:none">
+
+          </div>
+            <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="storenumber" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+
         </div>
         <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
           <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
@@ -75,6 +69,9 @@
 
       </div>
       <div class="toppageright2-ir">
+        <div class="storelist" id="storelist" style="display:none">
+
+        </div>
           <div class="formitem-ir"><label class="noselect">Name:</label><input readonly class="forminput-ir nameaddr" type="text" value="{{customer[2].strip()}}"></div>
           <div class="formitem-ir"><label class="noselect">Address:</label><input readonly class="forminput-ir nameaddr" type="text" value="{{customer[3].strip()}}"></div>
           <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input readonly id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input readonly id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
