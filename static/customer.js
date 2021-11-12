@@ -95,6 +95,40 @@ function editunit(id){
 
 }
 
+document.getElementById('unitaddvend').value = "";
+document.getElementById('addmodel').value = "";
+document.getElementById('addserial').value = "";
+document.getElementById('adddate').value = "";
+document.getElementById('addcharge').value = "";
+document.getElementById('addwarranty').value = "";
+
+function addunit(){
+  const fd = new FormData();
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.responseType = 'text';
+
+  fd.append("customer", document.getElementById('custidid').value);
+  fd.append("vendor", document.getElementById('unitaddvend').value);
+  fd.append("model", document.getElementById('addmodel').value);
+  fd.append("serial", document.getElementById('addserial').value);
+  fd.append("date", document.getElementById('adddate').value);
+  fd.append("charge", document.getElementById('addcharge').value);
+  fd.append("warranty", document.getElementById('addwarranty').value);
+
+  xhttp.onload = function(){
+    document.getElementById('unitmsg').innerHTML = xhttp.responseText;
+    document.getElementById('unitmsg').style.maxHeight = "50px";
+    document.getElementById('unitmsg').style.borderBottom = "1px solid";
+
+    setTimeout(function(){document.getElementById('unitmsg').style.maxHeight = "0";document.getElementById('unitmsg').style.borderBottom = "0";}, 2000);
+
+  }
+
+  xhttp.open("POST","/customernewunit",true);
+  xhttp.send(fd);
+}
+
 function remunit(id){
   const fd = new FormData();
 

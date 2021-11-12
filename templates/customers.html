@@ -236,8 +236,8 @@
           <!--<div class="customer-add-unit-row"><p>Replace date</p><input type="date" placeholder="" name="replace" value=""></div>
 -->
           <div class="customer-add-unit-row">
-            <input type="submit" name="" style="cursor:pointer" value="Add unit">
-            <input type="button" onclick="hideAddUnits()" style="cursor:pointer" name="" value="Cancel">
+            <input type="button" onclick="addunit()" name="" style="cursor:pointer" value="Add unit">
+            <input type="button" onclick="location.reload()" style="cursor:pointer" name="" value="Done">
           </div>
         </form>
 
@@ -411,6 +411,9 @@
 </div>
 <div id="statusmsg">
   Customer saved!
+</div>
+
+<div id="unitmsg">
 </div>
 <script src="/static/cust.js"></script>
 <script src="/static/mobile.js"></script>

@@ -435,7 +435,8 @@ select{
 }
 
 
-#statusmsg{
+#statusmsg,
+#unitmsg{
   border:1px solid;
   border-top: 0;
   border-bottom: 0;

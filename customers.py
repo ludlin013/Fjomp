@@ -31,8 +31,11 @@ def sql(type,sqlquery):
     if type == "SELECT":
         result = cursor.fetchall()
     elif type == "INSERT":
-        cnxn.commit()
-        result = None
+        try:
+            cnxn.commit()
+        except:
+            result = None
+            return "-1"
 
     return result
 
@@ -274,16 +277,15 @@ def customernewunit():
 
     print(request.form)
 
-    if request.form["remove"] == "0":
-        sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["custvendor"]+"','"+request.form["custmod"].split("%")[0]+"','"+request.form["serial"]+"','"+request.form["install"]+"','"+request.form["warranty"]+"', '"+request.form["custcharge"]+"', '0')"
-    else:
-        sqlq = "UPDATE Units SET Unit_Vendor = '"+request.form["custvendor"]+"', Unit_Model = '"+request.form["custmod"].split("%")[0]+"', Unit_Serial = '"+request.form["serial"]+"', Unit_installdate = '"+request.form["install"]+"', Unit_Warend = '"+request.form["warranty"]+"', Unit_Chargemode = '"+request.form["custcharge"]+"' WHERE Unit_ID = '"+request.form["remove"]+"'"
+    sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["vendor"]+"','"+request.form["model"].split("%")[0]+"','"+request.form["serial"]+"','"+request.form["date"]+"','"+request.form["warranty"]+"', '"+request.form["charge"]+"', '0')"
 
     print(sqlq)
+    if (sqlq == "-1"):
+        return ("Error adding unit, try again!",200)
     sql("INSERT",sqlq)
 
-
-    return redirect("/customers?customer="+request.form["customer"])
+    return ("Unit added!",200)
+    #return redirect("/customers?customer="+request.form["customer"])
 
 
 @app.route("/unitedit", methods=["GET","POST"])
