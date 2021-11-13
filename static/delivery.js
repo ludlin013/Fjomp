@@ -653,11 +653,11 @@ function clickstore(chosen){
   document.getElementById("City").value = chosen.children[5].textContent;
   document.getElementById("ZIP").value = chosen.children[4].textContent;
 
-  document.getElementById("inputnum").value = chosen.srcElement.children[6].textContent;
+  document.getElementById("inputnum").value = chosen.children[6].textContent;
 
   for (x of document.getElementsByClassName('forminput-delivnotes3')){
     if(x.id.includes("pg")){
-      x.value = e.srcElement.children[6].textContent;
+      x.value = chosen.children[6].textContent;
     }
 
   }
