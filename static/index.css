@@ -107,31 +107,21 @@ body{
 }
 
 #lvl3{
-  position:fixed;
-  bottom:0;
-  display: flex;
-  width:200px;
-  transition-duration: .1s;
-  align-items: center;
-  overflow: hidden;
-  padding:10px;
 }
 
 #userstatuscolor{
   height:40px;
   width:40px;
+  min-width:40px;
   border-radius: 40px;
   background: red;
+  margin:10px;
   cursor:pointer;
 }
 
 #l3{
   text-decoration: none;
   padding:10px 120px 10px 15px;
-  display: none
-}
-.navin:hover #l3{
-  display: flex
 }
 
 @media only screen and (max-width: 600px){
