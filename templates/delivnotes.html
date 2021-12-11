@@ -20,7 +20,9 @@
     </div>
 
     <div class="navin">
-      <a class="navitemin" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      {% if usrtech == 1 %}
+      <div class="navitemin" id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ><img src="../static/pictures/{{theme}}/L3.png"></div><a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value=""></div>
+      {% endif %}      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
       <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
       <a class="navitemin active" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
       <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
@@ -28,7 +30,6 @@
       <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
       <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
       <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
-      <div id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ></div><a id="l3" href="/lvl3status">L3</a><input type="hidden" id="usrstat" value=""></div>
     </div>
 
     <input type="hidden" id="idOfPart" value="">
@@ -152,8 +153,8 @@
               <td class="thdiscount-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes3" value="{{x[10]}}"></td>
               <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[11]}}"></td>
               <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[12]}}"></td>
-              <td class="thnocharge-delivnotes" onclick="this.children[0].click()"><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
-              <td class="thbackorder-delivnotes" onclick="this.children[0].click()"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
+              <td class="thnocharge-delivnotes" ><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
+              <td class="thbackorder-delivnotes" ><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
               <td><a style="cursor:pointer" id="remove{{sqlq.index(x)}}" onclick="if(confirm('Are you sure you want to remove ' + this.parentElement.parentElement.children[2].children[0].value + '?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
               <script>
 

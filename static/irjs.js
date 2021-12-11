@@ -17,6 +17,15 @@ try{
 }
 
 
+if (document.cookie.includes("irselected")){
+  for(x of document.cookie.split(";")){
+    if (x.includes("irselected")){
+      changerepact(x.replace("irselected=","").trim())
+    }
+  }
+}else{
+  changerepact('0repact');
+}
 
 
 function update(inf){
@@ -31,6 +40,7 @@ function update(inf){
 }
 
 function changerepact(idd){
+  document.cookie = "irselected="+idd+"; expires=Thu, 18 Dec 2083 12:00:00 UTC; path=/";
   for (x of allrepact){
     x.style.display = "none";
   }
@@ -50,19 +60,17 @@ function changerepact(idd){
 
   //document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.border = "4px solid #fff"
   //document.getElementById(idd.replace("repact","type")).parentElement.parentElement.style.background = "#fff"
-try{
-  var serial = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[7].childNodes[0].value;
-  var model = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].options[document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].selectedIndex].text
-  var ir = document.getElementById('irirn').value;
-}catch(error){
-  console.log(error);
-}
+  try{
+    var serial = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[7].childNodes[0].value;
+    var model = document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].options[document.getElementById(idd.replace("repact","type")).parentElement.parentElement.childNodes[5].childNodes[1].selectedIndex].text
+    var ir = document.getElementById('irirn').value;
+  }catch(error){
+    console.log(error);
+  }
 
   document.getElementById('ir-add').onclick = function(){ newspare(model + "%" + serial + "%" + ir) };
   document.getElementById('irunitremove').onclick = function(){removeunit(document.getElementById(idd.replace("repact","id")).value)};
 }
-
-changerepact('0repact')
 
 
 function removeunit(arg){
@@ -340,13 +348,13 @@ function getstore(e){
         document.getElementById("storenumber").value = store[0];
         document.getElementById("storeName").value = store[1];
         document.getElementById("storestreet").value = store[2];
-        document.getElementById("ZIP").value = store[3];
-        document.getElementById("City").value = store[4];
+        document.getElementById("irzip").value = store[3];
+        document.getElementById("ircity").value = store[4];
 
         document.getElementById("contact").value = store[5];
 
 
-        document.getElementById("inputnum").value = store[6];
+        document.getElementById("phone").value = store[6];
 
         for (x of document.getElementsByClassName('forminput-delivnotes3')){
           if(x.id.includes("pg")){
@@ -369,10 +377,130 @@ function getstore(e){
         for(x of document.getElementsByClassName('numfoc')){
           x.focus()
         }
+        hiddensave();
       }
     }
 
     xhttp.open("POST","/irstoreselect",true);
     xhttp.send(fd);
   }
+}
+
+function chooseStore(e){
+  console.log(e.keyCode);
+  if(e.key == "Enter"){
+    document.getElementById('storelist').style.display = "none";
+    document.getElementById("storenumber").value = e.srcElement.children[0].textContent;
+
+    document.getElementById("contact").value = e.srcElement.children[1].textContent;
+
+    document.getElementById("storeName").value = e.srcElement.children[2].textContent;
+    document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
+    document.getElementById("ircity").value = e.srcElement.children[5].textContent;
+    document.getElementById("irzip").value = e.srcElement.children[4].textContent;
+
+    document.getElementById("phone").value = e.srcElement.children[6].textContent;
+
+    for (x of document.getElementsByClassName('forminput-delivnotes3')){
+      if(x.id.includes("pg")){
+        x.value = e.srcElement.children[6].textContent;
+      }
+
+    }
+
+    const fd = new FormData();
+
+    fd.append("store",e.srcElement.children[0].textContent)
+    fd.append("contact",e.srcElement.children[1].textContent)
+    fd.append("noteid",document.getElementById("irirn").value)
+    fd.append("name",e.srcElement.children[2].textContent)
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+      hiddensave();
+    }
+    xhttp.open("POST","/savestore",true);
+    xhttp.send(fd);
+
+
+
+    document.getElementById('irnotefield').focus()
+
+  } else if(e.key == "Escape"){
+    document.getElementById('storelist').style.display = "none";
+  } else if(e.keyCode == "40"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = false;
+    for(x of document.getElementsByClassName('storeitem')){
+      if(stop == true){
+        break
+      }
+      if (x == me){
+        stop = true;
+      }
+
+    }
+
+    x.focus()
+  } else if(e.keyCode == "38"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = me;
+    for(x of document.getElementsByClassName('storeitem')){
+      if (x == me){
+        break
+      }
+      stop = x;
+
+    }
+
+    stop.focus()
+  }
+
+
+}
+
+function clickstore(chosen){
+  document.getElementById('storelist').style.display = "none";
+  document.getElementById("storenumber").value = chosen.children[0].textContent;
+
+
+  document.getElementById("contact").value = chosen.children[1].textContent;
+
+
+  document.getElementById("storeName").value = chosen.children[2].textContent;
+  document.getElementById("storestreet").value = chosen.children[3].textContent;
+  document.getElementById("ircity").value = chosen.children[5].textContent;
+  document.getElementById("irzip").value = chosen.children[4].textContent;
+
+  document.getElementById("phone").value = chosen.children[6].textContent;
+
+  for (x of document.getElementsByClassName('forminput-delivnotes3')){
+    if(x.id.includes("pg")){
+      x.value = chosen.children[6].textContent;
+    }
+
+  }
+
+  const fd = new FormData();
+
+  xhttp.onload = function(){
+    hiddensave();
+  }
+
+  fd.append("store",chosen.children[0].textContent)
+  fd.append("contact",chosen.children[1].textContent)
+  fd.append("noteid",document.getElementById("irirn").value)
+  fd.append("name",chosen.children[2].textContent)
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function(){
+    hiddensave();
+  }
+  xhttp.open("POST","/savestore",true);
+  xhttp.send(fd);
+
+  document.getElementById('irnotefield').focus()
+
 }

@@ -46,4 +46,6 @@ def swapouts():
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
-    return render_template("swapout.html",usrstatus=usrstatus,theme=theme,notheme=notheme)
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+
+    return render_template("swapout.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme)

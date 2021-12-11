@@ -1,7 +1,7 @@
 
 function saveir(){
   var irirn = document.getElementById("irirn");
-  var cid = document.getElementById("ircusn");
+  var cid = document.getElementById("storenumber");
   var opdate = document.getElementById("iropendate");
   var redate = document.getElementById("irredate");
   var shdate = document.getElementById("irshipdate");
@@ -15,8 +15,11 @@ function saveir(){
 
   var send = [irirn,cid,opdate,redate,shdate,techid,note,infreight,outfreight,closed,openid,office]
 
+  console.log(send);
+
   for(x of send){
     if(x!=""){
+      console.log(x);
       document.getElementById("save"+x.id).value = x.value;
     }
   }
@@ -61,6 +64,15 @@ function saveall(){
 
   setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
 
+}
+
+function hiddensave(){
+  saveir()
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('allform'))
+  xhttp.open("POST","/irsaveall",true);
+  console.log(fd.keys());
+  xhttp.send(fd);
 }
 
 

@@ -3,14 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bake</title>
+    <title>WEBSTAT</title>
     <link rel="stylesheet" href="static/index.css">
     <link rel="stylesheet" href="static/{{theme}}.css">
     <link rel="icon" href="./static/pictures/icon.ico">
   </head>
   <body>
     <div class="navin">
-      <a class="navitemin active" href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+      {% if usrtech == 1 %}
+      <div class="navitemin" id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ><img src="../static/pictures/{{theme}}/L3.png"></div><a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value=""></div>
+      {% endif %}      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
       <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
       <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
       <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
@@ -18,7 +20,6 @@
       <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
       <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
       <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
-      <div id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ></div><a id="l3" href="/lvl3status">L3</a><input type="hidden" id="usrstat" value=""></div>
     </div>
     <div class="mainwrapNAME">
 

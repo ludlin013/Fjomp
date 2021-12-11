@@ -162,10 +162,15 @@ def main():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
-        parts = f.read()
+    #with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
+    #    parts = f.read()
 
-    return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme)
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+
+    return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme,usrstatus=usrstatus,usrtech=usrtech)
 
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -200,7 +205,14 @@ def landing():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
-    return render_template("landing.html",theme=theme,notheme=notheme)
+
+    sd = {0: "red",1:"yellow",2:"green"}
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+
+
+    return render_template("landing.html",theme=theme,notheme=notheme,usrstatus=usrstatus,usrtech=usrtech)
 
 @app.route("/lvl3status")
 def lvl3status():
@@ -215,14 +227,18 @@ def lvl3status():
 
     users = sql("SELECT", "SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office FROM Technicians WHERE Tech_Tech = '1'")
 
-    return render_template("status.html",theme=theme,notheme=notheme, users=users, usrstatus=usrstatus)
+    users.sort(key = lambda x:x[1])
+
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+
+
+    return render_template("status.html",usrtech=usrtech,theme=theme,notheme=notheme, users=users, usrstatus=usrstatus)
 
 @app.route("/updateusers",methods=["GET","POST"])
 def updateusers():
 
     users = dict(sql("SELECT", "SELECT Tech_ID, Tech_Office FROM Technicians WHERE Tech_Tech = '1'"))
 
-    print(users)
 
     return(users,200)
 

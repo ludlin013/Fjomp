@@ -82,8 +82,9 @@ def settings():
     else:
         mail[2] = request.cookies.get("projmail")
 
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("settings.html",usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
+    return render_template("settings.html",usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -143,8 +144,9 @@ def importdata():
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("importdata.html",usrstatus=usrstatus,theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)
+    return render_template("importdata.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme, currentPath=currentPath, fileexist=fileexist)
 
 app.config['UPLOAD_FOLDER'] = "./static/bugs/"
 
@@ -180,8 +182,9 @@ def bugreport():
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("bugreport.html",theme=theme,notheme=notheme,usrstatus=usrstatus)
+    return render_template("bugreport.html",usrtech=usrtech,theme=theme,notheme=notheme,usrstatus=usrstatus)
 
 @app.route("/viewreport",methods=["GET","POST"])
 def viewreport():
@@ -204,8 +207,9 @@ def viewreport():
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("viewreport.html",theme=theme,notheme=notheme, bugs=bugs, bugdict=bugdict,usrstatus=usrstatus)
+    return render_template("viewreport.html",usrtech=usrtech,theme=theme,notheme=notheme, bugs=bugs, bugdict=bugdict,usrstatus=usrstatus)
 
 @app.route("/reportdone",methods=["GET","POST"])
 def reportdone():
