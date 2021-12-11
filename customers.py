@@ -208,9 +208,10 @@ def customers():
         mincust = allcustget[0][0].strip()
         maxcust = allcustget[-1][0].strip()
 
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
 
-    return render_template("customers.html",theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,usrstatus=usrstatus,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
+    return render_template("customers.html",usrtech=usrtech,theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,usrstatus=usrstatus,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
 
 
 @app.route("/custremunit", methods=["GET","POST"])

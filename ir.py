@@ -172,7 +172,6 @@ def ir():
             allir.sort()
             max = allir[len(allir)-1]
             min = allir[0]
-
             next = max
             previous = min
 
@@ -184,7 +183,8 @@ def ir():
                 ni += 1
             while pi not in allir and pi > min:
                 pi -= 1
-            if next < max:
+
+            if ni < max:
                 next = ni
 
             previous = pi
@@ -252,8 +252,9 @@ def ir():
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("ir.html",usrstatus=usrstatus,theme=theme,notheme=notheme,customers=customers,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
+    return render_template("ir.html",usrstatus=usrstatus,usrtech=usrtech,theme=theme,notheme=notheme,customers=customers,user=user,error=error,sortmode=sortmode,next=next,previous=previous,max=max,min=min,freight=freight,office=office,types=types,manufact=manufact,models=models,found=found,charge=charge,irnumber=irnumber,customer=customer,irinfo=irinfo,techs=techs,parts=parts,wo=wo)
 
 @app.route("/newir",methods=["GET","POST"])
 def newir():
@@ -276,6 +277,8 @@ def newir():
 def delir():
     lastir = request.cookies.get("lastir")
     sql("INSERT", "DELETE FROM IR WHERE IR_Irno = '" + lastir + "'")
+    sql("INSERT", "DELETE FROM IRParts WHERE IRP_IRno = '" + lastir + "'")
+    sql("INSERT", "DELETE FROM WO WHERE WO_Irno = '" + lastir + "'")
 
     return redirect("/ir?ir="+str(int(lastir)-1))
 
@@ -503,7 +506,7 @@ def irstoreselect():
 
     s = request.form["search"].lower()
 
-    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact, Cust_Pricegroup FROM Customers")
+    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Contact, Cust_phone1 FROM Customers")
     result = ""
     custs.sort(key=lambda x:x[0])
 
@@ -526,6 +529,6 @@ def irsavestore():
 
     sqlq = "UPDATE IR SET IR_custID = '"+num+"'"
     print(sqlq)
-    sql("INSERT",sqlq)
+    #sql("INSERT",sqlq)
 
     return ('', 204)

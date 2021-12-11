@@ -398,5 +398,6 @@ def lookup():
 
         lookupdata.sort(key = lambda x:x["date_check"], reverse=True)
 
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("lookup.html",usrstatus=usrstatus,theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball, parts=parts, part=part, controll_variable=controll_variable, startDate=startDate, current_date=current_date)
+    return render_template("lookup.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,lookupdata=lookupdata, looknumname=looknumname, partname=partname, btwdate1=btwdate1, btwdate2=btwdate2, lookserial=lookserial, rbball=rbball, parts=parts, part=part, controll_variable=controll_variable, startDate=startDate, current_date=current_date)

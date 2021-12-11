@@ -106,32 +106,36 @@ body{
   transition-duration: .25s;
 }
 
-#lvl3{
-  position:fixed;
-  bottom:0;
-  display: flex;
-  width:200px;
-  transition-duration: .1s;
-  align-items: center;
-  overflow: hidden;
-  padding:10px;
+#l3{
+  text-decoration: none;
 }
 
 #userstatuscolor{
-  height:40px;
-  width:40px;
-  border-radius: 40px;
+  height:35px;
+  width:35px;
+  min-width:35px;
   background: red;
+  margin:10px 15px 10px 10px;
   cursor:pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#userstatuscolor img{
+  transition-duration: .25s;
+  padding:0;
+  width:35px;
+  height:35px;
+}
+
+#lvl3:hover #userstatuscolor img{
+  filter: brightness(120%);
 }
 
 #l3{
   text-decoration: none;
   padding:10px 120px 10px 15px;
-  display: none
-}
-.navin:hover #l3{
-  display: flex
 }
 
 @media only screen and (max-width: 600px){

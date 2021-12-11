@@ -61,6 +61,14 @@ body{
   cursor:pointer;
 }
 
+#userstatuscolor img{
+  filter:brightness(200%);
+}
+
+#l3{
+  text-decoration: none
+}
+
 .theme:hover img:nth-child(1){
   margin-left: -60px
 }

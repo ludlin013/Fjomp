@@ -20,6 +20,50 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.storelist{
+  width:900px;
+  z-index: 200200320;
+  overflow-y:scroll;
+  max-height:400px;
+  display:flex;
+  flex-direction: column;
+  padding:10px;
+  border-top:1px solid #eee;
+  position: fixed;
+  margin-top: 26px;
+  margin-left:calc(410px - 260px);
+}
+
+.storeitem{
+  display: flex;
+  padding:10px;
+  border-bottom:1px solid #ccc;
+}
+
+.storeid{
+  width:75px
+}
+
+.storeref{
+  width:200px
+}
+
+.storename{
+  width:200px
+}
+
+.storestreet{
+  width:200px
+}
+
+.storezip{
+  width:75px
+}
+
+.storecity{
+  width:150px
+}
+
 #gotoir{
   width:80px
 }
