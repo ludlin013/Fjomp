@@ -10,8 +10,47 @@ a {
   text-decoration: none
 }
 
+#botitle {
+  margin:20px 0 10px 0
+}
+
+#nstitle {
+  margin:20px 0 0 0
+}
+
 .shipprewrap {
   display: flex;
+}
+
+.botable{
+  padding:0 5px
+}
+
+.boitem {
+  display: flex;
+  background: rgb(60,60,60);
+  width:614px;
+  padding:2px ;
+  border-bottom: 1px solid rgb(40,40,40)
+}
+
+.boitem:nth-child(1) {
+  border-bottom: 2px solid rgb(40,40,40)
+}
+
+.bonr {
+  padding:2px 0;
+  width:200px
+}
+
+.bona {
+  padding:2px 0;
+  width:320px
+}
+
+.boqt {
+  padding:2px 0;
+  width:70px
 }
 
 .nstable {
@@ -74,6 +113,8 @@ a {
 .itempreview {
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top:120px
 }
 
 .itempreview * {

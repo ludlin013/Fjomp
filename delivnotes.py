@@ -589,6 +589,17 @@ def unshippeddelivnotes():
 
     sqlq.sort(key = lambda x:x[4], reverse = True)
 
+    bo = {}
+
+    for x in sqlq:
+        if x[18] == 1:
+            print(x)
+            if x[5] not in bo:
+                bo[x[5]] = [x[5].strip(),x[6].strip(),x[8]]
+            else:
+                bo[x[5]][2] += x[8]
+
+    print(bo)
 
     for x in sqlq:
         if x[27] is not None:
@@ -598,7 +609,7 @@ def unshippeddelivnotes():
                 all[x[1]]["total"] = all[x[1]]["total"] + x[12]
 
 
-    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all)
+    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all, bo=bo)
 
 @app.route("/getnspart", methods=["GET","POST"])
 def getnspart():
@@ -616,4 +627,6 @@ def getnspart():
             content["parts"].append([x[5].strip(),x[6].strip(),str(x[8]).split(".")[0],str(x[18])])
         except:
             pass
+
+
     return content

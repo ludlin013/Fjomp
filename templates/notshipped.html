@@ -35,6 +35,25 @@
 
   <div class="mainshipped">
     <h3><a href="/delivnotes">Go back</a></h3>
+    <p id="botitle">Back orders: </p>
+
+    <div class="botable">
+    <div class="boitem">
+      <p class="bonr">Part nr.</p>
+      <p class="bona">Part name</p>
+      <p class="boqt">Quantity</p>
+    </div>
+      {% for x in bo.values() %}
+      <div class="boitem">
+        <p class="bonr">{{x[0]}}</p>
+        <p class="bona">{{x[1]}}</p>
+        <p class="boqt">{{x[2]}}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <p id="nstitle">All not shipped: </p>
+
     <div class="shipprewrap">
 
     <div class="nstable">
