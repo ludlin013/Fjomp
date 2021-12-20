@@ -35,6 +35,8 @@
 
   <div class="mainshipped">
     <h3><a href="/delivnotes">Go back</a></h3>
+    <div class="shipprewrap">
+
     <div class="nstable">
       <a class="nsitem" style="border-bottom:2px solid rgb(40,40,40)">
         <p class="date" >Date</p>
@@ -45,7 +47,7 @@
         <p class="finoff" >Final Off.</p>
       </a>
       {% for x in all.values() %}
-      <a class="nsitem" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
+      <a class="nsitem" onclick="previewpart('{{x["no"]}}')" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
         <p class="date"><input type="date" value="{{x["date"]}}"></p>
         <p class="no">{{x["no"]}}</p>
         <p class="cust">{{x["cust"]}}</p>
@@ -54,10 +56,52 @@
         <p class="finoff"><input type="checkbox" {% if x["finoff"] == 1 %}checked{% endif %} readonly></p>
       </a>
       {% endfor %}
+    </div>
+
+    <div class="previewwrap">
+
+      {% for x in all.values()%}
+        <div class="itempreview" id="{{x["no"]}}" style="display:none">
+          <label class="preref">Reference: {{x["ref"]}} </label>
+          <textarea class="pretex" rows="4" cols="80">{{x["notes"]}}</textarea>
+          <div class="previewpart">
+            <p class="prepno">Part nr.</p>
+            <p class="prepna">Part name</p>
+            <p class="preqty">Quantity</p>
+            <p class="prepbo">Back order</p>
+          </div>
+
+        {% for y in sqlq %}
+          {% if x["no"] == y[1] %}
+            <div class="previewpart">
+              <p class="prepno">{{y[5]}}</p>
+              <p class="prepna">{{y[6]}}</p>
+              <p class="preqty">{{y[8]}}</p>
+              <p class="prepbo"><input type="checkbox" {% if y[18] == 1 %}checked{% endif %} readonly></p>
+            </div>
+
+          {% endif %}
+        {% endfor %}
+        <a class="prelink" href="/delivnotes?dn={{x["no"]}}"> Go to delivery note</a>
+      </div>
+      {% endfor %}
+
+    </div>
+
 
     </div>
   </div>
 
+  <script type="text/javascript">
+    function previewpart(nr){
+      for(var x of document.getElementsByClassName("itempreview")){
+        x.style.display = "none";
+      }
+
+      document.getElementById(nr).style.display = "flex";
+
+    }
+  </script>
   <script src="/static/mobile.js"></script>
 </body>
 </html>

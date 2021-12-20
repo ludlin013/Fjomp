@@ -10,6 +10,10 @@ a {
   text-decoration: none
 }
 
+.shipprewrap {
+  display: flex;
+}
+
 .nstable {
   display: flex;
   flex-direction: column;
@@ -63,8 +67,69 @@ a {
   width:80px
 }
 
+.previewwrap {
+  padding:20px 15px
+}
 
+.itempreview {
+  display: flex;
+  flex-direction: column;
+}
 
+.itempreview * {
+  padding:10px ´0
+}
+
+.previewpart{
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(60,60,60);
+  padding:2px 0;
+}
+
+.previewpart:nth-last-child(2){
+  border:none
+}
+
+.previewpart * {
+  padding:2px
+}
+
+.pretex {
+  padding: 5px;
+  margin: 10px 0
+}
+
+.prepno{
+  width:150px
+}
+
+.prepna {
+  width:270px
+
+}
+
+.preqty {
+  width:120px
+
+}
+
+.prepbo {
+  width:120px
+
+}
+
+.prelink{
+  background: rgb(60,60,60);
+  text-align: center;
+  padding: 15px 0;
+  margin:10px 0 0 0;
+  border-radius: 5px
+}
+
+textarea {
+  background: rgb(80,80,80)
+}
 
 
 input[type="date"], input[type="time"] {

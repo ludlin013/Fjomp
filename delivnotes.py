@@ -593,9 +593,9 @@ def unshippeddelivnotes():
     for x in sqlq:
         if x[27] is not None:
             if x[1] not in all:
-                all[x[1]] = {"total" : x[12], "date" : x[4].date(), "cust" : x[0], "no" : x[1], "off" : x[27], "finoff" : x[28]}
+                all[x[1]] = {"total" : x[12], "date" : x[4].date(), "cust" : x[0], "no" : x[1], "off" : x[27], "finoff" : x[28], "notes" : x[17], "ref" : x[3]}
             else:
                 all[x[1]]["total"] = all[x[1]]["total"] + x[12]
 
 
-    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all)
+    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all, sqlq=sqlq)
