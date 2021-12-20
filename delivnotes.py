@@ -127,6 +127,7 @@ def delivnotes():
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
+    userauth = request.cookies.get('auth')
 
 
     sd = {0: "red",1:"yellow",2:"green"}
@@ -338,7 +339,7 @@ def delivnotes():
 
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("delivnotes.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts, mailadr=mailadr)
+    return render_template("delivnotes.html",userauth=userauth,usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,min=min,next=next,previous=previous,max=maxad,pricegroups=pricegroups,mailbody=mailbody,total=total, sqlq=sqlq, Dict=Dict, notFound=notFound, delivnote=delivnote, allparts=allparts, mailadr=mailadr)
 
 
 @app.route("/savedeliv", methods=["GET","POST"])
@@ -573,3 +574,28 @@ def deliverymail(num):
     mailbody = mailbody.replace("\"","")
 
     return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, delivnote=num, store=store, note=note)
+
+
+@app.route("/unshippeddelivnotes", methods=["GET","POST"])
+def unshippeddelivnotes():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    sqlq = sql("SELECT","SELECT * FROM DelivNotes WHERE DN_Closed = '0'")
+    all = {}
+
+    sqlq.sort(key = lambda x:x[4], reverse = True)
+
+
+    for x in sqlq:
+        if x[27] is not None:
+            if x[1] not in all:
+                all[x[1]] = {"total" : x[12], "date" : x[4].date(), "cust" : x[0], "no" : x[1], "off" : x[27], "finoff" : x[28]}
+            else:
+                all[x[1]]["total"] = all[x[1]]["total"] + x[12]
+
+
+    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all)

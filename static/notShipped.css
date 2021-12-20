@@ -1,0 +1,74 @@
+
+.mainshipped {
+  margin-left:61px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none
+}
+
+.nstable {
+  display: flex;
+  flex-direction: column;
+  padding:20px 5px
+}
+
+.nsitem {
+  padding:4px 0;
+  display: flex;
+  background: rgb(80,80,80);
+  border-bottom: 1px solid rgb(40,40,40)
+}
+
+.nsitem * {
+  border-right: 1px solid rgb(40,40,40);
+  padding:0 2px;
+  margin-right: 4px
+}
+
+.nsitem *:nth-last-child(1){
+  border:none
+}
+
+.nsitem:hover,
+.nsitem:hover * {
+  background: rgb(60,60,60)!important
+}
+
+.date {
+  width:98px;
+  overflow: hidden;
+}
+
+.no {
+  width:110px;
+}
+
+.cust {
+  width: 110px;
+}
+
+.tot {
+  width:110px;
+}
+
+.off {
+  width:55px
+}
+
+.finoff {
+  width:80px
+}
+
+
+
+
+
+input[type="date"], input[type="time"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" translate="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Note | Not shipped</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/delivnotes.css">
+  <link rel="stylesheet" href="static/notShipped.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+<body>
+  <div class="mobilehead" style="display:none;z-index:100000;">
+    <div class="hamham" onclick="hamburger()" >
+      <div id="hamtop" style="left:15px"></div>
+      <div id="hammid" ></div>
+      <div id="hambot" style="left:15px"></div>
+    </div>
+    <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+  </div>
+
+  <div class="navin">
+    {% if usrtech == 1 %}
+    <div class="navitemin" id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ><img src="../static/pictures/{{theme}}/L3.png"></div><a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value=""></div>
+    {% endif %}      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
+    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
+    <a class="navitemin active" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
+    <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
+    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
+    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+    <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
+  </div>
+
+  <div class="mainshipped">
+    <h3><a href="/delivnotes">Go back</a></h3>
+    <div class="nstable">
+      <a class="nsitem" style="border-bottom:2px solid rgb(40,40,40)">
+        <p class="date" >Date</p>
+        <p class="no" >Nr.</p>
+        <p class="cust" >Customer</p>
+        <p class="tot" >Total</p>
+        <p class="off" >Offer</p>
+        <p class="finoff" >Final Off.</p>
+      </a>
+      {% for x in all.values() %}
+      <a class="nsitem" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
+        <p class="date"><input type="date" value="{{x["date"]}}"></p>
+        <p class="no">{{x["no"]}}</p>
+        <p class="cust">{{x["cust"]}}</p>
+        <p class="tot">{{x["total"]}}</p>
+        <p class="off"><input type="checkbox" {% if x["off"] == 1 %}checked{% endif %} readonly></p>
+        <p class="finoff"><input type="checkbox" {% if x["finoff"] == 1 %}checked{% endif %} readonly></p>
+      </a>
+      {% endfor %}
+
+    </div>
+  </div>
+
+  <script src="/static/mobile.js"></script>
+</body>
+</html>
