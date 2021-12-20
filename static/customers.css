@@ -198,7 +198,7 @@ td input[type=date]{
 .list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
   max-width: 1180px;
-  height: 400px;
+  height: 360px;
   overflow-y: scroll;
 }
 

@@ -319,7 +319,7 @@ table{
 
 .tabell-ir table{
   width:620px;
-  height: 150px;
+  height: 130px;
   overflow-y: scroll;
   display:block;
 }
@@ -397,7 +397,7 @@ th{
 }
 
 .list-spareparts-ir{
-  height: 158px;
+  height: 138px;
   display:block;
   overflow-y: scroll;
   width:967px;
