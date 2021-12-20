@@ -38,17 +38,25 @@
     <p id="botitle">Back orders: </p>
 
     <div class="botable">
-    <div class="boitem">
-      <p class="bonr">Part nr.</p>
-      <p class="bona">Part name</p>
-      <p class="boqt">Quantity</p>
-    </div>
-      {% for x in bo.values() %}
       <div class="boitem">
+        <p class="bonr">Part nr.</p>
+        <p class="bona">Part name</p>
+        <p class="boqt">Quantity</p>
+      </div>
+      {% for x in bo.values() %}
+      <div class="boitem" onclick="showbo('{{x[0]}}')">
         <p class="bonr">{{x[0]}}</p>
         <p class="bona">{{x[1]}}</p>
         <p class="boqt">{{x[2]}}</p>
       </div>
+      {% for y in x[3] %}
+      <a ondblclick="window.location.href = '/delivnotes?dn={{y[2]}}'" class="boelements {{x[0]}}" style="display:none">
+        <p class="bocustnr">{{y[0]}}</p>
+        <p class="bocustna">{{y[1]}}</p>
+        <p class="bodelivn">{{y[2]}}</p>
+        <p class="bodelivn">{{y[3]}}</p>
+      </a>
+      {% endfor %}
       {% endfor %}
     </div>
 
@@ -56,62 +64,62 @@
 
     <div class="shipprewrap">
 
-    <div class="nstable">
-      <a class="nsitem" style="border-bottom:2px solid rgb(40,40,40)">
-        <p class="date" >Date</p>
-        <p class="no" >Nr.</p>
-        <p class="cust" >Customer</p>
-        <p class="tot" >Total</p>
-        <p class="off" >Offer</p>
-        <p class="finoff" >Final Off.</p>
-      </a>
-      {% for x in all.values() %}
-      <a class="nsitem {{x["no"]}}" onclick="getpart('{{x["no"]}}')" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
-        <p class="date">{{x["date"]}}</p>
-        <p class="no">{{x["no"]}}</p>
-        <p class="cust">{{x["cust"]}}</p>
-        <p class="tot">{{x["total"]}}</p>
-        <p class="off"><input type="checkbox" {% if x["off"] == 1 %}checked{% endif %} readonly></p>
-        <p class="finoff"><input type="checkbox" {% if x["finoff"] == 1 %}checked{% endif %} readonly></p>
-      </a>
-      {% endfor %}
-    </div>
-
-    <div class="previewwrap">
-      <!--
-      {% for x in all.values()%}
-        <div class="itempreview" id="{{x["no"]}}" style="display:none">
-          <label class="preref">Reference: {{x["ref"]}} </label>
-          <textarea class="pretex" rows="4" cols="80">{{x["notes"]}}</textarea>
-          <div class="previewpart">
-            <p class="prepno">Part nr.</p>
-            <p class="prepna">Part name</p>
-            <p class="preqty">Quantity</p>
-            <p class="prepbo">Back order</p>
-          </div>
-
-        {% for y in sqlq %}
-          {% if x["no"] == y[1] %}
-            <div class="previewpart">
-              <p class="prepno">{{y[5]}}</p>
-              <p class="prepna">{{y[6]}}</p>
-              <p class="preqty">{{y[8]}}</p>
-              <p class="prepbo"><input type="checkbox" {% if y[18] == 1 %}checked{% endif %} readonly></p>
-            </div>
-
-          {% endif %}
+      <div class="nstable">
+        <a class="nsitem" style="border-bottom:2px solid rgb(40,40,40)">
+          <p class="date" >Date</p>
+          <p class="no" >Nr.</p>
+          <p class="cust" >Customer</p>
+          <p class="tot" >Total</p>
+          <p class="off" >Offer</p>
+          <p class="finoff" >Final Off.</p>
+        </a>
+        {% for x in all.values() %}
+        <a class="nsitem {{x["no"]}}" onclick="getpart('{{x["no"]}}')" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
+          <p class="date">{{x["date"]}}</p>
+          <p class="no">{{x["no"]}}</p>
+          <p class="cust">{{x["cust"]}}</p>
+          <p class="tot">{{x["total"]}}</p>
+          <p class="off"><input type="checkbox" {% if x["off"] == 1 %}checked{% endif %} readonly></p>
+          <p class="finoff"><input type="checkbox" {% if x["finoff"] == 1 %}checked{% endif %} readonly></p>
+        </a>
         {% endfor %}
-        <a class="prelink" href="/delivnotes?dn={{x["no"]}}"> Go to delivery note</a>
       </div>
-      {% endfor %}
-    -->
+
+      <div class="previewwrap">
+        <!--
+        {% for x in all.values()%}
+        <div class="itempreview" id="{{x["no"]}}" style="display:none">
+        <label class="preref">Reference: {{x["ref"]}} </label>
+        <textarea class="pretex" rows="4" cols="80">{{x["notes"]}}</textarea>
+        <div class="previewpart">
+        <p class="prepno">Part nr.</p>
+        <p class="prepna">Part name</p>
+        <p class="preqty">Quantity</p>
+        <p class="prepbo">Back order</p>
+      </div>
+
+      {% for y in sqlq %}
+      {% if x["no"] == y[1] %}
+      <div class="previewpart">
+      <p class="prepno">{{y[5]}}</p>
+      <p class="prepna">{{y[6]}}</p>
+      <p class="preqty">{{y[8]}}</p>
+      <p class="prepbo"><input type="checkbox" {% if y[18] == 1 %}checked{% endif %} readonly></p>
     </div>
 
-
-    </div>
+    {% endif %}
+    {% endfor %}
+    <a class="prelink" href="/delivnotes?dn={{x["no"]}}"> Go to delivery note</a>
   </div>
+  {% endfor %}
+-->
+</div>
 
-  <script src="/static/notshipped.js"></script>
-  <script src="/static/mobile.js"></script>
+
+</div>
+</div>
+
+<script src="/static/notshipped.js"></script>
+<script src="/static/mobile.js"></script>
 </body>
 </html>

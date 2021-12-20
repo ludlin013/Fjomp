@@ -19,7 +19,7 @@ function getpart(nr){
   xhttp.onload = function(){
 
     for(var x of document.getElementsByClassName("nsitem")){
-      x.style.background = "rgb(80,80,80)"; 
+      x.style.background = "rgb(80,80,80)";
     }
 
     document.getElementsByClassName(nr)[0].style.background = "rgb(60,60,60)";
@@ -129,4 +129,15 @@ if(document.cookie.includes("notshippednr")){
       getpart(x.replace("notshippednr=",""))
     }
   }
+}
+
+function showbo(id) {
+  for(var x of document.getElementsByClassName("boelements")){
+    x.style.display = "none";
+  }
+
+  for(var x of document.getElementsByClassName(id)){
+    x.style.display = "flex";
+  }
+
 }

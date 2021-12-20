@@ -595,9 +595,10 @@ def unshippeddelivnotes():
         if x[18] == 1:
             print(x)
             if x[5] not in bo:
-                bo[x[5]] = [x[5].strip(),x[6].strip(),x[8]]
+                bo[x[5]] = [x[5].strip(),x[6].strip(),x[8],[[x[0],x[2],x[1],x[8]]]]
             else:
                 bo[x[5]][2] += x[8]
+                bo[x[5]][3].append([x[0],x[2],x[1],x[8]])
 
     print(bo)
 

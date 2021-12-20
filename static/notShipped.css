@@ -38,6 +38,28 @@ a {
   border-bottom: 2px solid rgb(40,40,40)
 }
 
+.boelements {
+  padding:4px 0 4px 4px;
+  width:614px;
+  font-size: 14px;
+  background: rgb(80,80,80);
+  border-bottom: 1px solid rgb(60,60,60)
+}
+
+.bocustnr {
+  width: 100px
+}
+
+.bocustna {
+  width: 240px
+
+}
+
+.bodelivn {
+  width: 105px
+
+}
+
 .bonr {
   padding:2px 0;
   width:200px
