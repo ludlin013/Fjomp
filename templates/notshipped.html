@@ -47,8 +47,8 @@
         <p class="finoff" >Final Off.</p>
       </a>
       {% for x in all.values() %}
-      <a class="nsitem" onclick="previewpart('{{x["no"]}}')" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
-        <p class="date"><input type="date" value="{{x["date"]}}"></p>
+      <a class="nsitem {{x["no"]}}" onclick="getpart('{{x["no"]}}')" ondblclick="window.location.href = '/delivnotes?dn={{x["no"]}}'">
+        <p class="date">{{x["date"]}}</p>
         <p class="no">{{x["no"]}}</p>
         <p class="cust">{{x["cust"]}}</p>
         <p class="tot">{{x["total"]}}</p>
@@ -59,7 +59,7 @@
     </div>
 
     <div class="previewwrap">
-
+      <!--
       {% for x in all.values()%}
         <div class="itempreview" id="{{x["no"]}}" style="display:none">
           <label class="preref">Reference: {{x["ref"]}} </label>
@@ -85,23 +85,14 @@
         <a class="prelink" href="/delivnotes?dn={{x["no"]}}"> Go to delivery note</a>
       </div>
       {% endfor %}
-
+    -->
     </div>
 
 
     </div>
   </div>
 
-  <script type="text/javascript">
-    function previewpart(nr){
-      for(var x of document.getElementsByClassName("itempreview")){
-        x.style.display = "none";
-      }
-
-      document.getElementById(nr).style.display = "flex";
-
-    }
-  </script>
+  <script src="/static/notshipped.js"></script>
   <script src="/static/mobile.js"></script>
 </body>
 </html>

@@ -87,7 +87,7 @@ a {
   padding:2px 0;
 }
 
-.previewpart:nth-last-child(2){
+.previewpart:nth-last-child(1){
   border:none
 }
 
@@ -97,7 +97,12 @@ a {
 
 .pretex {
   padding: 5px;
-  margin: 10px 0
+  margin: 10px 0;
+  resize: none;
+}
+
+.date input {
+  background:none
 }
 
 .prepno{
