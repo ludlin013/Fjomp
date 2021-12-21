@@ -36,7 +36,7 @@
       <div class="storelist" id="storelist" style="display:none">
 
       </div>
-      <input name="customer" id="storeNumber" value="" placeholder="Search" autofocus class="customersearchbar">
+      <input name="customer" id="storeNumber" value="" placeholder="Search" autofocus class="customersearchbar" onclick="this.select()"> <p id="error"></p>
       <!--{% if customers !=  []%}
       <div class="irdropblack" onclick="window.location.replace('/customers')">
       </div>
@@ -53,9 +53,6 @@
       <div class="leftpage-customers">
         <form class="form-customers" id="customerform1">
           <label for="search" class="searchlabel-customers">Search for:</label>
-          <script>
-            document.cookie = "custid = {{customer[0].strip()}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
-          </script>
           <div class="formitem-customers"><label class="cust-customers noselect">Cust. #:</label><input id="custidid" value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="custnr" readonly><label class="ho-customers noselect">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="custho"></div>
           <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input id="custname" value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="custname"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="custowner"></div>
           <div class="formitem-customers"><label class="address-customers noselect">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="custadress"></div>

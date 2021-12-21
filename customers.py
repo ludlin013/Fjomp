@@ -211,6 +211,25 @@ def customers():
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
 
+    ###  Skapa från modeller  ###
+
+    #modelcsv = sql("SELECT", "SELECT * FROM Models")
+    #modelcsv.sort(key = lambda x:x[1])
+    #with open("models.csv","w") as f:
+    #    for x in modelcsv:
+    #        for y in x:
+    #            try:
+    #                f.write(y.strip()+",")
+    #            except:
+    #                f.write(str(y)+",")
+    #        f.write("\n")
+
+    with open("models.csv") as f:
+        for x in f.read().split("\n"):
+            n = x.split(",")
+            #sqla = "UPDATE Models SET Mod_Chargemode = '" + n[4] + "' WHERE '"+n[2]+"'"
+
+
     return render_template("customers.html",usrtech=usrtech,theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,usrstatus=usrstatus,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
 
 

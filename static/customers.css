@@ -546,6 +546,12 @@ select{
   width:150px
 }
 
+#error {
+  font-size: 14px;
+  color:red;
+  padding:3px;
+  position: absolute;
+}
 
 @media only screen and (max-width: 1000px){
 

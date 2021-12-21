@@ -320,9 +320,13 @@ function getstore(e){
         }
         document.getElementsByClassName('storeitem')[0].focus();
       }else{
-        store = stores[0].split("\t");
-
-        window.location.href = "customers?customer=" + store[0];
+        try{
+          store = stores[0].split("\t");
+          document.cookie = "custid = "+stores[0]+"; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+          window.location.href = "customers?customer=" + store[0];
+        }catch(error){
+          document.getElementById('error').innerHTML = "No customers found"
+        }
 
 
       }
@@ -335,11 +339,14 @@ function getstore(e){
 
 function chooseStore(e){
   if(e.key == "Enter"){
+    document.cookie = "custid = "+e.srcElement.children[0].textContent+"; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
 
     window.location.href = "customers?customer=" + e.srcElement.children[0].textContent;
 
 
+
   } else if(e.key == "Escape"){
+    document.getElementById('storeNumber').select();
     document.getElementById('storelist').style.display = "none";
   } else if(e.keyCode == "40"){
     e.preventDefault();
@@ -375,6 +382,9 @@ function chooseStore(e){
 }
 
 function clickstore(chosen){
+
+  document.cookie = "custid = "+chosen.children[0].textContent+"; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+
   window.location.href = "customers?customer=" + chosen.children[0].textContent;
 
 
