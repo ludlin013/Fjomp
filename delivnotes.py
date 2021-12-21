@@ -600,7 +600,6 @@ def unshippeddelivnotes():
                 bo[x[5]][2] += x[8]
                 bo[x[5]][3].append([x[0],x[2],x[1],x[8]])
 
-    print(bo)
 
     for x in sqlq:
         if x[27] is not None:

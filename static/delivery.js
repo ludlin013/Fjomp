@@ -3,7 +3,6 @@ for (x of document.cookie.split(";")){
     try{
     document.getElementById(x.replace("delivfocused=","").trim()).focus()
   } catch(error){
-    console.log("Focus failed");
   }
 }
 }
@@ -569,7 +568,6 @@ function getstore(e){
 }
 
 function chooseStore(e){
-  console.log(e.keyCode);
   if(e.key == "Enter"){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storeNumber").value = e.srcElement.children[0].textContent;

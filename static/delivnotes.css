@@ -87,6 +87,7 @@ input[type=number] {
   display: flex;
   padding:10px;
   border-bottom:1px solid #ccc;
+  transition-duration: .2s
 }
 
 .storeid{

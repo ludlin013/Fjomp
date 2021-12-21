@@ -20,6 +20,12 @@ body{
   /*background: #ddd !important*/
 }
 
+
+.storeitem:focus {
+  background: rgb(230,230,230)
+}
+
+
 #l3{
   color:black;
 }
@@ -287,4 +293,26 @@ td {
 
 .buttonsbar-item-delivnotes{
   color:black
+}
+
+.boitem {
+  background: rgb(210,210,210);
+}
+
+.boelements {
+  background: rgb(220,220,220);
+}
+
+.nsitem {
+  background: rgb(210,210,210);
+}
+
+.nsitem:hover,
+.nsitem:hover * {
+  transition-duration: .1s;
+  background: rgb(160,160,160)!important
+}
+
+textarea {
+  background: rgb(210,210,210)
 }

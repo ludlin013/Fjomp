@@ -32,9 +32,12 @@
   </div>
   <div class="mainwrapcustomers">
     <h1 class="noselect">Customers</h1>
-    <form class="seek-customers" method="GET" action="" id="custidform">
-      <input name="customer" id="custid" value="" placeholder="Search" autofocus class="customersearchbar">
-      {% if customers !=  []%}
+    <div class="seek-customers" id="custidform">
+      <div class="storelist" id="storelist" style="display:none">
+
+      </div>
+      <input name="customer" id="storeNumber" value="" placeholder="Search" autofocus class="customersearchbar">
+      <!--{% if customers !=  []%}
       <div class="irdropblack" onclick="window.location.replace('/customers')">
       </div>
       <div class="ircustdrop">
@@ -44,8 +47,8 @@
         </div>
         {% endfor %}
       </div>
-      {% endif %}
-    </form>
+      {% endif %}-->
+    </div>
     <div class="toppage-customers">
       <div class="leftpage-customers">
         <form class="form-customers" id="customerform1">
@@ -54,7 +57,7 @@
             document.cookie = "custid = {{customer[0].strip()}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
           </script>
           <div class="formitem-customers"><label class="cust-customers noselect">Cust. #:</label><input id="custidid" value="{{customer[0].strip()}}" class="forminput-customers" type="text" name="custnr" readonly><label class="ho-customers noselect">H.O. #:</label><input value="{{customer[20].strip()}}" class="forminput-customers" type="text" name="custho"></div>
-          <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="custname"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="custowner"></div>
+          <div class="formitem-customers"><label class="name-customers noselect">Name:</label><input id="custname" value="{{customer[2].strip()}}" class="forminput-customers" type="text" name="custname"><label class="owner-customers noselect">Owner:</label><input value="{{customer[19].strip()}}" class="forminput-customers" type="text" name="custowner"></div>
           <div class="formitem-customers"><label class="address-customers noselect">Address:</label><input value="{{customer[3].strip()}}" class="forminput-customers" type="text" name="custadress"></div>
           <div class="formitem-customers"><label class="zipcity-customers noselect">Zip/City:</label><input maxlength="6" value="{{customer[5].strip()}}" class="forminput-customers" type="text" name="custzip"><input value="{{customer[6].strip()}}" class="forminput-customers" id="cityinput" type="text" name="custcity"></div>
           <div class="formitem-customers"><label class="pricegroup-customers noselect">Price group:</label><select style="width: 190px;" class="forminput-customers" type="text" name="custgroup">

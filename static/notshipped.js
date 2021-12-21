@@ -19,10 +19,10 @@ function getpart(nr){
   xhttp.onload = function(){
 
     for(var x of document.getElementsByClassName("nsitem")){
-      x.style.background = "rgb(80,80,80)";
+      x.style.background = "rgb(140,140,140)";
     }
 
-    document.getElementsByClassName(nr)[0].style.background = "rgb(60,60,60)";
+    document.getElementsByClassName(nr)[0].style.background = "rgb(160,160,160)";
 
     document.cookie = "notshippednr = " + nr;
 

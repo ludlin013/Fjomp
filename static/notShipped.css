@@ -28,7 +28,6 @@ a {
 
 .boitem {
   display: flex;
-  background: rgb(60,60,60);
   width:614px;
   padding:2px ;
   border-bottom: 1px solid rgb(40,40,40)
@@ -42,7 +41,6 @@ a {
   padding:4px 0 4px 4px;
   width:614px;
   font-size: 14px;
-  background: rgb(80,80,80);
   border-bottom: 1px solid rgb(60,60,60)
 }
 
@@ -56,7 +54,7 @@ a {
 }
 
 .bodelivn {
-  width: 105px
+  width: 178px
 
 }
 
@@ -84,7 +82,6 @@ a {
 .nsitem {
   padding:4px 0;
   display: flex;
-  background: rgb(80,80,80);
   border-bottom: 1px solid rgb(40,40,40)
 }
 
@@ -96,11 +93,6 @@ a {
 
 .nsitem *:nth-last-child(1){
   border:none
-}
-
-.nsitem:hover,
-.nsitem:hover * {
-  background: rgb(60,60,60)!important
 }
 
 .date {
@@ -195,9 +187,7 @@ a {
   border-radius: 5px
 }
 
-textarea {
-  background: rgb(80,80,80)
-}
+
 
 
 input[type="date"], input[type="time"] {

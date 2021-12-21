@@ -19,6 +19,12 @@ body{
   color:white!important
 }
 
+
+.storeitem:focus {
+  background: rgb(100,100,100)
+}
+
+
 #l4{
   color:white;
 }
@@ -346,4 +352,27 @@ table, td, th {
 
 .importnow{
   background: #333;
+}
+
+
+.boitem {
+  background: rgb(60,60,60);
+}
+
+.boelements {
+  background: rgb(80,80,80);
+}
+
+.nsitem {
+  background: rgb(80,80,80);
+}
+
+.nsitem:hover,
+.nsitem:hover * {
+  background: rgb(60,60,60)!important;
+  transition-duration: .1s;
+}
+
+textarea {
+  background: rgb(80,80,80)
 }

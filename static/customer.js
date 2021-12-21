@@ -1,6 +1,5 @@
 
 if(!document.cookie.includes("custactive")){
-  console.log("hitta inget");
   document.getElementById('activecurrent').checked = true;
   document.cookie = "custactive = curr"
 }else{
@@ -8,7 +7,6 @@ if(!document.cookie.includes("custactive")){
     if(x.includes("custactive")){
       var state = x.replace("custactive=","").trim()
       if(state=="curr"){
-        console.log(state);
         document.getElementById('activecurrent').checked = true;
         for(m of document.getElementsByClassName('active0')){
           m.style.display = "table-row";
@@ -17,7 +15,6 @@ if(!document.cookie.includes("custactive")){
           n.style.display = "none";
         }
       }else if(state=="hist"){
-        console.log(state);
         document.getElementById('activehistory').checked = true;
         for(m of document.getElementsByClassName('active1')){
           m.style.display = "table-row";
@@ -66,7 +63,6 @@ function editunit(id){
   var charge = document.getElementById(id).children[6].children[0].value;
   var replace = document.getElementById(id).children[7].children[0].value;
 
-  console.log(replace);
 
   const fd = new FormData();
 
@@ -187,7 +183,6 @@ function savecustomer(){
   fd.append("custdt",document.getElementById("checkdt").checked)
   fd.append("custwt",document.getElementById("checkwt").checked)
   xhttp.open("POST","/customersave",true);
-  console.log(fd.keys());
   xhttp.send(fd);
 
   //alert("Customer saved")
@@ -225,7 +220,6 @@ function warrantycalc(){
   if(days[time] != 0){
     datt.setDate(datt.getDate() + days[time])
 
-    console.log(datt);
     var dd = datt.getDate();
     var mm = datt.getMonth() + 1;
     var yy = datt.getFullYear();
@@ -251,9 +245,137 @@ document.addEventListener("keydown", function(e){
   if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 83) {
      e.preventDefault();
      savecustomer();
-     console.log("vi sparar");
 }else if(e.keyCode == 115){
   e.preventDefault();
   document.getElementById('custid').select()
 }
 }, false);
+
+
+document.getElementById('storeNumber').addEventListener("keydown", getstore);
+
+
+function getstore(e){
+  if(e.key == "Enter"){
+
+    fd = new FormData();
+
+    fd.append("search", document.getElementById('storeNumber').value)
+
+    const xhttp = new XMLHttpRequest();
+
+
+
+    xhttp.onload = function(){
+      var stores = this.responseText.split("\n");
+      stores.splice(stores.length-1, 1);
+
+      var parent = document.getElementById('storelist');
+      parent.innerHTML = ""
+
+      if(stores.length > 1){
+        parent.style.display = "flex";
+        for (x of stores){
+          var store = x.split("\t");
+
+          var storeitem = document.createElement("div");
+          storeitem.classList.add("storeitem");
+          storeitem.tabIndex = "0";
+          storeitem.addEventListener('keydown',chooseStore)
+          storeitem.onclick = function(){clickstore(this)};
+
+          var id = document.createElement("p");
+          id.classList.add("storeid")
+          var ref = document.createElement("p");
+          ref.classList.add("storeref")
+          var name = document.createElement("p");
+          name.classList.add("storename")
+          var street = document.createElement("p");
+          street.classList.add("storestreet")
+          var zip = document.createElement("p");
+          zip.classList.add("storezip")
+          var city = document.createElement("p");
+          city.classList.add("storecity")
+          var pg = document.createElement("p");
+          pg.classList.add("storepg")
+
+          id.appendChild(document.createTextNode(x.split("\t")[0]));
+          ref.appendChild(document.createTextNode(x.split("\t")[5]));
+          name.appendChild(document.createTextNode(x.split("\t")[1]));
+          street.appendChild(document.createTextNode(x.split("\t")[2]));
+          zip.appendChild(document.createTextNode(x.split("\t")[3]));
+          city.appendChild(document.createTextNode(x.split("\t")[4]));
+          pg.appendChild(document.createTextNode(x.split("\t")[6]));
+
+          storeitem.appendChild(id);
+          storeitem.appendChild(ref);
+          storeitem.appendChild(name);
+          storeitem.appendChild(street);
+          storeitem.appendChild(zip);
+          storeitem.appendChild(city);
+          storeitem.appendChild(pg);
+
+          parent.appendChild(storeitem)
+
+        }
+        document.getElementsByClassName('storeitem')[0].focus();
+      }else{
+        store = stores[0].split("\t");
+
+        window.location.href = "customers?customer=" + store[0];
+
+
+      }
+    }
+
+    xhttp.open("POST","/custstoreselect",true);
+    xhttp.send(fd);
+  }
+}
+
+function chooseStore(e){
+  if(e.key == "Enter"){
+
+    window.location.href = "customers?customer=" + e.srcElement.children[0].textContent;
+
+
+  } else if(e.key == "Escape"){
+    document.getElementById('storelist').style.display = "none";
+  } else if(e.keyCode == "40"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = false;
+    for(x of document.getElementsByClassName('storeitem')){
+      if(stop == true){
+        break
+      }
+      if (x == me){
+        stop = true;
+      }
+
+    }
+
+    x.focus()
+  } else if(e.keyCode == "38"){
+    e.preventDefault();
+    var me = e.srcElement;
+    var stop = me;
+    for(x of document.getElementsByClassName('storeitem')){
+      if (x == me){
+        break
+      }
+      stop = x;
+
+    }
+
+    stop.focus()
+  }
+
+
+}
+
+function clickstore(chosen){
+  window.location.href = "customers?customer=" + chosen.children[0].textContent;
+
+
+}
