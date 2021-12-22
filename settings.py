@@ -63,6 +63,7 @@ def settings():
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
+    models.sort(key = lambda x:x[1])
 
     mail = ["","",""]
 

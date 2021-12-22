@@ -64,7 +64,6 @@ def lookup():
     except:
         pass
 
-    print(lastbtwdate1)
     if lastbtwdate1 != None:
         if len(lastbtwdate1) > 0:
             btwdate1 = lastbtwdate1
@@ -85,8 +84,6 @@ def lookup():
     except:
         pass
 
-    print([btwdate1])
-    print([btwdate2])
     lookupdata = []
     delivnote_result = []
     irparts_result = []
@@ -182,7 +179,6 @@ def lookup():
         allcust = sql("SELECT", "SELECT Cust_CustID,Cust_Name FROM Customers")
         cust = {}
         for x in allcust:
-            print(x)
             try:
                 cust[x[0].strip()] = x[1].strip()
             except AttributeError:
@@ -344,7 +340,7 @@ def lookup():
                         date = x[6]
                     if btwdate1 < date < btwdate2:
                         Dict = {}
-                        Dict["url"] = "/"
+                        Dict["url"] = "/customers?customer=" + x[0]
                         Dict["type"] = "Unit-File"
                         Dict["ref"] = ""
                         Dict["customerID"] = x[0]
@@ -374,7 +370,7 @@ def lookup():
                         date = x[6]
                     if btwdate1 < date < btwdate2:
                         Dict = {}
-                        Dict["url"] = "/"
+                        Dict["url"] = "/customers?customer=" + x[0]
                         Dict["type"] = "Unit-History"
                         Dict["ref"] = ""
                         Dict["customerID"] = x[0]

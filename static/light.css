@@ -74,7 +74,8 @@ body{
   border:1px solid #aaa;
 }
 
-.pgremove{
+.pgremove,
+.modremove{
   background:#fff;
   border-top:1px solid rgb(230,230,230);
   border-left:1px solid rgb(230,230,230)

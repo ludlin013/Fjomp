@@ -191,7 +191,7 @@
             </thead>
             <tbody class="whatabody-lookup">
               {% for x in lookupdata %}
-              <tr class="row-lookup" onclick="window.location.href='{{x["url"]}}'">
+              <tr class="row-lookup" onclick="{% if x["type"] == 'Unit-File'%} document.cookie = 'custtable = units'; {% endif %}window.location.href='{{x["url"]}}'">
                 <td class="thtype-lookup">{{x["type"]}}</td>
                 <td class="thref-lookup">{{x["ref"]}}</td>
                 <td class="thcustid-lookup">{{x["customerID"]}}</td>

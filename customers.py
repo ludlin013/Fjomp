@@ -199,7 +199,6 @@ def customers():
                 next = x[0]
                 break
             if cust.strip().lower() == x[0].strip().lower():
-                print(x[0])
                 end = True
             if not end:
                 previous = x[0]
@@ -224,10 +223,20 @@ def customers():
     #                f.write(str(y)+",")
     #        f.write("\n")
 
-    with open("models.csv") as f:
-        for x in f.read().split("\n"):
-            n = x.split(",")
-            #sqla = "UPDATE Models SET Mod_Chargemode = '" + n[4] + "' WHERE '"+n[2]+"'"
+    #with open("models.csv","r",encoding="latin-1") as f:
+    #    for x in f.read().split("\n"):
+    #        if x != "":
+    #            n = x.split(";")
+    #            modelname = n[1].replace("\"\"\"",'\"')
+    #            if modelname.startswith("\""):
+    #                modelname = modelname[1:]
+    #            modelname = n[1].replace("\"\"",'\"')
+    #            if modelname.startswith("\""):
+    #                modelname = modelname[1:-1]
+    #            #sqla = "UPDATE Units SET Unit_Chargemode = '" + n[6] + "' WHERE Unit_Model = '"+modelname+"'"
+    #            sqla = "UPDATE Models SET Mod_Chargemode = '" + n[6] + "' WHERE Mod_Model = '"+modelname+"'"
+    #            print(sqla)
+    #            sql("INSERT",sqla)
 
 
     return render_template("customers.html",usrtech=usrtech,theme=theme,delivnote=delivnote,wo=wo,swap=swap,maxcust=maxcust,usrstatus=usrstatus,mincust=mincust,next=next,previous=previous,userauth=userauth,swapstatusdict=swapstatusdict,notheme=notheme,cat=cat,charge=charge,type=type,vend=vend,model=model,units=units,table=table,customers=customers,customer=customer,pricegroups=pricegroups)
@@ -236,7 +245,6 @@ def customers():
 @app.route("/custremunit", methods=["GET","POST"])
 def custremunit():
 
-    print(request.form)
 
     inactive = request.form["inactive"]
 
@@ -254,7 +262,6 @@ def custremunit():
 @app.route("/removecust", methods=["GET","POST"])
 def removecust():
 
-    print(request.form)
 
     sql("DELETE","DELETE FROM Customers WHERE Cust_CustID = '"+request.form["custid"]+"'")
 
@@ -290,7 +297,6 @@ def customersave():
 
     sqlq = "UPDATE Customers SET Cust_Name = '"+request.form["custname"]+"', Cust_OwnID = '"+request.form["custho"]+"', Cust_street1 = '"+request.form["custadress"]+"', Cust_zip = '"+request.form["custzip"]+"', Cust_city = '"+request.form["custcity"]+"', Cust_phone1 = '"+request.form["custphone"]+"', Cust_invStreet1 = '"+request.form["custname"]+"', Cust_invStreet2 = '"+request.form["custadress"]+"', Cust_invZip = '"+request.form["custzip"]+"', Cust_invCity = '"+request.form["custcity"]+"', Cust_owner = '"+request.form["custowner"]+"', Cust_Opendate = '"+request.form["custopen"]+"', Cust_Installdate ='"+request.form["custinst"]+"', Cust_Closed = '"+request.form["custclose"]+"', Cust_DT = '"+truefalse(request.form["custdt"])+"', Cust_WT = '"+truefalse(request.form["custwt"])+"', Cust_Pricegroup = '"+request.form["custgroup"]+"' WHERE Cust_CustID = '"+request.form["custnr"]+"'"
 
-    print(sqlq)
     sql("INSERT",sqlq)
 
     return ("",204)
@@ -299,11 +305,9 @@ def customersave():
 @app.route("/customernewunit", methods=["GET","POST"])
 def customernewunit():
 
-    print(request.form)
 
     sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["vendor"]+"','"+request.form["model"].split("%")[0]+"','"+request.form["serial"]+"','"+request.form["date"]+"','"+request.form["warranty"]+"', '"+request.form["charge"]+"', '0')"
 
-    print(sqlq)
     if (sqlq == "-1"):
         return ("Error adding unit, try again!",200)
     sql("INSERT",sqlq)
@@ -315,10 +319,8 @@ def customernewunit():
 @app.route("/unitedit", methods=["GET","POST"])
 def unitedit():
 
-    print(request.form)
 
     sqlq = "UPDATE Units SET Unit_Vendor = '"+request.form["vendor"]+"', Unit_Model = '"+request.form["model"]+"', Unit_serial = '"+request.form["serial"]+"', Unit_installdate = '"+request.form["install"]+"', Unit_Warend = '"+request.form["warend"]+"', Unit_Chargemode = '"+request.form["charge"]+"', Unit_Repldate = '"+request.form["replace"]+"' WHERE Unit_ID = '"+request.form["id"]+"'"
-    print(sqlq)
     sql("INSERT",sqlq)
 
     return ("",204)
@@ -338,6 +340,8 @@ def custstoreselect():
             if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
                 try:
                     result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
-                except: pass
+                except:
+                    result += x[0].strip() + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\n"
+
         except: pass
     return result
