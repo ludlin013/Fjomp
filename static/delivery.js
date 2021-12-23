@@ -341,7 +341,7 @@ function delivpartselect(id, key, price){
   if(key.key == "Enter"){
     var partnum = document.getElementById("num"+id).value;
     var partname = document.getElementById("nam"+id).value;
-    var pricegroup = document.getElementById(inputnum).value;
+    var pricegroup = document.getElementById("inputnum").value;
 
     document.getElementById('idOfPart').value = id;
 
