@@ -327,6 +327,26 @@ function newof(){
 
 }
 
+function clearCookies(){
+  if(confirm('Do you want to clear all cookies?')){
+    document.cookie = "custactive=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "custid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "irselected=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastbtwdate1=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastbtwdate2=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastdes=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastdn=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastir=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastlooknumname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastpar=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "lastserial=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "rbball=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    alert('Cookies was deleted successfully!')
+  }else{
+    alert('Cookies was not deleted')
+  }
+}
+
 function remof(id){
 
   var fd = new FormData();
