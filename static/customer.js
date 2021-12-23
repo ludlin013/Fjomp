@@ -1,9 +1,10 @@
-
+try{
 if(!document.cookie.includes("custactive")){
   document.getElementById('activecurrent').checked = true;
   document.cookie = "custactive = curr"
 }else{
   for(x of document.cookie.split(";")){
+
     if(x.includes("custactive")){
       var state = x.replace("custactive=","").trim()
       if(state=="curr"){
@@ -35,23 +36,7 @@ if(!document.cookie.includes("custactive")){
   }
 }
 
-function setday(id){
-  var y = new Date().getFullYear();
-  var m = "0" + (new Date().getMonth()+1);
-  var d = "0" + new Date().getDate();
 
-  if (m.length>2){
-    m = m.substring(1)
-  }
-
-  if (d.length>2){
-    d = d.substring(1)
-  }
-
-  var date = y + "-"+m+"-"+d
-  document.getElementById(id).value = date;
-  window.getSelection().removeAllRanges()
-}
 
 function editunit(id){
 
@@ -158,6 +143,28 @@ function remunit(id){
     xhttp.open("POST","/custremunit",true);
     xhttp.send(fd);
   }
+}
+}
+catch(error){
+  console.log(error);
+}
+
+function setday(id){
+  var y = new Date().getFullYear();
+  var m = "0" + (new Date().getMonth()+1);
+  var d = "0" + new Date().getDate();
+
+  if (m.length>2){
+    m = m.substring(1)
+  }
+
+  if (d.length>2){
+    d = d.substring(1)
+  }
+
+  var date = y + "-"+m+"-"+d
+  document.getElementById(id).value = date;
+  window.getSelection().removeAllRanges()
 }
 
 function removecust(last){
