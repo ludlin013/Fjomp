@@ -482,7 +482,33 @@ def delivstoreselect():
                 try:
                     result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
                 except:
-                    result += x[0].strip() + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\n"
+                    result += x[0].strip() + "\t"
+                    try:
+                        result +=   x[1].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[2].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[3].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[4].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[5].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[6].strip()
+                    except:
+                        pass
+
+                    result +=  "\n"
         except: pass
     return result
 
@@ -493,8 +519,9 @@ def savestore():
     id = request.form["noteid"]
     contact = request.form["contact"]
     name = request.form["name"]
+    pg = request.form["pg"]
 
-    sqlq = "UPDATE DelivNotes SET DN_CustID = '"+num+"', DN_Contact = '"+contact+"', DN_Name = '"+name+"' WHERE DN_no = '"+id+"'"
+    sqlq = "UPDATE DelivNotes SET DN_CustID = '"+num+"', DN_Contact = '"+contact+"', DN_Name = '"+name+"', DN_Pricegroup = '"+pg+"' WHERE DN_no = '"+id+"'"
     print(sqlq)
     sql("INSERT",sqlq)
 

@@ -516,7 +516,33 @@ def irstoreselect():
                 try:
                     result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
                 except:
-                    result += x[0].strip() + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\t" + "" + "\n"
+                    result += x[0].strip() + "\t"
+                    try:
+                        result +=   x[1].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[2].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[3].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[4].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[5].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[6].strip()
+                    except:
+                        pass
+
+                    result +=  "\n"
         except: pass
     return result
 
