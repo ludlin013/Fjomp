@@ -552,6 +552,7 @@ function getstore(e){
         fd.append("contact",store[5])
         fd.append("noteid",document.getElementById("delivnote-number").value)
         fd.append("name",store[1])
+        fd.append("pg",store[6])
 
         var xhttp = new XMLHttpRequest();
         xhttp.open("POST","/savestore",true);
@@ -595,6 +596,7 @@ function chooseStore(e){
     fd.append("contact",e.srcElement.children[1].textContent)
     fd.append("noteid",document.getElementById("delivnote-number").value)
     fd.append("name",e.srcElement.children[2].textContent)
+    fd.append("pg",e.srcElement.children[6].textContent)
 
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST","/savestore",true);
@@ -667,6 +669,7 @@ function clickstore(chosen){
   fd.append("contact",chosen.children[1].textContent)
   fd.append("noteid",document.getElementById("delivnote-number").value)
   fd.append("name",chosen.children[2].textContent)
+  fd.append("pg",chosen.children[6].textContent)
 
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/savestore",true);
