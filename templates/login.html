@@ -30,8 +30,8 @@
         <h2 style="margin-top:20px">Patched reports</h2>
         <ul>
 
-        {% for x in patches%}
-          <li>{{x}}</li>
+        {% for x in range(10)%}
+          <li>{{patches[x]}}</li>
         {% endfor %}
       </ul>
       </div>
