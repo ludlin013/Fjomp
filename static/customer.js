@@ -329,7 +329,7 @@ function getstore(e){
       }else{
         try{
           store = stores[0].split("\t");
-          document.cookie = "custid = "+stores[0]+"; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
+          document.cookie = "custid = "+store[0]+"; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;"
           window.location.href = "customers?customer=" + store[0];
         }catch(error){
           document.getElementById('error').innerHTML = "No customers found"
