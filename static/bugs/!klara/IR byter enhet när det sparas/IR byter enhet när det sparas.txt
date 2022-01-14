@@ -1,0 +1,10 @@
+Tjena,
+
+Detta gäller IR med flera enheter.
+
+Som jag visade förut så önskar jag att IR kommer ihåg vilken enhet man jobbar med efter det sparas. Som det är nu så hoppar den alltid till "översta" enheten när man lägger till en reservdel tex.
+
+Tack på förhand, och är de några frågor är det bara att du hojtar till!
+/Albin
+
+Submitted by: aco

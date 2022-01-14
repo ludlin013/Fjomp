@@ -1,0 +1,8 @@
+Tror jag hittat felet.
+Fälten Part# och Description ser ut att vara tomma men uppgifter från föregående sökning finns sparat ändå.
+Testa att skriv AT1 som Part# med blankt i Description och man får noll träff.
+Skriv sedan tid i Description (med blankt i Part#) och då får man 1 träff: “AT1    ARBETSTID ….”
+Sök kommer alltså ihåg vad som senast stod i fältet som lämnas tomt och kräver matchning med även det.
+
+
+Submitted by: PLE

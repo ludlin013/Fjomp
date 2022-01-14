@@ -1,0 +1,6 @@
+Kan du lägga till ett och samma snabbkommando "Sök" i Customers, Parts och Delivery Note?
+I Customers ska man komma till Search-rutan
+I Parts ska både Part# och Description rensas på gammal info och sedan ska man landa i Part#
+I Delivery Note ska man komma till DeliveryNote#
+
+Submitted by: PLE

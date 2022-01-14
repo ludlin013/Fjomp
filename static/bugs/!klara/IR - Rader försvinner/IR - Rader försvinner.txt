@@ -1,0 +1,9 @@
+Tjena,
+
+När man lägger till rader på IR så försvinner samtliga artikel-rader/ändringar man gjort innan.
+
+Sen skulle det vara smidigt om man kan välja artikel (när man söker) genom att scrolla upp och ner med piltangenterna.
+
+//Albin
+
+Submitted by: aco

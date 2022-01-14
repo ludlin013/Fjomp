@@ -1,0 +1,5 @@
+Tja,
+
+Det går inte att lägga till rader på IR, tillexempel reservdelar osv.
+
+Submitted by: aco

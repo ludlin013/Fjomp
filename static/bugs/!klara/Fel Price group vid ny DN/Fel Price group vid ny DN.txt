@@ -1,0 +1,4 @@
+Skapar man ny DN med kund LIDL SVE så står det Price group McDonalds trots att det i Customer står att LIDL SVE = 9:Lidl
+Gäller säkert andra kunder också men det var denna jag kollade.
+
+Submitted by: PLE

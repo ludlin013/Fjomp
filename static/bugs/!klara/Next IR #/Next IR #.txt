@@ -1,0 +1,4 @@
+Trycker man pilen "nästa IR" när man valt Nummerordning så hoppar man alltid till sista IR.
+Är det valt Datumordning så fungerar knappen.
+
+Submitted by: PLE

@@ -1,0 +1,3 @@
+Vid sökning av ett serienummer på sidan Lookup blir det internal error. Om man du innan söker på något namn istället funkar serial sedan.
+
+Submitted by: TBR

@@ -1,0 +1,7 @@
+Hej!
+Jag loggar in via min Sign, TEX AVI
+men när jag skapar en ny delivery note blir det bokstavsordning och ACO kommer som skapare av varje delivery note.
+
+Detta borde bli skaparens sign per automatik TEX är AVI inloggad står det AVI som sign etc. 
+
+Submitted by: avi

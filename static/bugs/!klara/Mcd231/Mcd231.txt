@@ -1,0 +1,3 @@
+Hej, blir internal server error när man försöker öppna mc231 på delivery notes.
+
+Submitted by: avi

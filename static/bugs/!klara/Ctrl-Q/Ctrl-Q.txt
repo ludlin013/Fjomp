@@ -1,0 +1,7 @@
+Ny artikel "Ctrl-Q" stoppar in ny rad helt random. Se bild.
+Kan man antingen
+alltid få nya raden sist
+eller
+alltid få nya raden under den raden man står på just nu
+
+Submitted by: PLE

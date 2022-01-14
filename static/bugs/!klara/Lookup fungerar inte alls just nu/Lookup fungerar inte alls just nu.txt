@@ -1,0 +1,4 @@
+Behöver få igång Lookup-funktionen igen. Just nu blir det Internal Server Error bara man trycker på förstoringsglaset. Tror inte det är något i cachen på min dator för det blev samma fel hos Albin.
+
+
+Submitted by: PLE

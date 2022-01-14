@@ -1,0 +1,6 @@
+Filnamnet vid utskrift av offert till pdf vill jag ska vara Offert dn-nummer Kundnummer.
+Så här t.ex. Offert 38878 MC5002.pdf
+
+Och utskriften ska också endast vara sidan med priser. Inte sida 2.
+
+Submitted by: PLE//Fixade mailet o namnet när man sparar fil. Man kan ju ändra innan man sparar vilka sidor man vill ha utskrivna, annars får man göra en egen knapp som bara är för att spara PDF

@@ -1,0 +1,3 @@
+Ändra rubrik "Part/Unit info" till "Lookup" så det blir samma som menyn
+
+Submitted by: PLE
