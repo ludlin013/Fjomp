@@ -35,6 +35,7 @@
 
   <div class="mainshipped">
     <h3><a href="/delivnotes">Go back</a></h3>
+    <input type="date" name="filterdate" value="{{datestr}}" onchange="document.cookie = 'filterdate='+this.value;location.reload()">
     <p id="botitle">Back orders: </p>
 
     <div class="botable">

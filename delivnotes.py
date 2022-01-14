@@ -612,6 +612,21 @@ def unshippeddelivnotes():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
+    date = request.cookies.get("filterdate")
+    datestr = request.cookies.get("filterdate")
+    if not datestr:
+        datestr = "2021-12-01"
+    if not date:
+        date = datetime(2021,12,1)
+    else:
+        year = date.split("-")[0]
+        month = date.split("-")[1]
+        day = date.split("-")[2]
+        if day.startswith("0"):
+            day = day[1:]
+
+        date = datetime(int(year), int(month), int(day))
+
     sqlq = sql("SELECT","SELECT * FROM DelivNotes WHERE DN_Closed = '0'")
     all = {}
 
@@ -621,23 +636,24 @@ def unshippeddelivnotes():
 
     for x in sqlq:
         if x[18] == 1:
-            print(x)
-            if x[5] not in bo:
-                bo[x[5]] = [x[5].strip(),x[6].strip(),x[8],[[x[0],x[2],x[1],x[8]]]]
-            else:
-                bo[x[5]][2] += x[8]
-                bo[x[5]][3].append([x[0],x[2],x[1],x[8]])
+            if x[4] > date:
+                if x[5] not in bo:
+                    bo[x[5]] = [x[5].strip(),x[6].strip(),x[8],[[x[0],x[2],x[1],x[8]]]]
+                else:
+                    bo[x[5]][2] += x[8]
+                    bo[x[5]][3].append([x[0],x[2],x[1],x[8]])
 
 
     for x in sqlq:
-        if x[27] is not None:
-            if x[1] not in all:
-                all[x[1]] = {"total" : x[12], "date" : x[4].date(), "cust" : x[0], "no" : x[1], "off" : x[27], "finoff" : x[28]}
-            else:
-                all[x[1]]["total"] = all[x[1]]["total"] + x[12]
+        if x[4] > date:
+            if x[27] is not None:
+                if x[1] not in all:
+                    all[x[1]] = {"total" : x[12], "date" : x[4].date(), "cust" : x[0], "no" : x[1], "off" : x[27], "finoff" : x[28]}
+                else:
+                    all[x[1]]["total"] = all[x[1]]["total"] + x[12]
 
 
-    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all, bo=bo)
+    return render_template("notshipped.html",theme=theme,notheme=notheme, all=all, bo=bo, datestr=datestr)
 
 @app.route("/getnspart", methods=["GET","POST"])
 def getnspart():
