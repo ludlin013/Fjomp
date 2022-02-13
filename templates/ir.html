@@ -166,7 +166,7 @@
                     {% endif %}
                   </select>
                 </td>
-                <td class="thserial-ir"><input id="partserialir" name="{{wo.index(n)}}serial" value="{{n[6].strip()}}"></td>
+                <td class="thserial-ir"><input id="partserialir" onkeydown="getmodelfromserial(event,{{wo.index(n)}})" name="{{wo.index(n)}}serial" value="{{n[6].strip()}}"></td>
                 <td class="thcharge-ir">
                   <select class="irchargedrop" name="{{wo.index(n)}}charge">
                     <option value="" selected hidden></option>

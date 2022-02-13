@@ -504,3 +504,42 @@ function clickstore(chosen){
   document.getElementById('irnotefield').focus()
 
 }
+
+function getmodelfromserial(event,nr){
+  if(event.keyCode === 13 && document.getElementsByName(nr+'serial')[0].value != ""){
+    console.log();
+
+
+      const fd = new FormData();
+
+      fd.append("serial",document.getElementsByName(nr+'serial')[0].value)
+
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onload = function(){
+        console.log(this.responseText);
+
+        result = this.responseText.split(",");
+        console.log(result[0] + " %" + result[1] + " %" + nr + "%"+ result[2].replace("\\\"",""));
+
+        model = result[2].replace("\\\"","")
+
+        while (model.length < 25){
+          model += " ";
+        }
+
+        document.getElementById(nr+"type").value = result[1];
+        console.log("type");
+        document.getElementById(nr+"vendor").value = result[0];
+        console.log("vendor");
+        document.getElementsByName(nr+"model")[0].value = result[0] + "  %" + result[1] + " %" + nr + "%"+ model;
+        console.log("model");
+      }
+
+
+
+
+      xhttp.open("POST","/unitfromserial",true);
+      xhttp.send(fd);
+  }
+}

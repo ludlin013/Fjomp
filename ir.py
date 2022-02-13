@@ -559,3 +559,19 @@ def irsavestore():
     #sql("INSERT",sqlq)
 
     return ('', 204)
+
+
+@app.route("/unitfromserial", methods=["GET","POST"])
+def unitfromserial():
+
+    ser = request.form["serial"].upper()
+
+    sqlq = "SELECT Unit_Vendor, Unit_type, Unit_Model FROM Units WHERE Unit_Serial = '"+ser+"'"
+    print(sqlq)
+    res = sql("SELECT",sqlq)
+    result = ""
+    for x in res[0]:
+        result += x.strip() + ","
+
+
+    return result
