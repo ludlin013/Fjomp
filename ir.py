@@ -96,11 +96,19 @@ def pdffile2():
     if len(duplicateFrequencies) == 0:
         for x in wo:
             duplicateFrequencies[x[6].strip()] = 2
-    print("parts", parts)
-    print("lastserial", lastSerial2)
-    print(duplicateFrequencies)
 
-    return render_template("pdffile2.html", Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
+    chargeconv = {3: "Garanti 1 år",
+    2: "Debiteras",
+    4: "Fri service",
+    5: "Garanti 2 år",
+    8: "Garanti 3 år",
+    6: "Utbyte",
+    10: "DieboldNixdorf",
+    11: "Garanti 90 dgr",
+    12: "Garanti 6 mån",
+    9: "Garanti 5 år",}
+
+    return render_template("pdffile2.html", chargeconv=chargeconv, Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
 
 
 @app.route("/ir",methods=["GET","POST"])
