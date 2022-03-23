@@ -105,7 +105,23 @@
     min-height: 450px;
     font-size: 12px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+
+  .irbox{
+    display: flex;
+
+  }
+
+  .irparts{
+    margin-left: 44px;
+    padding-left: 5px;
+    border-left: 1px solid black
+  }
+
+  .irpart{
+    display:flex;
+
   }
 
   .itemboxleft{
@@ -254,6 +270,10 @@
     margin:0px;
   }
 
+  b{
+    line-height: 15px
+  }
+
   @Page{
     margin-bottom: 50px;
     margin: 0mm;
@@ -310,7 +330,14 @@
         </div>
         </div>
       </div>
-      <div class="textheader">
+      {% for p in pages %}
+        {% if pages.index(p) != 0 %}
+          <div class="textheader" style="padding-top:100px!important">
+        {% endif %}
+
+        {% if pages.index(p) == 0 %}
+          <div class="textheader">
+        {% endif %}
         <div class="manifacture">
           <p><b>Fabrikat</b></p>
         </div>
@@ -330,73 +357,46 @@
         </div>
       </div>
       <div class="itembox">
-        <div class="itemboxleft">
-          {% for n in wo1 %}
-          <div class="row" style="margin-bottom: {{duplicateFrequencies[n[6].strip()]*12}}px;">
-            <div class="manifacture"><p class="p_margin">{{n[4]}}{{duplicateFrequencies[n[6].strip()]}}</p></div>
-            <div class="modelse"><p class="p_margin">{{n[5]}}<br>{{n[6]}}</p></div>
-            <div class="workerr"><p class="p_margin">{{n[7]}}<br>{{n[8]}}</p></div>
-            <div class="debit"><p class="p_margin">{{chargeconv[n[12]]}}</p></div>
+        {% for n in p %}
+          <div class="irbox">
+            <div class="manifacture">
+              <p>{{n[4]}}</p>
+            </div>
+            <div class="modelse">
+              <p>{{n[5]}}<br>{{n[6]}}</p>
+            </div>
+            <div class="workerr">
+              <p>{{n[7]}}<br>{{n[8]}}</p>
+            </div>
+            <div class="debit">
+              <p>{{chargeconv[n[12]]}}</p>
+            </div>
+
+            <div class="irparts">
+              <div class="irpart">
+
+                <div class="spare_artnr"><b class="p_margin">Art. nr</b></div>
+                <div class="spare_article"><b class="p_margin">Artikel</b></div>
+                <div class="spare_qty"><b class="p_margin">Antal</b></div>
+                <div class="spare_debit" style="display:none"><p class="p_margin">Debitering</p></div>
+            </div>
+              {% for x in parts %}
+                {% if x[3] == n[6]%}
+                <div class="irpart">
+
+                <div class="spare_artnr"><p class="p_margin">{{x[4]}}</p></div>
+                <div class="spare_article"><p class="p_margin">{{x[5]}}</p></div>
+                <div class="spare_qty"><p class="p_margin">{{x[6]}}</p></div>
+                <div class="spare_debit" style="display:none"><p class="p_margin"></p></div>
+              </div>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
-          {% endfor %}
-        </div>
-        <div class="itemboxright" style="width: 450px;">
-          {% set lastSerial = {'serial': "", 'attempt': 0} %}
-          {% set numberOfItems = [] %}
-          {% for n in parts %}
-          {% if n[3] != lastSerial.serial%}
-          <div class="itemboxrightheader" {% if lastSerial.attempt != 0 %}style="border-top:1px dotted black;"{% endif %}>
-            <div class="spare_artnr"><p class="p_margin">Art. nr</p></div>
-            <div class="spare_article"><p class="p_margin">Artikel</p></div>
-            <div class="spare_qty"><p class="p_margin">Antal</p></div>
-            <div class="spare_debit"><p class="p_margin">Debitering</p></div>
-          </div>
-          {% endif %}
-        {% if parts.index(n) == 20 %}
-      </div>
-    </div>
-    <div class="textheader" style="margin-top: 320px;">
-      <div class="manifacture">
-        <p><b>Fabrikat</b></p>
-      </div>
-      <div class="modelse">
-        <p style="margin:2px;"><b>Modell</b></p>
-        <p style="margin:2px;"><b>Serienr</b></p>
-      </div>
-      <div class="workerr">
-        <p style="margin:2px;"><b>Anmält fel</b></p>
-        <p style="margin:2px;"><b>Utfört arbete</b></p>
-      </div>
-      <div class="debit">
-        <p><b>Debitering</b></p>
-      </div>
-      <div class="spareparts">
-        <p><b>Reservdelar</b></p>
-      </div>
-    </div>
-    <div class="itembox" style="page-break-before: always;">
-      <div class="itemboxleft">
-        {% for n in wo2 %}
-        <div class="row" style="margin-bottom: {{duplicateFrequencies[n[6].strip()]*12}}px;">
-          <div class="manifacture"><p class="p_margin">{{n[4]}}{{duplicateFrequencies[n[6].strip()]}}</p></div>
-          <div class="modelse"><p class="p_margin">{{n[5]}}<br>{{n[6]}}</p></div>
-          <div class="workerr"><p class="p_margin">{{n[7]}}<br>{{n[8]}}</p></div>
-          <div class="debit"><p class="p_margin">{{chargeconv[n[12]]}}</p></div>
-        </div>
         {% endfor %}
       </div>
-        <div class="itemboxright" style="width: 450px;">
-        {% endif %}
-          <div class="spare_row" {% if parts.index(n) == 20 %}style="page-break-before: always"{% endif %}>
-            <div class="spare_artnr"><p class="p_margin">{{n[4]}}</p></div>
-            <div class="spare_article"><p class="p_margin">{{n[5]}}</p></div>
-            <div class="spare_qty"><p class="p_margin">{{n[6]}}</p></div>
-            <div class="spare_debit"><p class="p_margin"></p></div>
-          </div>
-          {% if lastSerial.update({'serial': n[3], 'attempt': 1}) %} {% endif %}
-          {% endfor %}
-        </div>
-      </div>
+
+    {% endfor %}
       <div class="contactinfo">
         <div class="column">
           <p style="margin: 2px;">{{contact[0][2]}}</p>

@@ -85,7 +85,8 @@ def pdffile2():
 
             if len(irinfo) > 0:
                 irinfo = irinfo[0]
-
+    wo1 = wo[:3]
+    wo2 = wo[3:]
 
     parts.sort(key = lambda x:len(x[3]))
     duplicateFrequencies = {}
@@ -96,6 +97,7 @@ def pdffile2():
     if len(duplicateFrequencies) == 0:
         for x in wo:
             duplicateFrequencies[x[6].strip()] = 2
+
 
     chargeconv = {3: "Garanti 1 år",
     2: "Debiteras",
@@ -108,7 +110,109 @@ def pdffile2():
     12: "Garanti 6 mån",
     9: "Garanti 5 år",}
 
-    return render_template("pdffile2.html", chargeconv=chargeconv, Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
+    return render_template("pdffile2.html", chargeconv=chargeconv, wo1=wo1,wo2=wo2, Dict=Dict, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
+
+@app.route("/irpdf", methods=["GET", "POST"])
+def irpdf():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    lastSerial = None
+    lastSerial2 = []
+    numberOfItems = None
+
+    Dict = {}
+    types = sql("SELECT","SELECT * FROM Modeltype")
+    manufact = sql("SELECT","SELECT Vend_Code FROM Vendors")
+    models = sql("SELECT","SELECT * FROM Models")
+    charge = sql("SELECT","SELECT * FROM Chargemode")
+    techs = sql("SELECT","SELECT Tech_ID FROM Technicians")
+    office = sql("SELECT","SELECT * FROM Office")
+    freight = sql("SELECT","SELECT * FROM FreightTypes")
+    contact = sql("SELECT","SELECT * FROM Parameters")
+    irnumber = request.args.get("ir")
+
+
+    customer = ["","","","","","","","","","","","",""]
+    irinfo = ["","","","","","","","","","","","",""]
+    parts = []
+    wo = []
+    error = None
+    found = False
+    numbers = sql("SELECT","SELECT IR_Irno,IR_Opendate FROM IR")
+
+    for x in numbers:
+        if irnumber == str(x[0]):
+            found = True
+            irinfo = sql("SELECT","SELECT * FROM IR WHERE IR_Irno = '" + irnumber + "'")
+            if irinfo[0][0] != None:
+                customer = sql("SELECT","SELECT * FROM Customers WHERE Cust_CustID = '" + irinfo[0][0] + "'")
+                customer = customer[0]
+            else:
+                customer = ["","","","","","","","","","","","",""]
+
+            parts = sql("SELECT","SELECT * FROM IRParts WHERE IRP_IRno = '" + irnumber + "'")
+            wo = list(sql("SELECT","SELECT * FROM WO WHERE WO_Irno = '" + irnumber + "'"))
+
+            if len(irinfo) > 0:
+                irinfo = irinfo[0]
+
+
+    parts.sort(key = lambda x:len(x[3]))
+    duplicateFrequencies = {}
+    for x in parts:
+        lastSerial2.append(x[3])
+    for i in lastSerial2:
+        duplicateFrequencies[i.strip()] = lastSerial2.count(i)
+    if len(duplicateFrequencies) == 0:
+        for x in wo:
+            duplicateFrequencies[x[6].strip()] = 2
+
+    total = 0
+    page = 0
+
+    pages = [[]]
+
+    x = 0
+
+    while x < len(wo):
+        lines = 1
+        height = 0
+        for y in parts:
+            if wo[x][6] == y[3]:
+                lines += 1
+        height = lines * 15
+        print(total+height)
+        if total + height < (1 + page) * 450:
+            total += height
+            if len(pages) < page + 1:
+                pages.append([])
+            pages[page].append(wo[x])
+
+            x += 1
+        else:
+            page += 1
+
+
+    print(pages)
+    print(len(pages[0]))
+
+    chargeconv = {3: "Garanti 1 år",
+    2: "Debiteras",
+    4: "Fri service",
+    5: "Garanti 2 år",
+    8: "Garanti 3 år",
+    6: "Utbyte",
+    10: "DieboldNixdorf",
+    11: "Garanti 90 dgr",
+    12: "Garanti 6 mån",
+    9: "Garanti 5 år",}
+
+    return render_template("irdpdf.html", chargeconv=chargeconv, Dict=Dict, pages=pages, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
+
 
 
 @app.route("/ir",methods=["GET","POST"])
