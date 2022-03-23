@@ -27,14 +27,17 @@ function savevarform(){
   xhttp.send(fd);
 }
 
-function savemodelform(){
+function savemod(){
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/savemodels",true);
-  const fd = new FormData(document.getElementById('modelform'));
+  const fd = new FormData(document.getElementById('modform'));
+  for(var x of fd.entries()){
+    console.log(x[0] + ": " + x[1]);
+  }
   xhttp.send(fd);
 }
 
-function newmodel(){
+function newmod(){
 
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/newmodel",true);
@@ -136,6 +139,30 @@ function rempg(id){
 
 }
 
+function remmod(id){
+
+  var fd = new FormData();
+
+  fd.append("id",id)
+
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+
+    for(x of document.getElementsByClassName('settingadmintech')){
+      if (x.children[0].value == id){
+        x.remove();
+      }
+    }
+    //document.getElementById(id+'id').parentElement.remove();
+  }
+
+
+
+  xhttp.open("POST","/remmod",true);
+  xhttp.send(fd);
+
+}
 
 function savete(){
   var xhttp = new XMLHttpRequest();

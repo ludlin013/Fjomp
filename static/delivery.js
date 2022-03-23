@@ -213,6 +213,9 @@ document.addEventListener("keydown", function(e){
     window.location.href = "/newdeliverynote"
   }
 
+}else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 76){
+  e.preventDefault();
+  dndone();
 }else if((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.keyCode == 68){
   e.preventDefault();
   if(confirm("Leave page and copy this note? Unsaved changes will be lost")){
@@ -715,4 +718,12 @@ function selectpg(pgid, row){
 
   xhttp.open("POST","/setpricegroup",true);
   xhttp.send(fd);
+}
+
+function dndone(){
+
+  document.getElementById("dnclosed").checked = "checked";
+
+  savedelmail(true);
+
 }

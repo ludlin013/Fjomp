@@ -252,14 +252,21 @@
           <a href="/copydelivery/{{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/copy.png"><p>Copy</p><p class="newlinesc">Ctrl + D</p></a>
           <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}" class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p><p class="newlinesc">Ctrl + Del</p></a>
           <a href="delivnotes?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p><p class="newlinesc">Ctrl + Z</p></a>
-          <a onclick="savedeldir()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p><p class="newlinesc">Ctrl + S</p></a>
+          <a onclick="savedeldir(false)" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p><p class="newlinesc">Ctrl + S</p></a>
           <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p><p class="newlinesc">Ctrl + M</p></a>
           <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>-->
           <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p><p class="newlinesc">Ctrl + P</p></a>
+          <a id="donebutton" onclick="dndone()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/checkmark.png"><p>Done</p><p class="newlinesc">Ctrl + L</p></a>
         </div>
         </div>
         <script>
-          function savedelmail(){
+          function savedelmail(done){
+            if (!done){
+              document.cookie = "delivmail = nisse@ekabss.com";
+            }else{
+              document.cookie = "delivmail = peter@ekabss.com,karin@ekabss.com";
+            }
+
             var noteNum = document.getElementById('delivnote-number').value;
             var storeNum = document.getElementById('storeNumber').value;
             var storeName = document.getElementById('storeName').value;
