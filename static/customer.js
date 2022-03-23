@@ -263,7 +263,7 @@ document.getElementById('storeNumber').addEventListener("keydown", getstore);
 
 
 function getstore(e){
-  if(e.key == "Enter"){
+  if(e.key == "Enter" || e.key == "Tab" && document.getElementById('storeNumber').value != ""){
 
     fd = new FormData();
 
