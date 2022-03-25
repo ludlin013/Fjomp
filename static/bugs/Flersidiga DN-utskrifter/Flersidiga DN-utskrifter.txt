@@ -1,0 +1,3 @@
+Vid utskrifter av DN (se 39316) som är mer än 1 sida, fylls inte sida 1 helt. Blir mycket tomt längst ner.
+
+Submitted by: PLE

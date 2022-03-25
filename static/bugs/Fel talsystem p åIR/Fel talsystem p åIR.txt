@@ -1,0 +1,3 @@
+Man måste använda punkt istället för kommatecken för antal (0.5 timmar och inte 0,5 timmar) på IR.
+
+Submitted by: PLE
