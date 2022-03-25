@@ -299,20 +299,17 @@
     {% for x in techs %}
     <a class="settingadmintech">
       <input type="hidden" value="{{x[12]}}" name="{{vendors.index(x)}}id">
-      <input class="settingspg noselect teid" maxlength="3" spellcheck="false" value="{{x[0].strip()}}" name="{{techs.index(x)}}ids">
-      <input class="settingspg noselect tefirst" spellcheck="false" value="{{x[1].strip()}}" name="{{techs.index(x)}}first">
-      <input class="settingspg noselect telast" spellcheck="false" value="{{x[2].strip()}}" name="{{techs.index(x)}}last">
-      <input class="settingspg noselect teoffice" spellcheck="false" value="{{x[4]}}" name="{{techs.index(x)}}office">
-      <label class="settingspg noselect tetech">
-        <input class="techcheck" type="checkbox" spellcheck="false" value="{{x[5]}}" {% if x[5] == 1 %} checked {% endif %} name="{{techs.index(x)}}tech">
-      </label>
-      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remtech('{{x[8]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+      <input class="settingsve noselect veco" maxlength="5" spellcheck="false" value="{{x[0].strip()}}" name="{{techs.index(x)}}ids">
+      <input class="settingsve noselect vena" spellcheck="false" value="{{x[1].strip()}}" name="{{techs.index(x)}}first">
+      <input class="settingsve noselect vecu" spellcheck="false" value="{{x[2].strip()}}" name="{{techs.index(x)}}last">
+      <input class="settingsve noselect vea1" spellcheck="false" value="{{x[4]}}" name="{{techs.index(x)}}office">
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remve('{{x[8]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
     </a>
     {% endfor %}
   </form>
-  <div class="pgbuttons">
-    <button type="button" class="set noselect" id="tesave" onclick="savete()">Save</button>
-    <button type="button" class="set noselect" id="tenew" onclick="newte()">New</button>
+  <div class="vebuttons">
+    <button type="button" class="set noselect" id="vesave" onclick="saveve()">Save</button>
+    <button type="button" class="set noselect" id="venew" onclick="newve()">New</button>
   </div>
 
 
