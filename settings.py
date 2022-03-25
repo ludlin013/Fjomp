@@ -50,7 +50,10 @@ def settings():
     if request.cookies["auth"] == "true":
         authenticated = True
     theme,notheme = setTheme()
-
+    try:
+        active = request.cookies["active"]
+    except:
+        active = ""
 
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
@@ -86,7 +89,7 @@ def settings():
 
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("settings.html",usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
+    return render_template("settings.html",active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -244,19 +247,24 @@ def savevariable():
 def savemodels():
 
     print(len(request.form)//6)
-    print(request.form)
+    #print(request.form)
 
     for x in range(len(request.form)//6):
-        print(request.form[str(x)+"mod"])
-        sqlq = "UPDATE Models SET Mod_Vendor = '"+request.form[str(x)+"ven"].strip()+"', Mod_Model = '"+request.form[str(x)+"mod"].strip()+"', Mod_Unittype = '"+request.form[str(x)+"typ"].strip()+"', Mod_Cat = '"+request.form[str(x)+"cat"].strip()+"', ModChargemode = '"+request.form[str(x)+"cha"].strip()+"' WHERE Mod_ID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+        #print(request.form[str(x)+"mod"])
+        sqlq = "UPDATE Models SET Mod_Vendor = '"+request.form[str(x)+"ven"].strip()+"', Mod_Model = '"+request.form[str(x)+"mod"].strip()+"', Mod_Unittype = '"+request.form[str(x)+"typ"].strip()+"', Mod_Cat = '"+request.form[str(x)+"cat"].strip()+"', Mod_Chargemode = '"+request.form[str(x)+"cha"].strip()+"' WHERE Mod_ID = '"+request.form[str(x)+"id"]+"'"
+        #print(sqlq)
+        sql("INSERT",sqlq)
+
 
     return ('', 204)
 
 @app.route("/newmodel",methods=["GET","POST"])
 def newmodel():
 
-    print("newmodel")
+    #print("newmodel")
+
+    sql("INSERT", "INSERT INTO Models (Mod_Vendor, Mod_Model, Mod_Unittype, Mod_Cat, Mod_Chargemode) VALUES ('NEWMO','','','','')")
+
 
     return ('', 204)
 
@@ -276,7 +284,7 @@ def savepg():
 @app.route("/newpg",methods=["GET","POST"])
 def newpg():
 
-    sql("INSERT", "INSERT INTO Pricegroups (pg_no, pg_Descript) VALUES ('','')")
+    sql("INSERT", "INSERT INTO Pricegroups (pg_no, pg_Descript) VALUES ('111','')")
 
     newid = sql("SELECT","SELECT * FROM Pricegroups")
 
@@ -297,7 +305,7 @@ def rempg():
 @app.route("/remmod",methods=["GET","POST"])
 def remmod():
 
-    #sql("INSERT", "DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
+    sql("INSERT", "DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
     print("DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
     return ('', 204)
 
@@ -317,7 +325,7 @@ def savete():
 @app.route("/newte",methods=["GET","POST"])
 def newte():
 
-    sql("INSERT", "INSERT INTO Technicians (Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office, Tech_Tech, Tech_Pwd) VALUES (' ','NEWTE',' ','1','1','')")
+    sql("INSERT", "INSERT INTO Technicians (Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office, Tech_Tech, Tech_Pwd) VALUES ('NET','','','1','1','')")
 
     newid = sql("SELECT","SELECT * FROM Technicians")
 

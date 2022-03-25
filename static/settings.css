@@ -6,6 +6,10 @@
   margin: 20px 0;
 }
 
+.activemaintenance{
+  display:block!important;
+}
+
 .settingrow{
   padding:10px 10px;
   max-width: 600px;

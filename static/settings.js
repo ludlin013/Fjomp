@@ -34,14 +34,21 @@ function savemod(){
   for(var x of fd.entries()){
     console.log(x[0] + ": " + x[1]);
   }
+
+  xhttp.onload = function(){
+    document.getElementById('modsave').textContent = "Saved!"
+  }
+
   xhttp.send(fd);
 }
 
 function newmod(){
-
   var xhttp = new XMLHttpRequest();
   xhttp.open("POST","/newmodel",true);
   xhttp.send();
+  xhttp.onload = function(){
+    location.reload();
+  }
 
 }
 
@@ -99,13 +106,15 @@ function newpg(){
   row.appendChild(number);
   row.appendChild(name);
 
-  parent.appendChild(row)
+  //parent.appendChild(row)
 
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function(){
     console.log(this.responseText);
     id.value = this.responseText;
+
+    location.reload();
   }
 
   xhttp.open("POST","/newpg",true);
@@ -199,6 +208,8 @@ function savete(){
 
 
 function newte(){
+
+
   var no = document.getElementById("teform").children[document.getElementById("teform").children.length - 1].children[0].name;
   console.log(no);
   no = parseInt(no)+1
@@ -258,13 +269,14 @@ function newte(){
   row.appendChild(telabel);
 
 
-  parent.appendChild(row)
+  //parent.appendChild(row)
 
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function(){
     console.log(this.responseText);
     id.value = this.responseText;
+    location.reload();
 
 
   }

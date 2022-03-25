@@ -192,7 +192,7 @@
 
 </div>
 
-<div class="settingstechwrap settingscategories" id="settingmod" style="display:">
+<div class="settingstechwrap settingscategories" id="settingmod" style="display:none">
   <h3 class="noselect">Models</h3>
   <div class="settingstechhead">
     <p class="noselect modven">Vendor</p>
@@ -277,10 +277,86 @@
 
 
 </div>
+
+<div class="settingstechwrap settingscategories" id="settingsvendor" style="display:none">
+  <h3 class="noselect">Vendor</h3>
+  <div class="settingstechhead">
+    <p class="noselect veco">Code</p>
+    <p class="noselect vena">Name</p>
+    <p class="noselect vecu">Currency</p>
+    <p class="noselect vea1">Address 1</p>
+    <p class="noselect vea2">Address 2</p>
+    <p class="noselect vea3">Address 3</p>
+    <p class="noselect vea3">Address 3</p>
+    <p class="noselect vezi">ZIP</p>
+    <p class="noselect veco">Country</p>
+    <p class="noselect veph">Phone</p>
+    <p class="noselect vefx">Fax</p>
+    <p class="noselect vecn">Contact</p>
+    <p class="noselect vema">Mail</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="veform">
+    {% for x in techs %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[12]}}" name="{{vendors.index(x)}}id">
+      <input class="settingspg noselect teid" maxlength="3" spellcheck="false" value="{{x[0].strip()}}" name="{{techs.index(x)}}ids">
+      <input class="settingspg noselect tefirst" spellcheck="false" value="{{x[1].strip()}}" name="{{techs.index(x)}}first">
+      <input class="settingspg noselect telast" spellcheck="false" value="{{x[2].strip()}}" name="{{techs.index(x)}}last">
+      <input class="settingspg noselect teoffice" spellcheck="false" value="{{x[4]}}" name="{{techs.index(x)}}office">
+      <label class="settingspg noselect tetech">
+        <input class="techcheck" type="checkbox" spellcheck="false" value="{{x[5]}}" {% if x[5] == 1 %} checked {% endif %} name="{{techs.index(x)}}tech">
+      </label>
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remtech('{{x[8]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+    </a>
+    {% endfor %}
+  </form>
+  <div class="pgbuttons">
+    <button type="button" class="set noselect" id="tesave" onclick="savete()">Save</button>
+    <button type="button" class="set noselect" id="tenew" onclick="newte()">New</button>
+  </div>
+
+
+</div>
+
 {%endif%}
 
     <script src="/static/mobile.js"></script>
     <script>
+
+
+
+    window.scrollTo(0, 0);
+
+    document.getElementById('{{active}}').classList.add("activemaintenance");
+
+    for (var x of document.getElementsByClassName('modven')){
+      console.log(x.value);
+      if(x.value == "NEWMO"){
+        console.log(x);
+        x.select();
+        break
+      }
+    }
+
+
+    for (var x of document.getElementsByClassName('teid')){
+      console.log(x.value);
+      if(x.value == "NET"){
+        console.log(x);
+        x.select();
+        break
+      }
+    }
+
+    for (var x of document.getElementsByClassName('pgno')){
+      console.log(x.value);
+      if(x.value == "111"){
+        console.log(x);
+        x.select();
+        break
+      }
+    }
+
       if(document.cookie.includes("branch")){
         var cookies = document.cookie.split(";");
         for(var cookie of cookies){
@@ -333,15 +409,16 @@
 
       for(x of all){
         x.style.display = "none";
+        x.classList.remove("activemaintenance")
       }
 
       document.getElementById(cat).style.display  = "block";
 
+      document.cookie = "active = " + cat
 
     }
 
     //show('settingsmodel')
-
     </script>
   </body>
 </html>
