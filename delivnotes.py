@@ -601,7 +601,12 @@ def deliverymail(num):
 
     mailbody = mailbody.replace("\"","")
 
-    return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, delivnote=num, store=store, note=note)
+    done = False
+
+    if mailadr == "karin@ekabss.com":
+        done = True
+
+    return render_template("deliverymail.html", mailbody=mailbody, mailadr=mailadr, delivnote=num, store=store, note=note, done=done)
 
 
 @app.route("/unshippeddelivnotes", methods=["GET","POST"])
