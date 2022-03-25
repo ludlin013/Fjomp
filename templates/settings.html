@@ -204,25 +204,25 @@
   <form class="settingstechmain" action="javascript:" id="modform">
     {% for x in models %}
     <a class="settingadmintech">
-      <input type="hidden" value="{{x[1]}}" name="{{models.index(x)}}id">
+      <input type="hidden" value="{{x[5]}}" name="{{models.index(x)}}id">
       <input class="settingsmod noselect modven" spellcheck="false" value="{{x[0]}}" name="{{models.index(x)}}ven">
       <input class="settingsmod noselect modmod" spellcheck="false" value="{{x[1].strip()}}" name="{{models.index(x)}}mod">
       <input class="settingsmod noselect modtyp" spellcheck="false" value="{{x[2].strip()}}" name="{{models.index(x)}}typ">
       <input class="settingsmod noselect modcat" spellcheck="false" value="{{x[3].strip()}}" name="{{models.index(x)}}cat">
       <input class="settingsmod noselect modcha" spellcheck="false" value="{{x[4]}}" name="{{models.index(x)}}cha">
-      <button type="button" class="modremove" name="button" onclick="if(confirm('Are you sure you want to delete pricegroup {{x[1].strip().replace("\'","\\'")}}?')){remmod('{{x[2]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+      <button type="button" class="modremove" name="button" onclick="if(confirm('Are you sure you want to delete model {{x[1].strip().replace("\'","\\'")}}?')){remmod('{{x[5]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
     </a>
     {% endfor %}
   </form>
-  <div class="pgbuttons">
-    <button type="button" class="set noselect"  id="pgsave" onclick="savepg()">Save</button>
-    <button type="button" class="set noselect" id="pgnew" onclick="newpg()">New</button>
+  <div class="modbuttons">
+    <button type="button" class="set noselect"  id="modsave" onclick="savemod()">Save</button>
+    <button type="button" class="set noselect" id="modnew" onclick="newmod()">New</button>
   </div>
 
 
 </div>
 
-<div class="settingstechwrap settingscategories" id="settingsoffice" style="display:">
+<div class="settingstechwrap settingscategories" id="settingsoffice" style="display:none">
   <h3 class="noselect">Offices</h3>
   <div class="settingstechhead">
     <p class="noselect ofno">Office #</p>
