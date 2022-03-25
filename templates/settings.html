@@ -287,9 +287,8 @@
     <p class="noselect vea1">Address 1</p>
     <p class="noselect vea2">Address 2</p>
     <p class="noselect vea3">Address 3</p>
-    <p class="noselect vea3">Address 3</p>
     <p class="noselect vezi">ZIP</p>
-    <p class="noselect veco">Country</p>
+    <p class="noselect vect">Country</p>
     <p class="noselect veph">Phone</p>
     <p class="noselect vefx">Fax</p>
     <p class="noselect vecn">Contact</p>
@@ -299,17 +298,77 @@
     {% for x in vendors %}
     <a class="settingadmintech">
       <input type="hidden" value="{{x[12]}}" name="{{vendors.index(x)}}id">
-      <input class="settingsve noselect veco" maxlength="5" spellcheck="false" value="{{x[0].strip()}}" name="{{vendors.index(x)}}ids">
-      <input class="settingsve noselect vena" spellcheck="false" value="{{x[1].strip()}}" name="{{vendors.index(x)}}first">
-      <input class="settingsve noselect vecu" spellcheck="false" value="{{x[2].strip()}}" name="{{vendors.index(x)}}last">
-      <input class="settingsve noselect vea1" spellcheck="false" value="{{x[4]}}" name="{{vendors.index(x)}}office">
-      <button type="button" class="veremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remve('{{x[8]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+      <input class="settingsve noselect veco" maxlength="5" spellcheck="false" value="{{x[0].strip()}}" name="{{vendors.index(x)}}code">
+      <input class="settingsve noselect vena" spellcheck="false" value="{{x[1].strip()}}" name="{{vendors.index(x)}}name">
+      <input class="settingsve noselect vecu" spellcheck="false" value="{{x[2].strip()}}" name="{{vendors.index(x)}}curr">
+      <input class="settingsve noselect vea1" spellcheck="false" value="{{x[3]}}" name="{{vendors.index(x)}}add1">
+      <input class="settingsve noselect vea2" spellcheck="false" value="{{x[4]}}" name="{{vendors.index(x)}}add2">
+      <input class="settingsve noselect vea3" spellcheck="false" value="{{x[5]}}" name="{{vendors.index(x)}}add3">
+      <input class="settingsve noselect vezi" spellcheck="false" value="{{x[6]}}" name="{{vendors.index(x)}}zip">
+      <input class="settingsve noselect vect" spellcheck="false" value="{{x[7]}}" name="{{vendors.index(x)}}country">
+      <input class="settingsve noselect veph" spellcheck="false" value="{{x[8]}}" name="{{vendors.index(x)}}phone">
+      <input class="settingsve noselect vefx" spellcheck="false" value="{{x[9]}}" name="{{vendors.index(x)}}fax">
+      <input class="settingsve noselect vecn" spellcheck="false" value="{{x[10]}}" name="{{vendors.index(x)}}contact">
+      <input class="settingsve noselect vema" spellcheck="false" value="{{x[11]}}" name="{{vendors.index(x)}}mail">
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remve('{{x[12]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
     </a>
     {% endfor %}
   </form>
   <div class="vebuttons">
     <button type="button" class="set noselect" id="vesave" onclick="saveve()">Save</button>
     <button type="button" class="set noselect" id="venew" onclick="newve()">New</button>
+  </div>
+
+
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingsfreight" style="display:none">
+  <h3 class="noselect">Freight types</h3>
+  <div class="settingstechhead">
+    <p class="noselect feid">ID</p>
+    <p class="noselect fede">Description</p>
+    <p class="noselect fest">Standard</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="feform">
+    {% for x in freight %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[3]}}" name="{{freight.index(x)}}id">
+      <input class="settingsve noselect feid" maxlength="5" spellcheck="false" value="{{x[0].strip()}}" name="{{freight.index(x)}}rid">
+      <input class="settingsve noselect fede" spellcheck="false" value="{{x[1].strip()}}" name="{{freight.index(x)}}desc">
+      <input class="settingsve noselect fest" spellcheck="false" value="{{x[2]}}" name="{{freight.index(x)}}std">
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remfe('{{x[3]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+    </a>
+    {% endfor %}
+  </form>
+  <div class="vebuttons">
+    <button type="button" class="set noselect" id="fesave" onclick="savefe()">Save</button>
+    <button type="button" class="set noselect" id="fenew" onclick="newfe()">New</button>
+  </div>
+
+
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingscharge" style="display:none">
+  <h3 class="noselect">Chargemode</h3>
+  <div class="settingstechhead">
+    <p class="noselect chty">Type</p>
+    <p class="noselect chde">Description</p>
+    <p class="noselect chmo">Months</p>
+  </div>
+  <form class="settingstechmain" action="javascript:" id="chform">
+    {% for x in charge %}
+    <a class="settingadmintech">
+      <input type="hidden" value="{{x[3]}}" name="{{charge.index(x)}}id">
+      <input class="settingsve noselect chty" maxlength="5" spellcheck="false" value="{{x[0]}}" name="{{charge.index(x)}}type">
+      <input class="settingsve noselect chde" spellcheck="false" value="{{x[1].strip()}}" name="{{charge.index(x)}}desc">
+      <input class="settingsve noselect chmo" spellcheck="false" value="{{x[2]}}" name="{{charge.index(x)}}month">
+      <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remch('{{x[3]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
+    </a>
+    {% endfor %}
+  </form>
+  <div class="vebuttons">
+    <button type="button" class="set noselect" id="chsave" onclick="savech()">Save</button>
+    <button type="button" class="set noselect" id="chnew" onclick="newch()">New</button>
   </div>
 
 
@@ -324,12 +383,17 @@
 
     window.scrollTo(0, 0);
 
-    document.getElementById('{{active}}').classList.add("activemaintenance");
+    try{
+      document.getElementById('{{active}}').classList.add("activemaintenance");
+    }catch(error){
+      console.log(error);
+    }
 
     for (var x of document.getElementsByClassName('modven')){
-      console.log(x.value);
+      //console.log(x.value);
       if(x.value == "NEWMO"){
-        console.log(x);
+        //console.log(x);
+        x.scrollIntoView();
         x.select();
         break
       }
@@ -337,19 +401,51 @@
 
 
     for (var x of document.getElementsByClassName('teid')){
-      console.log(x.value);
+      //console.log(x.value);
       if(x.value == "NET"){
-        console.log(x);
+        //console.log(x);
+        x.scrollIntoView();
         x.select();
         break
       }
     }
 
     for (var x of document.getElementsByClassName('pgno')){
-      console.log(x.value);
+      //console.log(x.value);
       if(x.value == "111"){
-        console.log(x);
+        //console.log(x);
+        x.scrollIntoView();
         x.select();
+        break
+      }
+    }
+
+    for (var x of document.getElementsByClassName('veco')){
+      //console.log(x.value);
+      if(x.value == "NEWVE"){
+        //console.log(x);
+        x.select();
+        x.scrollIntoView();
+        break
+      }
+    }
+
+    for (var x of document.getElementsByClassName('feid')){
+      //console.log(x.value);
+      if(x.value == "111"){
+        //console.log(x);
+        x.select();
+        x.scrollIntoView();
+        break
+      }
+    }
+
+    for (var x of document.getElementsByClassName('chty')){
+      //console.log(x.value);
+      if(x.value == "111"){
+        //console.log(x);
+        x.select();
+        x.scrollIntoView();
         break
       }
     }
@@ -410,6 +506,7 @@
       }
 
       document.getElementById(cat).style.display  = "block";
+      document.getElementById(cat).scrollIntoView({behavior:"smooth"});
 
       document.cookie = "active = " + cat
 

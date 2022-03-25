@@ -64,10 +64,13 @@ def settings():
     parameters = sql("SELECT","SELECT * FROM Parameters")
     pgs = sql("SELECT", "SELECT * FROM Pricegroups")
     office = sql("SELECT", "SELECT * FROM Office")
+    freight = sql("SELECT", "SELECT * FROM FreightTypes")
+    charge = sql("SELECT", "SELECT * FROM ChargeMode")
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
     models.sort(key = lambda x:x[1])
+    charge.sort(key = lambda x:x[0])
 
     mail = ["","",""]
 
@@ -89,7 +92,7 @@ def settings():
 
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("settings.html",active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
+    return render_template("settings.html",charge=charge,freight=freight, active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -268,6 +271,26 @@ def newmodel():
 
     return ('', 204)
 
+@app.route("/newfe",methods=["GET","POST"])
+def newfe():
+
+    #print("newmodel")
+
+    sql("INSERT", "INSERT INTO FreightTypes (Freight_ID, Freight_Description, Freight_Std) VALUES ('111','','')")
+
+
+    return ('', 204)
+
+@app.route("/newch",methods=["GET","POST"])
+def newch():
+
+    #print("newmodel")
+
+    sql("INSERT", "INSERT INTO ChargeMode (CM_Type, CM_Description, CM_WarMonths) VALUES ('111','','')")
+
+
+    return ('', 204)
+
 @app.route("/savepg",methods=["GET","POST"])
 def savepg():
 
@@ -278,6 +301,57 @@ def savepg():
         sqlq = "UPDATE Pricegroups SET pg_no = '"+request.form[str(x)+"no"]+"', pg_Descript = '"+request.form[str(x)+"name"].replace("'","''")+"' WHERE pg_ID = '"+request.form[str(x)+"id"]+"'"
         print(sqlq)
         sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/savech",methods=["GET","POST"])
+def savech():
+
+    count = len(request.form)//4
+
+    for x in range(count):
+        sqlq = "UPDATE ChargeMode SET CM_Type = '"+request.form[str(x)+"type"]+"', CM_Description = '"+request.form[str(x)+"desc"]+"' WHERE CM_WarMonths = '"+request.form[str(x)+"month"]+"'"
+        print(sqlq)
+        sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/saveve",methods=["GET","POST"])
+def saveve():
+
+    count = len(request.form)//13
+    print(count)
+
+    for x in range(count):
+        sqlq = "UPDATE Pricegroups SET Vend_Code = '"+request.form[str(x)+"code"]+"', Vend_Name = '"+request.form[str(x)+"name"]+"',Vend_Currency = '"+request.form[str(x)+"curr"]+"',Vend_Address1 = '"+request.form[str(x)+"add1"]+"', Vend_Address2 = '"+request.form[str(x)+"add2"]+"', Vend_Address3 = '"+request.form[str(x)+"add3"]+"', Vend_Zip = '"+request.form[str(x)+"zip"]+"', Vend_Country = '"+request.form[str(x)+"country"]+"',Vend_Phone = '"+request.form[str(x)+"phone"]+"', Vend_Fax = '"+request.form[str(x)+"fax"]+"', Vend_Contact = '"+request.form[str(x)+"contact"]+"', Vend_Mail = '"+request.form[str(x)+"mail"]+"' WHERE Vend_ID = '"+request.form[str(x)+"id"]+"'"
+        print(sqlq)
+        sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/savefe",methods=["GET","POST"])
+def savefe():
+
+    count = len(request.form)//4
+
+    for x in range(count):
+        sqlq = "UPDATE FreightTypes SET Freight_ID = '"+request.form[str(x)+"rid"]+"', Freight_Description = '"+request.form[str(x)+"desc"]+"',Freight_Std = '"+request.form[str(x)+"std"]+"' WHERE Freight_RID = '"+request.form[str(x)+"id"]+"'"
+        print(sqlq)
+        sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/newve",methods=["GET","POST"])
+def newve():
+
+    sql("INSERT", "INSERT INTO Vendors (Vend_Code, Vend_Name, Vend_Currency, Vend_Address1, Vend_Address2, Vend_Address3, Vend_Zip, Vend_Country, Vend_Phone, Vend_Fax, Vend_Contact, Vend_Mail) VALUES ('NEWVE','','','','','','','','','','','')")
+
+    newid = sql("SELECT","SELECT * FROM Vendors")
+
+    for x in newid:
+        if x[1] == "NEWPG":
+            newid = str(x[12])
+            break
 
     return ('', 204)
 
@@ -299,6 +373,28 @@ def newpg():
 def rempg():
 
     sql("INSERT", "DELETE FROM Pricegroups WHERE pg_ID = '"+request.form["id"]+"'")
+
+    return ('', 204)
+
+@app.route("/remch",methods=["GET","POST"])
+def remch():
+
+    sql("INSERT", "DELETE FROM ChargeMode WHERE CM_ID = '"+request.form["id"]+"'")
+
+    return ('', 204)
+
+@app.route("/remfe",methods=["GET","POST"])
+def remfe():
+
+    sql("INSERT", "DELETE FROM FreightTypes WHERE Freight_RID = '"+request.form["id"]+"'")
+
+    return ('', 204)
+
+
+@app.route("/remve",methods=["GET","POST"])
+def remve():
+
+    sql("INSERT", "DELETE FROM Vendors WHERE Vend_ID = '"+request.form["id"]+"'")
 
     return ('', 204)
 

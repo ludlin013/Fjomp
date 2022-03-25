@@ -414,6 +414,87 @@ h3{
   width:110px
 }
 
+.veco,
+.vena,
+.vecu,
+.vea1,
+.vea2,
+.vea3,
+.vezi,
+.vect,
+.veph,
+.vefx,
+.vecn,
+.vema{
+  font-size: 11px!important
+}
+
+.veco{
+  width:70px
+}
+
+.vena{
+  width:120px
+}
+
+.vecu{
+  width:70px
+}
+
+.vea1,
+.vea2,
+.vea3{
+  width:120px
+}
+
+.vezi{
+  width:60px
+}
+
+.vect{
+  width:80px
+}
+
+.veph{
+  width:120px
+}
+
+.vefx{
+  width:50px
+}
+
+.vecn{
+  width:120px;
+}
+
+.vema{
+  width:120px
+}
+
+.feid{
+  width:50px
+}
+
+.fede{
+  width:140px
+}
+
+.fest{
+  width:80px
+}
+
+.chty{
+  width:80px
+}
+
+.chde{
+  width:140px
+}
+
+.chmo{
+  width:80px
+}
+
 #pathtext{
   width:300px;
   border-radius: 4px
