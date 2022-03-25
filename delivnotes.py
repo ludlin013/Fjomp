@@ -408,7 +408,7 @@ def newdeliverynote():
 
     print(request.cookies.get("username").strip())
 
-    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup,DN_Sign,DN_Date) VALUES (" + a + ", 1, '"+ request.cookies.get("username").strip() +"',1900-01-01 00:00:00.000)")
+    sql("INSERT","INSERT INTO DelivNotes (DN_no,DN_Pricegroup,DN_Sign,DN_Date) VALUES (" + a + ", 1, '"+ request.cookies.get("username").strip() +"','1900-01-01 00:00:00.000')")
 
     return redirect("/delivnotes?dn="+a)
 
