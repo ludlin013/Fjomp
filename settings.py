@@ -3,6 +3,7 @@ from __main__ import *
 import pyodbc
 import os
 import smtplib
+import time
 from email.message import EmailMessage
 
 server = "P2019\\WSData"
@@ -197,6 +198,7 @@ def viewreport():
 
     bugs = os.listdir("static/bugs")
     bugdict = {}
+    bugdate = {}
 
     for x in bugs:
         if x == "!klara":
@@ -206,11 +208,14 @@ def viewreport():
         with open("static/bugs/"+x+"/"+x+".txt") as f:
             bugdict[x] = f.read()
 
+    for x in bugs:
+        bugdate[x] = time.ctime(os.path.getmtime("static/bugs/"+x)).split(" ")[1:]
+
     sd = {0: "red",1:"yellow",2:"green"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("viewreport.html",usrtech=usrtech,theme=theme,notheme=notheme, bugs=bugs, bugdict=bugdict,usrstatus=usrstatus)
+    return render_template("viewreport.html",usrtech=usrtech,theme=theme,notheme=notheme, bugs=bugs, bugdict=bugdict, bugdate=bugdate, usrstatus=usrstatus)
 
 @app.route("/reportdone",methods=["GET","POST"])
 def reportdone():
@@ -242,8 +247,8 @@ def savemodels():
     print(request.form)
 
     for x in range(len(request.form)//6):
-        print(request.form[str(x)+"model"])
-        sqlq = "UPDATE Models SET Mod_Vendor = '"+request.form[str(x)+"vend"].strip()+"', Mod_Model = '"+request.form[str(x)+"model"].strip()+"', Mod_Unittype = '"+request.form[str(x)+"type"].strip()+"', Mod_Cat = '"+request.form[str(x)+"cat"].strip()+"', ModChargemode = '"+request.form[str(x)+"cha"]+"' WHERE Mod_ID = '"+request.form[str(x)+"id"]+"'"
+        print(request.form[str(x)+"mod"])
+        sqlq = "UPDATE Models SET Mod_Vendor = '"+request.form[str(x)+"ven"].strip()+"', Mod_Model = '"+request.form[str(x)+"mod"].strip()+"', Mod_Unittype = '"+request.form[str(x)+"typ"].strip()+"', Mod_Cat = '"+request.form[str(x)+"cat"].strip()+"', ModChargemode = '"+request.form[str(x)+"cha"].strip()+"' WHERE Mod_ID = '"+request.form[str(x)+"id"]+"'"
         print(sqlq)
 
     return ('', 204)
@@ -287,6 +292,13 @@ def rempg():
 
     sql("INSERT", "DELETE FROM Pricegroups WHERE pg_ID = '"+request.form["id"]+"'")
 
+    return ('', 204)
+
+@app.route("/remmod",methods=["GET","POST"])
+def remmod():
+
+    #sql("INSERT", "DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
+    print("DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
     return ('', 204)
 
 
