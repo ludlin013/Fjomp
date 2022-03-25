@@ -306,8 +306,8 @@ def customersave():
 def customernewunit():
 
 
-    sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["vendor"]+"','"+request.form["model"].split("%")[0]+"','"+request.form["serial"]+"','"+request.form["date"]+"','"+request.form["warranty"]+"', '"+request.form["charge"]+"', '0')"
-
+    sqlq = "INSERT INTO Units (Unit_CustID, Unit_Vendor, Unit_Model, Unit_Serial, Unit_installdate, Unit_Warend, Unit_Chargemode, Unit_History) VALUES ('"+request.form["customer"]+"','"+request.form["vendor"]+"','"+request.form["model"].split("%")[0]+"','"+request.form["serial"].upper()+"','"+request.form["date"]+"','"+request.form["warranty"]+"', '"+request.form["charge"]+"', '0')"
+    
     if (sqlq == "-1"):
         return ("Error adding unit, try again!",200)
     sql("INSERT",sqlq)

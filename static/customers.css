@@ -8,6 +8,10 @@ h1{
   margin-bottom: 30px;
 }
 
+#addserial{
+  text-transform: uppercase;
+}
+
 .toppage-customers{
   display: flex;
   flex-wrap: wrap;

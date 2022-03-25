@@ -101,7 +101,7 @@ function addunit(){
     document.getElementById('unitmsg').innerHTML = xhttp.responseText;
     document.getElementById('unitmsg').style.maxHeight = "50px";
     document.getElementById('unitmsg').style.borderBottom = "1px solid";
-
+    document.getElementById('addserial').select();
     setTimeout(function(){document.getElementById('unitmsg').style.maxHeight = "0";document.getElementById('unitmsg').style.borderBottom = "0";}, 2000);
 
   }

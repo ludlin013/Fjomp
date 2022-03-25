@@ -218,7 +218,7 @@
             </select>
           </div>
           <div class="customer-add-unit-row"><p>Model</p>
-            <select class="custaddvend" name="custmod" id="addmodel" onchange="document.getElementById('unitaddvend').value = this.value.split('%')[1];document.getElementById('addcharge').value = this.value.split('%')[2]" onkeydown="return (event.keyCode!=13);">
+            <select class="custaddvend" name="custmod" id="addmodel" onchange="document.getElementById('unitaddvend').value = this.value.split('%')[1];document.getElementById('addcharge').value = this.value.split('%')[2];warrantycalc()" onkeydown="return (event.keyCode!=13);">
               <option value="" selected></option>
               {% for x in model %}
                 <option value="{{x[1].strip()}}%{{x[0].strip()}}%{{x[4]}}">{{x[1].strip()}}</option>
