@@ -223,6 +223,12 @@ h3{
   outline:none;
 }
 
+.settingstechmain select{
+  border-left: 1px solid #282828;
+  border-top: 1px solid #282828;
+  height: 37px;
+}
+
 .set{
   border:none;
   outline:none;

@@ -92,7 +92,19 @@ def settings():
 
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("settings.html",charge=charge,freight=freight, active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
+    chargeconv = {3: "Garanti 1 år",
+    2: "Debiteras",
+    4: "Fri service",
+    5: "Garanti 2 år",
+    8: "Garanti 3 år",
+    6: "Utbyte",
+    10: "DieboldNixdorf",
+    11: "Garanti 90 dgr",
+    12: "Garanti 6 mån",
+    9: "Garanti 5 år",}
+
+
+    return render_template("settings.html",chargeconv=chargeconv,charge=charge,freight=freight, active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -310,7 +322,7 @@ def savech():
     count = len(request.form)//4
 
     for x in range(count):
-        sqlq = "UPDATE ChargeMode SET CM_Type = '"+request.form[str(x)+"type"]+"', CM_Description = '"+request.form[str(x)+"desc"]+"' WHERE CM_WarMonths = '"+request.form[str(x)+"month"]+"'"
+        sqlq = "UPDATE ChargeMode SET CM_Type = '"+request.form[str(x)+"type"]+"', CM_Description = '"+request.form[str(x)+"desc"]+"', CM_WarMonths = '"+request.form[str(x)+"month"]+"' WHERE CM_ID = '"+request.form[str(x)+"id"]+"'"
         print(sqlq)
         sql("INSERT", sqlq)
 
