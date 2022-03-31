@@ -34,6 +34,16 @@ input[type=number] {
   margin-left:calc(410px - 260px);
 }
 
+.thmanufact-ir,
+.thmanufact-ir *{
+  max-width: 75px
+}
+
+.thcharge-ir,
+.thcharge-ir select{
+  width:120px
+}
+
 .storeitem{
   display: flex;
   padding:10px;
