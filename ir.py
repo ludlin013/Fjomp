@@ -678,12 +678,42 @@ def unitfromserial():
 
     ser = request.form["serial"].upper()
 
-    sqlq = "SELECT Unit_Vendor, Unit_type, Unit_Model FROM Units WHERE Unit_Serial = '"+ser+"'"
+    sqlq = "SELECT Unit_Vendor, Unit_type, Unit_Model, Unit_Chargemode FROM Units WHERE Unit_Serial = '"+ser+"'"
     print(sqlq)
     res = sql("SELECT",sqlq)
+    print(res)
+
+    chargeconv = {3: "Garanti 1 år",
+    2: "Debiteras",
+    4: "Fri service",
+    5: "Garanti 2 år",
+    8: "Garanti 3 år",
+    6: "Utbyte",
+    10: "DieboldNixdorf",
+    11: "Garanti 90 dgr",
+    12: "Garanti 6 mån",
+    9: "Garanti 5 år",}
+
     result = ""
-    for x in res[0]:
-        result += x.strip() + ","
+
+    try:
+        res[0][0] = res[0][0].strip()
+    except:
+        pass
+    try:
+        res[0][1] = res[0][1].strip()
+    except:
+        pass
+    try:
+        res[0][2] = res[0][2].strip()
+    except:
+        pass
+    try:
+        res[0][3] = res[0][3]
+    except:
+        pass
 
 
-    return result
+    print(str(res[0]))
+
+    return str(res[0])

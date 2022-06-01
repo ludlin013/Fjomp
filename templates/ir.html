@@ -159,7 +159,7 @@
                   <select class="irmodeldrop" name="{{wo.index(n)}}model" onchange="update(this.value)">
                     <option value="" selected hidden></option>
                     {% for x in models %}
-                    <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}%{{x[1]}}" {% if x[1].strip() == n[5].strip() %} {% set found = True %}selected {% endif %}>{{x[1]}}</option>
+                    <option value="{{x[0]+"%"+x[2]+"%"}}{{wo.index(n)}}%{{x[1].strip()}}" {% if x[1].strip() == n[5].strip() %} {% set found = True %}selected {% endif %}>{{x[1]}}</option>
                     {% endfor %}
                     {% if n[5] not in models and not found%}
                     <option value="%%{{wo.index(n)}}" selected>{{n[5].strip()}}</option>

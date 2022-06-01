@@ -519,21 +519,35 @@ function getmodelfromserial(event,nr){
       xhttp.onload = function(){
         console.log(this.responseText);
 
-        result = this.responseText.split(",");
-        console.log(result[0] + " %" + result[1] + " %" + nr + "%"+ result[2].replace("\\\"",""));
 
-        model = result[2].replace("\\\"","")
+        result = this.responseText.replaceAll("'","").replace("(","").replace(")","").split(",");
 
-        while (model.length < 25){
-          model += " ";
+        console.log(result)
+
+        console.log(result[0] + "%" + result[1] + "%" + nr + "%"+ result[2].replace("\\\"",""));
+
+        model = result[2].replaceAll("\\\"","").trim()
+
+
+        //while (model.length < 25){
+        //  model += " ";
+        //}
+
+        document.getElementById(nr+"type").value = result[1].trim();
+        //console.log("type");
+        document.getElementById(nr+"vendor").value = result[0].trim();
+        //console.log("vendor");
+        document.getElementsByName(nr+"model")[0].value = result[0].trim() + " %" + result[1].trim() + " %" + nr + "%"+ model;
+        //console.log(document.getElementsByName(nr+"model")[0].children);
+
+        for (x of document.getElementsByName(nr+"model")[0].children){
+          if (x.value.includes(model)){
+            document.getElementsByName(nr+"model")[0].value = x.value;
+          }
         }
 
-        document.getElementById(nr+"type").value = result[1];
-        console.log("type");
-        document.getElementById(nr+"vendor").value = result[0];
-        console.log("vendor");
-        document.getElementsByName(nr+"model")[0].value = result[0] + "  %" + result[1] + " %" + nr + "%"+ model;
-        console.log("model");
+        document.getElementsByName(nr+"charge")[0].value = result[3].trim();
+
       }
 
 
