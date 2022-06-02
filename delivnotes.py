@@ -326,7 +326,7 @@ def delivnotes():
         mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D"
 
     try:
-        mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]]
+        mailbody += "%0DFrakt: " + Dict["freight"][Dict["DN_Freight"][:-2]] + "%0Dhttp://p2019/delivnotes?dn="+str(Dict["number"])
     except:
         pass
 
@@ -597,7 +597,7 @@ def deliverymail(num):
         mailbody += mailno+fspace+mailname+sspace+mailqty+"%0D"
 
 
-    mailbody += "%0DFrakt: " + freight[note[0][15].strip()+"  "]
+    mailbody += "%0DFrakt: " + freight[note[0][15].strip()+"  "] + "%0Dhttp://p2019/delivnotes?dn="+num
 
     mailbody = mailbody.replace("\"","")
 
