@@ -260,7 +260,7 @@
           <div class="toprightrightheader">
             <p>{{Dict["storenum"]}}</p>
             <p>{{Dict["storename"]}}</p>
-            <p>{{Dict["street"]}}</p>
+            <p>{{Dict["street"]}}&nbsp</p>
             <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
             <p>{{Dict["referens"]}}</p>
           </div>
@@ -377,7 +377,7 @@
           <div class="toprightrightheader">
             <p>{{Dict["storenum"]}}</p>
             <p>{{Dict["storename"]}}</p>
-            <p>{{Dict["street"]}}</p>
+            <p>{{Dict["street"]}}&nbsp</p>
             <p>{{Dict["zip"]}}&nbsp{{Dict["city"]}}</p>
             <p>{{Dict["referens"]}}</p>
           </div>
@@ -412,7 +412,7 @@
           <div class="Partnum"><b>Part #</b></div>
           <div class="Part"><b>Part</b></div>
           <div class="Qty2"><b>Qty</b></div>
-          <div class="Backord2"><b>Back ord.</b></div>
+          <!--<div class="Backord2"><b>Back ord.</b></div>-->
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
@@ -421,14 +421,14 @@
             <div class="Partnum"><b>Part #</b></div>
             <div class="Part"><b>Part</b></div>
             <div class="Qty2"><b>Qty</b></div>
-            <div class="Backord2"><b>Back ord.</b></div>
+            <!--<div class="Backord2"><b>Back ord.</b></div>-->
           </div>
           {% endif %}
           <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
             <div class="Partnum">{{x[5].strip()}}</div>
             <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
             <div class="Qty2">{{x[8]}}</div>
-            <div class="Backord2">{% if x[18] != 0%}✔{% endif %}</div>
+            <!--<div class="Backord2">{% if x[18] != 0%}✔{% endif %}</div>-->
           </div>
         {% endfor %}
         </table>
