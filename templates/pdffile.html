@@ -299,8 +299,10 @@
           <div class="Disc"><b>Disc.</b></div>
           <div class="Netvalue"><b>Netvalue</b></div>
           <div class="Total"><b>Total</b></div>
+          {% if Dict["offer"] == 0 %}
           <div class="Backord textaligncenter"><b>Back ord.</b></div>
           <div class="Nocharge textaligncenter"><b>No chrg</b></div>
+          {% endif %}
         </div>
         {% for x in sqlq%}
         {% if sqlq.index(x) == 22-forcount %}</div>
@@ -313,8 +315,10 @@
             <div class="Disc"><b>Disc.</b></div>
             <div class="Netvalue"><b>Netvalue</b></div>
             <div class="Total"><b>Total</b></div>
+            {% if Dict["offer"] == 0 %}
             <div class="Backord textaligncenter"><b>Back ord.</b></div>
             <div class="Nocharge textaligncenter"><b>No chrg</b></div>
+            {% endif %}
           </div>
           {% endif %}
           <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
@@ -325,8 +329,10 @@
             <div class="Disc">{{x[10]}}</div>
             <div class="Netvalue">{{x[11]}}</div>
             <div class="Total">{{x[12]}}</div>
+            {% if Dict["offer"] == 0 %}
             <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
             <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
+            {% endif %}
           </div>
         {% endfor %}
         </table>
