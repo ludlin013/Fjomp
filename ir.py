@@ -196,6 +196,12 @@ def irpdf():
         else:
             page += 1
 
+    noserial = []
+
+    for x in parts:
+        print(x)
+        if x[3].strip() == "":
+            x[3] = wo[0][6]
 
     print(pages)
     print(len(pages[0]))
@@ -211,7 +217,7 @@ def irpdf():
     12: "Garanti 6 mån",
     9: "Garanti 5 år",}
 
-    return render_template("irdpdf.html", chargeconv=chargeconv, Dict=Dict, pages=pages, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
+    return render_template("irdpdf.html", chargeconv=chargeconv, noserial=noserial, Dict=Dict, pages=pages, irnumber=irnumber, customer=customer, irinfo=irinfo, wo=wo, parts=parts, contact=contact, lastSerial=lastSerial, duplicateFrequencies=duplicateFrequencies)
 
 
 

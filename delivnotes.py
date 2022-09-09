@@ -104,9 +104,9 @@ def pdffile():
             Dict["zip"] = z[0][5].strip()
             Dict["city"] = z[0][6].strip()
         else:
-            Dict["street"] = ""
-            Dict["zip"] = ""
-            Dict["city"] = ""
+            Dict["street"] = " "
+            Dict["zip"] = " "
+            Dict["city"] = " "
 
     for x in sqlq:
         x[9] = str(x[9]).replace(".",",")
