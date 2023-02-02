@@ -116,6 +116,7 @@ def pdffile():
     total = f"{total:,}"
     total = str(total).replace(","," ").replace(".",",")
 
+    sqlq.sort(key = lambda x:x[24])
 
     return render_template("pdffile.html", sqlq=sqlq, Dict=Dict, total=total, delivnote=delivnote, forcount=forcount, contact=contact, name=name)
 

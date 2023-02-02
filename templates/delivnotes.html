@@ -1,339 +1,455 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" translate="no">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delivery Note | #{{delivnote}}</title>
-    <link rel="stylesheet" href="static/index.css">
-    <link rel="stylesheet" href="static/delivnotes.css">
-    <link rel="stylesheet" href="static/{{theme}}.css">
-    <link rel="icon" href="./static/pictures/icon.ico">
-  </head>
-  <body>
-    <div class="mobilehead" style="display:none;z-index:100000;">
-      <div class="hamham" onclick="hamburger()" >
-        <div id="hamtop" style="left:15px"></div>
-        <div id="hammid" ></div>
-        <div id="hambot" style="left:15px"></div>
-      </div>
-      <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+<html lang="sv-SE" dir="ltr" translate="no">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Note | #{{delivnote}}</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/delivnotes.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+
+<body>
+  <div class="mobilehead" style="display:none;z-index:100000;">
+    <div class="hamham" onclick="hamburger()">
+      <div id="hamtop" style="left:15px"></div>
+      <div id="hammid"></div>
+      <div id="hambot" style="left:15px"></div>
     </div>
+    <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+  </div>
 
-    <div class="navin">
-      {% if usrtech == 1 %}
-      <div class="navitemin" id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ><img src="../static/pictures/{{theme}}/L3.png"></div><a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value=""></div>
-      {% endif %}      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
-      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
-      <a class="navitemin active" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
-      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
-      <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
-      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
-      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
-      <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
+  <div class="navin">
+    {% if usrtech == 1 %}
+    <div class="navitemin" id="lvl3">
+      <div id="userstatuscolor" style="background:{{usrstatus}}"><img src="../static/pictures/{{theme}}/L3.png"></div><a
+        id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value="">
     </div>
+    {% endif %} <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png">
+      <p class="noselect">Customers</p>
+    </a>
+    <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png">
+      <p class="noselect">Parts</p>
+    </a>
+    <a class="navitemin active" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png">
+      <p class="noselect">Deliv. notes</p>
+    </a>
+    <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png">
+      <p class="noselect">IR</p>
+    </a>
+    <a class="navitemin" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png">
+      <p class="noselect">Swapouts</p>
+    </a>
+    <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png">
+      <p class="noselect">Lookup</p>
+    </a>
+    <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png">
+      <p class="noselect">Settings</p>
+    </a>
+    <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
+  </div>
 
-    <input type="hidden" id="idOfPart" value="">
-      <div class="partselect" id="partselect" style="display:none">
+  <input type="hidden" id="idOfPart" value="">
+  <div class="partselect" id="partselect" style="display:none">
 
-    </div>
+  </div>
 
-    <div class="mainwrapdelivnotes">
-      <h1 class="noselect">Delivery Notes</h1>
-      <form class="" action="javascript:window.location.href = '/delivnotes?dn='+document.getElementById('gotonum').value">
-      <label>Go to # <input id="gotonum" type="number" value="{{delivnote}}" style="padding:5px" placeholder="Search" onclick="this.select()"/></label>
+  <div class="mainwrapdelivnotes">
+    <h1 class="noselect">Delivery Notes</h1>
+    <form class=""
+      action="javascript:window.location.href = '/delivnotes?dn='+document.getElementById('gotonum').value">
+      <label>Go to # <input id="gotonum" type="number" value="{{delivnote}}" style="padding:5px" placeholder="Search"
+          onclick="this.select()" /></label>
       <input type="hidden">
     </form>
-      <div>
-        <div class="delivnote-deliv"><form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input readonly style="text-align:left;width:80px;margin:5px" name="dn" id="delivnote-number" class="forminput-delivnotes" value="{{delivnote}}" ><input type="submit"></form></div>
-        {% if notFound %}
-          <p style="color: red;">{{notFound}}</p>
-        {% endif %}
-        <script>
-          document.cookie = "lastdn = {{delivnote}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
-        </script>
-        <div class="formitem-delivnotes offers-delivnotes">
-          <label class="noselect">Offer<input id="dnoffer" type="checkbox" {% if Dict["offer"] == 1%}checked{% endif %}></label>
-          <label class="noselect">Finalized Offer<input id="dnfinal" type="checkbox" {% if Dict["finaloffer"] == 1%}checked{% endif %}></label>
-        </div>
+    <div>
+      <div class="delivnote-deliv">
+        <form name="form-delivnotes" method="GET" action=""><label class="noselect">Delivery note #:</label><input
+            readonly style="text-align:left;width:80px;margin:5px" name="dn" id="delivnote-number"
+            class="forminput-delivnotes" value="{{delivnote}}"><input type="submit"></form>
       </div>
-      <div class="toppage-delivnotes">
-        <div class="toppageleft-delivnotes">
-          <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes">
-              <div class="storelist" id="storelist" style="display:none">
-
-              </div>
-              <label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}" id="storeNumber" placeholder="Search customer..."></div>
-            <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes" type="text" value="{{Dict["referens"]}}" id="contact"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storename"]}}" readonly id="storeName"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes" id="storestreet" type="text" value="{{Dict["street"]}}" readonly></div>
-            <div class="formitem-delivnotes"><label class="noselect">ZIP/City:</label><div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input id="City" class="forminput-delivnotes" readonly type="text" value="{{Dict["city"]}}"></div></div>
-          </form>
-        </div>
-        <div class="toppageright">
-          <form class="form-delivnotes" name="form-delivnotes">
-            <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2" ondblclick="setday('dndate')" type="date" value="{{Dict["dateformat"].date()}}" id="dndate"></div>
-            <div class="formitem-delivnotes"><label class="noselect">Sign:</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" id="dnsign" type="text">
-                {% for x in Dict["sign"]%}
-                <option value="{{x[0]}}" {% if Dict["DN_Sign"] == x[0]: %}selected{% endif %}>{{x[0]}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="formitem-delivnotes"><label class="noselect">Sent with (Freight type):</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" id="dnfreight" type="text">
-                {% for x in Dict["freight"]%}
-                <option value="{{x}}" {% if Dict["DN_Freight"].strip() == x.strip(): %}selected{% endif %}>{{Dict["freight"][x]}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="formitem-delivnotes"><label class="noselect">Sent from:</label>
-              <select class="forminput-delivnotes2 selectdelivnotes" id="dnoffice" type="text">
-                {% for x in Dict["sentfrom"]%}
-                <option value="{{Dict["sentfrom"][x]}}" {% if Dict["DN_Office"] == x: %}selected{% endif %}>{{Dict["sentfrom"][x]}}</option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="formitem-delivnotes"><label class="noselect">Price group:</label>
-              <div>
-                <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
-                  {% for x in Dict["pricegroup"]%}
-                  <option value="{{x}}"{% if Dict["DN_Pricegroup"] == x %}selected{% endif %}>{{x}}: {{Dict["pricegroup"][x]}}</option>
-                  {% endfor %}
-                </select id="inputname" class="forminput-delivnotes2" type="text">
-              </div>
-            </div>
-          </form>
-        </div>
+      {% if notFound %}
+      <p style="color: red;">{{notFound}}</p>
+      {% endif %}
+      <script>
+        document.cookie = "lastdn = {{delivnote}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
+      </script>
+      <div class="formitem-delivnotes offers-delivnotes">
+        <label class="noselect">Offer<input id="dnoffer" type="checkbox" {% if Dict["offer"]==1%}checked{% endif
+            %}></label>
+        <label class="noselect">Finalized Offer<input id="dnfinal" type="checkbox" {% if
+            Dict["finaloffer"]==1%}checked{% endif %}></label>
       </div>
-      <div class="bottompage-delivnotes">
-        <div class="formitem-delivnotes"><label class="noselect">Notes:</label></div>
-        <textarea spellcheck="false" class="forminput-delivnotes" id="textarea-delivnotes" form="form-delivnotes">{{Dict["notes"]}}</textarea>
+    </div>
+    <div class="toppage-delivnotes">
+      <div class="toppageleft-delivnotes">
+        <form class="form-delivnotes" name="form-delivnotes">
+          <div class="formitem-delivnotes">
+            <div class="storelist" id="storelist" style="display:none">
+
+            </div>
+            <label class="noselect">Store #:</label><input class="forminput-delivnotes" type="text" value="{{Dict["storenum"]}}" id="storeNumber" placeholder="Search customer...">
+          </div>
+          <div class="formitem-delivnotes"><label class="noselect">Ref:</label><input class="forminput-delivnotes"
+              type="text" value="{{Dict["referens"]}}" id="contact"></div>
+          <div class="formitem-delivnotes"><label class="noselect">Name:</label><input class="forminput-delivnotes"
+              type="text" value="{{Dict["storename"]}}" readonly id="storeName"></div>
+          <div class="formitem-delivnotes"><label class="noselect">Address:</label><input class="forminput-delivnotes"
+              id="storestreet" type="text" value="{{Dict["street"]}}" readonly></div>
+          <div class="formitem-delivnotes"><label class="noselect">ZIP/City:</label>
+            <div><input id="ZIP" class="forminput-delivnotes" type="text" value="{{Dict["zip"]}}" readonly><input
+                id="City" class="forminput-delivnotes" readonly type="text" value="{{Dict["city"]}}"></div>
+          </div>
+        </form>
       </div>
-      <div>
-        <table class="list-delivnotes" id="delivtable">
-          <thead>
-            <tr class="header-delivnotes" id="header-parts">
-              <th class="thpart-delivnotes noselect">Part #</th>
-              <th class="thdesc-delivnotes noselect">Description</th>
-              <th class="thserial-delivnotes noselect">Serial</th>
-              <th class="thQTY-delivnotes noselect">QTY</th>
-              <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes noselect">Pricegroup</th>
-              <th class="thprice-delivnotes noselect">Price</th>
-              <th class="thdiscount-delivnotes noselect">% Disc.</th>
-              <th class="thnetvalue-delivnotes noselect">Netvalue</th>
-              <th class="thtotal-delivnotes noselect">Total</th>
-              <th class="thnocharge-delivnotes noselect">No charge</th>
-              <th class="thbackorder-delivnotes noselect">Back order</th>
-            </tr>
-          </thead>
-          <tbody class="tbody-delivnotes">
-            {% for x in sqlq%}
-            <tr class="row-delivnotes" onclick="" id="{{x[24]}}">
-              <input type="hidden" name="id{{sqlq.index(x)}}" id="id{{sqlq.index(x)}}" class="forminput-delivnotes3" value="{{x[24]}}">
-              <td class="thpart-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3 numfoc" id="num{{sqlq.index(x)}}" class="" name="{{x[24]}}" value="{{x[5].strip()}}" onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
-              <td class="thdesc-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3" id="nam{{sqlq.index(x)}}" name="{{x[24]}}" value="{{x[6].strip()}}" onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
-              <td class="thserial-delivnotes"><input class="forminput-delivnotes3" id="ser{{sqlq.index(x)}}" value="{{x[7].strip()}}"></td>
-              <td class="thQTY-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
-              <td class="thpricegroup-delivnotes">
-                <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes3" oninput="selectpg(this.value, {{sqlq.index(x)}});" value="{{x[26]}}">
-                  {% for y in Dict["pricegroup"] %}
-                    <option value="{{y}}" {% if y == x[26] %} selected {% endif %}>{{y}}: {{Dict["pricegroup"][y]}}</option>
-                  {% endfor %}
-                </select>
-              </td>
-              <td class="thprice-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="price{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[9]}}"></td>
-              <script>
-              if (document.getElementById('price{{sqlq.index(x)}}').value == '0.00'){
-                    document.getElementById('price{{sqlq.index(x)}}').value = document.getElementById('pg{{sqlq.index(x)}}').options[document.getElementById('pg{{sqlq.index(x)}}').selectedIndex].value.split(": ")[1];
-                    priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()
-              }
-
-              </script>
-              <td class="thdiscount-delivnotes"><input oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()" id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes3" value="{{x[10]}}"></td>
-              <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()" id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[11]}}"></td>
-              <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[12]}}"></td>
-              <td class="thnocharge-delivnotes" ><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}" type="checkbox" {% if x[13] == 1 %}checked{% endif %}></td>
-              <td class="thbackorder-delivnotes" ><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}" type="checkbox" {% if x[18] == 1 %}checked{% endif %}></td>
-              <td><a style="cursor:pointer" id="remove{{sqlq.index(x)}}" onclick="if(confirm('Are you sure you want to remove ' + this.parentElement.parentElement.children[2].children[0].value + '?')){remdelunit('{{x[24]}}')}"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
-              <script>
-
-                document.getElementById('{{x[24]}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 46) {
-                }}, false);
-
-                document.getElementById('ser{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('qty{{sqlq.index(x)}}').select();
-                }}, false);
-
-                document.getElementById('qty{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('pg{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('pg{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('price{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('price{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('dc{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('dc{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('net{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('net{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('tot{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('tot{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('noc{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('noc{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('bao{{sqlq.index(x)}}').focus();
-                }}, false);
-
-                document.getElementById('bao{{sqlq.index(x)}}').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     document.getElementById('num{{sqlq.index(x)+1}}').focus();
-                }}, false);
-
-                document.getElementById('contact').addEventListener("keydown", function(e){
-                  if (e.keyCode == 13) {
-                     e.preventDefault();
-                     for(x of document.getElementsByClassName('numfoc')){
-                       x.focus()
-                     }
-                }}, false);
-              </script>
+      <div class="toppageright">
+        <form class="form-delivnotes" name="form-delivnotes">
+          <div class="formitem-delivnotes"><label class="noselect">Date:</label><input class="forminput-delivnotes2"
+              ondblclick="setday('dndate')" type="date" value="{{Dict["dateformat"].date()}}" id="dndate"></div>
+          <div class="formitem-delivnotes"><label class="noselect">Sign:</label>
+            <select class="forminput-delivnotes2 selectdelivnotes" id="dnsign" type="text">
+              {% for x in Dict["sign"]%}
+              <option value="{{x[0]}}" {% if Dict["DN_Sign"]==x[0]: %}selected{% endif %}>{{x[0]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="formitem-delivnotes"><label class="noselect">Sent with (Freight type):</label>
+            <select class="forminput-delivnotes2 selectdelivnotes" id="dnfreight" type="text">
+              {% for x in Dict["freight"]%}
+              <option value="{{x}}" {% if Dict["DN_Freight"].strip()==x.strip(): %}selected{% endif %}>
+                {{Dict["freight"][x]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="formitem-delivnotes"><label class="noselect">Sent from:</label>
+            <select class="forminput-delivnotes2 selectdelivnotes" id="dnoffice" type="text">
+              {% for x in Dict["sentfrom"]%}
+              <option value="{{Dict["sentfrom"][x]}}" {% if Dict["DN_Office"]==x: %}selected{% endif %}>
+                {{Dict["sentfrom"][x]}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="formitem-delivnotes"><label class="noselect">Price group:</label>
+            <div>
+              <select id="inputnum" class="forminput-delivnotes2 selectdelivnotes" type="text">
+                {% for x in Dict["pricegroup"]%}
+                <option value="{{x}}" {% if Dict["DN_Pricegroup"]==x %}selected{% endif %}>{{x}}:
+                  {{Dict["pricegroup"][x]}}</option>
+                {% endfor %}
+              </select id="inputname" class="forminput-delivnotes2" type="text">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="bottompage-delivnotes">
+      <div class="formitem-delivnotes"><label class="noselect">Notes:</label></div>
+      <textarea spellcheck="false" class="forminput-delivnotes" id="textarea-delivnotes"
+        form="form-delivnotes">{{Dict["notes"]}}</textarea>
+    </div>
+    <div>
+      <table class="list-delivnotes" id="delivtable">
+        <thead>
+          <tr class="header-delivnotes" id="header-parts">
+            <th class="thpart-delivnotes noselect">Part #</th>
+            <th class="thdesc-delivnotes noselect">Description</th>
+            <th class="thserial-delivnotes noselect">Serial</th>
+            <th class="thQTY-delivnotes noselect">QTY</th>
+            <th id="thpricegroup-delivnotes" class="thpricegroup-delivnotes noselect">Pricegroup</th>
+            <th class="thprice-delivnotes noselect">Price</th>
+            <th class="thdiscount-delivnotes noselect">% Disc.</th>
+            <th class="thnetvalue-delivnotes noselect">Netvalue</th>
+            <th class="thtotal-delivnotes noselect">Total</th>
+            <th class="thnocharge-delivnotes noselect">No charge</th>
+            <th class="thbackorder-delivnotes noselect">Back order</th>
           </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <div class="controllpanel-delivnote">
-          <div class="buttons-delivnote">
-            <div class="button-delivnote"><a class="newlinea" onclick="newunit()"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/add.png"><p class="newlinesc">Ctrl + Q</p></a></div>
-            <!--<div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>-->
-          </div>
-          <div class="ordersum-delivnote">
-            <div><label class="noselect">Order Total: </label><input readonly id="alltotal" class="ordersumnum-delivnote forminput-delivnotes" type="number" value=""></div>
-            <div><label class="noselect"><input type="checkbox" {% if Dict["DN_Closed"] == 1 %}checked{% endif %} value="1" id="dnclosed">Order Shipped</label></div>
-          </div>
-        </div>
-        <div class="buttonsbar">
-          <div class="delivfirstcontrols">
-            <a href="/delivnotes?dn={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
-            <a href="/delivnotes?dn={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
-            <a href="/delivnotes?dn={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
-            <a href="/delivnotes?dn={{max}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
-          </div>
-          <div class="buttonbarigen">
-              <a href="/unshippeddelivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png" alt="Ctrl + M"><p>Not shipped</p><p class="newlinesc"></p></a>
-          <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>-->
-          <a href="/newdeliverynote" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png" alt="Ctrl + M"><p>New</p><p class="newlinesc">Ctrl + K</p></a>
-          <a href="/copydelivery/{{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/copy.png"><p>Copy</p><p class="newlinesc">Ctrl + D</p></a>
-          <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}" class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p><p class="newlinesc">Ctrl + Del</p></a>
-          <a href="delivnotes?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p><p class="newlinesc">Ctrl + Z</p></a>
-          <a onclick="savedeldir(false)" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p><p class="newlinesc">Ctrl + S</p></a>
-          <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p><p class="newlinesc">Ctrl + M</p></a>
-          <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>-->
-          <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p><p class="newlinesc">Ctrl + P</p></a>
-          <a id="donebutton" onclick="dndone()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/checkmark.png"><p>Done</p><p class="newlinesc">Ctrl + L</p></a>
-        </div>
-        </div>
-        <script>
-          function savedelmail(done){
-            if (!done){
-              document.cookie = "delivmail = nisse@ekabss.com";
-            }else{
-              document.cookie = "delivmail = karin@ekabss.com";
-            }
-
-            var noteNum = document.getElementById('delivnote-number').value;
-            var storeNum = document.getElementById('storeNumber').value;
-            var storeName = document.getElementById('storeName').value;
-            var contact = document.getElementById('contact').value;
-            var date = document.getElementById('dndate').value;
-
-            var close = document.getElementById('dnclosed').checked;
-            var freight = document.getElementById('dnfreight').value;
-            var sign = document.getElementById('dnsign').value;
-            var notes = document.getElementById('textarea-delivnotes').value;
-            var office = document.getElementById('dnoffice').value;
-            var pg = document.getElementById('inputnum').value;
-            var offer = document.getElementById('dnoffer').checked;
-            var final = document.getElementById('dnfinal').checked;
-
-
-            var fd = new FormData();
-
-             fd.append("noteNum",noteNum);
-             fd.append("storeNum",storeNum);
-             fd.append("storeName",storeName);
-             fd.append("contact",contact);
-             fd.append("date",date);
-             fd.append("close",close);
-             fd.append("freight",freight);
-             fd.append("sign",sign);
-             fd.append("notes",notes);
-             fd.append("office",office);
-             fd.append("pg",pg);
-             fd.append("offer",offer);
-             fd.append("final",final);
-
-
-            var all = document.getElementsByClassName('forminput-delivnotes3');
-
-            for (x of all){
-              if(x.type === "checkbox" ){
-                fd.append(x.id,x.checked)
-              }else{
-                fd.append(x.id,x.value)
+        </thead>
+        <tbody class="tbody-delivnotes">
+          {% for x in sqlq%}
+          <tr class="row-delivnotes" onclick="" id="{{x[24]}}">
+            <input type="hidden" name="id{{sqlq.index(x)}}" id="id{{sqlq.index(x)}}" class="forminput-delivnotes3"
+              value="{{x[24]}}">
+            <td class="thpart-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3 numfoc"
+                id="num{{sqlq.index(x)}}" class="" name="{{x[24]}}" value="{{x[5].strip()}}"
+                onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
+            <td class="thdesc-delivnotes"><input onclick="this.select()" class="forminput-delivnotes3"
+                id="nam{{sqlq.index(x)}}" name="{{x[24]}}" value="{{x[6].strip()}}"
+                onkeydown="delivpartselect({{sqlq.index(x)}},event,{{Dict['DN_Pricegroup']}})"></td>
+            <td class="thserial-delivnotes"><input class="forminput-delivnotes3" id="ser{{sqlq.index(x)}}"
+                value="{{x[7].strip()}}"></td>
+            <td class="thQTY-delivnotes"><input
+                oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()"
+                id="qty{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[8]}}"></td>
+            <td class="thpricegroup-delivnotes">
+              <select id="pg{{sqlq.index(x)}}" class="forminput-delivnotes3"
+                oninput="selectpg(this.value, {{sqlq.index(x)}});" value="{{x[26]}}">
+                {% for y in Dict["pricegroup"] %}
+                <option value="{{y}}" {% if y==x[26] %} selected {% endif %}>{{y}}: {{Dict["pricegroup"][y]}}</option>
+                {% endfor %}
+              </select>
+            </td>
+            <td class="thprice-delivnotes"><input
+                oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()"
+                id="price{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" value="{{x[9]}}"></td>
+            <script>
+              if (document.getElementById('price{{sqlq.index(x)}}').value == '0.00') {
+                document.getElementById('price{{sqlq.index(x)}}').value = document.getElementById('pg{{sqlq.index(x)}}').options[document.getElementById('pg{{sqlq.index(x)}}').selectedIndex].value.split(": ")[1];
+                priceupdate('{{sqlq.index(x)}}'); totalupdate('{{sqlq.index(x)}}'); alltotal()
               }
-            }
 
-            var xhttp = new XMLHttpRequest();
+            </script>
+            <td class="thdiscount-delivnotes"><input
+                oninput="priceupdate('{{sqlq.index(x)}}');totalupdate('{{sqlq.index(x)}}');alltotal()"
+                id="dc{{sqlq.index(x)}}" style="text-align:center" class="forminput-delivnotes3" value="{{x[10]}}"></td>
+            <td class="thnetvalue-delivnotes"><input oninput="totalupdate('{{sqlq.index(x)}}');alltotal()"
+                id="net{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3" readonly value="{{x[11]}}"></td>
+            <td class="thtotal-delivnotes"><input id="tot{{sqlq.index(x)}}" type="number" class="forminput-delivnotes3"
+                readonly value="{{x[12]}}"></td>
+            <td class="thnocharge-delivnotes"><input class="forminput-delivnotes3" id="noc{{sqlq.index(x)}}"
+                type="checkbox" {% if x[13]==1 %}checked{% endif %}></td>
+            <td class="thbackorder-delivnotes"><input class="forminput-delivnotes3" id="bao{{sqlq.index(x)}}"
+                type="checkbox" {% if x[18]==1 %}checked{% endif %}></td>
+            <td><a style="cursor:pointer" id="remove{{sqlq.index(x)}}"
+                onclick="if(confirm('Are you sure you want to remove ' + this.parentElement.parentElement.children[2].children[0].value + '?')){remdelunit('{{x[24]}}')}"><img
+                  class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></td>
+            <script>
 
-            xhttp.onload = function(){
-              //location.reload();
-              window.location.href = "/deliverymail/{{delivnote}}"
-              //window.location.href='mailto:{{mailadr}}?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}'
-            }
+              document.getElementById('{{x[24]}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 46) {
+                }
+              }, false);
 
-            xhttp.open("POST","/savedeliv",true);
-            xhttp.send(fd);
+              document.getElementById('ser{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('qty{{sqlq.index(x)}}').select();
+                }
+              }, false);
 
-            document.getElementById('statusmsg').style.maxHeight = "50px";
-            document.getElementById('statusmsg').style.borderBottom = "1px solid";
+              document.getElementById('qty{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('pg{{sqlq.index(x)}}').focus();
+                }
+              }, false);
 
-            setTimeout(function(){document.getElementById('statusmsg').style.maxHeight = "0";document.getElementById('statusmsg').style.borderBottom = "0";}, 2000);
+              document.getElementById('pg{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('price{{sqlq.index(x)}}').focus();
+                }
+              }, false);
 
-          }
-        </script>
+              document.getElementById('price{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('dc{{sqlq.index(x)}}').focus();
+                }
+              }, false);
+
+              document.getElementById('dc{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('net{{sqlq.index(x)}}').focus();
+                }
+              }, false);
+
+              document.getElementById('net{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('tot{{sqlq.index(x)}}').focus();
+                }
+              }, false);
+
+              document.getElementById('tot{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('noc{{sqlq.index(x)}}').focus();
+                }
+              }, false);
+
+              document.getElementById('noc{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('bao{{sqlq.index(x)}}').focus();
+                }
+              }, false);
+
+              document.getElementById('bao{{sqlq.index(x)}}').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  document.getElementById('num{{sqlq.index(x)+1}}').focus();
+                }
+              }, false);
+
+              document.getElementById('contact').addEventListener("keydown", function (e) {
+                if (e.keyCode == 13) {
+                  e.preventDefault();
+                  for (x of document.getElementsByClassName('numfoc')) {
+                    x.focus()
+                  }
+                }
+              }, false);
+            </script>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="controllpanel-delivnote">
+        <div class="buttons-delivnote">
+          <div class="button-delivnote"><a class="newlinea" onclick="newunit()"><img class="buttonpic-delivnote"
+                src="static/pictures/{{theme}}/add.png">
+              <p class="newlinesc">Ctrl + Q</p>
+            </a></div>
+          <!--<div class="button-delivnote"><a href="delivnotes"><img class="buttonpic-delivnote" src="static/pictures/{{theme}}/remove.png"></a></div>-->
+        </div>
+        <div class="ordersum-delivnote">
+          <div><label class="noselect">Order Total: </label><input readonly id="alltotal"
+              class="ordersumnum-delivnote forminput-delivnotes" type="number" value=""></div>
+          <div><label class="noselect"><input type="checkbox" {% if Dict["DN_Closed"]==1 %}checked{% endif %} value="1"
+                id="dnclosed">Order Shipped</label></div>
+        </div>
       </div>
+      <div class="buttonsbar">
+        <div class="delivfirstcontrols">
+          <a href="/delivnotes?dn={{min}}"><img class="noselect"
+              src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
+          <a href="/delivnotes?dn={{previous}}"><img class="noselect"
+              src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
+          <a href="/delivnotes?dn={{next}}"><img class="noselect"
+              src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
+          <a href="/delivnotes?dn={{max}}"><img class="noselect"
+              src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+        </div>
+        <div class="buttonbarigen">
+          <a href="/unshippeddelivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
+            <p>Not shipped</p>
+            <p class="newlinesc"></p>
+          </a>
+          <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/open.png"><p>Open</p></a>-->
+          <a href="/newdeliverynote" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
+            <p>New</p>
+            <p class="newlinesc">Ctrl + K</p>
+          </a>
+          <a href="/copydelivery/{{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/copy.png">
+            <p>Copy</p>
+            <p class="newlinesc">Ctrl + D</p>
+          </a>
+          <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}"
+            class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/wastebin.png">
+            <p>Delete</p>
+            <p class="newlinesc">Ctrl + Del</p>
+          </a>
+          <a href="delivnotes?dn={{delivnote}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/undo.png">
+            <p>Undo</p>
+            <p class="newlinesc">Ctrl + Z</p>
+          </a>
+          <a onclick="savedeldir(false)" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/save.png">
+            <p>Save</p>
+            <p class="newlinesc">Ctrl + S</p>
+          </a>
+          <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/mail.png">
+            <p>Mail</p>
+            <p class="newlinesc">Ctrl + M</p>
+          </a>
+          <!--<a href="delivnotes" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/label.png"><p>Label</p></a>-->
+          <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img
+              class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
+            <p>Print</p>
+            <p class="newlinesc">Ctrl + P</p>
+          </a>
+          <a id="donebutton" onclick="dndone()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+              src="static/pictures/{{theme}}/checkmark.png">
+            <p>Done</p>
+            <p class="newlinesc">Ctrl + L</p>
+          </a>
+        </div>
+      </div>
+      <script>
+        function savedelmail(done) {
+          if (!done) {
+            document.cookie = "delivmail = nisse@ekabss.com";
+          } else {
+            document.cookie = "delivmail = karin@ekabss.com";
+          }
+
+          var noteNum = document.getElementById('delivnote-number').value;
+          var storeNum = document.getElementById('storeNumber').value;
+          var storeName = document.getElementById('storeName').value;
+          var contact = document.getElementById('contact').value;
+          var date = document.getElementById('dndate').value;
+
+          var close = document.getElementById('dnclosed').checked;
+          var freight = document.getElementById('dnfreight').value;
+          var sign = document.getElementById('dnsign').value;
+          var notes = document.getElementById('textarea-delivnotes').value;
+          var office = document.getElementById('dnoffice').value;
+          var pg = document.getElementById('inputnum').value;
+          var offer = document.getElementById('dnoffer').checked;
+          var final = document.getElementById('dnfinal').checked;
+
+
+          var fd = new FormData();
+
+          fd.append("noteNum", noteNum);
+          fd.append("storeNum", storeNum);
+          fd.append("storeName", storeName);
+          fd.append("contact", contact);
+          fd.append("date", date);
+          fd.append("close", close);
+          fd.append("freight", freight);
+          fd.append("sign", sign);
+          fd.append("notes", notes);
+          fd.append("office", office);
+          fd.append("pg", pg);
+          fd.append("offer", offer);
+          fd.append("final", final);
+
+
+          var all = document.getElementsByClassName('forminput-delivnotes3');
+
+          for (x of all) {
+            if (x.type === "checkbox") {
+              fd.append(x.id, x.checked)
+            } else {
+              fd.append(x.id, x.value)
+            }
+          }
+
+          var xhttp = new XMLHttpRequest();
+
+          xhttp.onload = function () {
+            //location.reload();
+            window.location.href = "/deliverymail/{{delivnote}}"
+            //window.location.href='mailto:{{mailadr}}?subject=Delivery note # {{delivnote}}  Customer: {{Dict["storenum"]}}  {{Dict["storename"]}}&body={{mailbody}}'
+          }
+
+          xhttp.open("POST", "/savedeliv", true);
+          xhttp.send(fd);
+
+          document.getElementById('statusmsg').style.maxHeight = "50px";
+          document.getElementById('statusmsg').style.borderBottom = "1px solid";
+
+          setTimeout(function () { document.getElementById('statusmsg').style.maxHeight = "0"; document.getElementById('statusmsg').style.borderBottom = "0"; }, 2000);
+
+        }
+      </script>
     </div>
-    <div id="statusmsg">
-      Delivery note saved!
-    </div>
-    <script src="/static/delivery.js" defer></script>
-    <script src="/static/mobile.js"></script>
-  </body>
+  </div>
+  <div id="statusmsg">
+    Delivery note saved!
+  </div>
+  <script src="/static/delivery.js" defer></script>
+  <script src="/static/mobile.js"></script>
+</body>
+
 </html>

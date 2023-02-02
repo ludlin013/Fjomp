@@ -151,3 +151,20 @@ def swapsave():
     print(request.form)
 
     return ('', 204)
+
+@app.route("/swapnew",methods=["GET","POST"])
+def swapnew():
+
+    allswap = sql("SELECT","SELECT SWP_CustId, SWP_No FROM Swap")
+
+    allswapnr = list(map(getnr,allswap))
+    allswapnr.sort()
+
+    
+    maxad = allswapnr[len(allswapnr) - 1]
+
+    print(maxad+1)
+
+    sql("INSERT","INSERT INTO Swapouts (DN_no,DN_Pricegroup,DN_Sign,DN_Date) VALUES (" + a + ", 1, '"+ request.cookies.get("username").strip() +"','1900-01-01 00:00:00.000')")
+
+    return redirect("/delivnotes?dn="+a)

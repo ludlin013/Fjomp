@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="sv-SE" dir="ltr" translate="no">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBSTAT | Swap-Out</title>
-    <link rel="stylesheet" href="static/index.css">
-    <link rel="stylesheet" href="static/swapout.css">
-    <link rel="stylesheet" href="static/{{theme}}.css">
-    <link rel="icon" href="./static/pictures/icon.ico">
-  </head>
-  <form id="allform" action="javascript:">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBSTAT | Swap-Out</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/swapout.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+<form id="allform" action="javascript:">
+
   <body>
     <div class="mobilehead" style="display:none;z-index:100000;">
-      <div class="hamham" onclick="hamburger()" >
+      <div class="hamham" onclick="hamburger()">
         <div id="hamtop" style="left:15px"></div>
-        <div id="hammid" ></div>
+        <div id="hammid"></div>
         <div id="hambot" style="left:15px"></div>
       </div>
       <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
     </div>
     <div class="navin">
       {% if usrtech == 1 %}
-        <div class="navitemin" id="lvl3"><div id="userstatuscolor" style="background:{{usrstatus}}" ><img src="../static/pictures/{{theme}}/L3.png"></div><a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value=""></div>
+      <div class="navitemin" id="lvl3">
+        <div id="userstatuscolor" style="background:{{usrstatus}}"><img src="../static/pictures/{{theme}}/L3.png"></div>
+        <a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value="">
+      </div>
       {% endif %}
-      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png"><p class="noselect">Customers</p></a>
-      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png"><p class="noselect">Parts</p></a>
-      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png"><p class="noselect">Deliv. notes</p></a>
-      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png"><p class="noselect">IR</p></a>
-      <a class="navitemin active" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png"><p class="noselect">Swapouts</p></a>
-      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png"><p class="noselect">Lookup</p></a>
-      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png"><p class="noselect">Settings</p></a>
+      <a class="navitemin " href="/customers"><img src="static/pictures/{{theme}}/customers.png">
+        <p class="noselect">Customers</p>
+      </a>
+      <a class="navitemin" href="/parts"><img src="static/pictures/{{theme}}/partsv2.png">
+        <p class="noselect">Parts</p>
+      </a>
+      <a class="navitemin" href="/delivnotes"><img src="static/pictures/{{theme}}/deliverynote.png">
+        <p class="noselect">Deliv. notes</p>
+      </a>
+      <a class="navitemin" href="/ir"><img src="static/pictures/{{theme}}/ir.png">
+        <p class="noselect">IR</p>
+      </a>
+      <a class="navitemin active" href="/swapouts"><img src="static/pictures/{{theme}}/swapout.png">
+        <p class="noselect">Swapouts</p>
+      </a>
+      <a class="navitemin" href="/lookup"><img src="static/pictures/{{theme}}/lookup.png">
+        <p class="noselect">Lookup</p>
+      </a>
+      <a class="navitemin" href="/settings"><img src="static/pictures/{{theme}}/settings.png">
+        <p class="noselect">Settings</p>
+      </a>
       <a id="navlogo" href="/landing"><img id="navlogoimg" src="/static/pictures/logo.png"></a>
     </div>
     <div class="mainwrapswapout">
@@ -37,182 +56,265 @@
         document.cookie = "lastsw = {{swapout}}; expires=Thu, 01 Jan 2077 00:00:00 UTC; path=/;";
       </script>
       <div class="header-swapout">
-      <h1 class="noselect">Swap-Out Service</h1>
-      <div class="toppage-swapout">
-        <div class="lvl1-swapout">
-          <div>
-            <div class="form-swapout">
-              <div class="formitem-swapout"><label class="noselect">Store#/Ref:</label><input name="storenr" class="forminput-swapout smallerinput-swapout" value="{{allswap[0]}}" type="text"><input name="ref" class="forminput-swapout" value="{{allswap[16]}}" type="text"></div>
-              <div class="formitem-swapout"><label class="noselect">Name:</label><input name="storename" value="{{store[2]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label class="noselect">Address:</label><input name="storeaddress" value="{{store[3]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label class="noselect">Zip/City:</label><div><input name="zip" id="ZIP" value="{{store[5]}}" class="forminput-swapout" type="text"><input name="city" value="{{store[6]}}"class="forminput-swapout" type="text"></div></div>
+        <h1 class="noselect">Swap-Out Service</h1>
+        <div class="toppage-swapout">
+          <div class="lvl1-swapout">
+            <div>
+              <div class="form-swapout">
+                <div class="storelist" id="storelist" style="display:none">
+
+                </div>
+                <div class="formitem-swapout"><label class="noselect">Store#/Ref:</label><input onclick="this.select()"
+                    name="swcustid" id="storenumber" class="forminput-swapout smallerinput-swapout"
+                    value="{{allswap[0]}}" type="text"><input name="ref" class="forminput-swapout"
+                    value="{{allswap[16]}}" type="text"></div>
+                <div class="formitem-swapout"><label class="noselect">Name:</label><input name="storename"
+                    value="{{store[2]}}" class="forminput-swapout" type="text"></div>
+                <div class="formitem-swapout"><label class="noselect">Address:</label><input name="storeaddress"
+                    value="{{store[3]}}" class="forminput-swapout" type="text"></div>
+                <div class="formitem-swapout"><label class="noselect">Zip/City:</label>
+                  <div><input name="zip" id="ZIP" value="{{store[5]}}" class="forminput-swapout" type="text"><input
+                      name="city" value="{{store[6]}}" class="forminput-swapout" type="text"></div>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="topmiddle-swapout">
-            <div class="form-swapout" name="form-topmiddle-swapout">
-              <div class="formitem-swapout nostyle"><input name="swp_loan" {% if allswap[39] == 1 %} checked {% endif %} value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Loan management (no swap)</label></div>
-              <div class="formitem-swapout nostyle"><input name="rmaonly"{% if allswap[35] == 1 %} checked {% endif %} value="1" class="forminput-swapout" type="checkbox"><label class="noselect">RMA management only</label></div>
-              <div class="formitem-swapout nostyle"><input name="repwar" {% if allswap[36] == 1 %} checked {% endif %} value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Repair warranty</label></div>
-              <div class="formitem-swapout"><label class="noselect">Open Date:</label><input name="opendate" value="{{allswap[3]}}" class="forminput-swapout" type="date"></div>
+            <div class="topmiddle-swapout">
+              <div class="form-swapout" name="form-topmiddle-swapout">
+                <div class="formitem-swapout nostyle"><input name="swp_loan" {% if allswap[39]==1 %} checked {% endif %}
+                    value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Loan management (no
+                    swap)</label></div>
+                <div class="formitem-swapout nostyle"><input name="rmaonly" {% if allswap[35]==1 %} checked {% endif %}
+                    value="1" class="forminput-swapout" type="checkbox"><label class="noselect">RMA management
+                    only</label></div>
+                <div class="formitem-swapout nostyle"><input name="repwar" {% if allswap[36]==1 %} checked {% endif %}
+                    value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Repair warranty</label>
+                </div>
+                <div class="formitem-swapout"><label class="noselect">Open Date:</label><input name="opendate"
+                    value="{{allswap[3]}}" class="forminput-swapout" type="date"></div>
+              </div>
             </div>
-          </div>
-          <div class="topright-swapout">
-            <div class="form-swapout" name="form-topright-swapout">
-              <!--<div class="formitem-swapout"><label>Swap #:</label><input readonly class="forminput-swapout smallerinput-swapout" type="text"></div>
-              --><div class="formitem-swapout"><label class="noselect">Open swap #:</label><input onclick="this.select()" value="{{allswap[1]}}" id="opensw" class="forminput-swapout smallerinput-swapout" type="text"></div>
-              <div class="formitem-swapout"><label class="noselect">Status:</label><select class="forminput-swapout" style="width: 160px;" type="text" name="status">
-                {% for id, name in swstatus.items() %}
-                <option autocomplete="off" value="{{id}}"{% if id == allswap[12] %} selected {% endif %}>{{id}}: {{name}}</option>
-                {% endfor %}
-              </select></div>
+            <div class="topright-swapout">
+              <div class="form-swapout" name="form-topright-swapout">
+                <!--<div class="formitem-swapout"><label>Swap #:</label><input readonly class="forminput-swapout smallerinput-swapout" type="text"></div>
+              -->
+                <div class="formitem-swapout"><label class="noselect">Open swap #:</label><input onclick="this.select()"
+                    value="{{allswap[1]}}" id="opensw" class="forminput-swapout smallerinput-swapout" type="text"></div>
+                <div class="formitem-swapout"><label class="noselect">Status:</label><select class="forminput-swapout"
+                    style="width: 160px;" type="text" name="status">
+                    {% for id, name in swstatus.items() %}
+                    <option autocomplete="off" value="{{id}}" {% if id==allswap[12] %} selected {% endif %}>{{id}}:
+                      {{name}}</option>
+                    {% endfor %}
+                  </select></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="lvl2-swapout">
-        <h1 class="noselect">Sent Unit:</h1>
-        <div class="lvl2-header-swapout">
-          <div class="leftside2-swapout">
-            <div class="form-swapout" name="form-leftside2-swapout">
-              <div class="formitem-swapout"><label>Part #:</label>
-                <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart">
-                  {% for name, id in part %}
-                  <option autocomplete="off" value="{{id}}" {% if allswap[7] == id %} selected {% endif %}>{{name}} {{id}}</option>
-                  {% endfor %}
-                </select>
-              </div>
+        <div class="lvl2-swapout">
+          <h1 class="noselect">Sent Unit:</h1>
+          <div class="lvl2-header-swapout">
+            <div class="leftside2-swapout">
+              <div class="form-swapout" name="form-leftside2-swapout">
+                <div class="formitem-swapout"><label>Part #:</label>
+                  <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart">
+                    {% for name, id in part %}
+                    <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{name}}
+                      {{id}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
                 <div class="formitem-swapout"><label>Predef. Texts:</label>
-                  <select class="forminput-swapout" style="width: 190px;" type="text" onchange="document.getElementById('notes').value = this.value;">
+                  <select class="forminput-swapout" style="width: 190px;" type="text"
+                    onchange="document.getElementById('notes').value = this.value;">
                     <option value="" disabled selected></option>
                     {% for name, text in predef %}
                     <option autocomplete="off" value="{{text.strip()}}">{{name.strip()}}</option>
                     {% endfor %}
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="middle2-swapout">
+              <div class="form-swapout" name="form-middle2-swapout">
+                <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text"
+                    name="sentSeri" value="{{allswap[9]}}"></div>
+                <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"
+                    name="sentDesc" value="{{allswap[8]}}"></div>
+              </div>
+            </div>
+            <div class="right2-swapout">
+              <div class="form-swapout" name="form-right2-swapout">
+                <div class="formitem-swapout"><label>Sent Date:</label><input name="sentDate" class="forminput-swapout"
+                    type="date" style="width: 180px;" value="{{allswap[10]}}"></div>
+                <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout"
+                    style="width: 190px;" type="text" name="sentTech">
+                    <option disabled selected></option>
+                    {% for tech in techs %}
+                    <option value="{{tech}}" {% if allswap[13]==tech %} selected {% endif %}>{{tech}}</option>
+                    {% endfor %}
                   </select></div>
+              </div>
             </div>
           </div>
-        <div class="middle2-swapout">
-          <div class="form-swapout" name="form-middle2-swapout">
-            <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text" name="sentSeri" value="{{allswap[9]}}"></div>
-            <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text" name="sentDesc" value="{{allswap[8]}}"></div>
-          </div>
+          <div class="formitem-swapout formitem-textarea-swapout"><label>Notes/Text:</label><textarea name="notes"
+              class="forminput-swapout textarea-swapout" id="notes">{{allswap[15]}}</textarea></div>
         </div>
-        <div class="right2-swapout">
-          <div class="form-swapout" name="form-right2-swapout">
-            <div class="formitem-swapout"><label>Sent Date:</label><input name="sentDate" class="forminput-swapout" type="date" style="width: 180px;" value="{{allswap[10]}}"></div>
-            <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="sentTech">
-              <option disabled selected></option>
-              {% for tech in techs %}
-                <option value="{{tech}}" {% if allswap[13] == tech %} selected {% endif %}>{{tech}}</option>
-              {% endfor %}
-            </select></div>
-          </div>
-        </div>
-      </div>
-      <div class="formitem-swapout formitem-textarea-swapout"><label>Notes/Text:</label><textarea name="notes" class="forminput-swapout textarea-swapout" id="notes">{{allswap[15]}}</textarea></div>
-      </div>
         <div class="lvl3-swapout">
           <h1 class="noselect">Received Unit:</h1>
           <div class="leftside3-swapout">
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout partnumber-swapout"><label>Part #:</label>
                 <select class="forminput-swapout" style="width: 190px;" type="text" name="recPart">
-                {% for name, id in part %}
-                <option autocomplete="off" value="{{id}}" {% if allswap[4] == id %} selected {% endif %}>{{name}} {{id}}</option>
-                {% endfor %}
-              </select>
-            </div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Description:</label><input name="recDesc" value="{{allswap[5]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Serial #:</label><input name="recSeri" value="{{allswap[6]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Returned Date:</label><input name="recDate" value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;"></div>
+                  {% for name, id in part %}
+                  <option autocomplete="off" value="{{id}}" {% if allswap[4]==id %} selected {% endif %}>{{name}} {{id}}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Description:</label><input name="recDesc"
+                  value="{{allswap[5]}}" class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Serial #:</label><input name="recSeri"
+                  value="{{allswap[6]}}" class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>Returned Date:</label><input name="recDate"
+                  value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;"></div>
               <div class="formitem-swapout lvl3formitem-swapout"><label>Recevied by:</label>
-              <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech">
-                <option disabled selected></option>
-                {% for tech in techs %}
-                  <option value="{{tech}}" {% if allswap[14] == tech %} selected {% endif %}>{{tech}}</option>
-                {% endfor %}
-              </select></div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>No. of times recycled:</label><input class="forminput-swapout" type="number"></div>
+                <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech">
+                  <option disabled selected></option>
+                  {% for tech in techs %}
+                  <option value="{{tech}}" {% if allswap[14]==tech %} selected {% endif %}>{{tech}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>No. of times recycled:</label><input
+                  class="forminput-swapout" type="number"></div>
             </div>
           </div>
           <div class="rightside3-swapout">
-            <div class="form-swapout lvl3-form-swapout" >
-              <div class="formitem-swapout formitem-textarea-swapout"><label>Problem description, Internal notes:</label><textarea name="probNote" class="forminput-swapout textarea-swapout">{{allswap[38]}}</textarea></div>
+            <div class="form-swapout lvl3-form-swapout">
+              <div class="formitem-swapout formitem-textarea-swapout"><label>Problem description, Internal
+                  notes:</label><textarea name="probNote"
+                  class="forminput-swapout textarea-swapout">{{allswap[38]}}</textarea></div>
             </div>
           </div>
         </div>
         <div class="lvl4-swapout">
           <h1 class="noselect">Loan Unit:</h1>
           <div class="leftside4-swapout">
-            <div class="form-swapout formleftside4-swapout" >
-              <div class="formitem-swapout lvl4item-swapout"><label>Repaired unit returned to customer:</label><input class="forminput-swapout" type="date"></div>
-              <div class="formitem-swapout lvl4item-swapout"><label>Sent by:</label><select class="forminput-swapout" style="width: 190px;" type="text" >
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select></div>
-              <div class="formitem-swapout lvl4item-swapout"><label>Loan unit returned from customer:</label><input class="forminput-swapout" type="date"></div>
-              <div class="formitem-swapout lvl4item-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" >
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select></div>
+            <div class="form-swapout formleftside4-swapout">
+              <div class="formitem-swapout lvl4item-swapout"><label>Repaired unit returned to customer:</label><input
+                  class="forminput-swapout" type="date"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent by:</label><select class="forminput-swapout"
+                  style="width: 190px;" type="text">
+                  <option value=""></option>
+                  <option value="valuehere">Det ska vara saker här</option>
+                </select></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Loan unit returned from customer:</label><input
+                  class="forminput-swapout" type="date"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Recevied by:</label><select
+                  class="forminput-swapout" style="width: 190px;" type="text">
+                  <option value=""></option>
+                  <option value="valuehere">Det ska vara saker här</option>
+                </select></div>
             </div>
           </div>
         </div>
         <div class="lvl5-swapout">
           <h1 class="noselect">RMA:</h1>
           <div class="leftside5-swapout">
-            <div class="form-swapout lvl5form-swapout" >
-              <div class="formitem-swapout lvl4item-swapout"><label>Sent to supplier:</label><select class="forminput-swapout" style="width: 190px;" type="text" >
-                <option value=""></option>
-                <option value="valuehere">Det ska vara saker här</option>
-              </select></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>RMA #/Reference:</label><input class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Sent Date:</label><input class="forminput-swapout" type="date" value="{{allswap[19]}}" name="rmasDate"></div>
+            <div class="form-swapout lvl5form-swapout">
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent to supplier:</label><select
+                  class="forminput-swapout" style="width: 190px;" type="text">
+                  <option value=""></option>
+                  <option value="valuehere">Det ska vara saker här</option>
+                </select></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>RMA #/Reference:</label><input
+                  class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Sent Date:</label><input class="forminput-swapout"
+                  type="date" value="{{allswap[19]}}" name="rmasDate"></div>
               <div class="formitem-swapout lvl5item-swapout" style="width:100px;"><label>Sent by:</label>
                 <select class="forminput-swapout" style="width: 100px;" type="text" name="rmasTech">
                   <option disabled selected></option>
                   {% for tech in techs %}
-                    <option value="{{tech}}" {% if allswap[22] == tech %} selected {% endif %}>{{tech}}</option>
+                  <option value="{{tech}}" {% if allswap[22]==tech %} selected {% endif %}>{{tech}}</option>
                   {% endfor %}
-              </select>
-            </div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Returned Date:</label><input class="forminput-swapout" type="date" value="{{allswap[20]}}" name="rmarDate"></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Recevied by:</label><select class="forminput-swapout" style="width: 190px;" type="text" name="rmarTech">
-                <option disabled selected></option>
-                {% for tech in techs %}
-                  <option value="{{tech}}" {% if allswap[23] == tech %} selected {% endif %}>{{tech}}</option>
-                {% endfor %}
-              </select></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Charge model:</label><select class="forminput-swapout" style="width: 190px;" type="text" >
-                <option value=""></option>
-                <option value="valuehere lvl5item-swapout">Det ska vara saker här</option>
-              </select></div>
+                </select>
+              </div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Returned Date:</label><input
+                  class="forminput-swapout" type="date" value="{{allswap[20]}}" name="rmarDate"></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Recevied by:</label><select
+                  class="forminput-swapout" style="width: 190px;" type="text" name="rmarTech">
+                  <option disabled selected></option>
+                  {% for tech in techs %}
+                  <option value="{{tech}}" {% if allswap[23]==tech %} selected {% endif %}>{{tech}}</option>
+                  {% endfor %}
+                </select></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Charge model:</label><select
+                  class="forminput-swapout" style="width: 190px;" type="text">
+                  <option value=""></option>
+                  <option value="valuehere lvl5item-swapout">Det ska vara saker här</option>
+                </select></div>
             </div>
           </div>
         </div>
         <div class="buttonsbar">
           <div class="delivfirstcontrols">
-            <a href="/swapouts?sw={{min}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
-            <a href="/swapouts?sw={{previous}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
-            <a href="/swapouts?sw={{next}}"><img class="noselect" src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
-            <a href="/swapouts?sw={{maxad}}"><img class="noselect" src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
+            <a href="/swapouts?sw={{min}}"><img class="noselect"
+                src="./static/pictures/{{theme}}/bigthiccarrowleft.png"></a>
+            <a href="/swapouts?sw={{previous}}"><img class="noselect"
+                src="./static/pictures/{{theme}}/thiccarrowleft.png"></a>
+            <a href="/swapouts?sw={{next}}"><img class="noselect"
+                src="./static/pictures/{{theme}}/thiccarrowright.png"></a>
+            <a href="/swapouts?sw={{maxad}}"><img class="noselect"
+                src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
           </div>
           <div class="buttonbarigen">
-          <a href="/swreplace" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M"><p>Replace</p><p class="newlinesc">Ctrl + K</p></a>
-          <a href="/newswap" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/new.png" alt="Ctrl + M"><p>New</p><p class="newlinesc">Ctrl + K</p></a>
-          <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}" class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/wastebin.png"><p>Delete</p><p class="newlinesc">Ctrl + Del</p></a>
-          <a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/undo.png"><p>Undo</p><p class="newlinesc">Ctrl + Z</p></a>
-          <a onclick="swapsave()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/save.png"><p>Save</p><p class="newlinesc">Ctrl + S</p></a>
-          <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/mail.png"><p>Mail</p><p class="newlinesc">Ctrl + M</p></a>
-          <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png"><p>Print</p><p class="newlinesc">Ctrl + P</p></a>
-        </div>
+            <a href="/swreplace" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
+              <p>Replace</p>
+              <p class="newlinesc">Ctrl + K</p>
+            </a>
+            <a href="/swapnew" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
+              <p>New</p>
+              <p class="newlinesc">Ctrl + K</p>
+            </a>
+            <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}"
+              class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/wastebin.png">
+              <p>Delete</p>
+              <p class="newlinesc">Ctrl + Del</p>
+            </a>
+            <a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/undo.png">
+              <p>Undo</p>
+              <p class="newlinesc">Ctrl + Z</p>
+            </a>
+            <a onclick="swapsave()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/save.png">
+              <p>Save</p>
+              <p class="newlinesc">Ctrl + S</p>
+            </a>
+            <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/mail.png">
+              <p>Mail</p>
+              <p class="newlinesc">Ctrl + M</p>
+            </a>
+            <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img
+                class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
+              <p>Print</p>
+              <p class="newlinesc">Ctrl + P</p>
+            </a>
+          </div>
         </div>
       </div>
-      </div>
-      <script src="/static/mobile.js"></script>
-      <script src="/static/swapout.js"></script>
-    </body>
-    <div id="statusmsg">
-      Report saved!
     </div>
-    </form>
-  </html>
+    <script src="/static/mobile.js"></script>
+    <script src="/static/swapout.js"></script>
+    <script src="/static/swap.js"></script>
+  </body>
+  <div id="statusmsg">
+    Report saved!
+  </div>
+</form>
+
+</html>

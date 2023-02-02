@@ -199,10 +199,17 @@ td input[type=date]{
   outline:none
 }
 
-.list-units, .list-irhistory, .list-deliverynotes, .list-swapouts{
+.list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
   max-width: 1180px;
-  height: 360px;
+  height: 466px;
+  overflow-y: scroll;
+}
+
+.list-units{
+  display: block;
+  max-width: 1180px;
+  height: 433px;
   overflow-y: scroll;
 }
 
