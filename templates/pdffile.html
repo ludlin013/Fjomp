@@ -1,34 +1,37 @@
 <html>
+
 <head></head>
 <style>
-  body{
+  body {
     font-family: arial;
   }
-  .wrapper{
-    padding:10px;
+
+  .wrapper {
+    padding: 10px;
     display: flex;
     flex-direction: column;
     margin-bottom: 100px;
   }
-  .header{
+
+  .header {
     display: flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: space-between;
   }
 
-  .headerleft{
+  .headerleft {
     height: 200px;
   }
 
-  .toprightheader{
+  .toprightheader {
     width: 400px;
     border: 1px black solid;
-    display:flex;
+    display: flex;
     flex-direction: row;
     border-radius: 5px;
   }
 
-  .bottomrightheader{
+  .bottomrightheader {
     width: 400px;
     border: 1px black solid;
     display: flex;
@@ -37,23 +40,23 @@
     border-radius: 5px;
   }
 
-  .toprightleftheader{
+  .toprightleftheader {
     width: 30%;
     text-align: right;
     padding-right: 20px;
     font-size: 14px;
   }
 
-  .toprightrightheader{
-    width:70%;
+  .toprightrightheader {
+    width: 70%;
     font-size: 14px;
   }
 
-  .bottomrightstatic{
+  .bottomrightstatic {
     text-align: right;
   }
 
-  .bottomrightleft{
+  .bottomrightleft {
     padding: 10px;
     width: 40%;
     display: flex;
@@ -62,7 +65,7 @@
     font-size: 14px;
   }
 
-  .bottomrightright{
+  .bottomrightright {
     padding: 10px;
     width: 60%;
     display: flex;
@@ -71,13 +74,13 @@
     font-size: 14px;
   }
 
-  .textnotes{
+  .textnotes {
     display: flex;
     align-items: flex-end;
     height: 280px;
   }
 
-  .textbox{
+  .textbox {
     margin-top: 5px;
     margin-bottom: 5px;
     border: 1px black solid;
@@ -86,13 +89,14 @@
     border-radius: 5px;
   }
 
-  .itembox{
+  .itembox {
     border: 1px black solid;
     min-height: 450px;
     font-size: 12px;
     border-radius: 5px;
   }
-  .itemheader{
+
+  .itemheader {
     border-bottom: 1px black solid;
     display: flex;
     flex-direction: row;
@@ -100,85 +104,85 @@
 
   }
 
-  .itemrow{
+  .itemrow {
     display: flex;
     flex-direction: row;
     padding: 3px;
   }
 
-  .Partnum{
+  .Partnum {
     width: 150px;
   }
 
-  .Part{
+  .Part {
     width: 170px;
   }
 
-  .Qty{
+  .Qty {
     width: 40px;
     text-align: right;
   }
 
-  .Qty2{
+  .Qty2 {
     width: 60px;
     text-align: right;
   }
 
-  .Price{
+  .Price {
     width: 75px;
     text-align: right;
   }
 
-  .Disc{
+  .Disc {
     width: 40px;
     text-align: right;
   }
 
-  .Disc2{
+  .Disc2 {
     width: 100px;
     text-align: right;
   }
 
-  .Netvalue{
+  .Netvalue {
     width: 75px;
     text-align: right;
   }
 
-  .Total{
+  .Total {
     width: 75px;
     text-align: right;
   }
 
-  .Backord{
+  .Backord {
     width: 40px;
   }
 
-  .Backord2{
+  .Backord2 {
     text-align: right;
     width: 300px;
   }
 
-  .Nocharge{
+  .Nocharge {
     width: 40px;
   }
 
-  .righttotalvalue{
+  .righttotalvalue {
     width: 30%;
     align-items: center;
     display: flex;
     flex-direction: row;
   }
 
-  .totalvalue{
+  .totalvalue {
     display: flex;
     justify-content: flex-end;
   }
 
-  .textaligncenter{
+  .textaligncenter {
     text-align: center;
   }
 
-  .dynamicprice{
+  .dynamicprice {
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -187,7 +191,7 @@
     width: 100px;
   }
 
-  .contactinfo{
+  .contactinfo {
     display: flex;
     justify-content: space-between;
     font-size: 10px;
@@ -195,15 +199,15 @@
     width: 100%;
     position: fixed;
     bottom: 0;
-    background: rgb(255,255,255);
+    background: rgb(255, 255, 255);
     height: 70px;
   }
 
-  .column{
+  .column {
     width: 400px;
   }
 
-  .betedig{
+  .betedig {
     margin: 0px;
     resize: none;
     width: 600px;
@@ -213,27 +217,32 @@
     border: none;
   }
 
-  .ekabcopy{
+  .ekabcopy {
     position: absolute;
-    margin:130px 0 0 60px;
+    margin: 130px 0 0 60px;
     font-size: 20px;
-    color:lightgrey;
+    color: lightgrey;
     font-weight: bolder;
     text-align: center
   }
 
-  @Page{
+  @Page {
     margin-bottom: 50px;
   }
 
   @media print {
-    html, body {
-        height: 99%;
-    }
-    @page {size: portrait}
-}
 
+    html,
+    body {
+      height: 99%;
+    }
+
+    @page {
+      size: portrait
+    }
+  }
 </style>
+
 <body onload="docPrint()">
   <div class="wrapper">
     {% if Dict["offer"] == 0 %}
@@ -246,7 +255,9 @@
       <div class="headerleft">
         <img src="static/pictures/ekablogo.png" height="75px" style="position: fixed;">
         <p style="font-size:20px; margin-top:80px; position: fixed;"><b>Deliverynote #: {{delivnote}}</b></p>
-        <div class="textnotes"><p><b>Text/Notes</b></p></div>
+        <div class="textnotes">
+          <p><b>Text/Notes</b></p>
+        </div>
       </div>
       <div class="headerright">
         <div class="toprightheader">
@@ -287,89 +298,102 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
+    <div class="itembox">
+      <div class="itemheader">
+        <div class="Partnum"><b>Part #</b></div>
+        <div class="Part"><b>Part</b></div>
+        <div class="Qty"><b>Qty</b></div>
+        <div class="Price"><b>Price</b></div>
+        <div class="Disc"><b>Disc.</b></div>
+        <div class="Netvalue"><b>Netvalue</b></div>
+        <div class="Total"><b>Total</b></div>
+        {% if Dict["offer"] == 0 %}
+        <div class="Backord textaligncenter"><b>Back ord.</b></div>
+        <div class="Nocharge textaligncenter"><b>No chrg</b></div>
+        {% endif %}
+      </div>
+      {% for x in sqlq%}
+      {% if sqlq.index(x) == 22-forcount %}
+    </div>
+    <div class="itembox" style="margin-top:300px; min-height:660px;">
+      <div class="itemheader">
+        <div class="Partnum"><b>Part #</b></div>
+        <div class="Part"><b>Part</b></div>
+        <div class="Qty"><b>Qty</b></div>
+        <div class="Price"><b>Price</b></div>
+        <div class="Disc"><b>Disc.</b></div>
+        <div class="Netvalue"><b>Netvalue</b></div>
+        <div class="Total"><b>Total</b></div>
+        {% if Dict["offer"] == 0 %}
+        <div class="Backord textaligncenter"><b>Back ord.</b></div>
+        <div class="Nocharge textaligncenter"><b>No chrg</b></div>
+        {% endif %}
+      </div>
+      {% endif %}
+      <div class="itemrow" {% if sqlq.index(x)==20 %}style="page-break-before: auto" {% endif %}>
+        <div class="Partnum">{{x[5].strip()}}</div>
+        <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b
+            style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}
+        </div>
+        <div class="Qty">{{x[8]}}</div>
+        <div class="Price">{{x[9]}}</div>
+        <div class="Disc">{{x[10]}}</div>
+        <div class="Netvalue">{{x[11]}}</div>
+        <div class="Total">{{x[12]}}</div>
+        {% if Dict["offer"] == 0 %}
+        <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
+        <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+      </table>
+    </div>
+    <div class="totalvalue">
+      <div class="righttotalvalue">
+        <p><b style="margin-right:10px">Total value:</b></p>
+        <div class="dynamicprice">
+          <p> {{" "+total}} <b>kr</b></p>
         </div>
       </div>
-      <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
-      <div class="itembox">
-        <div class="itemheader">
-          <div class="Partnum"><b>Part #</b></div>
-          <div class="Part"><b>Part</b></div>
-          <div class="Qty"><b>Qty</b></div>
-          <div class="Price"><b>Price</b></div>
-          <div class="Disc"><b>Disc.</b></div>
-          <div class="Netvalue"><b>Netvalue</b></div>
-          <div class="Total"><b>Total</b></div>
-          {% if Dict["offer"] == 0 %}
-          <div class="Backord textaligncenter"><b>Back ord.</b></div>
-          <div class="Nocharge textaligncenter"><b>No chrg</b></div>
-          {% endif %}
-        </div>
-        {% for x in sqlq%}
-        {% if sqlq.index(x) == 22-forcount %}</div>
-        <div class="itembox" style="margin-top:300px; min-height:660px;">
-          <div class="itemheader">
-            <div class="Partnum"><b>Part #</b></div>
-            <div class="Part"><b>Part</b></div>
-            <div class="Qty"><b>Qty</b></div>
-            <div class="Price"><b>Price</b></div>
-            <div class="Disc"><b>Disc.</b></div>
-            <div class="Netvalue"><b>Netvalue</b></div>
-            <div class="Total"><b>Total</b></div>
-            {% if Dict["offer"] == 0 %}
-            <div class="Backord textaligncenter"><b>Back ord.</b></div>
-            <div class="Nocharge textaligncenter"><b>No chrg</b></div>
-            {% endif %}
-          </div>
-          {% endif %}
-          <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
-            <div class="Partnum">{{x[5].strip()}}</div>
-            <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
-            <div class="Qty">{{x[8]}}</div>
-            <div class="Price">{{x[9]}}</div>
-            <div class="Disc">{{x[10]}}</div>
-            <div class="Netvalue">{{x[11]}}</div>
-            <div class="Total">{{x[12]}}</div>
-            {% if Dict["offer"] == 0 %}
-            <div class="Backord textaligncenter">{% if x[18] != 0%}✔{% endif %}</div>
-            <div class="Nocharge textaligncenter">{% if x[13] != 0%}✔{% endif %}</div>
-            {% endif %}
-          </div>
-        {% endfor %}
-        </table>
+    </div>
+    <div class="contactinfo">
+      <div class="column">
+        <p>{{contact[0][2]}}</p>
+        <p>{{contact[1][2]}}</p>
+        <p>{{contact[2][2]}} {{contact[3][2]}}</p>
       </div>
-      <div class="totalvalue">
-        <div class="righttotalvalue"><p><b style="margin-right:10px">Total value:</b></p><div class="dynamicprice"><p> {{" "+total}} <b>kr</b></p></div></div>
+      <div class="column">
+        <p>Email / Web:</p>
+        <p>{{contact[6][2]}}</p>
+        <p>{{contact[7][2]}}</p>
       </div>
-      <div class="contactinfo">
-        <div class="column">
-          <p>{{contact[0][2]}}</p>
-          <p>{{contact[1][2]}}</p>
-          <p>{{contact[2][2]}} {{contact[3][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Email / Web:</p>
-          <p>{{contact[6][2]}}</p>
-          <p>{{contact[7][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Phone:</p>
-          <p>Nat. {{contact[4][2]}}</p>
-          <p>Int. {{contact[9][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Org.no / VAT:</p>
-          <p>{{contact[8][2]}}</p>
-        </div>
+      <div class="column">
+        <p>Phone:</p>
+        <p>Nat. {{contact[4][2]}}</p>
+        <p>Int. {{contact[9][2]}}</p>
       </div>
+      <div class="column">
+        <p>Org.no / VAT:</p>
+        <p>{{contact[8][2]}}</p>
+      </div>
+    </div>
   </div>
+
+  {% if Dict["offer"] == 0 %}
   <div style="page-break-before:always;"></div>
+  {% endif %}
 
 
-{% if Dict["offer"] == 0 %}
+  {% if Dict["offer"] == 0 %}
   <div class="wrapper">
     <div class="header" style="margin-bottom:14px">
       <div class="headerleft">
-        <div class="textnotes"><p><b>Text/Notes</b></p></div>
+        <div class="textnotes">
+          <p><b>Text/Notes</b></p>
+        </div>
       </div>
       <div class="headerright">
         <div class="toprightheader">
@@ -410,64 +434,72 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
+    <div class="itembox">
+      <div class="itemheader">
+        <div class="Partnum"><b>Part #</b></div>
+        <div class="Part"><b>Part</b></div>
+        <div class="Qty2"><b>Qty</b></div>
+        <!--<div class="Backord2"><b>Back ord.</b></div>-->
+      </div>
+      {% for x in sqlq%}
+      {% if sqlq.index(x) == 22-forcount %}
+    </div>
+    <div class="itembox" style="margin-top:300px; min-height:660px;">
+      <div class="itemheader">
+        <div class="Partnum"><b>Part #</b></div>
+        <div class="Part"><b>Part</b></div>
+        <div class="Qty2"><b>Qty</b></div>
+        <!--<div class="Backord2"><b>Back ord.</b></div>-->
+      </div>
+      {% endif %}
+      <div class="itemrow" {% if sqlq.index(x)==20 %}style="page-break-before: auto" {% endif %}>
+        <div class="Partnum">{{x[5].strip()}}</div>
+        <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b
+            style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}
+        </div>
+        <div class="Qty2">{{x[8]}}</div>
+        <!--<div class="Backord2">{% if x[18] != 0%}✔{% endif %}</div>-->
+      </div>
+      {% endfor %}
+      </table>
+    </div>
+    <div class="totalvalue">
+      <div class="righttotalvalue">
+        <p><b></b></p>
+        <div class="dynamicprice">
+          <p><b></b></p>
         </div>
       </div>
-      <div class="textbox"><textarea class="betedig">{{Dict["notes"]}}</textarea></div>
-      <div class="itembox">
-        <div class="itemheader">
-          <div class="Partnum"><b>Part #</b></div>
-          <div class="Part"><b>Part</b></div>
-          <div class="Qty2"><b>Qty</b></div>
-          <!--<div class="Backord2"><b>Back ord.</b></div>-->
-        </div>
-        {% for x in sqlq%}
-        {% if sqlq.index(x) == 22-forcount %}</div>
-        <div class="itembox" style="margin-top:300px; min-height:660px;">
-          <div class="itemheader">
-            <div class="Partnum"><b>Part #</b></div>
-            <div class="Part"><b>Part</b></div>
-            <div class="Qty2"><b>Qty</b></div>
-            <!--<div class="Backord2"><b>Back ord.</b></div>-->
-          </div>
-          {% endif %}
-          <div class="itemrow" {% if sqlq.index(x) == 20 %}style="page-break-before: auto"{% endif %}>
-            <div class="Partnum">{{x[5].strip()}}</div>
-            <div class="Part">{{x[6].strip()}}<br>{% if x[7].strip() != "" %}<b style="margin: 0px; margin-left:-57px;">Serial:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{x[7].strip()}}{% endif %}</div>
-            <div class="Qty2">{{x[8]}}</div>
-            <!--<div class="Backord2">{% if x[18] != 0%}✔{% endif %}</div>-->
-          </div>
-        {% endfor %}
-        </table>
+    </div>
+    <div class="contactinfo">
+      <div class="column">
+        <p>{{contact[0][2]}}</p>
+        <p>{{contact[1][2]}}</p>
+        <p>{{contact[2][2]}} {{contact[3][2]}}</p>
       </div>
-      <div class="totalvalue">
-        <div class="righttotalvalue"><p><b></b></p><div class="dynamicprice"><p><b></b></p></div></div>
+      <div class="column">
+        <p>Email / Web:</p>
+        <p>{{contact[6][2]}}</p>
+        <p>{{contact[7][2]}}</p>
       </div>
-      <div class="contactinfo">
-        <div class="column">
-          <p>{{contact[0][2]}}</p>
-          <p>{{contact[1][2]}}</p>
-          <p>{{contact[2][2]}} {{contact[3][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Email / Web:</p>
-          <p>{{contact[6][2]}}</p>
-          <p>{{contact[7][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Phone:</p>
-          <p>Nat. {{contact[4][2]}}</p>
-          <p>Int. {{contact[9][2]}}</p>
-        </div>
-        <div class="column">
-          <p>Org.no / VAT:</p>
-          <p>{{contact[8][2]}}</p>
-        </div>
+      <div class="column">
+        <p>Phone:</p>
+        <p>Nat. {{contact[4][2]}}</p>
+        <p>Int. {{contact[9][2]}}</p>
       </div>
+      <div class="column">
+        <p>Org.no / VAT:</p>
+        <p>{{contact[8][2]}}</p>
+      </div>
+    </div>
   </div>
   {% endif %}
   <script>
 
-    function docPrint(){
+    function docPrint() {
       document.title = "Offert {{delivnote}} {{Dict['storenum']}} "
       window.print()
       setTimeout("closePrintView()", 1000);
@@ -477,4 +509,5 @@
     }
   </script>
 </body>
+
 </html>
