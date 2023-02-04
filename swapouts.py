@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
 import pyodbc
+from datetime import datetime
 
 server = "P2019\\WSData"
 database = "winstat"
@@ -41,6 +42,9 @@ def getnr(x):
 def clean(n):
     return n.strip() if type(n) is str else n
 
+def extract(n):
+    return n[0]
+
 @app.route("/swapouts", methods=["GET","POST"])
 def swapouts():
     if "loggedin" in request.cookies:
@@ -80,13 +84,21 @@ def swapouts():
         if int(x[1]) == int(swapout):
             allswap = x
 
+    if len(allswap)>48:
+        return redirect("/swapouts?sw="+str(lastsw))
+
     allswap = list(map(clean,allswap))
-    store = list(map(clean, sql("SELECT", "SELECT * FROM Customers Where Cust_CustID = '"+ allswap[0] +"'")[0]))
+    try:
+        store = list(map(clean, sql("SELECT", "SELECT * FROM Customers Where Cust_CustID = '"+ allswap[0] +"'")[0]))
+    except:
+        store = ["" for x in range(10)]
     parts = list(map(clean, sql("SELECT", "SELECT Part_Part, Part_Partno FROM Parts")))
     techsql = list(map(clean, sql("SELECT", "SELECT Tech_ID FROM Technicians")))
     predef = list(map(clean, sql("SELECT", "SELECT SWT_Descript, SWT_Text FROM SwapText")))
     techs = []
 
+    print(store)
+    
     for x in techsql:
         techs.append(x[0])
 
@@ -107,7 +119,7 @@ def swapouts():
     part.sort()
 
     for x,y in enumerate(allswap):
-        print(x, y)
+        #print(x, y)
         pass
 
     for x,y in enumerate(store):
@@ -139,11 +151,9 @@ def swapouts():
             maxad=next
     print(min,previous,next,maxad)
 
+    columns = list(map(extract,sql("SELECT","select Column_name from Information_schema.columns where Table_name like 'Swap'")))
 
-
-
-
-    return render_template("swapout.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
+    return render_template("swapout.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
 
 @app.route("/swapsave", methods=["GET","POST"])
 def swapsave():
@@ -161,10 +171,101 @@ def swapnew():
     allswapnr.sort()
 
     
-    maxad = allswapnr[len(allswapnr) - 1]
+    newnr = allswapnr[len(allswapnr) - 1] + 1
 
-    print(maxad+1)
+    print(f"INSERT INTO Swapouts (SWP_No,SWP_Date) VALUES ('{newnr}','{datetime.now().strftime('%Y-%m-%d')}')")
 
-    sql("INSERT","INSERT INTO Swapouts (DN_no,DN_Pricegroup,DN_Sign,DN_Date) VALUES (" + a + ", 1, '"+ request.cookies.get("username").strip() +"','1900-01-01 00:00:00.000')")
+    sql("INSERT",f"INSERT INTO Swap (SWP_No,SWP_Date,SWP_CustId,SWP_Contact,SWP_Notes,SWP_Problem,SWP_OldPart,SWP_OldSerial,SWP_NewPart,SWP_NewSerial) VALUES ('{newnr}','{datetime.now().strftime('%Y-%m-%d')}','','','','','','','','')")
 
-    return redirect("/delivnotes?dn="+a)
+    return redirect("/swapouts?sw="+str(newnr))
+
+
+@app.route("/deleteswap/<a>", methods=["GET","POST"])
+def deleteswap(a):
+
+    print("DELETE FROM Swap WHERE SWP_No = '" + a + "'")
+
+    sql("INSERT",f"DELETE FROM Swap WHERE SWP_No = '{a}'")
+
+    a = str(int(a)-1)
+
+    return redirect("/swapouts?sw="+a)
+
+
+
+@app.route("/swapstoreselect", methods=["GET","POST"])
+def swapstoreselect():
+
+    s = request.form["search"].lower()
+
+    custs = sql("SELECT","SELECT Cust_CustID, Cust_Name, Cust_street1, Cust_zip, Cust_city, Cust_Owner, Cust_phone1 FROM Customers")
+    result = ""
+    custs.sort(key=lambda x:x[0])
+
+    for x in custs:
+        try:
+            if s in x[0].lower() or s in x[1].lower() or s in x[2].lower() or s in x[3].lower() or s in x[4].lower() or s in x[5].lower():
+                try:
+                    result += x[0].strip() + "\t" + x[1].strip() + "\t" + x[2].strip() + "\t" + x[3].strip() + "\t" + x[4].strip() + "\t" + x[5].strip() + "\t" + str(x[6]) + "\n"
+                except:
+                    result += x[0].strip() + "\t"
+                    try:
+                        result +=   x[1].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[2].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[3].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[4].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[5].strip() + "\t"
+                    except:
+                        result +=  "\t"
+                    try:
+                        result +=   x[6].strip()
+                    except:
+                        pass
+
+                    result +=  "\n"
+        except: pass
+
+    return result
+
+
+@app.route("/swapsavestore", methods=["GET","POST"])
+def swapsavestore():
+
+    num = request.form["store"].upper()
+    id = request.form["noteid"]
+    contact = request.form["SWP_Contact"]
+    #name = request.form["name"]
+
+    sqlq = f"UPDATE Swap SET SWP_CustId = '{num}',SWP_Contact = '{contact}' where SWP_No = '{id}'"
+    #print(sqlq)
+    sql("INSERT",sqlq)
+
+    return ('', 204)
+
+
+
+@app.route("/swapsaveitem", methods=["GET","POST"])
+def swapsaveitem():
+
+    swap = request.form["swap"].upper()
+    itemtype = request.form["type"]
+    item = request.form["item"]
+
+    sqlq = f"UPDATE Swap SET {itemtype} = '{item}' where SWP_No = '{swap}'"
+    
+    #print(sqlq)
+    sql("INSERT",sqlq)
+
+    return ('', 204)

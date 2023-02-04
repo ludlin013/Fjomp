@@ -1,34 +1,46 @@
-from flask import Flask,render_template,request,redirect,url_for
-import pyodbc
+""" Kontroller, alla andra moduler körs härifrån, generella funktioner """
 from datetime import datetime
 import os
+from flask import Flask,render_template,request,redirect,url_for
+import pyodbc
+#from waitress import serve
 
 app = Flask(__name__)
 
 app.config['UPLOAD_FOLDER'] = '/static/uploads'
 
-import customers,parts,delivnotes,ir,swapouts,lookup,settings
+import customers
+import parts
+import delivnotes
+import ir
+import swapouts
+import lookup
+import settings
 
-server = "P2019\\WSData"
-database = "winstat"
-username = "sa"
-password = "kamikaze"
+
+
+
+SERVER = "P2019\\WSData"
+DATABASE = "winstat"
+USERNAME = "sa"
+PASSWORD = "kamikaze"
 
 
 cnxn = pyodbc.connect(
-    'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password
+    'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+
+    SERVER+';DATABASE='+DATABASE+';UID='+USERNAME+';PWD='+PASSWORD
     )
 
 cursor = cnxn.cursor()
 
 
-def sql(type,sqlquery):
-
+def sql(qtype,sqlquery):
+    """ SQL Query """
     cursor.execute(sqlquery)
 
-    if type == "SELECT":
+    if qtype == "SELECT":
         result = cursor.fetchall()
-    elif type == "INSERT":
+    elif qtype == "INSERT":
         cnxn.commit()
         result = None
 
@@ -36,21 +48,25 @@ def sql(type,sqlquery):
 
 
 def checklogin(username,password):
+    """ Skapa lösenord till användare, eller logga in om lösenord redan är satt """
     usrs = sql("SELECT","SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Pwd FROM Technicians")
     for usr in usrs:
-        if usr[0].strip() == username and usr[3] == None:
-            #print("set " + usr[0] + " password to " + password)
-            #print("UPDATE Technicians SET Tech_Pwd = '" + password + "' WHERE Tech_ID = '"+ username +"'")
-            sql("INSERT","UPDATE Technicians SET Tech_Pwd = '" + password + "' WHERE Tech_ID = '"+ usr[0] +"'")
+        if usr[0].strip() == username and usr[3] is None:
+            #print("set " + usr[0] + " PASSWORD to " + PASSWORD)
+            #print("UPDATE Technicians SET Tech_Pwd = '" + password + "'
+            #WHERE Tech_ID = '"+ username +"'")
+            sql("INSERT","UPDATE Technicians SET Tech_Pwd = '" +
+            password + "' WHERE Tech_ID = '"+ usr[0] +"'")
             return True
 
-        elif username.lower() == usr[0].strip().lower() and password == usr[3].strip():
+        if username.lower() == usr[0].strip().lower() and password == usr[3].strip():
             return True
     return False
 
 def setTheme():
+    """ Sätter temat från kaka, light default """
     theme = request.cookies.get('theme')
-    if theme != "dark" and theme != "light":
+    if theme not in ("light", "dark"):
         theme = "light"
     if theme == "light":
         notheme = "dark"
@@ -59,36 +75,34 @@ def setTheme():
     return theme,notheme
 
 def createcsv():
-
+    """ Skapar csv-fil med alla Units """
     sqlunits = sql("SELECT","SELECT * FROM Units")
     sqlunits.sort(key = lambda x:x[0])
 
-    with open("static/units.csv","w") as f:
-        f.write("Unit_CustID;Unit_Cat;Unit_Vendor;Unit_Model;Unit_Serial;Unit_type;Unit_installdate;Unit_Warend;Unit_Chargemode;Unit_Repldate;Unit_Notes;Unit_History;Unit_ID\n")
-        for n in sqlunits:
-            for x in n:
-                f.write(str(x).strip()+";")
-            f.write("\n")
-
-    return
-
+    with open("static/units.csv","w") as file:
+        file.write("Unit_CustID;Unit_Cat;Unit_Vendor;Unit_Model;Unit_Serial;Unit_type;Unit_installdate;Unit_Warend;Unit_Chargemode;Unit_Repldate;Unit_Notes;Unit_History;Unit_ID\n")
+        for unit in sqlunits:
+            for value in unit:
+                file.write(str(value).strip()+";")
+            file.write("\n")
 
 @app.route("/importDo",methods=["GET","POST"])
 def importdo():
+    """ Importera units från fil """
     print("Importing")
-    with open("static/IMPORTPATH.txt") as f:
-        filepath = f.read()
+    with open("static/IMPORTPATH.txt") as impf:
+        filepath = impf.read()
         try:
-            with open(filepath) as g:
-                g = g.read().split("\n")
-                g.pop(-1)
-        except:
+            with open(filepath) as outg:
+                outg = outg.read().split("\n")
+                outg.pop(-1)
+        except IOError:
             print("No file")
-            return("No file")
+            return "No file"
 
 
     allparts = []
-    for x in g:
+    for x in outg:
         dic = {}
 
         dic["moms"] = x[0:1].strip()
@@ -120,7 +134,7 @@ def importdo():
     artids = []
 
     for x in dbparts:
-        if x[0] != None:
+        if x[0] is not None:
             artids.append(x[0].strip())
         else:
             print(x)
@@ -134,18 +148,33 @@ def importdo():
     newparts = ""
 
     for x in allparts:
-        if x["artid"] == None:
+        if x["artid"] is None:
             print(x)
             continue
         if x["artid"].strip() in artids:
-            updatepartsq = "UPDATE Parts SET Part_Partno = '"+x["artid"].strip()+"', Part_Part = '"+x["benamn"]+"', Part_Vendor = '"+x["varugrupp"]+"', Part_Inprice = '"+x["snittpris"]+"', Part_Outprice = '"+x["pris1"]+"', Part_Stock = '"+x["antal"]+"', Part_Location = '"+x["lagerfack"]+"', Part_Inactive = '0', Part_Price2 = '"+x["pris2"]+"', Part_Price3 = '"+x["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+x["pris4"]+"', Part_Price5 = '"+x["pris5"]+"', Part_Price6 = '"+x["pris6"]+"', Part_Price7 = '"+x["pris7"]+"', Part_Price8 = '"+x["pris8"]+"', Part_Price9 = '"+x["pris9"]+"' WHERE Part_Partno = '"+x["artid"]+"'"
+            updatepartsq = "UPDATE Parts SET Part_Partno = '"+x["artid"].strip() + \
+            "', Part_Part = '"+x["benamn"]+"', Part_Vendor = '"+x["varugrupp"]+ \
+            "', Part_Inprice = '"+x["snittpris"]+"', Part_Outprice = '"+x["pris1"]+ \
+            "', Part_Stock = '"+x["antal"]+"', Part_Location = '"+x["lagerfack"]+\
+            "', Part_Inactive = '0', Part_Price2 = '"+x["pris2"]+"', Part_Price3 = '"+\
+            x["pris3"]+"', Part_Latupdat = '"+nowtime+"', Part_Price4 = '"+x["pris4"]+\
+            "', Part_Price5 = '"+x["pris5"]+"', Part_Price6 = '"+x["pris6"]+"', Part_Price7 = '"+\
+            x["pris7"]+"', Part_Price8 = '"+x["pris8"]+"', Part_Price9 = '"+x["pris9"]+\
+            "' WHERE Part_Partno = '"+x["artid"]+"'"
             #print(updatepartsq)
             importedparts += 1
             sql("INSERT",updatepartsq)
         else:
             print(x)
             newparts+=x['artid'].strip()+"\t"
-            insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor, Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3, Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8, Part_Price9, Part_Inactive) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+"','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+"', '0')"
+            insertpartsq = "INSERT INTO Parts (Part_Partno, Part_Part, Part_Vendor,"+\
+            " Part_Inprice, Part_Outprice, Part_Stock, Part_Location, Part_Price2, Part_Price3,"+\
+            " Part_Latupdat, Part_Price4, Part_Price5, Part_Price6, Part_Price7, Part_Price8,"+\
+            " Part_Price9, Part_Inactive) VALUES ('"+x['artid'].strip()+"','"+x['benamn']+"','"+\
+            x['varugrupp']+"','"+x['snittpris']+"','"+x['pris1']+"','"+x['antal']+"','"+\
+            x['lagerfack']+"','"+x['pris2']+"','"+x['pris3']+"','"+nowtime+"','"+x['pris4']+\
+            "','"+x['pris5']+"','"+x['pris6']+"','"+x['pris7']+"','"+x['pris8']+"','"+x['pris9']+\
+            "', '0')"
             print(insertpartsq)
             sql("INSERT",insertpartsq)
 
@@ -153,7 +182,8 @@ def importdo():
     print(os.remove(filepath))
     print(newparts)
     print("New parts:", len(allparts) - importedparts)
-    return(str(len(allparts))+"%%"+str(len(allparts)-importedparts)+"%%"+str(total-len(allparts))+"%%"+newparts)
+    return(str(len(allparts))+"%%"+str(len(allparts)-importedparts)+"%%"+
+    str(total-len(allparts))+"%%"+newparts)
 
 @app.route("/")
 def main():
@@ -166,11 +196,14 @@ def main():
     #    parts = f.read()
 
     sd = {0: "red",1:"yellow",2:"green"}
-    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]]
 
-    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]
 
-    return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme,usrstatus=usrstatus,usrtech=usrtech)
+    return render_template("landing.html",cookie=usr,theme=theme,notheme=notheme,
+    usrstatus=usrstatus,usrtech=usrtech)
 
 @app.route("/login",methods=["GET","POST"])
 def login():
@@ -186,17 +219,19 @@ def login():
 
                 ################################
                 createcsv()
-            return render_template("loginscript.html",auth=auth,checkbox=check,username=request.form['username'])
-        else:
-            error = "Invalid username or password"
+            return render_template("loginscript.html",auth=auth,checkbox=check,
+            username=request.form['username'])
+        error = "Invalid username or password"
     usr = request.cookies.get('username')
     theme,notheme = setTheme()
 
     patches = os.listdir("static/bugs/!klara")
 
-    patches.sort(key=lambda fn: os.path.getmtime(os.path.join("static/bugs/!klara", fn)), reverse=True)
+    patches.sort(key=lambda fn: os.path.getmtime(os.path.join("static/bugs/!klara", fn)),
+    reverse=True)
 
-    return render_template("login.html",error=error,username=usr,theme=theme,notheme=notheme,patches=patches)
+    return render_template("login.html",error=error,username=usr,theme=theme,
+    notheme=notheme,patches=patches)
 
 @app.route("/landing")
 def landing():
@@ -207,12 +242,15 @@ def landing():
     theme,notheme = setTheme()
 
     sd = {0: "red",1:"yellow",2:"green"}
-    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]]
 
-    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]
 
 
-    return render_template("landing.html",theme=theme,notheme=notheme,usrstatus=usrstatus,usrtech=usrtech)
+    return render_template("landing.html",theme=theme,notheme=notheme,usrstatus=usrstatus,
+    usrtech=usrtech)
 
 @app.route("/lvl3status")
 def lvl3status():
@@ -223,21 +261,26 @@ def lvl3status():
     theme,notheme = setTheme()
 
     sd = {0: "red",1:"yellow",2:"green"}
-    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
+    usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]]
 
-    users = sql("SELECT", "SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office FROM Technicians WHERE Tech_Tech = '1'")
+    users = sql("SELECT", "SELECT Tech_ID, Tech_Firstname, Tech_Lastname, Tech_Office FROM "+
+    "Technicians WHERE Tech_Tech = '1'")
 
     users.sort(key = lambda x:x[1])
 
-    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
+    usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0]
 
 
-    return render_template("status.html",usrtech=usrtech,theme=theme,notheme=notheme, users=users, usrstatus=usrstatus)
+    return render_template("status.html",usrtech=usrtech,theme=theme,notheme=notheme,
+    users=users, usrstatus=usrstatus)
 
 @app.route("/updateusers",methods=["GET","POST"])
 def updateusers():
 
-    users = dict(sql("SELECT", "SELECT Tech_ID, Tech_Office FROM Technicians WHERE Tech_Tech = '1'"))
+    users = dict(sql("SELECT", "SELECT Tech_ID, Tech_Office FROM Technicians "+
+    "WHERE Tech_Tech = '1'"))
 
 
     return(users,200)
@@ -246,13 +289,27 @@ def updateusers():
 def changestatus():
 
     sd = {0: "red",1:"yellow",2:"green"}
-    usrstatus = sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0] + 1
+    usrstatus = sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
+    request.cookies.get("username").upper() +"'")[0][0] + 1
 
     if usrstatus > 2:
-        usrstatus = 0;
+        usrstatus = 0
 
-    sql("INSERT", "UPDATE Technicians SET Tech_Office = '"+ str(usrstatus) +"' WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")
+    sql("INSERT", "UPDATE Technicians SET Tech_Office = '"+ str(usrstatus) +
+    "' WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")
 
     return(sd[usrstatus],200)
 
+
+### Internal Server Error Handling
+
+
+
+
+
+
+
+
+
 app.run(host="0.0.0.0",port="80")
+#serve(app, host="0.0.0.0",port="80")

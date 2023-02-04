@@ -65,32 +65,32 @@
 
                 </div>
                 <div class="formitem-swapout"><label class="noselect">Store#/Ref:</label><input onclick="this.select()"
-                    name="swcustid" id="storenumber" class="forminput-swapout smallerinput-swapout"
-                    value="{{allswap[0]}}" type="text"><input name="ref" class="forminput-swapout"
+                    name="{{columns[0]}}" id="storenumber" class="forminput-swapout smallerinput-swapout"
+                    value="{{allswap[0]}}" type="text"><input name="ref" id="{{columns[16]}}" class="forminput-swapout"
                     value="{{allswap[16]}}" type="text"></div>
-                <div class="formitem-swapout"><label class="noselect">Name:</label><input name="storename"
+                <div class="formitem-swapout"><label class="noselect">Name:</label><input name="storename" id="storeName"
                     value="{{store[2]}}" class="forminput-swapout" type="text"></div>
-                <div class="formitem-swapout"><label class="noselect">Address:</label><input name="storeaddress"
+                <div class="formitem-swapout"><label class="noselect">Address:</label><input name="storeaddress" id="storestreet"
                     value="{{store[3]}}" class="forminput-swapout" type="text"></div>
                 <div class="formitem-swapout"><label class="noselect">Zip/City:</label>
-                  <div><input name="zip" id="ZIP" value="{{store[5]}}" class="forminput-swapout" type="text"><input
-                      name="city" value="{{store[6]}}" class="forminput-swapout" type="text"></div>
+                  <div><input name="zip" id="irzip" value="{{store[5]}}" class="forminput-swapout" type="text"><input
+                      name="city" id="ircity" value="{{store[6]}}" class="forminput-swapout" type="text"></div>
                 </div>
               </div>
             </div>
             <div class="topmiddle-swapout">
               <div class="form-swapout" name="form-topmiddle-swapout">
-                <div class="formitem-swapout nostyle"><input name="swp_loan" {% if allswap[39]==1 %} checked {% endif %}
+                <div class="formitem-swapout nostyle"><input name="swp_loan" id="{{columns[39]}}" onchange="saveitem('{{columns[39]}}')" {% if allswap[39]==1 %} checked {% endif %}
                     value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Loan management (no
                     swap)</label></div>
-                <div class="formitem-swapout nostyle"><input name="rmaonly" {% if allswap[35]==1 %} checked {% endif %}
+                <div class="formitem-swapout nostyle"><input name="rmaonly" id="{{columns[35]}}" onchange="saveitem('{{columns[35]}}')"  {% if allswap[35]==1 %} checked {% endif %}
                     value="1" class="forminput-swapout" type="checkbox"><label class="noselect">RMA management
                     only</label></div>
-                <div class="formitem-swapout nostyle"><input name="repwar" {% if allswap[36]==1 %} checked {% endif %}
+                <div class="formitem-swapout nostyle"><input name="repwar" id="{{columns[36]}}" onchange="saveitem('{{columns[36]}}')"  {% if allswap[36]==1 %} checked {% endif %}
                     value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Repair warranty</label>
                 </div>
                 <div class="formitem-swapout"><label class="noselect">Open Date:</label><input name="opendate"
-                    value="{{allswap[3]}}" class="forminput-swapout" type="date"></div>
+                    value="{{allswap[3]}}" id="{{columns[3]}}" onchange="saveitem('{{columns[3]}}')" ondblclick="setday('{{columns[3]}}');saveitem('{{columns[3]}}')" class="forminput-swapout" type="date"></div>
               </div>
             </div>
             <div class="topright-swapout">
@@ -99,8 +99,8 @@
               -->
                 <div class="formitem-swapout"><label class="noselect">Open swap #:</label><input onclick="this.select()"
                     value="{{allswap[1]}}" id="opensw" class="forminput-swapout smallerinput-swapout" type="text"></div>
-                <div class="formitem-swapout"><label class="noselect">Status:</label><select class="forminput-swapout"
-                    style="width: 160px;" type="text" name="status">
+                <div class="formitem-swapout"><label class="noselect">Status:</label>
+                  <select class="forminput-swapout" style="width: 160px;" type="text" name="status" id="{{columns[12]}}" onchange="saveitem('{{columns[12]}}')">
                     {% for id, name in swstatus.items() %}
                     <option autocomplete="off" value="{{id}}" {% if id==allswap[12] %} selected {% endif %}>{{id}}:
                       {{name}}</option>
@@ -116,19 +116,20 @@
             <div class="leftside2-swapout">
               <div class="form-swapout" name="form-leftside2-swapout">
                 <div class="formitem-swapout"><label>Part #:</label>
-                  <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart">
+                  <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart" id="{{columns[7]}}" onchange="document.getElementById('{{columns[8]}}').value = this.options[this.selectedIndex].text;saveitem('{{columns[8]}}');saveitem('{{columns[7]}}')">
+                    <option value="" disabled selected></option>
                     {% for name, id in part %}
                     <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{name}}
-                      {{id}}</option>
+                      </option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="formitem-swapout"><label>Predef. Texts:</label>
                   <select class="forminput-swapout" style="width: 190px;" type="text"
-                    onchange="document.getElementById('notes').value = this.value;">
-                    <option value="" disabled selected></option>
+                    onchange="document.getElementById('{{columns[15]}}').value = this.value;saveitem('{{columns[15]}}')">
+                    <option disabled selected></option>
                     {% for name, text in predef %}
-                    <option autocomplete="off" value="{{text.strip()}}">{{name.strip()}}</option>
+                    <option autocomplete="off" value="{{text.strip()}}" {% if text.strip() == allswap[15].strip() %} selected {% endif %}>{{name.strip()}}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -136,10 +137,10 @@
             </div>
             <div class="middle2-swapout">
               <div class="form-swapout" name="form-middle2-swapout">
-                <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" type="text"
+                <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text"
                     name="sentSeri" value="{{allswap[9]}}"></div>
                 <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"
-                    name="sentDesc" value="{{allswap[8]}}"></div>
+                    name="sentDesc" id="{{columns[8]}}" readonly value="{{allswap[8]}}"></div>
               </div>
             </div>
             <div class="right2-swapout">
@@ -157,7 +158,7 @@
             </div>
           </div>
           <div class="formitem-swapout formitem-textarea-swapout"><label>Notes/Text:</label><textarea name="notes"
-              class="forminput-swapout textarea-swapout" id="notes">{{allswap[15]}}</textarea></div>
+              class="forminput-swapout textarea-swapout" id="{{columns[15]}}">{{allswap[15]}}</textarea></div>
         </div>
         <div class="lvl3-swapout">
           <h1 class="noselect">Received Unit:</h1>
@@ -165,6 +166,7 @@
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout partnumber-swapout"><label>Part #:</label>
                 <select class="forminput-swapout" style="width: 190px;" type="text" name="recPart">
+                  <option value="" disabled selected></option>
                   {% for name, id in part %}
                   <option autocomplete="off" value="{{id}}" {% if allswap[4]==id %} selected {% endif %}>{{name}} {{id}}
                   </option>
@@ -278,7 +280,7 @@
               <p>New</p>
               <p class="newlinesc">Ctrl + K</p>
             </a>
-            <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deletedeliverynote/{{delivnote }}'}"
+            <a onclick="if(confirm('Are you sure you want to delete this record?')){window.location.href='/deleteswap/{{allswap[1]}}'}"
               class="buttonsbar-item-delivnotes" id="deletedeliv"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/wastebin.png">
               <p>Delete</p>

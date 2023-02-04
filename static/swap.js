@@ -1,8 +1,8 @@
-document.getElementById('gotosw').addEventListener("keydown", function(e){
+/*document.getElementById('gotosw').addEventListener("keydown", function(e){
   if(e.keyCode == 13){
     window.location.href = '/swapouts?sw='+document.getElementById('gotosw').value
   }
-}, false);
+}, false);*/
 
 function setday(id){
   var y = new Date().getFullYear();
@@ -18,8 +18,30 @@ function setday(id){
   }
 
   var date = y + "-"+m+"-"+d
-  id.value = date;
+  document.getElementById(id).value = date;
   window.getSelection().removeAllRanges()
+}
+
+function saveitem(id){
+  var sw = document.getElementById("opensw");
+  var item = document.getElementById(id);
+  
+  fd = new FormData();
+
+  fd.append("swap", sw.value);
+  fd.append("type", id);
+  fd.append("item", item.value);
+
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.onload = function(){
+    console.log("Sparad");
+  }
+
+
+  xhttp.open("POST","/swapsaveitem",true);
+  xhttp.send(fd);
+
 }
 
 
@@ -93,16 +115,16 @@ function getstore(e){
       }else{
         store = stores[0].split("\t");
 
+        document.getElementById("SWP_Contact").value = store[5];
         document.getElementById("storenumber").value = store[0];
         document.getElementById("storeName").value = store[1];
         document.getElementById("storestreet").value = store[2];
         document.getElementById("irzip").value = store[3];
         document.getElementById("ircity").value = store[4];
 
-        document.getElementById("contact").value = store[5];
+        console.log("Spara store");
 
-
-        document.getElementById("phone").value = store[6];
+        //document.getElementById("phone").value = store[6];
 
         for (x of document.getElementsByClassName('forminput-delivnotes3')){
           if(x.id.includes("pg")){
@@ -114,22 +136,22 @@ function getstore(e){
         const fd = new FormData();
 
         fd.append("store",store[0])
-        fd.append("contact",store[5])
-        fd.append("noteid",document.getElementById("irirn").value)
-        fd.append("name",store[1])
+        fd.append("SWP_Contact",store[5])
+        fd.append("noteid",document.getElementById("opensw").value)
+        //fd.append("name",store[1])
 
         var xhttp = new XMLHttpRequest();
-        xhttp.open("POST","/saveswapstore",true);
+        xhttp.open("POST","/swapsavestore",true);
         xhttp.send(fd);
 
         for(x of document.getElementsByClassName('numfoc')){
           x.focus()
         }
-        hiddensave();
+        //swapsavestore();
       }
     }
 
-    xhttp.open("POST","/irstoreselect",true);
+    xhttp.open("POST","/swapstoreselect",true);
     xhttp.send(fd);
   }
 }
@@ -140,39 +162,28 @@ function chooseStore(e){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storenumber").value = e.srcElement.children[0].textContent;
 
-    document.getElementById("contact").value = e.srcElement.children[1].textContent;
+    document.getElementById("SWP_Contact").value = e.srcElement.children[1].textContent;
 
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
     document.getElementById("ircity").value = e.srcElement.children[5].textContent;
     document.getElementById("irzip").value = e.srcElement.children[4].textContent;
 
-    document.getElementById("phone").value = e.srcElement.children[6].textContent;
-
-    for (x of document.getElementsByClassName('forminput-delivnotes3')){
-      if(x.id.includes("pg")){
-        x.value = e.srcElement.children[6].textContent;
-      }
-
-    }
-
     const fd = new FormData();
 
     fd.append("store",e.srcElement.children[0].textContent)
-    fd.append("contact",e.srcElement.children[1].textContent)
-    fd.append("noteid",document.getElementById("irirn").value)
+    fd.append("SWP_Contact",e.srcElement.children[1].textContent)
+    fd.append("noteid",document.getElementById("opensw").value)
     fd.append("name",e.srcElement.children[2].textContent)
 
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function(){
-      hiddensave();
+      //hiddensave();
     }
-    xhttp.open("POST","/savestore",true);
+    xhttp.open("POST","/swapsavestore",true);
     xhttp.send(fd);
 
-
-
-    document.getElementById('irnotefield').focus()
+    document.getElementById('SWP_NewPartno').focus()
 
   } else if(e.key == "Escape"){
     document.getElementById('storelist').style.display = "none";
@@ -214,7 +225,7 @@ function clickstore(chosen){
   document.getElementById("storenumber").value = chosen.children[0].textContent;
 
 
-  document.getElementById("contact").value = chosen.children[1].textContent;
+  document.getElementById("SWP_Contact").value = chosen.children[1].textContent;
 
 
   document.getElementById("storeName").value = chosen.children[2].textContent;
@@ -222,33 +233,24 @@ function clickstore(chosen){
   document.getElementById("ircity").value = chosen.children[5].textContent;
   document.getElementById("irzip").value = chosen.children[4].textContent;
 
-  document.getElementById("phone").value = chosen.children[6].textContent;
-
-  for (x of document.getElementsByClassName('forminput-delivnotes3')){
-    if(x.id.includes("pg")){
-      x.value = chosen.children[6].textContent;
-    }
-
-  }
-
   const fd = new FormData();
 
   xhttp.onload = function(){
-    hiddensave();
+    //hiddensave();
   }
 
   fd.append("store",chosen.children[0].textContent)
-  fd.append("contact",chosen.children[1].textContent)
-  fd.append("noteid",document.getElementById("irirn").value)
+  fd.append("SWP_Contact",chosen.children[1].textContent)
+  fd.append("noteid",document.getElementById("opensw").value)
   fd.append("name",chosen.children[2].textContent)
 
   var xhttp = new XMLHttpRequest();
   xhttp.onload = function(){
-    hiddensave();
+    //hiddensave();
   }
-  xhttp.open("POST","/savestore",true);
+  xhttp.open("POST","/swapsavestore",true);
   xhttp.send(fd);
 
-  document.getElementById('irnotefield').focus()
+  document.getElementById('SWP_NewPartno').focus()
 
 }
