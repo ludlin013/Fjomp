@@ -335,7 +335,7 @@ def saveve():
     print(count)
 
     for x in range(count):
-        sqlq = "UPDATE Pricegroups SET Vend_Code = '"+request.form[str(x)+"code"]+"', Vend_Name = '"+request.form[str(x)+"name"]+"',Vend_Currency = '"+request.form[str(x)+"curr"]+"',Vend_Address1 = '"+request.form[str(x)+"add1"]+"', Vend_Address2 = '"+request.form[str(x)+"add2"]+"', Vend_Address3 = '"+request.form[str(x)+"add3"]+"', Vend_Zip = '"+request.form[str(x)+"zip"]+"', Vend_Country = '"+request.form[str(x)+"country"]+"',Vend_Phone = '"+request.form[str(x)+"phone"]+"', Vend_Fax = '"+request.form[str(x)+"fax"]+"', Vend_Contact = '"+request.form[str(x)+"contact"]+"', Vend_Mail = '"+request.form[str(x)+"mail"]+"' WHERE Vend_ID = '"+request.form[str(x)+"id"]+"'"
+        sqlq = "UPDATE Vendors SET Vend_Code = '"+request.form[str(x)+"code"]+"', Vend_Name = '"+request.form[str(x)+"name"]+"',Vend_Currency = '"+request.form[str(x)+"curr"]+"',Vend_Address1 = '"+request.form[str(x)+"add1"]+"', Vend_Address2 = '"+request.form[str(x)+"add2"]+"', Vend_Address3 = '"+request.form[str(x)+"add3"]+"', Vend_Zip = '"+request.form[str(x)+"zip"]+"', Vend_Country = '"+request.form[str(x)+"country"]+"',Vend_Phone = '"+request.form[str(x)+"phone"]+"', Vend_Fax = '"+request.form[str(x)+"fax"]+"', Vend_Contact = '"+request.form[str(x)+"contact"]+"', Vend_Mail = '"+request.form[str(x)+"mail"]+"' WHERE Vend_ID = '"+request.form[str(x)+"id"]+"'"
         print(sqlq)
         sql("INSERT", sqlq)
 

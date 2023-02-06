@@ -306,15 +306,15 @@
       <input class="settingsve noselect veco" maxlength="5" spellcheck="false" value="{{x[0].strip()}}" name="{{vendors.index(x)}}code">
       <input class="settingsve noselect vena" spellcheck="false" value="{{x[1].strip()}}" name="{{vendors.index(x)}}name">
       <input class="settingsve noselect vecu" spellcheck="false" value="{{x[2].strip()}}" name="{{vendors.index(x)}}curr">
-      <input class="settingsve noselect vea1" spellcheck="false" value="{{x[3]}}" name="{{vendors.index(x)}}add1">
-      <input class="settingsve noselect vea2" spellcheck="false" value="{{x[4]}}" name="{{vendors.index(x)}}add2">
-      <input class="settingsve noselect vea3" spellcheck="false" value="{{x[5]}}" name="{{vendors.index(x)}}add3">
-      <input class="settingsve noselect vezi" spellcheck="false" value="{{x[6]}}" name="{{vendors.index(x)}}zip">
-      <input class="settingsve noselect vect" spellcheck="false" value="{{x[7]}}" name="{{vendors.index(x)}}country">
-      <input class="settingsve noselect veph" spellcheck="false" value="{{x[8]}}" name="{{vendors.index(x)}}phone">
-      <input class="settingsve noselect vefx" spellcheck="false" value="{{x[9]}}" name="{{vendors.index(x)}}fax">
-      <input class="settingsve noselect vecn" spellcheck="false" value="{{x[10]}}" name="{{vendors.index(x)}}contact">
-      <input class="settingsve noselect vema" spellcheck="false" value="{{x[11]}}" name="{{vendors.index(x)}}mail">
+      <input class="settingsve noselect vea1" spellcheck="false" value="{{x[3].strip()}}" name="{{vendors.index(x)}}add1">
+      <input class="settingsve noselect vea2" spellcheck="false" value="{{x[4].strip()}}" name="{{vendors.index(x)}}add2">
+      <input class="settingsve noselect vea3" spellcheck="false" value="{{x[5].strip()}}" name="{{vendors.index(x)}}add3">
+      <input class="settingsve noselect vezi" spellcheck="false" value="{{x[6].strip()}}" name="{{vendors.index(x)}}zip">
+      <input class="settingsve noselect vect" spellcheck="false" value="{{x[7].strip()}}" name="{{vendors.index(x)}}country">
+      <input class="settingsve noselect veph" spellcheck="false" value="{{x[8].strip()}}" name="{{vendors.index(x)}}phone">
+      <input class="settingsve noselect vefx" spellcheck="false" value="{{x[9].strip()}}" name="{{vendors.index(x)}}fax">
+      <input class="settingsve noselect vecn" spellcheck="false" value="{{x[10].strip()}}" name="{{vendors.index(x)}}contact">
+      <input class="settingsve noselect vema" spellcheck="false" value="{{x[11].strip()}}" name="{{vendors.index(x)}}mail">
       <button type="button" class="pgremove" name="button" onclick="if(confirm('Are you sure you want to remove {{x[1].strip().replace("\'","\\'")}}?')){remve('{{x[12]}}');}"><img style="transform: rotate(45deg); height:25px; width:25px" src="static/pictures/{{theme}}/add.png"></button>
     </a>
     {% endfor %}
