@@ -48,7 +48,7 @@ def customers():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
     table = request.cookies.get('custtable')
-    lastid = request.cookies.get('custid')
+    lastid = request.cookies.get('lastcu')
     userauth = request.cookies.get('auth')
 
 
