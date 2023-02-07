@@ -115,8 +115,8 @@ function savedeldir(){
   var xhttp = new XMLHttpRequest();
 
   xhttp.onload = function(){
-    location.reload()
     document.cookie = "delivfocused=" + document.activeElement.id + ";path=/";
+    location.reload()
   }
 
   xhttp.open("POST","/savedeliv",true);
@@ -415,6 +415,7 @@ function choosePart(e){
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
     document.getElementById("qty"+document.getElementById("idOfPart").value).select()
+    savedel();
   }else if(e.key == "Escape"){
     document.getElementById('partselect').style.display = "none";
     document.getElementById("num"+document.getElementById("idOfPart").value).focus()
@@ -458,8 +459,9 @@ function clickpart(c){
     document.getElementById("qty"+id).value = "1.00";
     priceupdate(id);totalupdate(id);alltotal();
     document.getElementById('partselect').style.display = "none";
-    document.getElementById("qty"+document.getElementById("idOfPart").value).select()
+    document.getElementById("qty"+document.getElementById("idOfPart").value).select();
 
+    savedel();
 }
 
 document.getElementById('storeNumber').addEventListener("keydown", getstore);

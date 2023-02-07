@@ -48,7 +48,7 @@ def extract(n):
 @app.route("/swapouts", methods=["GET","POST"])
 def swapouts():
     if "loggedin" in request.cookies:
-        pass
+        usr = request.cookies.get('username')
     else:
         return redirect(url_for("login"))
     theme,notheme = setTheme()
@@ -97,13 +97,14 @@ def swapouts():
     predef = list(map(clean, sql("SELECT", "SELECT SWT_Descript, SWT_Text FROM SwapText")))
     techs = []
 
-    print(store)
+    #print(store)
     
     for x in techsql:
         techs.append(x[0])
 
 
-    #print(techsql)
+    recycled = len(sql("SELECT",f"SELECT * FROM Swap WHERE SWP_NewSerial = '{allswap[5].strip()}'"))
+
     techs.sort()
 
     part = []
@@ -153,7 +154,9 @@ def swapouts():
 
     columns = list(map(extract,sql("SELECT","select Column_name from Information_schema.columns where Table_name like 'Swap'")))
 
-    return render_template("swapout.html",usrtech=usrtech,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
+
+
+    return render_template("swapout.html",recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
 
 @app.route("/swapsave", methods=["GET","POST"])
 def swapsave():
@@ -265,7 +268,6 @@ def swapsaveitem():
 
     sqlq = f"UPDATE Swap SET {itemtype} = '{item}' where SWP_No = '{swap}'"
     
-    #print(sqlq)
     sql("INSERT",sqlq)
 
     return ('', 204)

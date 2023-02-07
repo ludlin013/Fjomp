@@ -4,6 +4,12 @@
   }
 }, false);*/
 
+document.getElementById('opensw').addEventListener("keydown", function (e) {
+  if (e.keyCode == 13) {
+    window.location.href = '/swapouts?sw=' + document.getElementById('opensw').value
+  }
+}, false);
+
 function setday(id){
   var y = new Date().getFullYear();
   var m = "0" + (new Date().getMonth()+1);
@@ -30,12 +36,31 @@ function saveitem(id){
 
   fd.append("swap", sw.value);
   fd.append("type", id);
+  
+  if(item.type=="checkbox"){
+    var check = 0;
+
+    if (item.checked==true){
+      check = 1;
+    }
+
+  fd.append("item", check);
+  }else{
   fd.append("item", item.value);
+
+  }
+
 
   const xhttp = new XMLHttpRequest();
 
   xhttp.onload = function(){
     console.log("Sparad");
+
+    //document.getElementById(id).style.background = "green";
+
+    setTimeout(function () { 
+      //document.getElementById(id).style.background =  "rgb(80,80,80)"; 
+    }, 500);
   }
 
 

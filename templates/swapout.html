@@ -115,7 +115,7 @@
           <div class="lvl2-header-swapout">
             <div class="leftside2-swapout">
               <div class="form-swapout" name="form-leftside2-swapout">
-                <div class="formitem-swapout"><label>Part #:</label>
+                <div class="formitem-swapout"><label class="noselect">Part #:</label>
                   <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart" id="{{columns[7]}}" onchange="document.getElementById('{{columns[8]}}').value = this.options[this.selectedIndex].text;saveitem('{{columns[8]}}');saveitem('{{columns[7]}}')">
                     <option value="" disabled selected></option>
                     {% for name, id in part %}
@@ -124,7 +124,7 @@
                     {% endfor %}
                   </select>
                 </div>
-                <div class="formitem-swapout"><label>Predef. Texts:</label>
+                <div class="formitem-swapout"><label class="noselect">Predef. Texts:</label>
                   <select class="forminput-swapout" style="width: 190px;" type="text"
                     onchange="document.getElementById('{{columns[15]}}').value = this.value;saveitem('{{columns[15]}}')">
                     <option disabled selected></option>
@@ -137,18 +137,18 @@
             </div>
             <div class="middle2-swapout">
               <div class="form-swapout" name="form-middle2-swapout">
-                <div class="formitem-swapout"><label>Serial #:</label><input class="forminput-swapout" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text"
+                <div class="formitem-swapout"><label class="noselect">Serial #:</label><input class="forminput-swapout" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text"
                     name="sentSeri" value="{{allswap[9]}}"></div>
-                <div class="formitem-swapout"><label>Description:</label><input class="forminput-swapout" type="text"
+                <div class="formitem-swapout"><label class="noselect">Description:</label><input class="forminput-swapout" type="text"
                     name="sentDesc" id="{{columns[8]}}" readonly value="{{allswap[8]}}"></div>
               </div>
             </div>
             <div class="right2-swapout">
               <div class="form-swapout" name="form-right2-swapout">
-                <div class="formitem-swapout"><label>Sent Date:</label><input name="sentDate" class="forminput-swapout"
+                <div class="formitem-swapout"><label class="noselect">Sent Date:</label><input id="{{columns[10]}}" onchange="saveitem('{{columns[10]}}')" ondblclick="setday('{{columns[10]}}');saveitem('{{columns[10]}}')" name="sentDate" class="forminput-swapout"
                     type="date" style="width: 180px;" value="{{allswap[10]}}"></div>
-                <div class="formitem-swapout"><label>Sent by:</label><select class="forminput-swapout"
-                    style="width: 190px;" type="text" name="sentTech">
+                <div class="formitem-swapout"><label class="noselect">Sent by:</label><select class="forminput-swapout"
+                    style="width: 190px;" type="text" name="sentTech" id="{{columns[13]}}" onchange="saveitem('{{columns[13]}}')" ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[13]}}')">
                     <option disabled selected></option>
                     {% for tech in techs %}
                     <option value="{{tech}}" {% if allswap[13]==tech %} selected {% endif %}>{{tech}}</option>
@@ -157,7 +157,7 @@
               </div>
             </div>
           </div>
-          <div class="formitem-swapout formitem-textarea-swapout"><label>Notes/Text:</label><textarea name="notes"
+          <div class="formitem-swapout formitem-textarea-swapout"><label class="noselect">Notes/Text:</label><textarea name="notes"
               class="forminput-swapout textarea-swapout" id="{{columns[15]}}">{{allswap[15]}}</textarea></div>
         </div>
         <div class="lvl3-swapout">
@@ -165,30 +165,29 @@
           <div class="leftside3-swapout">
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout partnumber-swapout"><label>Part #:</label>
-                <select class="forminput-swapout" style="width: 190px;" type="text" name="recPart">
+                <select class="forminput-swapout" style="width: 190px;" type="text" name="recPart" id="{{columns[4]}}" onchange="document.getElementById('{{columns[5]}}').value = this.options[this.selectedIndex].text;saveitem('{{columns[5]}}');saveitem('{{columns[4]}}')">
                   <option value="" disabled selected></option>
                   {% for name, id in part %}
-                  <option autocomplete="off" value="{{id}}" {% if allswap[4]==id %} selected {% endif %}>{{name}} {{id}}
+                  <option autocomplete="off" value="{{id}}" {% if allswap[4]==id %} selected {% endif %}>{{name}}
                   </option>
                   {% endfor %}
                 </select>
               </div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Description:</label><input name="recDesc"
-                  value="{{allswap[5]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Serial #:</label><input name="recSeri"
-                  value="{{allswap[6]}}" class="forminput-swapout" type="text"></div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>Returned Date:</label><input name="recDate"
-                  value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Description:</label><input name="recDesc"
+                  value="{{allswap[5]}}" class="forminput-swapout" type="text" id="{{columns[5]}}"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Serial #:</label><input name="recSeri"
+                  value="{{allswap[6]}}" class="forminput-swapout" type="text" id="{{columns[6]}}" onchange="saveitem('{{columns[6]}}')"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Returned Date:</label><input name="recDate"
+                  value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;" id="{{columns[11]}}" onchange="saveitem('{{columns[11]}}')"></div>
               <div class="formitem-swapout lvl3formitem-swapout"><label>Recevied by:</label>
-                <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech">
+                <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech" id="{{columns[14]}}" onchange="saveitem('{{columns[14]}}')" ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[14]}}')">
                   <option disabled selected></option>
                   {% for tech in techs %}
                   <option value="{{tech}}" {% if allswap[14]==tech %} selected {% endif %}>{{tech}}</option>
                   {% endfor %}
                 </select>
               </div>
-              <div class="formitem-swapout lvl3formitem-swapout"><label>No. of times recycled:</label><input
-                  class="forminput-swapout" type="number"></div>
+              <div class="formitem-swapout lvl3formitem-swapout"><label>No. of times recycled:</label><input class="forminput-swapout" type="number" value="{{recycled}}" readonly></div>
             </div>
           </div>
           <div class="rightside3-swapout">
