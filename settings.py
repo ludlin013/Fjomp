@@ -361,7 +361,7 @@ def newve():
     newid = sql("SELECT","SELECT * FROM Vendors")
 
     for x in newid:
-        if x[1] == "NEWPG":
+        if x[1] == "NEWVE":
             newid = str(x[12])
             break
 
