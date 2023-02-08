@@ -80,7 +80,7 @@
             </div>
             <div class="topmiddle-swapout">
               <div class="form-swapout" name="form-topmiddle-swapout">
-                <div class="formitem-swapout nostyle"><input name="swp_loan" id="{{columns[39]}}" onchange="saveitem('{{columns[39]}}')" {% if allswap[39]==1 %} checked {% endif %}
+                <div class="formitem-swapout nostyle"><input name="swp_loan" id="{{columns[39]}}" onchange="saveitem('{{columns[39]}}');loanusable()" {% if allswap[39]==1 %} checked {% endif %}
                     value="1" class="forminput-swapout" type="checkbox"><label class="noselect">Loan management (no
                     swap)</label></div>
                 <div class="formitem-swapout nostyle"><input name="rmaonly" id="{{columns[35]}}" onchange="saveitem('{{columns[35]}}')"  {% if allswap[35]==1 %} checked {% endif %}
@@ -178,7 +178,7 @@
               <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Serial #:</label><input name="recSeri"
                   value="{{allswap[6]}}" class="forminput-swapout" type="text" id="{{columns[6]}}" onchange="saveitem('{{columns[6]}}')"></div>
               <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Returned Date:</label><input name="recDate"
-                  value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;" id="{{columns[11]}}" onchange="saveitem('{{columns[11]}}')"></div>
+                  value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;" id="{{columns[11]}}" onchange="saveitem('{{columns[11]}}')" ondblclick="setday('{{columns[11]}}');saveitem('{{columns[11]}}')"></div>
               <div class="formitem-swapout lvl3formitem-swapout"><label>Recevied by:</label>
                 <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech" id="{{columns[14]}}" onchange="saveitem('{{columns[14]}}')" ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[14]}}')">
                   <option disabled selected></option>
@@ -194,7 +194,7 @@
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout formitem-textarea-swapout"><label>Problem description, Internal
                   notes:</label><textarea name="probNote"
-                  class="forminput-swapout textarea-swapout">{{allswap[38]}}</textarea></div>
+                  class="forminput-swapout textarea-swapout" id="{{columns[38]}}" onchange="saveitem('{{columns[38]}}')">{{allswap[38]}}</textarea></div>
             </div>
           </div>
         </div>
@@ -203,19 +203,25 @@
           <div class="leftside4-swapout">
             <div class="form-swapout formleftside4-swapout">
               <div class="formitem-swapout lvl4item-swapout"><label>Repaired unit returned to customer:</label><input
-                  class="forminput-swapout" type="date"></div>
-              <div class="formitem-swapout lvl4item-swapout"><label>Sent by:</label><select class="forminput-swapout"
-                  style="width: 190px;" type="text">
-                  <option value=""></option>
-                  <option value="valuehere">Det ska vara saker här</option>
-                </select></div>
+                  class="forminput-swapout loan" type="date" value="{{allswap[40]}}" id="{{columns[40]}}" onchange="saveitem('{{columns[40]}}')" ondblclick="setday('{{columns[40]}}');saveitem('{{columns[40]}}')"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent by:</label>
+                <select class="forminput-swapout loan" style="width: 100px;" type="text" name="recTech" id="{{columns[42]}}" onchange="saveitem('{{columns[42]}}')" ondblclick="if(document.getElementById('SWP_Loan').checked == true){this.value='{{usr.upper()}}';saveitem('{{columns[42]}}')}">
+                  <option disabled selected></option>
+                  {% for tech in techs %}
+                  <option class="loantech" value="{{tech}}" {% if allswap[42]==tech %} selected {% endif %}>{{tech}}</option>
+                  {% endfor %}
+                </select>
+              </div>
               <div class="formitem-swapout lvl4item-swapout"><label>Loan unit returned from customer:</label><input
-                  class="forminput-swapout" type="date"></div>
-              <div class="formitem-swapout lvl4item-swapout"><label>Recevied by:</label><select
-                  class="forminput-swapout" style="width: 190px;" type="text">
-                  <option value=""></option>
-                  <option value="valuehere">Det ska vara saker här</option>
-                </select></div>
+                  class="forminput-swapout loan" type="date" value="{{allswap[41]}}" id="{{columns[41]}}" onchange="saveitem('{{columns[41]}}')" ondblclick="setday('{{columns[41]}}');saveitem('{{columns[41]}}')"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Recevied by:</label>
+                <select class="forminput-swapout loan" style="width: 100px;" type="text" name="recTech" id="{{columns[43]}}" onchange="saveitem('{{columns[43]}}')" ondblclick="if(document.getElementById('SWP_Loan').checked == true){this.value='{{usr.upper()}}';saveitem('{{columns[43]}}')}">
+                  <option disabled selected></option>
+                  {% for tech in techs %}
+                  <option class="loantech" value="{{tech}}" {% if allswap[43]==tech %} selected {% endif %}>{{tech}}</option>
+                  {% endfor %}
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -223,36 +229,41 @@
           <h1 class="noselect">RMA:</h1>
           <div class="leftside5-swapout">
             <div class="form-swapout lvl5form-swapout">
-              <div class="formitem-swapout lvl4item-swapout"><label>Sent to supplier:</label><select
-                  class="forminput-swapout" style="width: 190px;" type="text">
-                  <option value=""></option>
-                  <option value="valuehere">Det ska vara saker här</option>
-                </select></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>RMA #/Reference:</label><input
-                  class="forminput-swapout" type="text"></div>
+              <div class="formitem-swapout lvl4item-swapout"><label>Sent to supplier:</label>
+                <select class="forminput-swapout" style="width: 190px;" type="text" id="{{columns[18]}}" onchange="saveitem('{{columns[18]}}')" ondblclick="setday('{{columns[18]}}');saveitem('{{columns[18]}}')">
+                  <option value="" selected disabled></option>
+                  {% for x in vendors %}
+                  <option value="{{x[0].strip()}}" {% if allswap[18].strip()==x[0].strip() %} selected {% endif %}>{{x[0].strip()}} {{x[1].strip()}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="formitem-swapout lvl5item-swapout"><label>RMA #/Reference:</label><input class="forminput-swapout" type="text" value="{{allswap[24]}}" id="{{columns[24]}}" onchange="saveitem('{{columns[24]}}')"></div>
               <div class="formitem-swapout lvl5item-swapout"><label>Sent Date:</label><input class="forminput-swapout"
-                  type="date" value="{{allswap[19]}}" name="rmasDate"></div>
+                  type="date" value="{{allswap[19]}}" name="rmasDate" id="{{columns[19]}}" onchange="saveitem('{{columns[19]}}')" ondblclick="setday('{{columns[19]}}');saveitem('{{columns[19]}}')"></div>
               <div class="formitem-swapout lvl5item-swapout" style="width:100px;"><label>Sent by:</label>
-                <select class="forminput-swapout" style="width: 100px;" type="text" name="rmasTech">
+                <select class="forminput-swapout " style="width: 100px;" type="text" name="recTech" id="{{columns[22]}}" onchange="saveitem('{{columns[22]}}')" ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[22]}}')">
                   <option disabled selected></option>
                   {% for tech in techs %}
-                  <option value="{{tech}}" {% if allswap[22]==tech %} selected {% endif %}>{{tech}}</option>
+                  <option class="loantech" value="{{tech}}" {% if allswap[22]==tech %} selected {% endif %}>{{tech}}</option>
                   {% endfor %}
                 </select>
               </div>
               <div class="formitem-swapout lvl5item-swapout"><label>Returned Date:</label><input
-                  class="forminput-swapout" type="date" value="{{allswap[20]}}" name="rmarDate"></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Recevied by:</label><select
-                  class="forminput-swapout" style="width: 190px;" type="text" name="rmarTech">
+                  class="forminput-swapout" type="date" value="{{allswap[20]}}" name="rmarDate" id="{{columns[20]}}" onchange="saveitem('{{columns[20]}}')" ondblclick="setday('{{columns[20]}}');saveitem('{{columns[20]}}')"></div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Recevied by:</label>
+                <select class="forminput-swapout" style="width: 100px;" type="text" name="recTech" id="{{columns[23]}}" onchange="saveitem('{{columns[23]}}')" ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[23]}}')">
                   <option disabled selected></option>
                   {% for tech in techs %}
-                  <option value="{{tech}}" {% if allswap[23]==tech %} selected {% endif %}>{{tech}}</option>
+                  <option class="loantech" value="{{tech}}" {% if allswap[23]==tech %} selected {% endif %}>{{tech}}</option>
                   {% endfor %}
-                </select></div>
-              <div class="formitem-swapout lvl5item-swapout"><label>Charge model:</label><select
-                  class="forminput-swapout" style="width: 190px;" type="text">
-                  <option value=""></option>
-                  <option value="valuehere lvl5item-swapout">Det ska vara saker här</option>
+                </select>
+              </div>
+              <div class="formitem-swapout lvl5item-swapout"><label>Charge model:</label>
+                <select class="forminput-swapout" style="width: 190px;" type="text" value="{{allswap[21]}}" id="{{columns[21]}}" onchange="saveitem('{{columns[21]}}')">
+                  <option value="" disabled selected></option>
+                  {% for x in chargemode %}
+                  <option value="{{x.strip()}}" {% if allswap[21].strip()==x.strip() %} selected {% endif %}>{{x.strip()}}</option>
+                  {% endfor %}
                 </select></div>
             </div>
           </div>
@@ -269,11 +280,11 @@
                 src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
           </div>
           <div class="buttonbarigen">
-            <a href="/swreplace" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+            <!--<a href="/swreplace" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
               <p>Replace</p>
               <p class="newlinesc">Ctrl + K</p>
-            </a>
+            </a>-->
             <a href="/swapnew" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
               <p>New</p>
@@ -285,7 +296,7 @@
               <p>Delete</p>
               <p class="newlinesc">Ctrl + Del</p>
             </a>
-            <a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+            <!--<a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/undo.png">
               <p>Undo</p>
               <p class="newlinesc">Ctrl + Z</p>
@@ -304,14 +315,14 @@
                 class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
               <p>Print</p>
               <p class="newlinesc">Ctrl + P</p>
-            </a>
+            </a>-->
           </div>
         </div>
       </div>
     </div>
     <script src="/static/mobile.js"></script>
-    <script src="/static/swapout.js"></script>
     <script src="/static/swap.js"></script>
+    <script>loanusable()</script>
   </body>
   <div id="statusmsg">
     Report saved!

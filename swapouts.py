@@ -95,9 +95,13 @@ def swapouts():
     parts = list(map(clean, sql("SELECT", "SELECT Part_Part, Part_Partno FROM Parts")))
     techsql = list(map(clean, sql("SELECT", "SELECT Tech_ID FROM Technicians")))
     predef = list(map(clean, sql("SELECT", "SELECT SWT_Descript, SWT_Text FROM SwapText")))
+    vendors = list(map(clean, sql("SELECT", "SELECT Vend_Code,Vend_Name FROM Vendors")))
+
     techs = []
 
-    #print(store)
+    vendors.sort(key = lambda x:x[0])
+
+    #print(vendors)
     
     for x in techsql:
         techs.append(x[0])
@@ -155,8 +159,12 @@ def swapouts():
     columns = list(map(extract,sql("SELECT","select Column_name from Information_schema.columns where Table_name like 'Swap'")))
 
 
+    chargemode = ["Garanti", "Debiteras", "Kontrakt", "Rep.garant", "Skrotad"]
 
-    return render_template("swapout.html",recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
+
+
+
+    return render_template("swapout.html",chargemode=chargemode,vendors=vendors,recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
 
 @app.route("/swapsave", methods=["GET","POST"])
 def swapsave():
@@ -178,7 +186,7 @@ def swapnew():
 
     print(f"INSERT INTO Swapouts (SWP_No,SWP_Date) VALUES ('{newnr}','{datetime.now().strftime('%Y-%m-%d')}')")
 
-    sql("INSERT",f"INSERT INTO Swap (SWP_No,SWP_Date,SWP_CustId,SWP_Contact,SWP_Notes,SWP_Problem,SWP_OldPart,SWP_OldSerial,SWP_NewPart,SWP_NewSerial) VALUES ('{newnr}','{datetime.now().strftime('%Y-%m-%d')}','','','','','','','','')")
+    sql("INSERT",f"INSERT INTO Swap (SWP_No,SWP_Date,SWP_CustId,SWP_Contact,SWP_Notes,SWP_Problem,SWP_OldPart,SWP_OldSerial,SWP_NewPart,SWP_NewSerial,SWP_RmaNo,SWP_RmaVendor,SWP_RmaCharge) VALUES ('{newnr}','{datetime.now().strftime('%Y-%m-%d')}','','','','','','','','','','','')")
 
     return redirect("/swapouts?sw="+str(newnr))
 
@@ -190,9 +198,17 @@ def deleteswap(a):
 
     sql("INSERT",f"DELETE FROM Swap WHERE SWP_No = '{a}'")
 
-    a = str(int(a)-1)
+    
+    high = list(map(extract,sql("SELECT","select SWP_No from Swap")))
 
-    return redirect("/swapouts?sw="+a)
+    high.sort(reverse=True)
+
+    swpno = int(a)
+
+    while swpno not in high:
+        swpno = swpno-1
+
+    return redirect("/swapouts?sw="+str(swpno))
 
 
 

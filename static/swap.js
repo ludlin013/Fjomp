@@ -24,6 +24,11 @@ function setday(id){
   }
 
   var date = y + "-"+m+"-"+d
+
+  if(id == "SWP_RepReturn" && document.getElementById("SWP_Loan").checked == false || id == "SWP_LoanReturn" && document.getElementById("SWP_Loan").checked == false){
+    return;
+  }
+
   document.getElementById(id).value = date;
   window.getSelection().removeAllRanges()
 }
@@ -277,5 +282,38 @@ function clickstore(chosen){
   xhttp.send(fd);
 
   document.getElementById('SWP_NewPartno').focus()
+
+}
+
+
+function loanusable(){
+  var loan = document.getElementsByClassName("loan");
+  var check = document.getElementById("SWP_Loan").checked;
+  var tech = document.getElementsByClassName("loantech");
+
+  if(check == "1"){
+    for(x of loan){
+      x.readOnly = false;
+      x.style.color = null;
+    }
+
+    for(x of tech){
+      x.disabled = false;
+    }
+  }
+
+  else if(check == "0"){
+    console.log("0")
+    for(x of loan){
+      x.readOnly = true;
+      x.value = "";
+      x.style.color = "grey"
+    }
+
+    for(x of tech){
+      x.disabled = true;
+    }
+  }
+  
 
 }
