@@ -371,7 +371,7 @@
             </thead>
             <tbody class="whatabody-customers">
               {% for x in swap %}
-              <tr class="row-Customers" onclick="">
+              <tr class="row-Customers" ondblclick="window.location.href = '/swapouts?sw={{x[1]}}'">
                 <td class="thdates-customers"><input type="date" value="{{x[3]}}"></td>
                 <td class="threfs-customers"><input value="{{x[1]}}"></td>
                 <td class="thparts-customers"><input value="{{x[4].strip()}}"></td>
