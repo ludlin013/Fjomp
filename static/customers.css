@@ -202,14 +202,14 @@ td input[type=date]{
 .list-irhistory, .list-deliverynotes, .list-swapouts{
   display: block;
   max-width: 1180px;
-  height: 466px;
+  height: 450px;
   overflow-y: scroll;
 }
 
 .list-units{
   display: block;
   max-width: 1180px;
-  height: 433px;
+  height: 410px;
   overflow-y: scroll;
 }
 
