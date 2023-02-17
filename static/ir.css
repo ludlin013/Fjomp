@@ -299,7 +299,7 @@ table{
 
 .toppagemiddle2-ir{
   display:flex;
-  padding-top: 20px
+  padding-top: 9px
 }
 
 #partserialir{
@@ -352,8 +352,8 @@ table{
 }
 
 .bottompage-ir{
-  padding-top: 20px;
-  padding-bottom: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
   display: flex;
 }
 
