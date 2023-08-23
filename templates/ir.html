@@ -79,8 +79,8 @@
           <div class="formitem-ir"><label class="noselect">Zip/City:</label><div><input readonly id="irzip" class="forminput-ir" type="text" value="{{customer[5].strip()}}"><input readonly id="ircity" class="forminput-ir" type="text" value="{{customer[6].strip()}}"></div></div>
       </div>
       <div class="toppageright-ir">
-          <div class="formitem-ir"><label class="noselect">Owner:</label><input id="contact" class="forminput-ir" type="text" readonly value="{{customer[9].strip()}}"></div>
-          <div style="" class="formitem-ir"><label class="noselect">Phone:</label><input id="phone" class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
+          <div class="formitem-ir"><label class="noselect">Owner:</label><input id="contact" class="forminput-ir" type="text" readonly value="{% if customer[9] %}{{customer[9].strip()}}{% endif %}"></div>
+          <div class="formitem-ir"><label class="noselect">Phone:</label><input id="phone" class="forminput-ir" type="text" readonly value="{{customer[10].strip()}}"></div>
       </div>
     </div>
 
