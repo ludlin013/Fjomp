@@ -6,6 +6,75 @@
 
 }
 
+.mainwrapunfinished {
+  display: flex;
+  margin-left: 61px;
+  margin-top: 0px;
+  padding: 50px 0 50px 50px;
+  flex-direction: column;
+
+}
+
+.unfinishedSwapTable {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 0 20px;
+}
+
+.unfinishedSwapHead {
+  font-weight: 700;
+}
+
+.unfinishedSwapRow {
+  display: flex;
+  cursor: pointer;
+}
+
+.unfinishedSwapRow td, 
+.unfinishedSwapRow th {
+  padding: 2px 5px;
+}
+
+.unfinisheddate {
+  width: 100px
+}
+
+.unfinishedid {
+  width: 80px
+}
+
+.unfinishedcust {
+  width:100px
+}
+
+.unfinishedpartser {
+  width:100px
+}
+
+.unfinishedpart {
+  width:240px
+}
+
+.unfinishedsentser {
+  width: 140px;
+}
+
+.unfinishedsentdat {
+  width: 100px;
+}
+
+.unfinishedrecvser {
+  width:140px
+}
+
+.unfinishedrecvdat {
+  width:100px
+}
+
+.unfinishedstatus {
+  width:100px
+}
+
 #statusmsg {
   border: 1px solid;
   border-top: 0;
@@ -140,7 +209,7 @@
   justify-content: space-between;
 }
 
-input{
+input {
   /*transition-duration: 1s;*/
 }
 

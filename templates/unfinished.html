@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="sv-SE" dir="ltr" translate="no">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEBSTAT | Swap-Out</title>
+  <link rel="stylesheet" href="static/index.css">
+  <link rel="stylesheet" href="static/swapout.css">
+  <link rel="stylesheet" href="static/{{theme}}.css">
+  <link rel="icon" href="./static/pictures/icon.ico">
+</head>
+<form id="allform" action="javascript:">
+
+  <body>
+    <div class="mobilehead" style="display:none;z-index:100000;">
+      <div class="hamham" onclick="hamburger()">
+        <div id="hamtop" style="left:15px"></div>
+        <div id="hammid"></div>
+        <div id="hambot" style="left:15px"></div>
+      </div>
+      <div id="menudim" onclick="hamburger()" style="opacity:0;display:none"></div>
+    </div>
+    <div class="navin">
+      {% if usrtech == 1 %}
+      <div class="navitemin" id="lvl3">
+        <div id="userstatuscolor" style="background:{{usrstatus}}"><img src="../static/pictures/{{theme}}/L3.png"></div>
+        <a id="l3" href="/lvl3status">L3 Status</a><input type="hidden" id="usrstat" value="">
+      </div>
+      {% endif %}
+      <a class="navitemin " href="/customers"><img src="../static/pictures/{{theme}}/customers.png">
+        <p class="noselect">Customers</p>
+      </a>
+      <a class="navitemin" href="/parts"><img src="../static/pictures/{{theme}}/partsv2.png">
+        <p class="noselect">Parts</p>
+      </a>
+      <a class="navitemin" href="/delivnotes"><img src="../static/pictures/{{theme}}/deliverynote.png">
+        <p class="noselect">Deliv. notes</p>
+      </a>
+      <a class="navitemin" href="/ir"><img src="../static/pictures/{{theme}}/ir.png">
+        <p class="noselect">IR</p>
+      </a>
+      <a class="navitemin active" href="/swapouts"><img src="../static/pictures/{{theme}}/swapout.png">
+        <p class="noselect">Swapouts</p>
+      </a>
+      <a class="navitemin" href="/lookup"><img src="../static/pictures/{{theme}}/lookup.png">
+        <p class="noselect">Lookup</p>
+      </a>
+      <a class="navitemin" href="/settings"><img src="../static/pictures/{{theme}}/settings.png">
+        <p class="noselect">Settings</p>
+      </a>
+      <a id="navlogo" href="/landing"><img id="navlogoimg" src="../static/pictures/logo.png"></a>
+    </div>
+
+    <div class="mainwrapunfinished">
+      <h1>Unfinished Swapouts</h1>
+      <table class="unfinishedSwapTable">
+        <thead>
+          <tr class="unfinishedSwapRow unfinishedSwapHead">
+            <th class="unfinisheddate">Date</th>
+            <th class="unfinishedid">Swap #</th>
+            <th class="unfinishedcust">Customer</th>
+            <th class="unfinishedpartser">Part nr.</th>
+            <th class="unfinishedpart">Part name</th>
+            <th class="unfinishedsentser">Sent serial</th>
+            <th class="unfinishedsentdat">Sent date</th>
+            <th class="unfinishedrecvser">Recv serial</th>
+            <th class="unfinishedrecvdat">Recv date</th>
+            <th class="unfinishedstatus">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for x in allswap %}
+        <tr class="unfinishedSwapRow" onclick="window.location.href = '/swapouts?sw={{x[1]}}'">
+          <td class="unfinisheddate">{{x[0]}}</td>
+          <td class="unfinishedid">{{x[1]}}</td>
+          <td class="unfinishedcust">{{x[2]}}</td>
+          <td class="unfinishedpartser">{{x[3]}}</td>
+          <td class="unfinishedpart">{{x[4]}}</td>
+          <td class="unfinishedsentser">{{x[5]}}</td>
+          <td class="unfinishedsentdat">{{x[6]}}</td>
+          <td class="unfinishedrecvser">{{x[7]}}</td>
+          <td class="unfinishedrecvdat">{{x[8]}}</td>
+          <td class="unfinishedstatus">{{x[9]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+    </div>
+
+    <script src="/static/mobile.js"></script>
+    <script src="/static/swap.js"></script>
+    <script>loanusable()</script>
+  </body>
+  <div id="statusmsg">
+    Report saved!
+  </div>
+</form>
+
+</html>

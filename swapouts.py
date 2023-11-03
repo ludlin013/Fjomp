@@ -166,10 +166,27 @@ def swapouts():
 
     return render_template("swapout.html",chargemode=chargemode,vendors=vendors,recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
 
+@app.route("/swapunfinished")
+def swapunfinished():
+    if "loggedin" in request.cookies:
+        usr = request.cookies.get('username')
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    allswap = sql("SELECT","SELECT SWP_Date, SWP_No, SWP_CustId, SWP_OldPartno, SWP_OldPart, SWP_NewSerial, SWP_Sent, SWP_OldPartno, SWP_Returned, SWP_Status FROM Swap where SWP_Status = '2' OR SWP_Status = '3' OR SWP_Status = '4' OR SWP_Status = '5' OR SWP_Status = '6'")
+
+    allswap.sort(key = lambda x:x[0], reverse=True)
+
+
+    return render_template("unfinished.html",theme=theme,notheme=notheme,allswap=allswap)
+
 @app.route("/swapsave", methods=["GET","POST"])
 def swapsave():
 
     print(request.form)
+
+
 
     return ('', 204)
 
