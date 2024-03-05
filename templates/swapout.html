@@ -124,18 +124,18 @@
             <div class="leftside2-swapout">
               <div class="form-swapout" name="form-leftside2-swapout">
                 <div class="formitem-swapout"><label class="noselect">Part #:</label>
-                  <select class="forminput-swapout" style="width: 190px;" type="text" name="sentPart"
+                  <select class="forminput-swapout" style="width: 270px;" type="text" name="sentPart"
                     id="{{columns[7]}}"
                     onchange="document.getElementById('{{columns[8]}}').value = this.options[this.selectedIndex].text;saveitem('{{columns[8]}}');saveitem('{{columns[7]}}')">
                     <option value="" disabled selected></option>
                     {% for name, id in part %}
-                    <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{name}}
+                    <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{id}} {{name}}
                     </option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="formitem-swapout"><label class="noselect">Predef. Texts:</label>
-                  <select class="forminput-swapout" style="width: 190px;" type="text"
+                  <select class="forminput-swapout" style="width: 270px;" type="text"
                     onchange="document.getElementById('{{columns[15]}}').value = this.value;saveitem('{{columns[15]}}')">
                     <option disabled selected></option>
                     {% for name, text in predef %}
@@ -149,10 +149,10 @@
             <div class="middle2-swapout">
               <div class="form-swapout" name="form-middle2-swapout">
                 <div class="formitem-swapout"><label class="noselect">Serial #:</label><input class="forminput-swapout"
-                    id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text" name="sentSeri"
+                    style="width: 270px;" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text" name="sentSeri"
                     value="{{allswap[9]}}"></div>
                 <div class="formitem-swapout"><label class="noselect">Description:</label><input
-                    class="forminput-swapout" type="text" name="sentDesc" id="{{columns[8]}}" readonly
+                    class="forminput-swapout" style="width: 270px;" type="text" name="sentDesc" id="{{columns[8]}}" readonly
                     value="{{allswap[8]}}"></div>
               </div>
             </div>
