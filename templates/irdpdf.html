@@ -225,12 +225,12 @@
   }
 
   .workerr{
-    width: 300px;
+    width: 280px;
     font-size: 12px;
   }
 
   .debit{
-    width: 25px;
+    width: 70px;
     font-size: 12px;
   }
 
@@ -263,7 +263,7 @@
     width: 50px;
   }
   .spare_debit{
-    width:50px;
+    width:70px;
   }
 
   .p_margin{
@@ -384,7 +384,7 @@
                 <div class="spare_artnr"><b class="p_margin">Art. nr</b></div>
                 <div class="spare_article"><b class="p_margin">Artikel</b></div>
                 <div class="spare_qty"><b class="p_margin">Antal</b></div>
-                <div class="spare_debit" style="display:none"><p class="p_margin">Debitering</p></div>
+                <div class="spare_debit"><b class="p_margin">Debitering</b></div>
             </div>
               {% for x in parts %}
                 {% if x[3] == n[6]%}
@@ -393,7 +393,7 @@
                 <div class="spare_artnr"><p class="p_margin">{{x[4]}}</p></div>
                 <div class="spare_article"><p class="p_margin">{{x[5]}}</p></div>
                 <div class="spare_qty"><p class="p_margin">{{x[6]}}</p></div>
-                <div class="spare_debit" style="display:none"><p class="p_margin"></p></div>
+                <div class="spare_debit"><p class="p_margin">{{chargeconv[x[9]]}}</p></div>
               </div>
                 {% endif %}
               {% endfor %}
