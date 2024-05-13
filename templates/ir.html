@@ -89,7 +89,7 @@
           <div class="formitem-ir"><label class="noselect">Open Date:</label><input id="iropendate" type="date" {% if found%} value="{{irinfo[2].strftime("%Y-%m-%d")}}" {% endif %}></div>
           <div class="formitem-ir"><label class="noselect">Sign.:</label>
             <select class="forminput-ir" id="techid" style="width: 168px;" type="text" name="sign-ir" >
-              <option value="{{user}}" selected hidden>{{user}}</option>
+              <option value="{{user}}" selected hidden></option>
               {% for x in techs %}
               <option value="{{x[0]}}" {% if x[0] == irinfo[13] %} selected {% endif %}>{{x[0]}}</option>
               {% endfor %}
