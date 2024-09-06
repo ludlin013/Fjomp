@@ -55,7 +55,7 @@ def settings():
     except:
         active = ""
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
 
     techs = sql("SELECT","SELECT * FROM Technicians")
@@ -162,7 +162,7 @@ def importdata():
             return(redirect("/import"))
 
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
@@ -200,7 +200,7 @@ def bugreport():
             if "png" in f.filename or "jpeg" in f.filename or "jpg" in f.filename or "tif" in f.filename or "gif" in f.filename or "":
                 f.save("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".png")
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 
@@ -229,7 +229,7 @@ def viewreport():
     for x in bugs:
         bugdate[x] = time.ctime(os.path.getmtime("static/bugs/"+x)).split(" ")[1:]
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 

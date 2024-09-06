@@ -53,7 +53,7 @@ def swapouts():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]]
     usrtech = sql("SELECT", "SELECT Tech_Tech FROM Technicians WHERE UPPER(Tech_ID) = '"+ request.cookies.get("username").upper() +"'")[0][0]
 

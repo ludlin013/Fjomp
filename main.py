@@ -198,7 +198,7 @@ def main():
     #with open("static/DB/s_parts.txt","r",encoding="ansi") as f:
     #    parts = f.read()
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
     request.cookies.get("username").upper() +"'")[0][0]]
 
@@ -244,7 +244,7 @@ def landing():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
     request.cookies.get("username").upper() +"'")[0][0]]
 
@@ -263,7 +263,7 @@ def lvl3status():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sd[sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
     request.cookies.get("username").upper() +"'")[0][0]]
 
@@ -291,11 +291,11 @@ def updateusers():
 @app.route("/changestatus",methods=["GET","POST"])
 def changestatus():
 
-    sd = {0: "red",1:"yellow",2:"green"}
+    sd = {0: "red",1:"yellow",2:"green",3:"blue"}
     usrstatus = sql("SELECT", "SELECT Tech_Office FROM Technicians WHERE UPPER(Tech_ID) = '"+
     request.cookies.get("username").upper() +"'")[0][0] + 1
 
-    if usrstatus > 2:
+    if usrstatus > 3:
         usrstatus = 0
 
     sql("INSERT", "UPDATE Technicians SET Tech_Office = '"+ str(usrstatus) +

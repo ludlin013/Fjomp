@@ -1,7 +1,8 @@
 var sd = {
   0 : "red",
   1 : "yellow",
-  2 : "green"
+  2 : "green",
+  3 : "blue"
 }
 
 function updateusers(id){
