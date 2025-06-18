@@ -220,7 +220,7 @@
                 <tr class="row-ir" onclick="selectspare('{{n[15]}}')" id="list2-ir{{n[15]}}">
                   <td class="thpart-ir "><input class="irpartno" type="text" id="{{parts.index(n)}}num" name="{{parts.index(n)}}sparenumber" {%if n[4] %} value="{{n[4].strip()}}" {% endif %} onkeydown="irpartselect({{parts.index(n)}},event,'1')"></td>
                   <td class="thdesc-ir"><input class="irpartde" type="text" id="{{parts.index(n)}}nam" name="{{parts.index(n)}}sparedesc" {%if n[5] %} value="{{n[5].strip()}}" {% endif %} onkeydown="irpartselect({{parts.index(n)}},event,'1')"></td>
-                  <td class="thprice-ir"><input class="irpartpr" type="text" id="price{{parts.index(n)}}" name="{{parts.index(n)}}spareprice" {%if n[8] %} value="{{n[8]}}" {% endif %}></td>
+                  <td class="thprice-ir"><input class="irpartpr" type="text" id="price{{parts.index(n)}}" name="{{parts.index(n)}}spareprice" {%if n[8] is not none %} value="{{n[8]}}" {% endif %}></td>
                   <td class="thqty-ir"><input class="irpartqt" type="number" id="qty{{parts.index(n)}}" name="{{parts.index(n)}}spareqty" {%if n[6] %} value="{{n[6]}}" {% endif %}></td>
                   <td class="thcharge2-ir">
                     <select class="irchargedrop irpartch" name="{{parts.index(n)}}sparecharge">
