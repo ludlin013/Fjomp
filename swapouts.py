@@ -174,12 +174,21 @@ def swapunfinished():
         return redirect(url_for("login"))
     theme,notheme = setTheme()
 
+    swstatus = {0:"Ingen åtgärd",
+    2:"Skickad till kund",
+    3:"Returnerad",
+    4:"RMA till leverantör",
+    5:"Åter från RMA",
+    6:"Väntar på låneenhet",
+    7:"Kallager",
+    9:"Avslutad"}
+
     allswap = sql("SELECT","SELECT SWP_Date, SWP_No, SWP_CustId, SWP_OldPartno, SWP_OldPart, SWP_NewSerial, SWP_Sent, SWP_OldPartno, SWP_Returned, SWP_Status FROM Swap where SWP_Status = '2' OR SWP_Status = '3' OR SWP_Status = '4' OR SWP_Status = '5' OR SWP_Status = '6'")
 
     allswap.sort(key = lambda x:x[0], reverse=True)
 
 
-    return render_template("unfinished.html",theme=theme,notheme=notheme,allswap=allswap)
+    return render_template("unfinished.html",theme=theme,notheme=notheme,allswap=allswap,swstatus=swstatus)
 
 @app.route("/swapsave", methods=["GET","POST"])
 def swapsave():
