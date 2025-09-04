@@ -183,7 +183,7 @@ def swapunfinished():
     7:"Kallager",
     9:"Avslutad"}
 
-    allswap = sql("SELECT","SELECT SWP_Date, SWP_No, SWP_CustId, SWP_OldPartno, SWP_OldPart, SWP_NewSerial, SWP_Sent, SWP_OldSerial, SWP_Returned, SWP_Status FROM Swap where SWP_Status = '2' OR SWP_Status = '3' OR SWP_Status = '4' OR SWP_Status = '5' OR SWP_Status = '6'")
+    allswap = sql("SELECT","SELECT SWP_Date, SWP_No, SWP_CustId, SWP_NewPartno, SWP_NewPart, SWP_NewSerial, SWP_Sent, SWP_OldSerial, SWP_Returned, SWP_Status FROM Swap where SWP_Status = '2' OR SWP_Status = '3' OR SWP_Status = '4' OR SWP_Status = '5' OR SWP_Status = '6'")
 
     allswap.sort(key = lambda x:x[0], reverse=True)
 
