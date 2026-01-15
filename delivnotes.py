@@ -487,23 +487,23 @@ def delivstoreselect():
                     try:
                         result +=   x[1].strip() + "\t"
                     except:
-                        result +=  "\t"
+                        result +=  "-\t"
                     try:
                         result +=   x[2].strip() + "\t"
                     except:
-                        result +=  "\t"
+                        result +=  "-\t"
                     try:
                         result +=   x[3].strip() + "\t"
                     except:
-                        result +=  "\t"
+                        result +=  "-\t"
                     try:
                         result +=   x[4].strip() + "\t"
                     except:
-                        result +=  "\t"
+                        result +=  "-\t"
                     try:
                         result +=   x[5].strip() + "\t"
                     except:
-                        result +=  "\t"
+                        result +=  "-\t"
                     try:
                         result +=   x[6].strip()
                     except:
