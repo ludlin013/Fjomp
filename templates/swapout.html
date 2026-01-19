@@ -335,11 +335,16 @@
                 src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
           </div>
           <div class="buttonbarigen">
-            <!--<a href="/swreplace" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+            <a onclick="window.open('mailto:nisse@ekabss.com?cc=peter@ekabss.com&subject=Swapout #{{allswap[1]}}&body=http://p2019/swapouts?sw={{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/mail.png">
+              <p>Mail</p>
+              <p class="newlinesc">Ctrl + M</p>
+            </a>
+            <a href="/swreplace?id={{allswap[1]}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
               <p>Replace</p>
               <p class="newlinesc">Ctrl + K</p>
-            </a>-->
+            </a>
             <a href="/swapunfinished" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
               <p>Unfinished</p>
@@ -365,17 +370,13 @@
                 src="static/pictures/{{theme}}/save.png">
               <p>Save</p>
               <p class="newlinesc">Ctrl + S</p>
-            </a>
-            <a onclick="savedelmail()" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
-                src="static/pictures/{{theme}}/mail.png">
-              <p>Mail</p>
-              <p class="newlinesc">Ctrl + M</p>
-            </a>
-            <a id="printbutton" onclick="savedelprint('{{delivnote}}')" class="buttonsbar-item-delivnotes"><img
+            </a>-->
+            
+            <a id="printbutton" onclick="window.location.href= '/swappdf?swap=' + {{allswap[1]}}" class="buttonsbar-item-delivnotes"><img
                 class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
               <p>Print</p>
               <p class="newlinesc">Ctrl + P</p>
-            </a>-->
+            </a>
           </div>
         </div>
       </div>

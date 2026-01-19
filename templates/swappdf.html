@@ -1,0 +1,720 @@
+<html>
+
+<head></head>
+<style>
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: arial;
+  }
+
+  .wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .headerleft {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0 10px
+  }
+
+  .copyheader {
+    font-size: 22px;
+    color: #bbb;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+
+
+  .headerright {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .toprightheader {
+    width: 400px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    border-radius: 5px;
+  }
+
+  .refdate {
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+  }
+
+  .bottomrightheader {
+    width: 400px;
+    border: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+    border-radius: 5px;
+  }
+
+  .toprightleftheader {
+    width: 30%;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 14px;
+  }
+
+  .toprightrightheader {
+    width: 70%;
+    font-size: 14px;
+  }
+
+  .bottomrightstatic {
+    text-align: right;
+  }
+
+  .bottomrightleft {
+    padding: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+    font-size: 14px;
+  }
+
+  .bottomrightright {
+    padding: 10px;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .textnotes {
+    display: flex;
+    align-items: flex-end;
+    height: 280px;
+  }
+
+  .textbox {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px black solid;
+    height: 100px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .itembox {
+    border: 1px black solid;
+    min-height: 450px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+
+  .itemheader {
+    border-bottom: 1px black solid;
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+    padding: 5px 0;
+    white-space: nowrap;
+  }
+
+  .sentunit,
+  .returnedunit {
+    display: flex;
+    margin: 20px 10px;
+    border: 1px black solid;
+    padding: 10px 0;
+    border-radius: 8px;
+
+  }
+
+  .sentunit p,
+  .returnedunit p,
+  .sentunit b,
+  .returnedunit b {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-word;
+  }
+
+  .srunit {
+    width: 140px;
+    text-align: end;
+    padding-right: 10px;
+  }
+
+  .partnr {
+    width: 80px;
+
+  }
+
+  .part {
+    width: 240px;
+  }
+
+  .serial {
+    width: 160px;
+
+  }
+
+  .sere {
+    width: 120px;
+    text-align: center;
+  }
+
+  .itemrow {
+    display: flex;
+    flex-direction: row;
+    padding: 3px;
+  }
+
+  .Partnum {
+    width: 150px;
+    padding-bottom: 5px;
+    padding-left: 2px;
+  }
+
+  .notes {
+    display: flex;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    overflow: hidden;
+    background-color: #fcf86f;
+    margin-top: 160px
+  }
+
+
+  .notes b {
+    text-align: end;
+    padding: 10px;
+    padding-left: 20px
+  }
+
+
+
+  .notes p {
+    margin: 0;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 14px;
+  }
+
+  .customercopy {
+    display: flex;
+    margin-top: 100px;
+    margin-left: 35px;
+  }
+
+  .customercopy h3 {
+    line-height: 30px;
+    margin: 0
+  }
+
+  .ekabcopy{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .receiptsent,.receiptreceived{
+    display: flex;
+    justify-content: flex-end;
+    margin:5px;
+  }
+
+  .receiptsent b,.receiptreceived b{
+    margin:5px 10px;
+
+  }
+
+  .receiptsent div,.receiptreceived div{
+    height:110px;
+
+    width:500px;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+
+  .returncopy{
+    display:flex ;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:10px
+  }
+
+  .returncopy h2,
+  .returncopy h3{
+    margin:0;
+    line-height: 32px;
+  }
+  
+
+  .customercopyreturn {
+    display: flex;
+    margin-left: 35px;
+    margin-top:20px
+  }
+
+  .customercopyreturn h3 {
+    line-height: 30px;
+    margin: 0
+  }
+
+  .Qty {
+    width: 40px;
+    text-align: right;
+  }
+
+  .Qty2 {
+    width: 60px;
+    text-align: right;
+  }
+
+  .Price {
+    width: 75px;
+    text-align: right;
+  }
+
+  .Total {
+    width: 75px;
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .Backord {
+    width: 40px;
+  }
+
+  .Backord2 {
+    text-align: right;
+    width: 300px;
+  }
+
+  .Nocharge {
+    width: 40px;
+  }
+
+  .righttotalvalue {
+    width: 32%;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .totalvalue {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .textaligncenter {
+    text-align: center;
+  }
+
+  .dynamicprice {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: right;
+    width: 120px;
+  }
+
+  .contactinfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    border-top: 1px solid black;
+    width: 100%;
+    position: fixed;
+    bottom: 10px;
+    background: rgb(255, 255, 255);
+    height: 70px;
+  }
+
+  .column {
+    width: 400px;
+  }
+
+  .betedig {
+    margin: 0px;
+    resize: none;
+    width: 600px;
+    height: 100px;
+    font-family: arial;
+    font-size: 14px;
+    border: none;
+  }
+
+  @Page {
+    margin-bottom: 50px;
+  }
+
+  @media print {
+
+    html,
+    body {
+      height: 99%;
+    }
+
+    @page {
+      size: portrait
+    }
+  }
+</style>
+
+<body onload="docPrint()">
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerleft">
+        <img src="static/pictures/ekablogo.png" height="75px" style="">
+        <p style="font-size:20px;"><b>Swap #: {{swap[1]}}</b></p>
+        <p style="font-size:18px;font-weight: 700;">Status: {{swstatus[swap[12]]}}</p>
+      </div>
+      <div class="copyheader">
+        Kundens kopia
+      </div>
+      <div class="headerright">
+        {% if swap[36] == 1 %}
+        <div style="margin-right:80px;color:red">
+          <h2>Repair Warranty!</h2>
+        </div>
+        {% endif %}
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Customer:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>&nbsp;</b></p>
+            <p><b>Your reference:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>{{swap[0] | trim}}&nbsp{{swap[2] | trim}}</p>
+            <p>{{customer[3]}}</p>
+            <p>{{customer[5]}}{{customer[6]}}</p>
+            <p>{{customer[19]}}</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;justify-content: flex-end;">
+
+        <div class="refdate">
+          <p><b>Our reference: </b>{{swap[13]}}</p>
+          <p><b>Date: </b>{{swap[3]}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="itemtable">
+      <div class="itemheader">
+        <b class="srunit"></b>
+        <b class="partnr">Part #</b>
+        <b class="part">Part</b>
+        <b class="serial">Serial</b>
+        <b class="sere">Sent / Returned</b>
+      </div>
+      <div class="sentunit">
+        <b class="srunit">Sent Unit:</b>
+        <p class="partnr">{{swap[7]}}</p>
+        <p class="part">{{swap[8]}}</p>
+        <p class="serial">{{swap[9]}}</p>
+        <p class="sere">{{swap[10]}}</p>
+      </div>
+      <div class="returnedunit">
+        <b class="srunit">Returned Unit:</b>
+        <p class="partnr">{{swap[4]}}</p>
+        <p class="part">{{swap[5]}}</p>
+        <p class="serial">{{swap[6]}}</p>
+        <p class="sere">{{swap[11]}}</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <b>Notes.</b>
+      <p>{{swap[15]}}</p>
+    </div>
+
+    <div class="customercopy">
+      <div style="padding-right: 5px;">
+        <h3>För bokning av returfrakt, kontakta </h3>
+      </div>
+      <div>
+
+        <h3>Posten Logistik</h3>
+        <h3>Tel: 0771-33 33 10</h3>
+        <h3>www.posten.se</h3>
+      </div>
+    </div>
+
+    <div class="contactinfo">
+      <div class="column">
+        <p>{{contact[0][2]}}</p>
+        <p>{{contact[1][2]}}</p>
+        <p>{{contact[2][2]}} {{contact[3][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Email / Web:</p>
+        <p>{{contact[6][2]}}</p>
+        <p>{{contact[7][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Phone:</p>
+        <p>Nat. {{contact[4][2]}}</p>
+        <p>Int. {{contact[9][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Org.no / VAT:</p>
+        <p>{{contact[8][2]}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="page-break-before:always;"></div>
+
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerleft">
+        <img src="static/pictures/ekablogo.png" height="75px" style="">
+        <p style="font-size:20px;"><b>Swap #: {{swap[1]}}</b></p>
+        <p style="font-size:18px;font-weight: 700;">Status: {{swstatus[swap[12]]}}</p>
+      </div>
+      <div class="copyheader">
+        Ekabs Kopia
+      </div>
+      <div class="headerright">
+        {% if swap[36] == 1 %}
+        <div style="margin-right:80px;color:red">
+          <h2>Repair Warranty!</h2>
+        </div>
+        {% endif %}
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Customer:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>&nbsp;</b></p>
+            <p><b>Your reference:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>{{swap[0] | trim}}&nbsp{{swap[2] | trim}}</p>
+            <p>{{customer[3]}}</p>
+            <p>{{customer[5]}}{{customer[6]}}</p>
+            <p>{{customer[19]}}</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;justify-content: flex-end;">
+
+        <div class="refdate">
+          <p><b>Our reference: </b>{{swap[13]}}</p>
+          <p><b>Date: </b>{{swap[3]}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="itemtable">
+      <div class="itemheader">
+        <b class="srunit"></b>
+        <b class="partnr">Part #</b>
+        <b class="part">Part</b>
+        <b class="serial">Serial</b>
+        <b class="sere">Sent / Returned</b>
+      </div>
+      <div class="sentunit">
+        <b class="srunit">Sent Unit:</b>
+        <p class="partnr">{{swap[7]}}</p>
+        <p class="part">{{swap[8]}}</p>
+        <p class="serial">{{swap[9]}}</p>
+        <p class="sere">{{swap[10]}}</p>
+      </div>
+      <div class="returnedunit">
+        <b class="srunit">Returned Unit:</b>
+        <p class="partnr">{{swap[4]}}</p>
+        <p class="part">{{swap[5]}}</p>
+        <p class="serial">{{swap[6]}}</p>
+        <p class="sere">{{swap[11]}}</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <b>Notes.</b>
+      <p>{{swap[15]}}</p>
+    </div>
+
+    <div class="ekabcopy">
+      <div class="receiptsent">
+        <b>Freight receipt sent:</b>
+        <div></div>
+      </div>
+      <div class="receiptreceived">
+        <b>Freight receipt received:</b>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="contactinfo">
+      <div class="column">
+        <p>{{contact[0][2]}}</p>
+        <p>{{contact[1][2]}}</p>
+        <p>{{contact[2][2]}} {{contact[3][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Email / Web:</p>
+        <p>{{contact[6][2]}}</p>
+        <p>{{contact[7][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Phone:</p>
+        <p>Nat. {{contact[4][2]}}</p>
+        <p>Int. {{contact[9][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Org.no / VAT:</p>
+        <p>{{contact[8][2]}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="page-break-before:always;"></div>
+
+  <div class="wrapper">
+    <div class="header">
+      <div class="headerleft">
+        <img src="static/pictures/ekablogo.png" height="75px" style="">
+        <p style="font-size:20px;"><b>Swap #: {{swap[1]}}</b></p>
+        <p style="font-size:18px;font-weight: 700;">Status: asdfadfas</p>
+      </div>
+      <div class="copyheader">
+        Returnera denna blankett tillsammans med den trasiga enheten!
+      </div>
+      <div class="headerright">
+        {% if swap[36] == 1 %}
+        <div style="margin-right:80px;color:red">
+          <h2>Repair Warranty!</h2>
+        </div>
+        {% endif %}
+        <div class="toprightheader">
+          <div class="toprightleftheader">
+            <p><b>Customer:</b></p>
+            <p><b>Address:</b></p>
+            <p><b>&nbsp;</b></p>
+            <p><b>Your reference:</b></p>
+          </div>
+          <div class="toprightrightheader">
+            <p>{{swap[0] | trim}}&nbsp{{swap[2] | trim}}</p>
+            <p>{{customer[3]}}</p>
+            <p>{{customer[5]}}{{customer[6]}}</p>
+            <p>{{customer[19]}}</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex;justify-content: flex-end;">
+
+        <div class="refdate">
+          <p><b>Our reference: </b>{{swap[13]}}</p>
+          <p><b>Date: </b>{{swap[3]}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="itemtable">
+      <div class="itemheader">
+        <b class="srunit"></b>
+        <b class="partnr">Part #</b>
+        <b class="part">Part</b>
+        <b class="serial">Serial</b>
+        <b class="sere">Sent / Returned</b>
+      </div>
+      <div class="sentunit">
+        <b class="srunit">Sent Unit:</b>
+        <p class="partnr">{{swap[7]}}</p>
+        <p class="part">{{swap[8]}}</p>
+        <p class="serial">{{swap[9]}}</p>
+        <p class="sere">{{swap[10]}}</p>
+      </div>
+      <div class="returnedunit">
+        <b class="srunit">Returned Unit:</b>
+        <p class="partnr">{{swap[4]}}</p>
+        <p class="part">{{swap[5]}}</p>
+        <p class="serial">{{swap[6]}}</p>
+        <p class="sere">{{swap[11]}}</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <b>Notes.</b>
+      <p>{{swap[15]}}</p>
+    </div>
+
+    <div class="returncopy">
+      <h2 style="color:red">OBS! Släng ej detta dokument!</h2>
+      <h3>För att undvika extra debitering måste den utbytta enheten</h3>
+      <h3>returneras tillsammans med detta dokument inom 14 dagar!</h3>
+    </div>
+
+      <div class="customercopyreturn">
+      <div style="padding-right: 5px;">
+        <h3>För bokning av returfrakt, kontakta </h3>
+      </div>
+      <div>
+
+        <h3>Posten Logistik</h3>
+        <h3>Tel: 0771-33 33 10</h3>
+        <h3>www.posten.se</h3>
+      </div>
+    </div>
+
+    <div class="contactinfo">
+      <div class="column">
+        <p>{{contact[0][2]}}</p>
+        <p>{{contact[1][2]}}</p>
+        <p>{{contact[2][2]}} {{contact[3][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Email / Web:</p>
+        <p>{{contact[6][2]}}</p>
+        <p>{{contact[7][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Phone:</p>
+        <p>Nat. {{contact[4][2]}}</p>
+        <p>Int. {{contact[9][2]}}</p>
+      </div>
+      <div class="column">
+        <p>Org.no / VAT:</p>
+        <p>{{contact[8][2]}}</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+    function docPrint() {
+      document.title = "Swapout #{{swap[1]}}"
+      window.print()
+      setTimeout("closePrintView()", 1000);
+    }
+    /*function closePrintView() {
+      document.location.href = 'delivnotes';
+    }*/
+  </script>
+</body>
+
+</html>

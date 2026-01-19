@@ -313,3 +313,37 @@ def swapsaveitem():
     sql("INSERT",sqlq)
 
     return ('', 204)
+
+    
+@app.route("/swappdf", methods=["GET", "POST"])
+def swappdf():
+    if "loggedin" in request.cookies:
+        pass
+    else:
+        return redirect(url_for("login"))
+    theme,notheme = setTheme()
+
+    swap = request.args.get("swap")
+
+    swstatus = {0:"Ingen åtgärd",
+    2:"Skickad till kund",
+    3:"Returnerad",
+    4:"RMA till leverantör",
+    5:"Åter från RMA",
+    6:"Väntar på låneenhet",
+    7:"Kallager",
+    9:"Avslutad"}
+    
+    print(swap)
+    sqlquery = sql("SELECT", "SELECT * FROM Swap WHERE SWP_No ='"+swap+"'")[0]
+    customer = sql("SELECT", "SELECT * FROM Customers WHERE Cust_CustID = '"+sqlquery[0]+"'")[0]
+
+    for x,y in enumerate(sqlquery):
+        print(x,y)
+
+    contact = sql("SELECT","SELECT * FROM Parameters")
+    print(customer)
+
+    print(sqlquery)
+
+    return render_template("swappdf.html",swap=sqlquery,contact=contact,customer=customer,swstatus=swstatus)
