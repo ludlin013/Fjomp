@@ -363,7 +363,7 @@ def custstoreselect():
                     except:
                         result +=  "\t"
                     try:
-                        result +=   x[6].strip()
+                        result +=   str(x[6])
                     except:
                         pass
 
