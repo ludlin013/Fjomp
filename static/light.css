@@ -317,3 +317,7 @@ td {
 textarea {
   background: rgb(210,210,210)
 }
+
+#predeftextarea{
+  background-color: white;
+}
