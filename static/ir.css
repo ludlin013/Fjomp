@@ -118,6 +118,7 @@ input[type=number] {
 
 .formitem-ir{
   margin:2px;
+  margin-left:0;
   display:flex;
   justify-content: space-between;
   align-items: baseline;
