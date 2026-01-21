@@ -6,6 +6,7 @@
 .toppage-ir{
   display:flex;
   padding:10px;
+  padding-left: 0;
   border-bottom: 1px solid #ccc;
   margin-bottom: 20px;
 }
@@ -112,12 +113,15 @@ input[type=number] {
 
 .formitem-irstatus{
   padding:10px 0;
+  display: flex;
 }
 
 .formitem-ir{
   margin:2px;
   display:flex;
   justify-content: space-between;
+  align-items: baseline;
+
 }
 
 ::-webkit-outer-spin-button, ::-webkit-inner-spin-button {

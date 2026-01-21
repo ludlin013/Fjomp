@@ -38,8 +38,10 @@
   </div>
 
   <div class="mainwrapir">
-    <h1 class="noselect">IR</h1>
-      <label>Go to # <input id="gotoir" type="number" value="{{irnumber}}" autofocus style="padding:5px" placeholder="Search" onclick="this.select()"/></label>
+    <h1 class="noselect" style="display: flex;">IR</h1>
+    <div style="display: flex; align-items: baseline;">
+      <label style="width:90px;text-align: right;"> Open IR #</label><input id="gotoir" type="number" value="{{irnumber}}" autofocus style="padding:5px" placeholder="Search" onclick="this.select()"/>
+    </div>
 
     <div class="toppage-ir">
 
@@ -47,7 +49,7 @@
 
         <div class="ircustid">
 
-            <div class="formitem-ir"><label class="noselect">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" value="{{irnumber}}"></div>
+            <div class="formitem-ir"><label class="noselect" style="width: 90px;text-align: right;">IR #:</label><input id="irirn" class="forminput-ir" name="ir" type="number" value="{{irnumber}}"></div>
             <input type="submit" style="display:none">
           {% if error  %}
           <p id="irerror" class="noselect">{{error}}</p>
@@ -58,10 +60,10 @@
           <div class="storelist" id="storelist" style="display:none">
 
           </div>
-            <div class="formitem-ir"><label class="noselect">Cust.:</label><input onclick="this.select()" name="ircustid" id="storenumber" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
+            <div class="formitem-ir"><label class="noselect" style="margin-left:7px">Cust.:</label><input onclick="this.select()" name="ircustid" id="storenumber" class="forminput-ir" type="text" value="{{customer[0].strip()}}"></div>
 
         </div>
-        <div class="formitem-irstatus"><label class="noselect">IR Status:</label><select id="irclosed" class="forminput-ir" style="width: 210px;" type="text" name="status-ir">
+        <div class="formitem-irstatus"><label class="noselect"  style="width: 90px;text-align: right;">IR Status:</label><select id="irclosed" class="forminput-ir" style="flex:1" type="text" name="status-ir">
           <option value="0" {% if irinfo[12] == 0%} selected {% endif %}>Not Recieved</option>
           <option value="2" {% if irinfo[12] == 2%} selected {% endif %}>Recieved</option>
           <option value="3" {% if irinfo[12] == 3%} selected {% endif %}>In process</option>

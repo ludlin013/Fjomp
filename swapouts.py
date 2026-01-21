@@ -314,6 +314,23 @@ def swapsaveitem():
 
     return ('', 204)
 
+
+@app.route("/swreplace", methods=["GET","POST"])
+def swreplace():
+
+    swap = request.args.get("id")
+
+
+    #swap = request.form["swap"].upper()
+    #itemtype = request.form["type"]
+    #item = request.form["item"]
+
+    #sqlq = f"UPDATE Swap SET {itemtype} = '{item}' where SWP_No = '{swap}'"
+    
+    #sql("INSERT",sqlq)
+
+    return ('', 204)
+
     
 @app.route("/swappdf", methods=["GET", "POST"])
 def swappdf():
