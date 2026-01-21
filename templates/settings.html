@@ -118,6 +118,9 @@
       <a class="settingadminrow" onclick="show('settingpg')">
         <p class="settingsthemep noselect">Edit Pricegroups</p>
       </a>
+      <a class="settingadminrow" onclick="show('settingpredef')">
+        <p class="settingsthemep noselect">Edit Predfined texts</p>
+      </a>
       <a class="settingadminrow" onclick="show('settingsparameters')">
         <p class="settingsthemep noselect">Parameters</p>
       </a>
@@ -187,6 +190,37 @@
   <div class="pgbuttons">
     <button type="button" class="set noselect"  id="pgsave" onclick="savepg()">Save</button>
     <button type="button" class="set noselect" id="pgnew" onclick="newpg()">New</button>
+  </div>
+
+
+</div>
+
+<div class="settingstechwrap settingscategories" id="settingpredef" style="display:none">
+  <h3 class="noselect">Predefined texts</h3>
+  <form class="settingstechmain" action="javascript:" id="predefform" style="display: flex;flex-direction: column;">
+
+    <script>
+        const datap = {{ swappredef | tojson }};
+        const predef = Object.fromEntries(datap.map(row => [row[0], row[2]]));
+
+        console.log(predef);
+        
+    </script>
+      <select name="SWT_ID" id="predefselected" onchange="document.getElementById('predeftextarea').value = predef[this.value]">
+      {% for x in swappredef%}
+        <option value="{{x[0]}}">{{x[1] | trim}}</option>
+      {% endfor %}
+    </select>
+    <textarea name="SWT_Text" id="predeftextarea" cols="80" rows="10">
+
+    </textarea>
+    <script>
+      document.getElementById('predeftextarea').value = predef[document.getElementById('predefselected').value]
+    </script>
+  </form>
+    <div class="pgbuttons">
+    <button type="button" class="set noselect"  id="pgsave" onclick="savepredef()">Save</button>
+    <!--<button type="button" class="set noselect" id="pgnew" onclick="newpg()">New</button>-->
   </div>
 
 

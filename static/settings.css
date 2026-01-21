@@ -505,3 +505,14 @@ h3{
   width:300px;
   border-radius: 4px
 }
+
+#predefselected{
+  border:none;
+  padding:5px
+}
+
+#predeftextarea{
+  background:white;
+  padding:5px;
+  margin-top:5px;
+}

@@ -137,6 +137,22 @@ function savepg(){
 
 }
 
+function savepredef(){
+  var xhttp = new XMLHttpRequest();
+  const fd = new FormData(document.getElementById('predefform'));
+
+  console.log(fd);
+  
+
+  xhttp.onload = function(){
+    document.getElementById('pgsave').textContent = "Saved!"
+  }
+
+  xhttp.open("POST","/savepredef",true);
+  xhttp.send(fd);
+
+}
+
 function saveve(){
   var xhttp = new XMLHttpRequest();
   const fd = new FormData(document.getElementById('veform'));

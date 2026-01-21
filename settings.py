@@ -66,6 +66,17 @@ def settings():
     office = sql("SELECT", "SELECT * FROM Office")
     freight = sql("SELECT", "SELECT * FROM FreightTypes")
     charge = sql("SELECT", "SELECT * FROM ChargeMode")
+    swaptext = sql("SELECT","SELECT SWT_ID, SWT_Descript, SWT_Text FROM SwapText")
+
+   #print(swaptext)
+
+    swappredef = []
+
+
+    for x in swaptext:
+        swappredef.append(list(x))
+
+
 
     techs.sort(key = lambda x:x[0])
     vendors.sort(key = lambda x:x[0])
@@ -104,7 +115,7 @@ def settings():
     9: "Garanti 5 år",}
 
 
-    return render_template("settings.html",chargeconv=chargeconv,charge=charge,freight=freight, active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office)
+    return render_template("settings.html",chargeconv=chargeconv,charge=charge,freight=freight, active = active, usrtech=usrtech,usrstatus=usrstatus,mail=mail,theme=theme,notheme=notheme,pgs=pgs,auth=authenticated,techs=techs,vendors=vendors, server=server, database=database, parameters=parameters,models=models,office=office,swappredef=swappredef)
 
 @app.route("/settings/changepassword",methods=["GET","POST"])
 def changepwd():
@@ -116,17 +127,17 @@ def changepwd():
     if "loggedin" in request.cookies:
         usr = request.cookies.get('username')
     error = None
-    print(usr)
+   #print(usr)
     oldpass = sql("SELECT","SELECT Tech_Pwd FROM Technicians WHERE Tech_ID = '" + usr +"'")[0][0].strip()
 
-    print(oldpass)
+   #print(oldpass)
 
     if request.method == 'POST':
         oldpwd = request.form["oldpwd"]
         newpwd1 = request.form["newpwd"]
         newpwd2 = request.form["newpwd2"]
 
-        print([oldpwd,newpwd1,newpwd2])
+       #print([oldpwd,newpwd1,newpwd2])
         if oldpwd == oldpass:
             if newpwd1 == newpwd2 and newpwd1 != "" and newpwd2 != "":
                 sql("INSERT","UPDATE Technicians SET Tech_Pwd = '" + newpwd1 + "' WHERE Tech_ID = '"+ usr +"'")
@@ -195,7 +206,7 @@ def bugreport():
         s.quit()
 
         f = request.files['sc']
-        print([f.filename])
+       #print([f.filename])
         if f.filename != "":
             if "png" in f.filename or "jpeg" in f.filename or "jpg" in f.filename or "tif" in f.filename or "gif" in f.filename or "":
                 f.save("./static/bugs/"+request.form["title"]+"/"+request.form["title"]+".png")
@@ -247,7 +258,7 @@ def reportdone():
 @app.route("/savecp",methods=["GET","POST"])
 def savevariable():
 
-    print(request.form)
+   #print(request.form)
 
     for x in request.form:
         #print(x)
@@ -261,7 +272,7 @@ def savevariable():
 @app.route("/savemodels",methods=["GET","POST"])
 def savemodels():
 
-    print(len(request.form)//6)
+   #print(len(request.form)//6)
     #print(request.form)
 
     for x in range(len(request.form)//6):
@@ -307,12 +318,31 @@ def newch():
 def savepg():
 
     count = len(request.form)//3
-    print(count)
+   #print(count)
 
     for x in range(count):
         sqlq = "UPDATE Pricegroups SET pg_no = '"+request.form[str(x)+"no"]+"', pg_Descript = '"+request.form[str(x)+"name"].replace("'","''")+"' WHERE pg_ID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+       #print(sqlq)
         sql("INSERT", sqlq)
+
+    return ('', 204)
+
+@app.route("/savepredef",methods=["GET","POST"])
+def savepredef():
+
+    #print(request.form)
+
+    #print("UPDATE SwapText SET SWT_Text = '"+ request.form.get("SWT_Text") +"' WHERE SWT_ID = '" + request.form.get("SWT_ID") + "'")
+
+    sql("INSERT", "UPDATE SwapText SET SWT_Text = '"+ request.form.get("SWT_Text") +"' WHERE SWT_ID = '" + request.form.get("SWT_ID") + "'")
+
+    #count = len(request.form)//3
+    #print(count)
+
+    #for x in range(count):
+    #    sqlq = "UPDATE Pricegroups SET pg_no = '"+request.form[str(x)+"no"]+"', pg_Descript = '"+request.form[str(x)+"name"].replace("'","''")+"' WHERE pg_ID = '"+request.form[str(x)+"id"]+"'"
+    #    print(sqlq)
+    #    sql("INSERT", sqlq)
 
     return ('', 204)
 
@@ -323,7 +353,7 @@ def savech():
 
     for x in range(count):
         sqlq = "UPDATE ChargeMode SET CM_Type = '"+request.form[str(x)+"type"]+"', CM_Description = '"+request.form[str(x)+"desc"]+"', CM_WarMonths = '"+request.form[str(x)+"month"]+"' WHERE CM_ID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+        #print(sqlq)
         sql("INSERT", sqlq)
 
     return ('', 204)
@@ -332,11 +362,11 @@ def savech():
 def saveve():
 
     count = len(request.form)//13
-    print(count)
+    #print(count)
 
     for x in range(count):
         sqlq = "UPDATE Vendors SET Vend_Code = '"+request.form[str(x)+"code"]+"', Vend_Name = '"+request.form[str(x)+"name"]+"',Vend_Currency = '"+request.form[str(x)+"curr"]+"',Vend_Address1 = '"+request.form[str(x)+"add1"]+"', Vend_Address2 = '"+request.form[str(x)+"add2"]+"', Vend_Address3 = '"+request.form[str(x)+"add3"]+"', Vend_Zip = '"+request.form[str(x)+"zip"]+"', Vend_Country = '"+request.form[str(x)+"country"]+"',Vend_Phone = '"+request.form[str(x)+"phone"]+"', Vend_Fax = '"+request.form[str(x)+"fax"]+"', Vend_Contact = '"+request.form[str(x)+"contact"]+"', Vend_Mail = '"+request.form[str(x)+"mail"]+"' WHERE Vend_ID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+       #print(sqlq)
         sql("INSERT", sqlq)
 
     return ('', 204)
@@ -348,7 +378,7 @@ def savefe():
 
     for x in range(count):
         sqlq = "UPDATE FreightTypes SET Freight_ID = '"+request.form[str(x)+"rid"]+"', Freight_Description = '"+request.form[str(x)+"desc"]+"',Freight_Std = '"+request.form[str(x)+"std"]+"' WHERE Freight_RID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+       #print(sqlq)
         sql("INSERT", sqlq)
 
     return ('', 204)
@@ -414,7 +444,7 @@ def remve():
 def remmod():
 
     sql("INSERT", "DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
-    print("DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
+   #print("DELETE FROM Models WHERE Mod_ID = '"+request.form["id"]+"'")
     return ('', 204)
 
 
@@ -425,7 +455,7 @@ def savete():
 
     for x in range(count):
         sqlq = "UPDATE Technicians SET Tech_ID = '"+request.form[str(x)+"ids"].upper()+"', Tech_Firstname = '"+request.form[str(x)+"first"]+"', Tech_Lastname = '"+request.form[str(x)+"last"]+"', Tech_Office = '"+request.form[str(x)+"office"]+"', Tech_Tech = '"+request.form[str(x)+"tech"]+"' WHERE Tech_nID = '"+request.form[str(x)+"id"]+"'"
-        print(sqlq)
+       #print(sqlq)
         sql("INSERT", sqlq)
 
     return ('', 204)
@@ -438,7 +468,7 @@ def newte():
     newid = sql("SELECT","SELECT * FROM Technicians")
 
     for x in newid:
-        print(x)
+       #print(x)
         if x[1].strip() == "NEWTE":
             newid = str(x[8])
             break
