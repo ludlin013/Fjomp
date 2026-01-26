@@ -132,7 +132,7 @@
                     onchange="document.getElementById('{{columns[8]}}').value = this.options[this.selectedIndex].text;saveitem('{{columns[8]}}');saveitem('{{columns[7]}}')">
                     <option value="" disabled selected></option>
                     {% for name, id in part %}
-                    <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{id}} {{name}}
+                    <option autocomplete="off" value="{{id}}" {% if allswap[7]==id %} selected {% endif %}>{{name}}
                     </option>
                     {% endfor %}
                   </select>
