@@ -317,3 +317,25 @@ function loanusable(){
   
 
 }
+
+function swapreplace(swp){
+
+  if(!confirm('Är du säker?')){
+    return
+  }
+
+  const fd = new FormData();
+
+  fd.append("SWP_ID",swp)
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function(){
+    if (this.status == 200){
+      alert(xhttp.response)
+    }
+    
+  }
+  xhttp.open("POST","/swapreplace",true);
+  xhttp.send(fd);
+
+}

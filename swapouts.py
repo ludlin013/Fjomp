@@ -315,19 +315,34 @@ def swapsaveitem():
     return ('', 204)
 
 
-@app.route("/swreplace", methods=["GET","POST"])
-def swreplace():
+@app.route("/swapreplace", methods=["GET","POST"])
+def swapreplace():
 
-    swap = request.args.get("id")
+    swap = request.form.get('SWP_ID')
 
+    sqlquery = sql("SELECT", "SELECT * FROM Swap WHERE SWP_No ='"+swap+"'")[0]
 
-    #swap = request.form["swap"].upper()
-    #itemtype = request.form["type"]
-    #item = request.form["item"]
+    print(sqlquery)
 
-    #sqlq = f"UPDATE Swap SET {itemtype} = '{item}' where SWP_No = '{swap}'"
+    units = sql("SELECT", "SELECT * FROM Units WHERE Unit_CustID = '"+sqlquery[0]+"'")
+
+    unit_exists = False
+    unit_id = None
+
+    for x in units:
+        if sqlquery[6].strip() == x[4].strip():
+            unit_exists = True
+            unit_id = x[12]
+            break
+
+    if not unit_exists:
+        return ('Unit hittades inte',200)
+
+    sqlq = f"UPDATE Unit SET 'Unit_Serial' = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
     
-    #sql("INSERT",sqlq)
+    print(sqlq)
+
+    sql("INSERT",sqlq)
 
     return ('', 204)
 

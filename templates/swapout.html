@@ -338,21 +338,6 @@
                 src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
           </div>
           <div class="buttonbarigen">
-            <a onclick="window.open('mailto:nisse@ekabss.com?subject=Swapout #{{allswap[1]}}&body=http://p2019/swapouts?sw={{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
-                src="static/pictures/{{theme}}/mail.png">
-              <p>Mail</p>
-              <p class="newlinesc">Ctrl + M</p>
-            </a>
-            <a href="/swreplace?id={{allswap[1]}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
-                src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
-              <p>Replace</p>
-              <p class="newlinesc">Ctrl + K</p>
-            </a>
-            <a href="/swapunfinished" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
-                src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
-              <p>Unfinished</p>
-              <p class="newlinesc">Ctrl + K</p>
-            </a>
             <a href="/swapnew" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
               <p>New</p>
@@ -364,6 +349,28 @@
               <p>Delete</p>
               <p class="newlinesc">Ctrl + Del</p>
             </a>
+            <a onclick="swapreplace('{{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
+              <p>Replace</p>
+              <p class="newlinesc">Ctrl + K</p>
+            </a>
+            <a onclick="window.open('mailto:nisse@ekabss.com?subject=Swapout #{{allswap[1]}}&body=http://p2019/swapouts?sw={{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/mail.png">
+              <p>Mail</p>
+              <p class="newlinesc">Ctrl + M</p>
+            </a>
+            <a id="printbutton" onclick="window.location.href= '/swappdf?swap=' + {{allswap[1]}}" class="buttonsbar-item-delivnotes"><img
+                class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
+              <p>Print</p>
+              <p class="newlinesc">Ctrl + P</p>
+            </a>
+            <a href="/swapunfinished" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
+              <p>Unfinished</p>
+              <p class="newlinesc">Ctrl + K</p>
+            </a>
+            
+            
             <!--<a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/undo.png">
               <p>Undo</p>
@@ -375,11 +382,7 @@
               <p class="newlinesc">Ctrl + S</p>
             </a>-->
             
-            <a id="printbutton" onclick="window.location.href= '/swappdf?swap=' + {{allswap[1]}}" class="buttonsbar-item-delivnotes"><img
-                class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
-              <p>Print</p>
-              <p class="newlinesc">Ctrl + P</p>
-            </a>
+            
           </div>
         </div>
       </div>
