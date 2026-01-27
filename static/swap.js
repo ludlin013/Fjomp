@@ -332,6 +332,8 @@ function swapreplace(swp){
   xhttp.onload = function(){
     if (this.status == 200){
       alert(xhttp.response)
+    }else{
+      alert("Replace successful!")
     }
     
   }
