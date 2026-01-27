@@ -338,7 +338,7 @@ def swapreplace():
     if not unit_exists:
         return ('Unit hittades inte',200)
 
-    sqlq = f"UPDATE Unit SET 'Unit_Serial' = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
+    sqlq = f"UPDATE Unit SET Unit_Serial = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
     
     print(sqlq)
 
