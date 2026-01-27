@@ -101,9 +101,32 @@ def swapouts():
 
     vendors.sort(key = lambda x:x[0])
 
-    #print(vendors)
+    print(allswap[9])
+
+    replaced_status = False
+
+    if allswap[9] != "":
+
+        unit_rep = sql("SELECT", f"SELECT * FROM Units WHERE Unit_Serial = '{ allswap[9].strip() }'")
+
+
+        if len(unit_rep) > 0:
+            replaced_status = unit_rep[0][9]
+
+
+        print(replaced_status)
+
+        cutoff = datetime(2000, 1, 1).date()
+
+        if replaced_status and replaced_status > cutoff:
+            print("replaced")
+        else:
+            print("not replaced")
+
+        print("Replaced Unit",unit_rep)
     
     for x in techsql:
+    
         techs.append(x[0])
 
 
