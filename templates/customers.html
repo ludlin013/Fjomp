@@ -374,7 +374,7 @@
               <tr class="row-Customers" ondblclick="window.location.href = '/swapouts?sw={{x[1]}}'">
                 <td class="thdates-customers"><input type="date" value="{{x[3]}}"></td>
                 <td class="threfs-customers"><input value="{{x[1]}}"></td>
-                <td class="thparts-customers"><input value="{{x[4].strip()}}"></td>
+                <td class="thparts-customers"><input value="{% if x[4] %}  {{x[4].strip()}} {% endif %}"></td>
                 <td class="thdescs-customers"><input value="{{x[5].strip()}}"></td>
                 <td class="thserialss-customers"><input value="{{x[9].strip()}}"></td>
                 <td class="thserialrs-customers"><input value="{{x[6].strip()}}"></td>
