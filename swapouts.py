@@ -101,29 +101,13 @@ def swapouts():
 
     vendors.sort(key = lambda x:x[0])
 
-    print(allswap[9])
+    print(type(allswap[37]))
 
-    replaced_status = False
+    replaced = False
 
-    if allswap[9] != "":
+    if allswap[37] == 1:
+        replaced = "Unit has been replaced in Customers Unit file."
 
-        unit_rep = sql("SELECT", f"SELECT * FROM Units WHERE Unit_Serial = '{ allswap[9].strip() }'")
-
-
-        if len(unit_rep) > 0:
-            replaced_status = unit_rep[0][9]
-
-
-        print(replaced_status)
-
-        cutoff = datetime(2000, 1, 1).date()
-
-        if replaced_status and replaced_status > cutoff:
-            print("replaced")
-        else:
-            print("not replaced")
-
-        print("Replaced Unit",unit_rep)
     
     for x in techsql:
     
@@ -187,7 +171,7 @@ def swapouts():
 
 
 
-    return render_template("swapout.html",chargemode=chargemode,vendors=vendors,recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part)
+    return render_template("swapout.html",chargemode=chargemode,vendors=vendors,recycled=recycled,usrtech=usrtech,usr=usr,usrstatus=usrstatus,theme=theme,notheme=notheme,columns=columns,techs=techs,predef=predef,swapout=swapout,min=min,previous=previous,next=next,maxad=maxad,allswap=allswap,swstatus=swstatus, store=store,part=part,replaced=replaced)
 
 @app.route("/swapunfinished")
 def swapunfinished():
@@ -362,10 +346,11 @@ def swapreplace():
         return ('Unit hittades inte',200)
 
     sqlq = f"UPDATE Units SET Unit_Serial = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
+    sqlreplaced = f"UPDATE Swap SET SWP_Replaced = '1' where SWP_No = '{swap}'"
     
-    print(sqlq)
 
     sql("INSERT",sqlq)
+    sql("INSERT",sqlreplaced)
 
     return ('', 204)
 

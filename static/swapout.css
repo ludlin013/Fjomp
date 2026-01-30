@@ -15,6 +15,11 @@
 
 }
 
+.replacedtext {
+  color: green;
+  font-size: smaller;
+}
+
 .unfinishedSwapTable {
   display: flex;
   flex-direction: column;
@@ -30,7 +35,7 @@
   cursor: pointer;
 }
 
-.unfinishedSwapRow td, 
+.unfinishedSwapRow td,
 .unfinishedSwapRow th {
   padding: 2px 5px;
 }
@@ -44,15 +49,15 @@
 }
 
 .unfinishedcust {
-  width:100px
+  width: 100px
 }
 
 .unfinishedpartser {
-  width:100px
+  width: 100px
 }
 
 .unfinishedpart {
-  width:240px
+  width: 240px
 }
 
 .unfinishedsentser {
@@ -64,15 +69,15 @@
 }
 
 .unfinishedrecvser {
-  width:140px
+  width: 140px
 }
 
 .unfinishedrecvdat {
-  width:100px
+  width: 100px
 }
 
 .unfinishedstatus {
-  width:100px
+  width: 100px
 }
 
 #statusmsg {
@@ -266,70 +271,68 @@ input {
 }
 
 
-@media only screen and (min-width: 1450px) {
-  .lvl1-swapout {
-    display: flex;
-    flex-direction: row;
-  }
+.lvl1-swapout {
+  display: flex;
+  flex-direction: row;
+}
 
-  .lvl2-header-swapout {
-    display: flex;
-    flex-direction: row;
-  }
+.lvl2-header-swapout {
+  display: flex;
+  flex-direction: row;
+}
 
-  .partnumber-swapout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
-  }
+.partnumber-swapout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
+}
 
-  .formleftside4-swapout {
-    display: flex;
-    flex-direction: row;
-  }
+.formleftside4-swapout {
+  display: flex;
+  flex-direction: row;
+}
 
-  .lvl4item-swapout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
-  }
+.lvl4item-swapout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
+}
 
-  .lvl5item-swapout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
-  }
+.lvl5item-swapout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
+}
 
-  .lvl5form-swapout {
-    display: flex;
-    flex-direction: row;
-  }
+.lvl5form-swapout {
+  display: flex;
+  flex-direction: row;
+}
 
-  .textarea-swapout {
-    width: 1040px;
-    height: 80px;
-  }
+.textarea-swapout {
+  width: 1040px;
+  height: 80px;
+}
 
-  .formitem-textarea-swapout {
-    width: 1280px;
-  }
+.formitem-textarea-swapout {
+  width: 1280px;
+}
 
-  .leftside3-swapout {}
+.leftside3-swapout {}
 
-  .lvl3-form-swapout {
-    display: flex;
-    flex-direction: row;
-  }
+.lvl3-form-swapout {
+  display: flex;
+  flex-direction: row;
+}
 
-  .lvl3formitem-swapout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
-  }
+.lvl3formitem-swapout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
 }
 
 @media only screen and (max-width: 600px) {

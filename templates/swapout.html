@@ -67,7 +67,7 @@
                 <div class="formitem-swapout"><label class="noselect">Store#/Ref:</label><input onclick="this.select()"
                     name="{{columns[0]}}" id="storenumber" class="forminput-swapout smallerinput-swapout"
                     value="{{allswap[0]}}" type="text"><input name="ref" id="{{columns[16]}}" class="forminput-swapout"
-                    value="{{allswap[16]}}" type="text"></div>
+                    value="{{allswap[16]}}" name="{{columns[16]}}" onchange="saveitem('{{columns[16]}}')" type="text"></div>
                 <div class="formitem-swapout"><label class="noselect">Name:</label><input name="storename"
                     id="storeName" value="{{store[2]}}" class="forminput-swapout" type="text"></div>
                 <div class="formitem-swapout"><label class="noselect">Address:</label><input name="storeaddress"
@@ -102,13 +102,14 @@
               <div class="form-swapout" name="form-topright-swapout">
                 <!--<div class="formitem-swapout"><label>Swap #:</label><input readonly class="forminput-swapout smallerinput-swapout" type="text"></div>
               -->
-                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect" style="margin-right: 10px;">Open swap #:</label><input autofocus
-                    onclick="this.select()" value="{{allswap[1]}}" id="opensw"
+                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect"
+                    style="margin-right: 10px;">Open swap #:</label><input autofocus onclick="this.select()"
+                    value="{{allswap[1]}}" id="opensw" class="forminput-swapout smallerinput-swapout" type="text"></div>
+                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect"
+                    style="margin-right: 10px;">Swap #:</label><input autofocus value="{{allswap[1]}}" disabled
                     class="forminput-swapout smallerinput-swapout" type="text"></div>
-                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect" style="margin-right: 10px;">Swap #:</label><input autofocus
-                    value="{{allswap[1]}}" disabled
-                    class="forminput-swapout smallerinput-swapout" type="text"></div>
-                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect" style="margin-right:10px">Status:</label>
+                <div class="formitem-swapout" style="justify-content: flex-end;"><label class="noselect"
+                    style="margin-right:10px">Status:</label>
                   <select class="forminput-swapout" style="width: 160px;" type="text" name="status" id="{{columns[12]}}"
                     onchange="saveitem('{{columns[12]}}')">
                     {% for id, name in swstatus.items() %}
@@ -152,11 +153,11 @@
             <div class="middle2-swapout">
               <div class="form-swapout" name="form-middle2-swapout">
                 <div class="formitem-swapout"><label class="noselect">Serial #:</label><input class="forminput-swapout"
-                    style="width: 270px;" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text" name="sentSeri"
-                    value="{{allswap[9]}}"></div>
+                    style="width: 270px;" id="{{columns[9]}}" onchange="saveitem('{{columns[9]}}')" type="text"
+                    name="sentSeri" value="{{allswap[9]}}"></div>
                 <div class="formitem-swapout"><label class="noselect">Description:</label><input
-                    class="forminput-swapout" style="width: 270px;" type="text" name="sentDesc" id="{{columns[8]}}" readonly
-                    value="{{allswap[8]}}"></div>
+                    class="forminput-swapout" style="width: 270px;" type="text" name="sentDesc" id="{{columns[8]}}"
+                    readonly value="{{allswap[8]}}"></div>
               </div>
             </div>
             <div class="right2-swapout">
@@ -182,7 +183,9 @@
           </div>
         </div>
         <div class="lvl3-swapout">
+          
           <h1 class="noselect">Received Unit:</h1>
+          
           <div class="leftside3-swapout">
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout partnumber-swapout"><label class="noselect">Part #:</label>
@@ -199,7 +202,9 @@
                   name="recDesc" value="{{allswap[5]}}" class="forminput-swapout" type="text" id="{{columns[5]}}"></div>
               <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Serial #:</label><input
                   name="recSeri" value="{{allswap[6]}}" class="forminput-swapout" type="text" id="{{columns[6]}}"
-                  onchange="saveitem('{{columns[6]}}')"></div>
+                  onchange="saveitem('{{columns[6]}}')">
+
+              </div>
               <div class="formitem-swapout lvl3formitem-swapout"><label class="noselect">Returned Date:</label><input
                   name="recDate" value="{{allswap[11]}}" class="forminput-swapout" type="date" style="width:150px;"
                   id="{{columns[11]}}" onchange="saveitem('{{columns[11]}}')"
@@ -218,6 +223,9 @@
                   recycled:</label><input class="forminput-swapout" type="number" value="{{recycled}}" readonly></div>
             </div>
           </div>
+          {% if replaced %}
+          <p class="replacedtext">{{replaced}}</p>
+          {% endif %}
           <div class="rightside3-swapout">
             <div class="form-swapout lvl3-form-swapout">
               <div class="formitem-swapout formitem-textarea-swapout"><label class="noselect">Problem description,
@@ -349,18 +357,20 @@
               <p>Delete</p>
               <p class="newlinesc">Ctrl + Del</p>
             </a>
-            <a onclick="swapreplace('{{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
-                src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
+            <a onclick="swapreplace('{{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img
+                class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/replace.png" alt="Ctrl + M">
               <p>Replace</p>
               <p class="newlinesc">Ctrl + K</p>
             </a>
-            <a onclick="window.open('mailto:nisse@ekabss.com?subject=Swapout #{{allswap[1]}}&body=http://p2019/swapouts?sw={{allswap[1]}}')" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+            <a onclick="window.open('mailto:nisse@ekabss.com?subject=Swapout #{{allswap[1]}}&body=http://p2019/swapouts?sw={{allswap[1]}}')"
+              class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/mail.png">
               <p>Mail</p>
               <p class="newlinesc">Ctrl + M</p>
             </a>
-            <a id="printbutton" onclick="window.location.href= '/swappdf?swap=' + {{allswap[1]}}" class="buttonsbar-item-delivnotes"><img
-                class="buttonbarpic-delivnotes" src="static/pictures/{{theme}}/print.png">
+            <a id="printbutton" onclick="window.location.href= '/swappdf?swap=' + {{allswap[1]}}"
+              class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
+                src="static/pictures/{{theme}}/print.png">
               <p>Print</p>
               <p class="newlinesc">Ctrl + P</p>
             </a>
@@ -369,8 +379,8 @@
               <p>Unfinished</p>
               <p class="newlinesc">Ctrl + K</p>
             </a>
-            
-            
+
+
             <!--<a href="swapouts?sw={{swapout}}" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/undo.png">
               <p>Undo</p>
@@ -381,8 +391,8 @@
               <p>Save</p>
               <p class="newlinesc">Ctrl + S</p>
             </a>-->
-            
-            
+
+
           </div>
         </div>
       </div>
