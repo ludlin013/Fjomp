@@ -279,7 +279,7 @@ def lookup():
                 date = datetime(1900,1,1).date()
                 if x[3] != None:
                     date = x[3]
-                if btwdate1 < date < btwdate2:
+                if btwdate1 < date <= btwdate2:
                     Dict = {}
                     Dict["url"] = "/swapouts?sw="+str(x[1])
                     Dict["type"] = "Sent-Swapouts"
@@ -308,7 +308,7 @@ def lookup():
                 date = datetime(1900,1,1).date()
                 if x[3] != None:
                     date = x[3]
-                if btwdate1 < date < btwdate2:
+                if btwdate1 < date <= btwdate2:
                     Dict = {}
                     Dict["url"] = "/swapouts?sw="+str(x[1])
                     Dict["type"] = "Returned-Swapouts"
