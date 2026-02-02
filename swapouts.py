@@ -347,14 +347,12 @@ def swapreplace():
 
     sqlq = f"UPDATE Units SET Unit_Serial = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
     sqlreplaced = f"UPDATE Swap SET SWP_Replaced = '1' where SWP_No = '{swap}'"
-    
 
     sql("INSERT",sqlq)
     sql("INSERT",sqlreplaced)
 
     return ('', 204)
 
-    
 @app.route("/swappdf", methods=["GET", "POST"])
 def swappdf():
     if "loggedin" in request.cookies:

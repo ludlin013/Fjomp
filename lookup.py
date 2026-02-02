@@ -263,7 +263,7 @@ def lookup():
                         Dict["customerName"] = cust[x[0].strip()]
 
                     except Exception:
-                        Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '" + x[0] + "'")
+                        Dict["customerName"] = sql("SELECT", "SELECT Cust_Name FROM Customers WHERE Cust_CustID = '" + (x[0] or "") + "'")
 
                     if x[10] != None:
                         Dict["date_check"] = x[10].date()
@@ -281,7 +281,7 @@ def lookup():
                     date = x[3]
                 if btwdate1 < date < btwdate2:
                     Dict = {}
-                    Dict["url"] = "/swapouts?so="+str(x[1])
+                    Dict["url"] = "/swapouts?sw="+str(x[1])
                     Dict["type"] = "Sent-Swapouts"
                     Dict["ref"] = x[1]
                     Dict["customerID"] = x[0]
@@ -310,7 +310,7 @@ def lookup():
                     date = x[3]
                 if btwdate1 < date < btwdate2:
                     Dict = {}
-                    Dict["url"] = "/swapouts?so="+str(x[1])
+                    Dict["url"] = "/swapouts?sw="+str(x[1])
                     Dict["type"] = "Returned-Swapouts"
                     Dict["ref"] = x[1]
                     Dict["customerID"] = x[0]
