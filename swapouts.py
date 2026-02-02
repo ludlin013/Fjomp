@@ -382,8 +382,6 @@ def swappdf():
         print(x,y)
 
     contact = sql("SELECT","SELECT * FROM Parameters")
-    print(customer)
 
-    print(sqlquery)
 
     return render_template("swappdf.html",swap=sqlquery,contact=contact,customer=customer,swstatus=swstatus)
