@@ -1,6 +1,6 @@
 from flask import Flask,render_template,request,redirect,url_for
 from __main__ import *
-import pyodbc
+import pyodbc, datetime
 
 server = "P2019\\WSData"
 database = "winstat"
@@ -174,7 +174,7 @@ def customers():
                     elif sort == "revcharge":
                         units.sort(key = lambda x:x[8], reverse = True)
                     elif sort == "replace":
-                        units.sort(key = lambda x:x[9])
+                        units.sort(key=lambda x: (x[9] is None, x[9] or datetime.date.min))
                     elif sort == "revreplace":
                         units.sort(key = lambda x:x[9], reverse = True)
                     else:
