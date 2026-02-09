@@ -345,11 +345,15 @@ def swapreplace():
     if not unit_exists:
         return ('Unit hittades inte',200)
 
-    sqlq = f"UPDATE Units SET Unit_Serial = '{sqlquery[9].strip()}',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
+    sqlq = f"UPDATE Units SET Unit_History = '1',Unit_Repldate = '{sqlquery[10]}' where Unit_ID = '{unit_id}'"
     sqlreplaced = f"UPDATE Swap SET SWP_Replaced = '1' where SWP_No = '{swap}'"
 
-    sql("INSERT",sqlq)
-    sql("INSERT",sqlreplaced)
+    slqq = f"INSERT INTO Units (Unit_CustID, Unit_Cat, Unit_Vendor, Unit_Model, Unit_type, Unit_Chargemode, Unit_Notes, Unit_Serial, ) SELECT Unit_CustID, Unit_Cat, Unit_Vendor, Unit_Model, Unit_type, Unit_Chargemode, Unit_Notes, '{sqlquery[9].strip()}' FROM Units WHERE Unit_ID = '{unit_id}'"
+
+    print(slqq)
+
+    #sql("INSERT",sqlq)
+    #sql("INSERT",sqlreplaced)
 
     return ('', 204)
 
