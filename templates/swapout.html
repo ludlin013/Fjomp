@@ -301,7 +301,7 @@
                   ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[22]}}')">
                   <option disabled selected></option>
                   {% for tech in techs %}
-                  <option class="loantech" value="{{tech}}" {% if allswap[22]==tech %} selected {% endif %}>{{tech}}
+                  <option class="rmatech" value="{{tech}}" {% if allswap[22]==tech %} selected {% endif %}>{{tech}}
                   </option>
                   {% endfor %}
                 </select>
@@ -316,7 +316,7 @@
                   ondblclick="this.value='{{usr.upper()}}';saveitem('{{columns[23]}}')">
                   <option disabled selected></option>
                   {% for tech in techs %}
-                  <option class="loantech" value="{{tech}}" {% if allswap[23]==tech %} selected {% endif %}>{{tech}}
+                  <option class="rmatech" value="{{tech}}" {% if allswap[23]==tech %} selected {% endif %}>{{tech}}
                   </option>
                   {% endfor %}
                 </select>
@@ -346,6 +346,18 @@
                 src="./static/pictures/{{theme}}/bigthiccarrowright.png"></a>
           </div>
           <div class="buttonbarigen">
+            <a href="/swapnew" class="buttonsbar-item-delivnotes">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+  <path d="M9.6 9a2.4 2.4 0 1 1 4.2 1.6c-.7.6-1.8 1.2-1.8 2.9v.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M12 17h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+</svg>
+
+              <p>Hjälp</p>
+              <p class="newlinesc">Ctrl + K</p>
+            </a>
+
             <a href="/swapnew" class="buttonsbar-item-delivnotes"><img class="buttonbarpic-delivnotes"
                 src="static/pictures/{{theme}}/new.png" alt="Ctrl + M">
               <p>New</p>
