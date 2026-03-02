@@ -257,17 +257,20 @@ input {
   margin-top: -35px;
   padding: 5px;
   border-radius: 5px;
-  transition-duration: .1s
+  transition-duration: .1s;
+  display: none;
 }
 
 .newlinea:hover .newlinesc {
   opacity: 1;
-  transition-duration: 0
+  transition-duration: 0;
+  display: flex;
 }
 
 .buttonsbar-item-delivnotes:hover .newlinesc {
   opacity: 1;
-  transition-duration: 0
+  transition-duration: 0;
+  display: flex;
 }
 
 
