@@ -145,7 +145,7 @@ function getstore(e){
       }else{
         store = stores[0].split("\t");
 
-        document.getElementById("SWP_Contact").value = store[5];
+        //document.getElementById("SWP_Contact").value = store[5];
         document.getElementById("storenumber").value = store[0];
         document.getElementById("storeName").value = store[1];
         document.getElementById("storestreet").value = store[2];
@@ -192,7 +192,7 @@ function chooseStore(e){
     document.getElementById('storelist').style.display = "none";
     document.getElementById("storenumber").value = e.srcElement.children[0].textContent;
 
-    document.getElementById("SWP_Contact").value = e.srcElement.children[1].textContent;
+    //document.getElementById("SWP_Contact").value = e.srcElement.children[1].textContent;
 
     document.getElementById("storeName").value = e.srcElement.children[2].textContent;
     document.getElementById("storestreet").value = e.srcElement.children[3].textContent;
@@ -255,7 +255,7 @@ function clickstore(chosen){
   document.getElementById("storenumber").value = chosen.children[0].textContent;
 
 
-  document.getElementById("SWP_Contact").value = chosen.children[1].textContent;
+  //document.getElementById("SWP_Contact").value = chosen.children[1].textContent;
 
 
   document.getElementById("storeName").value = chosen.children[2].textContent;
@@ -270,7 +270,7 @@ function clickstore(chosen){
   }
 
   fd.append("store",chosen.children[0].textContent)
-  fd.append("SWP_Contact",chosen.children[1].textContent)
+  //fd.append("SWP_Contact",chosen.children[1].textContent)
   fd.append("noteid",document.getElementById("opensw").value)
   fd.append("name",chosen.children[2].textContent)
 
