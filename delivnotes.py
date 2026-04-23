@@ -505,9 +505,9 @@ def delivstoreselect():
                     except:
                         result +=  "-\t"
                     try:
-                        result +=   x[6].strip()
+                        result +=   str(x[6]).strip()
                     except:
-                        pass
+                        result +=  "-\t"
 
                     result +=  "\n"
         except: pass
